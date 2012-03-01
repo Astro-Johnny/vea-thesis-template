@@ -1,0 +1,50 @@
+\subsection{Simulētā shēma (rev.~02)}
+Sākotnējā darba augšējā līmeņa sistēmas gala shēma paredzēta, kā
+paškomplektējoša, tikai ar procesoru un atmiņu, 
+kur no ārpuses tiek tikai dota takts (\texttt{CLOCK})
+un atiestatīšanas signāls ($\overline{\texttt{RESET}}$). Darbības pārbaudei
+tiek izmantotas izstrādes platformas piedāvātās diodes.
+
+\begin{figure}[bhp]
+	\centering
+	\def\svgwidth{\textwidth}
+	{\ttfamily\tiny\input{img/top-rev2.pdf_tex}}
+	\caption{Augšējā līmeņa shēma (rev.~02).}
+	\label{fig:top-rev2}
+\end{figure}
+
+Šī shēma tika veiksmīgi simulēta pirms sintēzes
+(rezultātus sk.~\ref{appx:simulation}.~pielikumā),
+bet tā nav korekti sintezējama, jo paredz RAM sākotnējos datus,
+kurus sintēzes rīks ignorē.
+Realitātē RAM dati tiek pazaudēti tikko tiek noņemts barošanas spriegums un
+tātad pēc šādas shēmas nav iespējams saglabāt izpildāmo programmu.
+
+\pagebreak[3]
+%\subsubsection{Operatīvā atmiņa}
+	Operatīvā atmiņa šeit realizēta ar divām vienvirziena datu apmaiņas
+	šinām. Kontroles signāli izmantoti līdzīgi klasiskai trīs-stāvokļu
+	divvirzienu datu šinas atmiņai, pielāgojoties procesora atmiņas
+	saskarnei.
+	
+	\singlespacing
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={RAM VHDL entītija.},%
+	                linerange={7-13},firstnumber=7,
+	                breaklines,breakatwhitespace,
+	                label=kb:ram-entity%,%
+	                ]
+		{code/mem.twoport.vhd}
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={RAM VHDL arhitektūras apraksts (izgriezums).},%
+	                linerange={85-99},firstnumber=85,
+	                breaklines,breakatwhitespace,
+	                label=kb:ram-trimmed%,%
+	                ]
+		{code/mem.twoport.vhd}
+	\onehalfspacing % 1.5 spacing
+	
+	\noindent Pilno kodu skatīt \ref{appx:ram-code}.~pielikumā.

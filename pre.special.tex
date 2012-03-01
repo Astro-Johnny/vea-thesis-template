@@ -1,0 +1,21 @@
+%% This file contains special, document-specific preamble settings
+% Binary code formatting for instruction table
+\newcommand{\instr}[7]{\texttt{%
+	\textcolor{purple}{#1}%		Group OPCODE
+	\textcolor{blue}{#2}%		Vector OPCODE (part 1)
+	\textcolor{cyan}{#3}%		Vector OPCODE (part 2)
+	\textcolor{lightgray}{#4}%		Middle Slack bits
+	\textcolor{OliveGreen}{#5}%		Argument 1
+	\textcolor{Green}{#6}%	Argument 2
+	\textcolor{lightgray}{#7}}}%		Trailing Slack bits
+\newcommand{\mnem}[1]{\texttt{\bfseries #1}}
+
+%% listings definiicijas
+\input{vhdl_listing_def.tex}
+\input{jsi_assembler_listing_def.tex}
+
+%% English determined number suffixes
+%\renewcommand{\th}{\textsuperscript{th} }
+\newcommand{\st}{\textsuperscript{st} }
+\newcommand{\rd}{\textsuperscript{rd} }
+\newcommand{\nth}{\textsuperscript{th} }

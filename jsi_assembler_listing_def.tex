@@ -1,0 +1,13 @@
+\lstdefinelanguage{JSI}%
+ {morekeywords={LD,LDI,MOV,ST,AR,ADD,SUB,INC,DEC,AND,OR,XOR,NOT,CLR,%
+	MOV,LSL,LSR,ROR,ROL,BREQ,BRNQ,BRGT,BRGE,BRLE,BRLT,HLT,JMP},%
+morekeywords=[2]{DEVREG_ADDR,SPI_RING_REGISTER,%
+	BOOT_ROM_START,BOOT_ROM_END,SPECIAL_REG_START,SPECIAL_REG_END,%
+	SRAM_START,SRAM_END},% Ports and internal registers
+morekeywords=[3]{def,include,equ,dw,org},% directives
+   sensitive=true,%
+   %morecomment=[l]*,%
+   morestring=[b]",
+   morecomment=[l];%
+   }[keywords,comments,strings]
+

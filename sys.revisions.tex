@@ -1,0 +1,22 @@
+﻿\subsection{Revīziju vēsture} \label{sec:sys-revs}
+%\todo
+
+\begin{description}
+	\item[Rev.~01] \hfill \\
+		Kā RAM izmantota atmiņas realizācija ar 
+		trīs-stāvokļu, divvirzienu datu šinu.
+	\item[Rev.~02] \hfill \\
+		Līdzīgi revīzijas izmaiņām procesora uzbūvē, arī atmiņa pārveidota,
+		likvidējot trīs-stāvokļu šinu un tā vietā divas vienvirziena šinas
+		datu ieejai un izejai. Kontroles signāli atstāti bez izmaiņām,
+		tādējādi atmiņa vēljoprojām „emulē” trīs-stāvokļu datu apmaiņu,
+		saglabājot procesora iespēju strādāt ar divvirzienu šinas atmiņu
+		(papildus izmantojot virziena maiņas buferus).
+	\item[Rev.~03] \hfill \\
+		Šī revīzija veic fundamentālas izmaiņas sistēmas perifērijā,
+		pievienojot patstāvīgo atmiņu un realizējot adrešu telpas
+		piekārtošanu datu ievades/izvades ierīcēm ar MMU palīdzību.
+		Šai arī paredz sistēmas \termEn{boot} procesu, kur izpildes
+		programma tiek pārvietota izpildei uz operatīvo atmiņu no
+		patstāvīgās atmiņas.
+\end{description}

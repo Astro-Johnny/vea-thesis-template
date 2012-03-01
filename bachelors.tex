@@ -1,0 +1,143 @@
+\documentclass[12pt,a4paper]{article} % Maybe use 'report' ???
+% REMEMBER TO REMOVE THE 'draft' TAG!
+\usepackage{polyglossia}	% XeTeX multi-lingual support
+\usepackage{fontspec}		% The XeTeX font spec package
+\usepackage{xunicode}		% XeTeX Unicode character support
+\usepackage{xltxtra}		% Umm something else XeTeX
+
+\usepackage[intlimits]{amsmath}	% Math stuff
+\usepackage{listings}	% Package for code formatting
+\usepackage[dvipsnames]{xcolor}
+%\include{/home/johnlm/code/avr_assembler_listing_def.tex}
+%\input{avr_assembler_listing_def.tex}
+%\renewcommand{\lstlistingname}{Koda bloks}
+\usepackage{booktabs}	% Package for nicer tables
+\usepackage[perpage,symbol*]{footmisc}	% Resets footnote marks per page
+%\usepackage{wrapfig}
+\usepackage[superscript]{cite}	% Superscript cites
+\usepackage{rotating}	% Package for landscape figures
+\usepackage{indentfirst}	%Indent first paragraph too
+\usepackage{setspace}	% Line spacing package
+\usepackage{fancyhdr}	% Fancy header/footer package
+\usepackage[figurewithin=section,tablewithin=section]%
+	{caption}	% Package for configuring captions format
+\usepackage[a4paper,top=20mm, bottom=20mm, left=35mm, right=20mm]%
+%\usepackage[a4paper,top=22mm, bottom=25mm, left=35mm, right=20mm]% DEBUG
+	{geometry}
+\usepackage{fixlatvian}	% Fixes for Latvian typography rules
+
+% Preamble formatting settings defined included from external file
+\input{pre.settings.tex}
+\input{pre.special.tex}
+
+% Hyperref package for links in PDF (should be last package)
+\usepackage[linkbordercolor={blue},hyperindex]{hyperref}
+\hypersetup{pdftitle={Iekļautās sistēmas mikrokontroliera kodola izstrāde}}
+\hypersetup{pdfauthor={Jānis Šmēdiņš}}
+
+
+% \onehalfspacing
+
+% Chardump: „” em— en– fig‒ “”
+\begin{document}
+	% Titullapa
+	\pagestyle{empty}
+	\input{titullapa.tex} % Ielikt titullapu
+	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
+	\lstset{%
+			numbers=left, numberstyle=\tiny, numbersep=5pt,
+			tabsize=4,%
+			basicstyle=\footnotesize\ttfamily,%
+			keywordstyle={\bfseries\color{blue}},%
+			keywordstyle=[2]{\color{Brown}},%
+			keywordstyle=[3]{\color{OliveGreen}},%
+			keywordstyle=[4]{\color{Bittersweet}},%
+			commentstyle=\slshape\color{gray},%
+			emphstyle={\color{PineGreen}},%
+			stringstyle=\color{orange}} % "listings" koda stils
+	
+	%\section*{Saturs}
+	\renewcommand{\contentsname}%
+		{\vspace*{-12mm}\section*{Saturs}\vspace*{-6mm}}
+	\tableofcontents
+	%\addcontentsline{toc}{section}{Saturs}	% Saturs ir saturaa?
+	
+	\clearpage
+	%\sloppy %Don't care too much about rigid formatting
+	\pagestyle{plain}
+	\onehalfspacing % 1.5 spacing
+	
+	% Termini
+		% PCI, PCI Express
+		% Seriālā, paralēlā datu pāraide
+	
+	%\section*{Anotācija}
+	%\renewcommand{\abstractname}%
+	%	{\section*{Anotācija}}
+	%\input{abstract.tex}
+	
+	\clearpage
+	%\input{ievads.tex} % TODO: Rewrite this bugger
+	
+	\clearpage
+	\section{Sistēmas perifērija}
+	Atsevišķs procesors ir nefunkcionāls, ja tam nevar pievadīt izpildāmās
+	instrukcijas, atgūt datus vai vadīt kādu citu perifēro ierīci.
+	
+	Praktiski vienmēr procesoram nepieciešama atmiņas iekārta (RAM), kur
+	glabāt izpildāmo programmu, kā arī pirmsapstrādes, pēcapstrādes un 
+	apstrādes laika datus.
+	
+	Šajā nodaļā apskatītas divas sistēmas shēmas, no kurām viena veiksmīgi
+	nosimulēta, bet nav sitezējama (rev.~02) un krietni sarežģītākā
+	sintezējamā shēma, kura satur papildus perifērās ierīces.
+	
+	\input{sys.presynthesis.tex} \clearpage %\pagebreak[3]
+	\input{sys.rev3.tex} \clearpage %\pagebreak[3]
+	\input{sys.revisions.tex}
+	
+	% Literatūras saraksts
+	\bibliographystyle{ieeetr}
+	%\renewcommand{\refname}%
+	%	{\vspace*{-12mm}\section*{Izmantotā literatūra}\vspace*{-6mm}}
+	\clearpage
+	%\pagestyle{empty}
+	\raggedright
+	\begin{thebibliography}{9}
+		\addcontentsline{toc}{section}{\refname}
+		\bibitem{Perry-VHDL}
+			Douglas L.~Perry,
+			\textit{VHDL: Programming by Example}, 4\nth Edition. \linebreak[2]
+			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
+		
+		\bibitem{FusionGuide}
+			Actel corp.,
+			\textit{Fusion Embedded Development Kit User's Guide}. %\linebreak[2]
+			%USA: Actel,
+			2009.
+		
+		\bibitem{FusionFAQ}
+			Actel corp.,
+			\textit{Synplify — Synthesis Frequently Asked Questions}. %\linebreak[2]
+			%USA: Actel,
+			2009.
+		
+		\bibitem{FlashROM}
+			Actel corp.,
+			\textit{Fusion FlashROM}, Application Note AC236. %\linebreak[2]
+			%USA: Actel,
+			2005.
+		
+		%\bibitem{LDD3}
+		%	Corbet~J., Rubini~A., Kroah-Hartman~G.,
+		%	\textit{Linux Device Drivers, Third Edition}.
+		%	Sebastopol: O'Reilly, 2005. ISBN~0-596-00590-3
+		
+		%\bibitem{PCIeArch}
+		%	Burduk~R., Anderson~D., Shanley~T.,
+		%	\textit{PCI Express System Architecture}.
+		%	\linebreak[3]
+		%	Boston: Addison-Wesley, 2009. ISBN~0-321-15630-7
+	\end{thebibliography}
+	
+\end{document}

@@ -1,0 +1,193 @@
+﻿\subsection{Instrukciju kopa}
+Instukciju kopa ir bāzēta uz RISC procesoru arhitektūrām, un
+satur nedaudz vairāk par minimumu funkcionālam procesoram.
+Instrukciju operāciju kodi ir vektoriski, lai efektīvi izmantotu pieejamo instrukcijas 
+vārda garumu.
+
+\small
+\begin{longtable}[c]{lp{20ex}lp{0.36\textwidth}}
+	%\centering
+	\caption{Instrukciju tabula.}\label{tbl:instructions}\\
+	\toprule
+	\textbf{Apz.} & \textbf{Mašīnkods} & \textbf{Argumenti} & \textbf{Operācija} \\
+	\midrule \endfirsthead
+	\caption[]{\nameref{tbl:instructions}.~(turpinājums)}\\
+	%\toprule
+	\midrule
+	\textbf{Apz.} & \textbf{Mašīnkods} & \textbf{Argumenti} & \textbf{Operācija} \\
+	\midrule \endhead
+	\multicolumn{4}{c}{Atmiņas datu apmaiņas instrukcijas}\\
+	\midrule
+	\mnem{LD} & 	\instr{01}{00}{}{XXXXXX}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\texttt{rD = *(rS)} \newline
+		{\footnotesize Ielasa vārdu no RAM reģistrā \texttt{rD}} \\ \midrule
+	\mnem{LDI} & 	\instr{01}{01}{}{XXXXXX}{XXX}{}{XXX} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, C} &
+		\texttt{rD = C} \newline
+		{\footnotesize Ielasa konstanti reģistrā \texttt{rD}} \\ \midrule
+	\mnem{ST} & 	\instr{01}{11}{}{XXXXXX}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\texttt{*(rD) = rS} \newline
+		{\footnotesize Ielasa vārdu no RAM reģistrā \texttt{rD}} \\
+	\midrule \pagebreak[3]
+	\multicolumn{4}{c}{Aritmētika, loģika un bitu bīdes (un \mnem{AR} operācijas saīsnes)}\\
+	\midrule
+	\mnem{AR} & 	\instr{10}{}{}{}{XXXX}{XXX}{X}\instr{}{}{}{}{XXX}{XXX}{} & \texttt{kA, kS, rD, rS} &
+		{\footnotesize Aritmētikas/bīdes instrukcija.} \\ \midrule
+	\rule{0pt}{1em}\mnem{ADD} & \instr{10}{0000}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb|rD = rD + rS| \\ \midrule
+	\rule{0pt}{1em}\mnem{SUB} & \instr{10}{0001}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb|rD = rD - rS| \\ \midrule
+	\rule{0pt}{1em}\mnem{INC} & \instr{10}{1000}{000}{X}{XXX}{}{XXX} & \texttt{rD} &
+		\verb|rD = rD + 1| \\ \midrule
+	\rule{0pt}{1em}\mnem{DEC} & \instr{10}{1001}{000}{X}{XXX}{}{XXX} & \texttt{rD} &
+		\verb|rD = rD - 1| \\ \midrule
+	\rule{0pt}{1em}\mnem{AND} & \instr{10}{0010}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb|rD = rD & rS| \\ \midrule
+	\rule{0pt}{1em}\mnem{OR} & \instr{10}{0011}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb+rD = rD | rS+ \\ \midrule
+	\rule{0pt}{1em}\mnem{XOR} & \instr{10}{0100}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb|rD = rD ^ rS| \\ \nopagebreak \midrule
+	\rule{0pt}{1em}\mnem{NOT} & \instr{10}{1010}{000}{X}{XXX}{}{XXX} & \texttt{rD} &
+		\verb|rD = ~rD| \\ \midrule
+	\rule{0pt}{1em}\mnem{CLR} & \instr{10}{1111}{000}{X}{XXX}{}{XXX} & \texttt{rD} &
+		\verb|rD = 0| \\ \midrule
+	\rule{0pt}{1em}\mnem{MOV} & \instr{10}{0101}{000}{X}{XXX}{XXX}{} & \texttt{rD, rS} &
+		\verb|rD = rS| \\ \midrule
+	\rule{0pt}{1em}\mnem{LSL} & \instr{10}{0101}{001}{X}{XXX}{XXX}{} & \texttt{rD} &
+		\verb|rD = rS * 2| \newline
+		{\footnotesize Loģiskā kreisā bīde (reizina ar 2)} \\ \midrule
+	\rule{0pt}{1em}\mnem{LSR} & \instr{10}{0101}{010}{X}{XXX}{XXX}{} & \texttt{rD} &
+		\texttt{rD = rS / 2} \newline
+		{\footnotesize Loģiskā labā bīde (dala ar 2)} \\ \midrule
+	\rule{0pt}{1em}\mnem{ROL} & \instr{10}{0101}{011}{X}{XXX}{XXX}{} & \texttt{rD} &
+		{\footnotesize Bitu rotācija pa kreisi} \\ \midrule
+	\rule{0pt}{1em}\mnem{ROR} & \instr{10}{0101}{100}{X}{XXX}{XXX}{} & \texttt{rD} &
+		{\footnotesize Bitu rotācija pa labi} \\ \nopagebreak
+	\midrule \pagebreak[3]
+	\multicolumn{4}{c}{Plūsmas kontroles instrukcijas}\\
+	\midrule
+	\mnem{NOP} & 	\instr{00}{}{}{00000000000000}{}{}{} & nav &
+		{\footnotesize „Ne-operācija”} \\ \midrule
+	\mnem{HLT} & 	\instr{11}{0011}{}{XXXX}{}{}{XXXXXX} & nav &
+		{\footnotesize Apstādina procesora darbību} \\ \midrule
+	\mnem{JMP} & 	\instr{11}{0010}{}{XXXX}{}{}{XXXXXX} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{L} &
+		\texttt{PC = L} \newline
+		{\footnotesize Beznosacījuma lēciens.} \\ \midrule
+	\mnem{BREQ} & 	\instr{11}{1000}{}{XXXX}{XXX}{XXX}{} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+		\texttt{if(rD==rS) PC = L} \\ \midrule
+	\mnem{BRNQ} & 	\instr{11}{1011}{}{XXXX}{XXX}{XXX}{} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+		\texttt{if(rD!=rS) PC = L} \\ \midrule
+	\mnem{BRGT} & 	\instr{11}{1010}{}{XXXX}{XXX}{XXX}{} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+		\texttt{if(rD>rS) PC = L} \\ \midrule
+	\mnem{BRGE} & 	\instr{11}{1001}{}{XXXX}{XXX}{XXX}{} \newline
+					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+		\texttt{if(rD>=rS) PC = L} \\ \midrule
+	\mnem{BRLT} & 	\multicolumn{2}{c}{subst.~\texttt{\textbf{BRGE} rS, rD, L}} &
+		\texttt{if(rD<rS) PC = L}\\ \midrule
+	\mnem{BRLE} & 	\multicolumn{2}{c}{subst.~\texttt{\textbf{BRGT} rS, rD, L}} &
+		\texttt{if(rD<=rS) PC = L}\\
+	\bottomrule
+	\caption*{\fboxrule=0.75pt \framebox{\footnotesize
+		\begin{tabular}{ll}
+			\multicolumn{2}{c}{Mašīnkoda krāsu apzīmējumi} \\
+			\textcolor{purple}{\rule[-2pt]{1em}{1em}} Operāciju grupas kods &
+			\textcolor{blue}{\rule[-2pt]{1em}{1em}} \textcolor{cyan}{\rule[-2pt]{1em}{1em}}
+				Operācijas „vektora” kodi \\[2pt]
+			\textcolor{lightgray}{\rule[-2pt]{1em}{1em}} Ignorētie biti &
+			\textcolor{OliveGreen}{\rule[-2pt]{1em}{1em}} \textcolor{Green}{\rule[-2pt]{1em}{1em}}
+				Argumentu biti \\
+		\end{tabular}
+		}}
+\end{longtable}
+\normalsize
+
+Kā redzams instrukciju tabulā, instrukcijas
+ir sadalītas grupās vai nu pēc nozīmes, vai pēc izpildes līdzības. Šo
+instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļās.
+
+\subsubsection{\mnem{AR} instrukcija} \label{sec:AR}
+	Lai gan \mnem{AR} instrukcijas apzīmējums ir saīsinājums no „aritmētika”
+	un tā ir instrukcijas primārā nozīme, \mnem{AR} implementē visas
+	aritmētiskās, loģiskās, bīdes operācijas, kā arī reģistru 
+	apmaiņas \mnem{MOV} instrukciju. (sk.~\ref{tbl:instructions}.~tabulu)
+	Šāda implementācija izmantota tāpēc, ka visas šīs instrukcijas tiek
+	pārvadītas pa to pašu signālceļu. Tādējādi kontroles iekārta tiek
+	vienkāršota, jo atsevišķās operācijas nav nepieciešams izšķirt.
+	
+	Kontroles signāli aritmētiskajai un bīdes ierīcei,
+	kā argumenti jeb vektora kodi,
+	tiek nodoti tieši no instrukcijas vārda, un kontroles iekārtā netiek
+	interpretēti (jeb ir „necaurspīdīgi”). Izņēmums, gan ir 
+	unārās un bezargumentu operācijas
+	\mnem{INC}, \mnem{DEC}, \mnem{NOT} un \mnem{CLR}, kuru ALU
+	vektora koda vecākais bits (\texttt{=1}) tiek interpretēts, lai izlaistu
+	otrā operanda ielasi, tā samazinot nepieciešamo takts ciklu skaitu
+	instrukcijas izpildei. (sk.~\ref{kb:ARdecode}.~koda bloku)
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={\mnem{AR} instrukcijas dekodēšana. (\texttt{control2.vhd})},%
+	                firstnumber=150,
+	                label=kb:ARdecode%,%
+	                ]
+		{code/gen/ardecode-snippet.vhd}
+
+
+\subsubsection{Nosacījuma zarošanās instrukcijas} \label{sec:branching}
+	Nosacījuma zarošanās ir vitāla īpašība pilnīgam procesoram. Programmēšanas
+	valodu \texttt{if()} konstrukcija nav iedomājama bez
+	nosacījuma zarošanās.
+	
+	Izstrādātais procesors par nosacījumu var izmantot divu reģistru
+	vienā\-dības vai nevienādības, kur reģistru saturs tiek interpretēts, kā
+	bezzīmes veseli skaitļi (t.i.~\texttt{unsigned~integer} tips).
+	Šai salīdzināšanai atbilst \mnem{BRxx} instrukcijas
+	(sk.~\ref{tbl:instructions}.~tabulu), un pašu salīdzināšanu veic komparators
+	(sk.~\ref{sec:comp}.~nod.) kuram tiek pievadīti salīdzināmie operandi.
+	
+	\noindent Aparatūras līmenī realizētas četras zarošanās instrukcijas:
+	\begin{itemize}
+		\item \mnem{BREQ} — zaroties, ja operandi ir vienādi;
+		\item \mnem{BRNQ} — zaroties, ja operandi nav vienādi;
+		\item \mnem{BRGE} — zaroties, ja pirmais operands ir lielāks
+			vai vienāds ar otro;
+		\item \mnem{BRGT} — zaroties, ja pirmais operands ir stigri lielāks
+			par otro.
+	\end{itemize}
+	Šo instrukciju operāciju kodi nav izvēlēti gluži patvaļīgi, tie tiek
+	izmantoti loģiskā izteiksmē kopā ar komparatora signāliem, lai noteiktu
+	zarošanās izpildes nosacījumus.
+	
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.5}
+		{\ttfamily\input{img/karnaugh.pdf_tex}}\\
+		\(
+			f = \mathtt{\overline{A}E + BG + AG + AB\overline{E}}
+		\)\\[1ex]
+		(apzīmējumu nozīmi sk.~\ref{kb:branchTest}.~kodā)
+		\caption{Zarošanās nosacījuma \termEn{Karnaugh} karte un formula.}
+		\label{fig:branch-karnaugh}
+	\end{figure}
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={Zarošanās nosacījuma pārbaudes funkcija (\texttt{control2.vhd})},%
+	                linerange={61-69},firstnumber=61,
+	                label=kb:branchTest,%
+	                emph={state,branchTest},%
+	                breaklines,breakatwhitespace,
+	                basicstyle=\ttfamily\scriptsize ]
+		{code/control2.vhd}
+	
+	Atlikušās zarošanās instrukcijas \mnem{BRLT} un \mnem{BRLE} ir
+	programmatūras līmeņa substitūcijas, jo to ekvivalentus var iegūt
+	izmantojot attiecīgi \mnem{BRGE} un \mnem{BRGT} instrukcijas,
+	apmainot salīdzināmos operandus vietām.
+	
+	

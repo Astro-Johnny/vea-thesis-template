@@ -1,0 +1,76 @@
+% Polyglossia settings
+\setmainlanguage{latvian}
+\setotherlanguages{english,russian}
+
+% FONTS (Empty \setmainfont gives you new Computer Modern)
+% Deja Vu Family (rather good but wide chars)
+%\setmainfont{DejaVu Serif}
+%\setsansfont{DejaVu Sans}
+
+% Liberation Family (my current favourite)
+%\setmainfont{Liberation Serif}
+%\setsansfont{Liberation Sans}
+
+% Monos
+%\setmonofont{DejaVu Sans Mono}
+
+% Russian Font
+%\newfontfamily\cyrillicfont{Liberation Serif}
+\newfontfamily\cyrillicfont{CMU Serif}	% Unicode Computer modern font
+%Other fonts are too "fat"/wide
+
+%% Liberation Serif for VeA title font
+\definecolor{SeaBlue}{cmyk}{1,0,0.37,0.52}
+%% Use proper Aurora Bold Condensed BT
+\newfontfamily\TitleFont[%
+	Path = /home/johnlm/Development/resources/tex_graphics_lib/fonts/ ,%
+	FakeStretch = 1.5 ,
+	Color = SeaBlue
+	]{aurora-BT-condensed-bold}
+
+% External common image library
+\graphicspath{{/home/johnlm/Development/resources/tex_graphics_lib/}{img/}}
+
+\hyphenpenalty=7500
+\clubpenalty=9000
+\widowpenalty=9000
+
+% Set rubberband values
+\setlength{\parskip}{1ex plus 3ex minus 1ex}	% Space between paragraphs
+
+
+%\renewcommand{\thefootnote}{\alph{footnote}} % Piezīmes ar burtiem
+\newcommand{\citeet}[1]{\textsuperscript{\cite{#1}}}
+
+%% Numbering format fix for sections and subsections (trailing full-stop)
+%\def\thesection{\arabic{section}.}
+%\def\thesubsection{\thesection\arabic{subsection}.}
+% Add deeper levels if required
+%% FIXED: fixlatvian.sty provides these (REMOVE THIS)
+
+% Reformatting captions
+\captionsetup{format=hang,font={small}}	% GLOBAL
+%\captionsetup[table]{position=top,
+
+% Footer adjustements (by redefining plain pagestyle)
+\setlength{\headheight}{15.2pt}
+\fancypagestyle{plain}{%
+	\fancyhf{}	% Clear current (default) header/footer
+	\rfoot{\thepage}	% Page number on outside
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\headrulewidth}{0pt}}
+
+
+% Other stuff
+\newcommand{\todo}{\textcolor{red}{TODO}}
+
+%% Inline Word inclusion formatting
+\newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
+
+% Superscript cite
+\makeatletter
+	\renewcommand\@citess[1]{\textsuperscript{[#1]}}
+\makeatother
+
+
+

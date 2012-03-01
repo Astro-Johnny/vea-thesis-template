@@ -1,0 +1,75 @@
+\subsection{Papildinātā shēma (rev.~03)}
+Šī apakšnodaļa apraksta sistēmas papildinājumus funkcionālas, sintezējamas
+sistēmas realizācijai. Šīs revīzijas implementācija \textbf{nav pabeigta},
+tādēļ šī apakšnodaļa ir uzskatāma par \textbf{turpmākā darba dokumentāciju},
+nevis realizētu implementāciju.
+
+Trešā sistēmas revīzija pievieno patstāvīgās atmiņas elementus sākotnējās
+programmas un datu uzglabāšanai. Šīs atmiņas ierīces piekārtotas kopējai
+adresācijas telpai, tādējādi rodas nepieciešamība pēc adreses dekodēšanas
+loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
+
+\begin{figure}[bhp]
+	\centering
+	\def\svgscale{1.25}
+	{\input{img/top-rev3.pdf_tex}}
+	\caption{Augšējā līmeņa blokshēma (rev.~03).}
+	\label{fig:top-rev3}
+\end{figure}
+
+\subsubsection{Boot ROM}
+	\termEn{Boot ROM} ir tikai nolasāmā atmiņa, kura paredzēta
+	\termEn{bootstrap} procesa programmas uzglabāšanai.
+	Šīs programmas uzdevums ir ielādēt reālo izpildes programmu no
+	patstāvīgās atmiņas — šajā implementācijā konkrēti 
+	no SPI \termEn{Flash} atmiņas.
+	
+	Par \termEn{Boot ROM} kalpos \termEn{Actel Fusion} piedāvātais
+	\termEn{FlashROM} makross.\citeet{FlashROM}
+	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
+	1 kilobits jeb 64 vārdi.\citeet{FusionGuide}
+
+\subsubsection{Adrešu telpai piekārtotā ievade/izvade}
+	Papildus adresācijas telpā tiks piekārtoti speciālie reģistri dažādu
+	perifēro ierīču datu apmaiņai un konfigurācijai.
+	
+	Uz doto brīdi (un kā redzams blokshēmā — \ref{fig:top-rev3}.~att.)
+	paredzēta tikai SPI saskarne. Tam paredzēts viens pārraides un viens
+	konfigurācijas reģistrs. Tam paredzēta iespēja nokonfigurēt datu
+	apmaiņu pa baitam (8 biti) vai pa vārdam (16 biti). Datu pārraide tiek
+	uzsākta uzreiz pēc jauno datu ierakstes reģistrā (ja SPI iespējots) un
+	tiek pārraidīti bez procesora līdzdalības.
+	
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-spi.pdf_tex}}
+		\caption{SPI saskarnes ierīce.}
+		\label{fig:spi}
+	\end{figure}
+	
+	SPI saskarne nepieciešama komunikācijai ar SPI \termEn{Flash} atmiņu,
+	kura pieejama uz izstrādes platformas,\cite[43.~lpp.]{FusionGuide}
+	kur tiks glabāta galvenā izpildāmā programma, kura \termEn{boot} procesa
+	laikā tiks pārvietota uz RAM.
+
+\subsubsection{MMU — adrešu dekoderis}
+	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
+	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
+	ar šīm ierīcēm.
+	
+	\begin{figure}[thp]
+		\centering
+		\def\svgwidth{0.75\textwidth}
+		{\ttfamily\small\input{img/remap.pdf_tex}}
+		\caption{Adrešu telpas sadalījums.}
+		\label{fig:memory-map}
+	\end{figure}
+	
+	MMU tādējādi ar procesoru veido tādu pašu saskarni kā RAM un aparatūras
+	līmenī ir pilnībā „caursīdīga”, savukārt piekārtojamo ierīču saskarne
+	ir implementācijas definēta.
+	
+	\termEn{Boot ROM} nepieciešams piekārtot ar sākumu adresē \texttt{0x0000},
+	lai pēc atiestatīšanas procesors sāktu izpildīt \termEn{boot} programmu.

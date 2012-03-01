@@ -1,0 +1,90 @@
+% LM izcilā VeA titullapa bakalauram!
+\begin{titlepage}
+	% VeA Logo
+	% "Ventspils Austskola" virsraksts (\TitleFont jābūt definētam!!!)
+	\newsavebox{\veatext}
+	\savebox{\veatext}{
+		\TitleFont\Huge\MakeUppercase{Ventspils Augstskola}}
+	% Teksta platuma noteikšana (lai pielīdzinātu bildi tā platumam}
+	\newlength{\veatextwidth}
+	\settowidth{\veatextwidth}{\usebox{\veatext}}
+	% Šeit drukāts pats logo un nosaukums
+	\centering\includegraphics[width=0.98\veatextwidth]{VeA_logo.pdf}\\[4pt]
+	\usebox{\veatext}\\[6pt]
+	\large Informācijas tehnoloģiju fakultāte\\[2cm]
+	
+	%\textbf{Bakalaura darbs}\\[1.5cm]
+	\textbf{Bakalaura darba 1.~atskaite}\\[1.5cm]
+	
+	\textsc{\LARGE Iekļautās sistēmas mikrokontroliera kodola izstrāde}
+	\vfill % LIELĀ atstarpe
+	
+	%\raggedleft
+	\normalsize
+	\begin{minipage}[t]{0.4\textwidth}
+		\begin{flushleft}
+			Autors
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.55\textwidth}
+		\begin{flushleft}
+			Ventspils Augstskolas \\
+			Informācijas tehnoloģiju fakultātes \\
+			bakalaura studiju programmas „Elektronika”\\
+			3. kursa students \\
+			\textbf{Jānis Šmēdiņš}\\
+			Matr.~nr.~\texttt{2009120280}\\
+			\rule[-1em]{10em}{1pt}\\
+			\makebox[10em][c]{\tiny (paraksts)}\\[1cm]
+		\end{flushleft}
+	\end{minipage}\\[2em]
+	\begin{minipage}[t]{0.4\textwidth}
+		\begin{flushleft}
+			Fakultātes dekāns
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.55\textwidth}
+		\begin{flushleft}
+			asoc.prof.,~Dr.~math.~Gaļina Hiļķeviča\\[1ex]
+			\rule[-1em]{10em}{1pt}\\
+			\makebox[10em][c]{\tiny (paraksts)}\\[1cm]
+		\end{flushleft}
+	\end{minipage}\\[2em]
+	\begin{minipage}[t]{0.4\textwidth}
+		\begin{flushleft}
+			Zinātniskais vadītājs
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.55\textwidth}
+		\begin{flushleft}
+			%asoc.prof.,~Dr.~math.~Gaļina Hiļķeviča\\
+			\rule[-1em]{20em}{1pt}\\
+			\makebox[20em][c]{\tiny
+				(ieņemamais amats,
+				zinātniskais nosaukums,
+				vārds, uzvārds)}\\[1ex]
+			\rule[-1em]{10em}{1pt}\\
+			\makebox[10em][c]{\tiny (paraksts)}\\[1cm]
+		\end{flushleft}
+	\end{minipage}\\[2em]
+	\begin{minipage}[t]{0.4\textwidth}
+		\begin{flushleft}
+			Recenzents
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.55\textwidth}
+		\begin{flushleft}
+			\rule[-1em]{20em}{1pt}\\
+			\makebox[20em][c]{\tiny
+				(ieņemamais amats,
+				zinātniskais nosaukums,
+				vārds, uzvārds)}\\[1ex]
+			\rule[-1em]{10em}{1pt}\\
+			\makebox[10em][c]{\tiny (paraksts)}\\[1cm]
+		\end{flushleft}
+	\end{minipage}\\[1cm]
+	
+	\centering
+	Ventspils\\
+	\the\year
+\end{titlepage}

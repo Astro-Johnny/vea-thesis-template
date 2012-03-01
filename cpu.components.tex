@@ -1,0 +1,225 @@
+\subsection{Komponentes}
+Kā redzams procesora uzbūves shēmās
+(\ref{fig:controlPipeline}.~un \ref{fig:aluPipeline}.~attēls), procesors
+sastāv no dažādām apakš-komponentēm. Lai panāktu darba portabilitāti,%
+\footnote{Iespējamu projekta izmantošanu dažādos izstrādes rīkos.}
+komponentes aprakstītas RTL (\termEn{Register Transfer Level}) stila
+VHDL apraksta kodā.
+
+\subsubsection{Reģistri}
+	Viena no vienkāršākajām komponentēm ir reģistrs. Tā funkcija ir uzglabāt
+	viena vārda datus — šajā gadījumā 16 bitu vārda — un atjaunot to pēc
+	pieprasījuma (ar \texttt{clk} signālu).
+	
+	\begin{figure}[bh]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-reg.pdf_tex}}
+		\caption{Reģistrs.}
+		\label{fig:reg}
+	\end{figure}
+	
+	\noindent Procesorā ir vairāki atsevišķi reģistri ar savu nozīmi:
+	\begin{description}
+		\item[\texttt{PC} — Programmskaitītājs] \hfill \\
+			Reģistrs, kas uzglabā adresi aktīvajai programmas pozīcijai,
+			t.i.~parasti izpildāmās instrukcijas adresi. Secīgās programmas
+			izpildes laikā \texttt{PC} tiek palielināts par 1%
+			\footnote{Konkrētāk — \texttt{PC} tiek palielināts par
+				izpildīto instrukcijas vārdu skaitu. (1 vai 2)},
+			savukārt lēcieni (zarošanās)
+			programmā realizēti pārrakstot programmskaitītāja saturu.
+		\item[\texttt{instrReg} — Instrukciju reģistrs] \hfill \\
+			Reģistrs, kurā ieraksta izpildāmo instrukcijas kodu.
+			Nepieciešams, lai kontrole stāvokļa mašīna „neaizmirstu”
+			izpildāmo operāciju un tās argumentus izpildot mikrokoda soļus.
+		\item[\texttt{addrReg} — Atmiņas adresācijas reģistrs] \hfill \\
+			Reģistrs, kurā ieraksta adresējamo atmiņas adresi tās nolasei
+			vai ierakstei. Nepieciešams lai izvairītos no
+			cirkulārās loģikas ielasot datus no atmiņas.
+		\item[\texttt{opReg} — Operanda reģistrs] \hfill \\
+			Reģistrs, kas uzglabā vienu no aritmētiskās/loģiskās darbības
+			ope\-ran-diem, kamēr tiek iegūts otrs operands.
+		\item[\texttt{outReg} — Izejas reģistrs] \hfill \\
+			Reģistrs, kurā ieraksta aritmētiskās/loģiskās darbības rezultātu.
+			Nepieciešams lai izvairītos no cirkulārās loģikas
+			ierakstot rezultātu operatīvajos reģistros.
+	\end{description}
+	
+	\lstinputlisting[%float=pb,
+	                language={[qucs]VHDL},%
+	                caption={Reģistra VHDL apraksts. (\texttt{reg.vhd})},%
+	                label=kb:reg,%
+	                %emph={D,C,Q,nQ},%
+	                %emph={[2]{state}},% SIGNALS and other vars
+	                %emphstyle={[2]\color{PineGreen}},%
+	                %basicstyle=\scriptsize\ttfamily%,%
+	                tabsize=4%,%
+	                %lastline=59%
+	                ]
+		{code/reg.vhd}
+
+\pagebreak[3]
+\subsubsection{Operatīvo reģistru masīvs}
+	Operatīvie reģistri ir adresējama reģistru kopa, kura, atšķirībā
+	iepriekš apskatītajiem procesora specializētajiem reģistriem,
+	ir pieejama	programmētājam tiešai modifikācijai.\\
+	Tos sauc arī par vispārēja pielietojuma reģistriem, jo tiem nav noteikta specializēta
+	nozīme, tā vietā programmētājs tos lieto pēc vajadzības, piem.~mainīgo
+	uzglabāšanai.
+	
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-regArray.pdf_tex}}
+		\caption{Reģistru masīvs.}
+		\label{fig:regArray}
+	\end{figure}
+	\lstinputlisting[%float=b,
+	                language={[qucs]VHDL},%
+	                caption={Reģistru masīva VHDL apraksts. (\texttt{regarray2.vhd})},%
+	                label=kb:regArray,%
+	                emph={t_ram},%
+	                %basicstyle=\scriptsize\ttfamily%,%
+	                %lastline=59%
+	                ]
+		{code/regarray2.vhd}
+	
+	\pagebreak
+	Šajā realizācijā, reģistru masīvs vairāk līdzinās 8 vārdu operatīvajai
+	atmiņai, bet netiek realizēta rakstīšanas vai lasīšanas režīma
+	pārslēgšana. Tā vietā ir ieejas un izejas pieslēgvietas, kur
+	ierakstītie dati tiek saglabāti un uzreiz izlikti uz izvadi.
+
+\subsubsection{Multipleksors}
+	Komponentēm, kurām datu šinā nepieciešams saņemt datus no dažādiem
+	devējiem tiek multipleksētas, t.i.~devēju ieejas signāls tiek pārslēgts
+	pēc nepieciešamības.
+	
+	Šim nolūkam izmantots multipleksors. Atšķirībā no citām procesora
+	komponentēm multipleksors izveidots ar \termEn{Actel Libero}
+	programmatūras pieejamo multipleksora makrosu, kura instancējamā
+	entītijas definīcija parādīta \ref{kb:mux}.~koda blokā.
+	
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-mux.pdf_tex}}
+		\caption{2 ieeju multipleksors.}
+		\label{fig:mux2}
+	\end{figure}
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={Multipleksora makrosa entītijas definīcija.},%
+	                linerange={8-12},firstnumber=8,
+	                label=kb:mux%,%
+	                ]
+		{code/gen/muxiitis.vhd}
+
+\pagebreak[3]
+\subsubsection{Aritmētiski loģiskā ierīce}
+	Aritmētiski loģiskā ierīce jeb ALU ir viena no galvenajām,
+	procesora definējošām
+	komponentēm. Tās uzdevums ir veikt doto datu apstrādi, kā arī
+	palielināt programmskaitītāju secīgas programmas izpildes nodrošināšanai.
+	
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-alu.pdf_tex}}
+		\caption{Aritmētiski loģiskā ierīce.}
+		\label{fig:alu}
+	\end{figure}
+	
+	Lai gan klasiski bīdes operācijas arī tiek realizētas Aritmētiski
+	loģiskajā ierīcē, šajā gadījumā ALU veic tikai aritmētiskās un bitu
+	loģikas darbības, atstājot bīdes operācijas „bitu bīdes loģiskjai ierīcei”
+	(sk.~\ref{sec:shifter}.~nod.). Šāda sadalīšana ļauj veikt aritmētiskās
+	un bīdes operācijas vienlaicīgi, uz ko balstās \mnem{AR} instrukcija
+	(sk.~\ref{sec:AR}.~nod.~\pageref{sec:AR}.~lpp.)
+	
+	ALU realizēts ar asinhronu darbību, t.i.~izejas vērtība tiek izmainīta
+	uzreiz bez kontroles signāla (takts) pievadīšanas.
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={ALU VHDL apraksts. (\texttt{alu.vhd})},%
+	                label=kb:alu%,%
+	                %basicstyle=\scriptsize\ttfamily%,%
+	                %lastline=59%
+	                ]
+		{code/alu.vhd}
+
+\pagebreak[3]
+\subsubsection{Bitu bīdes loģiskā ierīce} \label{sec:shifter}
+	Tā sauktā bitu bīdes loģiskā ierīce realizē bitu bīdes operācijas kuras
+	šī procesora realizācijā ir izdalītas atsevišķi no ALU. Līdzīgi ALU
+	realizācijai — darbojas asinhroni.
+
+	\begin{figure}[thb]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-shift.pdf_tex}}
+		\caption{Bitu bīdes loģiskā ierīce.}
+		\label{fig:shift}
+	\end{figure}
+	
+	\lstinputlisting[%float=tp,
+	                language={[qucs]VHDL},%
+	                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
+	                tabsize=3,% TO REDUCE THE CODE WIDTH
+	                label=kb:shifter%,%
+	                ]
+		{code/shifter.vhd}
+
+\clearpage
+\subsubsection{Komparators} \label{sec:comp}
+	Komparators jeb salīdzinātājs ir komponente, kas salīdzina 
+	divus operandus un izvada tā vienādības vai nevienādības signālu.
+	
+	Šī komparatora implementācija ir minimizēta, kombinacionāla un nesatur
+	kontroles signālus. Izvadīti tiek tikai divi biti, no kuriem viens
+	norāda uz operandu vienādību vai nevienādību, savukārt otrs norāda
+	vai operands \texttt{a} ir lielāks par \texttt{b} vai nav. Ar šo
+	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
+	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas.
+	\begin{figure}[thp]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.25}
+		{\ttfamily\scriptsize\input{img/sub-comp.pdf_tex}}
+		\caption{Komparators.}
+		\label{fig:comp}
+	\end{figure}
+	
+	\lstinputlisting[%float=p,
+	                language={[qucs]VHDL},%
+	                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
+	                label=kb:comp%,%
+	                ]
+		{code/comp.vhd}
+
+\pagebreak[3]
+\subsubsection{Kontroles iekārta}
+	Viena no procesora definējošām un iespējams sarežģītākajām komponentēm
+	— kontroles iekārta ir tā kas nodrošina mikro-operāciju izpildi.
+	Kontroles iekārta realizēta kā stāvokļa mašīna, kur katrs stāvoklis
+	atbilst mikro-operācijai, un tātad tās VHDL apraksts ir uzskatāms par
+	realizētā procesora mikrokodu.
+	Kontroles iekārtas VHDL apraksts ir garš un sarežģīts, un tā daļas tiks
+	izskatītas instrukciju darbības aprakstos.\\
+	(Pilno kodu sk.~pielikumā~\ref{appx:control} \pageref{appx:control}.~lpp.)
+	\begin{figure}[h!]
+		\centering
+		%\def\svgwidth{7cm}
+		\def\svgscale{1.1}
+		{\ttfamily\scriptsize\input{img/sub-control.pdf_tex}}
+		\caption{Kontroles iekārta.}
+		\label{fig:control}
+	\end{figure}

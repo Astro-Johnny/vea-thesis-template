@@ -1,0 +1,68 @@
+\section{Kontroles iekārtas pilnais kods} \label{appx:control}
+\lstinputlisting[language={[qucs]VHDL},%
+                caption={Kontroles iekārtas VHDL apraksts. (\texttt{control2.vhd})},%
+                label=kb:control,
+                emph={state,branchTest},%
+                breaklines,breakatwhitespace,
+                basicstyle=\ttfamily\scriptsize ]{code/control2.vhd}
+
+\section{RAM pilnais kods} \label{appx:ram-code}
+\lstinputlisting[language={[qucs]VHDL},%
+                caption={RAM VHDL apraksts. (\texttt{mem.twoport.vhd})},%
+                label=kb:ram,
+                %emph={state,branchTest},%
+                breaklines,breakatwhitespace,
+                basicstyle=\ttfamily\scriptsize ]{code/mem.twoport.vhd}
+
+\clearpage
+\section{Pirmssintēzes simulācijas rezultāti} \label{appx:simulation}
+% MEMORY DUMP "language" definition
+\lstdefinelanguage{memdump}
+{
+	keywordsprefix=@,
+	comment=[l]{//}
+}
+
+\lstinputlisting[language={memdump},
+                 caption={Atmiņas saturs pirms programmas izpildes.},
+                 label=kb:mem-before,
+                 basicstyle=\ttfamily\small,
+                 firstline=4,firstnumber=4]{code/gen/before8.mem}
+
+\lstinputlisting[language={memdump},
+                 caption={Atmiņas saturs pēc programmas izpildes.},
+                 label=kb:mem-after,
+                 basicstyle=\ttfamily\small,
+                 firstline=4,firstnumber=4]{code/gen/after8.mem}
+
+\lstinputlisting[language={},
+                 caption={Atmiņas satura izmaiņas.},
+                 label=kb:mem-diff,
+                 basicstyle=\ttfamily\small,]{code/gen/mem8.diff}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0cm 0cm 8cm 0cm,clip,angle=-90,width=\linewidth]{sim0-init}\\
+	\caption{Inicializācijas laika diagramma.}
+	\label{fig:sim-init}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0cm 0cm 8cm 0cm,clip,angle=-90,width=\linewidth]{sim0-cycle}\\
+	\caption{Programmas cikla izpildes laika diagramma.}
+	\label{fig:sim-cycle}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0cm 0cm 8cm 0cm,clip,angle=-90,width=\linewidth]{sim0-halt}\\
+	\caption{Programmas izpildes beigu laika diagramma.}
+	\label{fig:sim-halt}
+\end{sidewaysfigure}
+
+\lstinputlisting[float=p,
+                 language={JSI},
+                 caption={Testa programmas assemblera kods.},
+                 basicstyle=\ttfamily\scriptsize,
+                 label=kb:copy-program]{code/gen/copy-noaccents.asm}

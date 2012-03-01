@@ -1,0 +1,21 @@
+﻿\subsection{Revīziju vēsture} \label{sec:cpu-revs}
+%\todo
+
+\begin{description}
+	\item[Rev.~01] \hfill \\
+		Par pamatu ņemta Perija grāmatas\citeet{Perry-VHDL} procesora
+		realizācija. Atsevišķas komponentes izveidotas ļoti līdzīgi, bet
+		kontroles iekārtas modelis un tam piekārtotā instrukciju tabula
+		pilnībā izstrādāta no jauna.
+	\item[Rev.~02] \hfill \\
+		\termEn{Actel Fusion} FPGA nepiedāvā trīs-stāvokļu loģiku.\citeet{FusionFAQ}
+		Tā rezultātā
+		datu apmaiņas šina, pārveidota no kopējas arbitējamas 
+		\termEn{multidrop} realizācijas pārveidota uz sazarotu vienvirziena
+		pārraides ķēdi. Šāds solis pavildus ļāva arī likvidēt trīs-stāvokļu
+		buferus un samazināt kontroles iekārtas signālu skaitu.
+	\item[Rev.~03] \hfill \\
+		Šī revīzija nav ienesusi fundamentālu izmaiņu procesora uzbūvē.
+		(Izmaiņas sistēmas perifērijā skatīt
+			\ref{sec:sys-revs}.~nod.~\pageref{sec:sys-revs}.~lpp.)
+\end{description}

@@ -1,0 +1,232 @@
+\documentclass[xetex]{beamer} % beamer = presentation type
+\usepackage{fontspec}		% The XeTeX font spec package
+\usepackage{xunicode}		% XeTeX Unicode character support
+\usepackage{xltxtra}		% Umm something else XeTeX
+\usepackage{url}
+
+\usepackage{booktabs}	% Package for nicer tables
+
+\usepackage{polyglossia}	% XeTeX multi-lingual support
+\setmainlanguage{latvian}
+\setotherlanguages{english,russian}
+
+%\newfontfamily\japfont{IPAPMincho}
+%\newfontfamily\japfont{IPAPGothic}
+%\setmainfont{DejaVu Sans}
+%\setsansfont{DejaVu Sans}
+%\newfontfamily\IPA[Scale=MatchUppercase]{DejaVu Sans}
+
+
+\author{Jānis Šmēdiņš}
+\title[Mikrokontroliera kodola izstrāde]
+	{Iekļautās sistēmas mikrokontroliera kodola izstrāde}
+%\titlegraphic{\includegraphics[height=0.5\textheight]{img/Thistle.pdf}}
+%\date{November 30, 2011}
+
+%\usetheme{Dresden}	% My usual
+\usetheme{Warsaw}	% Similar to Dresden
+
+%\usecolortheme{whale}	% Usually same as default
+
+\usefonttheme{structuresmallcapsserif}	% Use small caps for titles etc.
+
+% External common image library
+\graphicspath{{/home/johnlm/Development/resources/tex_graphics_lib/}{img/}}
+
+% symbol dump : “ ” —
+
+\begin{document}
+	% Slide 1 : Titlepage
+	\begin{frame}
+		%\centering\includegraphics[height=0.4\textheight]{Thistle}\\
+		\titlepage 	% The default generated title slide
+	\end{frame}
+	
+\end{document}
+% OLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+	
+	\begin{frame}{General information}
+		\begin{columns}
+			\column{0.6\textwidth}
+				{\def\svgwidth{\textwidth}
+				 \input{img/Scotland-in-UK.pdf_tex}}
+			\column{0.38\textwidth}
+				\begin{itemize}\small
+					\item Scotland is a part of United Kingdom
+					\item \textbf{Edinburgh} is the capital of Scotland
+					\item Size: 78387 km$^2$ \\
+						(1.2 $\times$
+						\includegraphics[width=1.5em]{Latvia-flagmap})
+					\item Population: 5.2~million
+					\item \textit{Alba} is Scotland in Scottish Gaelic 
+					\item The flag is\\
+						\includegraphics[width=0.8\textwidth]{Flag}
+				\end{itemize}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Languages}
+		\begin{columns}
+		\column{0.25\textwidth}
+			{\def\svgwidth{\textwidth}
+			 \input{img/languages.pdf_tex}}
+		\column{0.7\textwidth}
+				\begin{itemize}
+					\item \textbf{English} is the \textit{de facto}
+						official language.\\[1em]
+					\item (Lowland) Scots is often considered a language in
+						it's own right, but it's distinction from English
+						is rather fuzzy.\\[1em]
+					\item \textbf{Scottish Gaelic} (or Highland Scots) is
+						a recognized language used by 1\% of the population.
+				\end{itemize}
+		\end{columns}
+	\end{frame}
+	
+	%\section{Culture}
+	\begin{frame}{Vocabulary of Scottish English}
+		Scottish English has retained some archaic features of English
+		and it has numerous loanwords from Gaelic.
+		
+		\begin{table} \begin{tabular}{lcll}
+			\toprule
+			\textbf{Scottish E.} & \textbf{IPA} 
+				& \textbf{English} & \textbf{Usage}\\
+			\midrule
+			\textbf{aye} & \IPA{[aɪ]} & yes & {\footnotesize Widespread}\\
+			\textbf{nae} & \IPA{[neː]} & no & {\footnotesize Uncommon}\\
+			\midrule
+			\textbf{loch} & \IPA{[lɔx]} & lake & {\footnotesize Widespread}\\
+			\midrule
+			\textbf{bonnie} & \IPA{[bɔnɪ]} & beautiful, graceful
+				& {\footnotesize Fairly common}\\
+			\textbf{wee} & \IPA{[wiː]} & little, small
+				& {\footnotesize Common}\\
+			\textbf{wabbit} & \IPA{[ˈwæbɪt]} & exhausted
+				& {\footnotesize Fairly common}\\
+			\bottomrule
+		\end{tabular}\end{table}
+		
+		\textbf{NOTE}: The Scottish vocabulary is highly region dependent.
+	\end{frame}
+	
+	\begin{frame}{Scottish Culture “in a nutshell”}
+		\begin{columns}
+			\column{0.4\textwidth}
+				\includegraphics[width=\textwidth]{ConneryKilt-edit}
+			\column{0.58\textwidth}
+				\small
+				Scottish have strong sense of nationality. The turbulent
+				history with English has played major role in Scottish
+				culture.
+				\begin{itemize} %\small
+					\item Tartan Kilt is the traditional garment of Scots.
+					\item Highland Pipe music is associatted with Scots.
+					\item Football (Soccer) is hugely popular.
+					\item There is animosity towards English.
+				\end{itemize}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Etiquette}
+		\begin{itemize}
+			\item Most common informal greeting is “\textbf{Hello}” or
+				“\textbf{Hiya}”, \linebreak[2] while “How do you do”
+				would serve better in formal cases.
+			\item \textbf{Men shake hands} upon meeting. In other cases
+				handshake may be exchanged with woman extending her hand
+				first.
+			\item \textbf{Politeness} is highly valued.
+			\item \textbf{Punctuality} is expected.
+		\end{itemize}
+	\end{frame}
+	
+	% TABOOS/DONTS HERE????????
+	
+	\begin{frame}{Scottish Cuisine}
+		\begin{columns}
+			\column{0.5\textwidth}
+				\begin{block}{Haggis, neeps and tatties}
+					\includegraphics[width=\textwidth]{Haggis-neeps-and-tatties}
+				\end{block}
+			\column{0.5\textwidth}
+				\begin{block}{Scottish breakfast}
+					\includegraphics[width=\textwidth]{Scottish-breakfast-1024px}
+				\end{block}
+		\end{columns}
+		\begin{itemize}\small
+			\item Scottish foods are rich in fats and protein.
+			\item Fast food has become popular in late
+				20\textsuperscript{th} century.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Festivals and Holidays}
+		\begin{columns}
+			\column{0.3\textwidth}
+				\includegraphics[width=\textwidth]{EdinburghNYE-800px}
+			\column{0.7\textwidth}
+				\begin{itemize}
+					\item 30\textsuperscript{th} Nov — 
+						\textbf{St.~Andrews Day}
+					\item 25\textsuperscript{th} Jan — 
+						\textbf{Burns' Night}
+					\item 31\textsuperscript{st} Oct — 
+						\textbf{All Hallows' Eve} (Haloween)\\[2ex]
+					\item There are a large number regional
+						\textbf{Scottish Highland Game and Dance festivals}
+					\item Most ubiqutous western holidays are celebrated as well
+						\begin{itemize}
+							\item New Year
+							\item Christmas
+							\item Easter
+							\item Labour Day
+							\item etc.
+						\end{itemize}
+				\end{itemize}
+		\end{columns}
+	\end{frame}
+	
+	%\begin{frame}{Caveats}
+	%	\begin{itemize}
+	%		\item Scotland is quite cosmopolitan country.
+	%	\end{itemize}
+	%\end{frame}
+	
+	\begin{frame}{References}
+		\begin{itemize} \small
+			\item \texttt{culturecrossing.net}, \textit{Scotland}\\
+				{\scriptsize \url{http://www.culturecrossing.net/basics_business_student.php?id=242}}
+			\item eHow, \textit{Business Etiquette in Scotland}\\
+				{\scriptsize \url{http://www.ehow.com/about_5286041_business-etiquette-scotland.html}}
+			\item Wikimedia foundation, \textit{Scotland}
+				{\scriptsize \url{http://en.wikipedia.org/wiki/Scotland}}
+			\item Wikimedia foundation, \textit{Scottish English}
+				{\scriptsize \url{http://en.wiktionary.org/wiki/Category:Scottish_English}}
+		\end{itemize}
+	\end{frame}
+	
+	% Slide Last : Thank you!
+	\begin{frame}
+		\begin{center}
+			\Large Thank you for listening!\\[2em]
+			\normalsize It's now time for your questions.
+		\end{center}
+	\end{frame}
+	
+	
+	
+	% Slide last-1 : References
+	\begin{frame}{References}
+		\begin{itemize}
+			\normalsize
+			\item {\japfont 山崎照彦} (2005),
+				  {\small{\japfont\itshape カラーTFT液晶ディスプレイ}\\
+				  (translit. Yamasaki Teruhiko (2005), \textit{Colour TFT LCD})}
+			\item Toshiba corp.~(2000), \textit{LTM10C210 Product Information}
+			\item Wikimedia foundation, \textit{Liquid crystal display}
+				  from \url{http://en.wikipedia.org/wiki/LCD}
+			\item Wikimedia foundation, \textit{Thin-film transistor}
+				  from \url{http://en.wikipedia.org/wiki/Thin-film_transistor}
+		\end{itemize}
+	\end{frame}
