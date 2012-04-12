@@ -60,6 +60,11 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\headrulewidth}{0pt}}
 
+%% Footnote symbols redefined
+% I want it to have * ** *** sequence
+\DefineFNsymbols{LMSet}{*{**}{***}\ddagger{\ddagger\ddagger}\S{\S\S}}
+\setfnsymbol{LMSet}
+
 
 % Other stuff
 \newcommand{\todo}{\textcolor{red}{TODO}}

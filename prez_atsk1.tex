@@ -10,6 +10,8 @@
 \setmainlanguage{latvian}
 \setotherlanguages{english,russian}
 
+\newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
+
 %\newfontfamily\japfont{IPAPMincho}
 %\newfontfamily\japfont{IPAPGothic}
 %\setmainfont{DejaVu Sans}
@@ -28,7 +30,7 @@
 
 %\usecolortheme{whale}	% Usually same as default
 
-\usefonttheme{structuresmallcapsserif}	% Use small caps for titles etc.
+%\usefonttheme{structuresmallcapsserif}	% Use small caps for titles etc.
 
 % External common image library
 \graphicspath{{/home/johnlm/Development/resources/tex_graphics_lib/}{img/}}
@@ -42,28 +44,48 @@
 		\titlepage 	% The default generated title slide
 	\end{frame}
 	
+	\begin{frame}{Paraugierīces uzbūve}
+		~ % FIX: To avoid putting graphic into frame title
+		{\def\svgwidth{\textwidth} \small \input{img/uC-sheem.pdf_tex}}
+	\end{frame}
+	
+	\begin{frame}{Darba izstrāde}
+		\begin{itemize}
+			\item Komponentes tiek aprakstītas VHDL valodā.
+			\item Pirms sintēzes tiek veikta ierīces simulācija
+				darbības korektuma novērtēšanai.
+			\item Ierīce tiek realizēta sintezējot VHDL aprakstus
+				FPGA platformai.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Progress}
+		\large Izdarītais:
+		\begin{itemize}\small
+			\item Kodola komponenšu VHDL apraksti;
+			\item Kodola darbības simulācija;
+			\item Vairums perifēro komponenšu VHDL apraksti;
+			\item \termEn{Boot} processa programma.
+		\end{itemize}
+		\large Darāmais:
+		\begin{itemize}\small
+			\item SPI un GPIO saskarnes VHDL apraksts;
+			\item Fiziskā realizācija uz FPGA testa platformas.
+		\end{itemize}
+	\end{frame}
+	
+	% Slide Last : Thank you!
+	\begin{frame}
+		\begin{center}
+			\Large Paldies par uzmanību!\\[2em]
+			%\normalsize It's now time for your questions.
+		\end{center}
+	\end{frame}
+	
 \end{document}
 % OLDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 	
-	\begin{frame}{General information}
-		\begin{columns}
-			\column{0.6\textwidth}
-				{\def\svgwidth{\textwidth}
-				 \input{img/Scotland-in-UK.pdf_tex}}
-			\column{0.38\textwidth}
-				\begin{itemize}\small
-					\item Scotland is a part of United Kingdom
-					\item \textbf{Edinburgh} is the capital of Scotland
-					\item Size: 78387 km$^2$ \\
-						(1.2 $\times$
-						\includegraphics[width=1.5em]{Latvia-flagmap})
-					\item Population: 5.2~million
-					\item \textit{Alba} is Scotland in Scottish Gaelic 
-					\item The flag is\\
-						\includegraphics[width=0.8\textwidth]{Flag}
-				\end{itemize}
-		\end{columns}
-	\end{frame}
+	
 	
 	\begin{frame}{Languages}
 		\begin{columns}
@@ -206,13 +228,7 @@
 		\end{itemize}
 	\end{frame}
 	
-	% Slide Last : Thank you!
-	\begin{frame}
-		\begin{center}
-			\Large Thank you for listening!\\[2em]
-			\normalsize It's now time for your questions.
-		\end{center}
-	\end{frame}
+	
 	
 	
 	

@@ -27,24 +27,20 @@ tātad pēc šādas shēmas nav iespējams saglabāt izpildāmo programmu.
 	divvirzienu datu šinas atmiņai, pielāgojoties procesora atmiņas
 	saskarnei.
 	
-	\singlespacing
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={RAM VHDL entītija.},%
-	                linerange={7-13},firstnumber=7,
-	                breaklines,breakatwhitespace,
-	                label=kb:ram-entity%,%
-	                ]
-		{code/mem.twoport.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=p,
+		                caption={RAM VHDL entītija.},%
+		                label=kb:ram-entity,%
+		                linerange={7-13},firstnumber=7,
+		                breaklines,breakatwhitespace]
+			{code/mem.twoport.vhd}
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={RAM VHDL arhitektūras apraksts (izgriezums).},%
-	                linerange={85-99},firstnumber=85,
-	                breaklines,breakatwhitespace,
-	                label=kb:ram-trimmed%,%
-	                ]
-		{code/mem.twoport.vhd}
-	\onehalfspacing % 1.5 spacing
+		\lstinputlisting[language={[qucs]VHDL},%float=p,
+		                caption={RAM VHDL arhitektūras apraksts (izgriezums).},%
+		                label=kb:ram-trimmed,%
+		                linerange={85-99},firstnumber=85,%
+		                breaklines,breakatwhitespace]
+			{code/mem.twoport.vhd}
+	\end{singlespace}
 	
 	\noindent Pilno kodu skatīt \ref{appx:ram-code}.~pielikumā.

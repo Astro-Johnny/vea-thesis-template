@@ -11,7 +11,7 @@ vārda garumu.
 	\toprule
 	\textbf{Apz.} & \textbf{Mašīnkods} & \textbf{Argumenti} & \textbf{Operācija} \\
 	\midrule \endfirsthead
-	\caption[]{\nameref{tbl:instructions}.~(turpinājums)}\\
+	\caption[]{\nameref{tbl:instructions}~(turpinājums).}\\
 	%\toprule
 	\midrule
 	\textbf{Apz.} & \textbf{Mašīnkods} & \textbf{Argumenti} & \textbf{Operācija} \\
@@ -128,13 +128,13 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 	otrā operanda ielasi, tā samazinot nepieciešamo takts ciklu skaitu
 	instrukcijas izpildei. (sk.~\ref{kb:ARdecode}.~koda bloku)
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={\mnem{AR} instrukcijas dekodēšana. (\texttt{control2.vhd})},%
-	                firstnumber=150,
-	                label=kb:ARdecode%,%
-	                ]
-		{code/gen/ardecode-snippet.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={\mnem{AR} instrukcijas dekodēšana. (\texttt{control2.vhd})},%
+		                label=kb:ARdecode,%
+		                firstnumber=150]
+			{code/gen/ardecode-snippet.vhd}
+	\end{singlespace}
 
 
 \subsubsection{Nosacījuma zarošanās instrukcijas} \label{sec:branching}
@@ -175,15 +175,16 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 		\label{fig:branch-karnaugh}
 	\end{figure}
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={Zarošanās nosacījuma pārbaudes funkcija (\texttt{control2.vhd})},%
-	                linerange={61-69},firstnumber=61,
-	                label=kb:branchTest,%
-	                emph={state,branchTest},%
-	                breaklines,breakatwhitespace,
-	                basicstyle=\ttfamily\scriptsize ]
-		{code/control2.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={Zarošanās nosacījuma pārbaudes funkcija (\texttt{control2.vhd})},%
+		                label=kb:branchTest,%
+		                linerange={61-69},firstnumber=61,
+		                emph={state,branchTest},%
+		                breaklines,breakatwhitespace,
+		                basicstyle=\ttfamily\scriptsize]
+			{code/control2.vhd}
+	\end{singlespace}
 	
 	Atlikušās zarošanās instrukcijas \mnem{BRLT} un \mnem{BRLE} ir
 	programmatūras līmeņa substitūcijas, jo to ekvivalentus var iegūt

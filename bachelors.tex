@@ -6,34 +6,37 @@
 \usepackage{xltxtra}		% Umm something else XeTeX
 
 \usepackage[intlimits]{amsmath}	% Math stuff
-\usepackage{listings}	% Package for code formatting
+\usepackage{listingsutf8}	% Package for code formatting
 \usepackage[dvipsnames]{xcolor}
 %\include{/home/johnlm/code/avr_assembler_listing_def.tex}
 %\input{avr_assembler_listing_def.tex}
 %\renewcommand{\lstlistingname}{Koda bloks}
+\usepackage{longtable}	% Package for tables split accross pages
 \usepackage{booktabs}	% Package for nicer tables
-\usepackage[perpage,symbol*]{footmisc}	% Resets footnote marks per page
 %\usepackage{wrapfig}
 \usepackage[superscript]{cite}	% Superscript cites
 \usepackage{rotating}	% Package for landscape figures
 \usepackage{indentfirst}	%Indent first paragraph too
 \usepackage{setspace}	% Line spacing package
+\usepackage[perpage,symbol*]{footmisc}	% Resets footnote marks per page
+%NOTE: footmisc must load AFTER setspace
 \usepackage{fancyhdr}	% Fancy header/footer package
 \usepackage[figurewithin=section,tablewithin=section]%
 	{caption}	% Package for configuring captions format
 \usepackage[a4paper,top=20mm, bottom=20mm, left=35mm, right=20mm]%
 %\usepackage[a4paper,top=22mm, bottom=25mm, left=35mm, right=20mm]% DEBUG
 	{geometry}
-\usepackage{fixlatvian}	% Fixes for Latvian typography rules
 
 % Preamble formatting settings defined included from external file
 \input{pre.settings.tex}
 \input{pre.special.tex}
 
 % Hyperref package for links in PDF (should be last package)
-\usepackage[linkbordercolor={blue},hyperindex]{hyperref}
+\usepackage[hyperfootnotes=false,linkbordercolor={blue},hyperindex]{hyperref}
 \hypersetup{pdftitle={Iekļautās sistēmas mikrokontroliera kodola izstrāde}}
 \hypersetup{pdfauthor={Jānis Šmēdiņš}}
+
+\usepackage{fixlatvian}	% Fixes for Latvian typography rules
 
 
 % \onehalfspacing
@@ -51,9 +54,13 @@
 			keywordstyle={\bfseries\color{blue}},%
 			keywordstyle=[2]{\color{Brown}},%
 			keywordstyle=[3]{\color{OliveGreen}},%
-			keywordstyle=[4]{\color{Bittersweet}},%
-			commentstyle=\slshape\color{gray},%
-			emphstyle={\color{PineGreen}},%
+			keywordstyle=[4]{\color{TealBlue}},%
+			keywordstyle=[5]{\color{Sepia}},%
+			emphstyle={\color{Bittersweet}},%
+			emphstyle={[2]\color{PineGreen}},%
+			emph={[3]{cpu_lib,bus_t,t_alu,t_reg,t_shift}},% My global emphs
+			emphstyle={[3]\color{Green}},%
+			commentstyle=\slshape\color{gray},
 			stringstyle=\color{orange}} % "listings" koda stils
 	
 	%\section*{Saturs}
@@ -74,27 +81,16 @@
 	%\section*{Anotācija}
 	%\renewcommand{\abstractname}%
 	%	{\section*{Anotācija}}
-	%\input{abstract.tex}
+	\input{abstract.tex}
 	
 	\clearpage
-	%\input{ievads.tex} % TODO: Rewrite this bugger
+	\input{ievads.tex} % TODO: Rewrite this bugger
 	
 	\clearpage
-	\section{Sistēmas perifērija}
-	Atsevišķs procesors ir nefunkcionāls, ja tam nevar pievadīt izpildāmās
-	instrukcijas, atgūt datus vai vadīt kādu citu perifēro ierīci.
+	\input{core.tex} % Kodola uzbūve perifērija
 	
-	Praktiski vienmēr procesoram nepieciešama atmiņas iekārta (RAM), kur
-	glabāt izpildāmo programmu, kā arī pirmsapstrādes, pēcapstrādes un 
-	apstrādes laika datus.
-	
-	Šajā nodaļā apskatītas divas sistēmas shēmas, no kurām viena veiksmīgi
-	nosimulēta, bet nav sitezējama (rev.~02) un krietni sarežģītākā
-	sintezējamā shēma, kura satur papildus perifērās ierīces.
-	
-	\input{sys.presynthesis.tex} \clearpage %\pagebreak[3]
-	\input{sys.rev3.tex} \clearpage %\pagebreak[3]
-	\input{sys.revisions.tex}
+	\clearpage
+	\input{sys.tex} % Sistēmas perifērija
 	
 	% Literatūras saraksts
 	\bibliographystyle{ieeetr}

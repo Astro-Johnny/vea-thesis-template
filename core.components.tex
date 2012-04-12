@@ -47,18 +47,12 @@ VHDL apraksta kodā.
 			ierakstot rezultātu operatīvajos reģistros.
 	\end{description}
 	
-	\lstinputlisting[%float=pb,
-	                language={[qucs]VHDL},%
-	                caption={Reģistra VHDL apraksts. (\texttt{reg.vhd})},%
-	                label=kb:reg,%
-	                %emph={D,C,Q,nQ},%
-	                %emph={[2]{state}},% SIGNALS and other vars
-	                %emphstyle={[2]\color{PineGreen}},%
-	                %basicstyle=\scriptsize\ttfamily%,%
-	                tabsize=4%,%
-	                %lastline=59%
-	                ]
-		{code/reg.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={Reģistra VHDL apraksts. (\texttt{reg.vhd})},%
+		                label=kb:reg]
+			{code/reg.vhd}
+	\end{singlespace}
 
 \pagebreak[3]
 \subsubsection{Operatīvo reģistru masīvs}
@@ -77,15 +71,13 @@ VHDL apraksta kodā.
 		\caption{Reģistru masīvs.}
 		\label{fig:regArray}
 	\end{figure}
-	\lstinputlisting[%float=b,
-	                language={[qucs]VHDL},%
-	                caption={Reģistru masīva VHDL apraksts. (\texttt{regarray2.vhd})},%
-	                label=kb:regArray,%
-	                emph={t_ram},%
-	                %basicstyle=\scriptsize\ttfamily%,%
-	                %lastline=59%
-	                ]
-		{code/regarray2.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={Reģistru masīva VHDL apraksts. (\texttt{regarray2.vhd})},%
+		                label=kb:regArray,%
+		                emph={t_ram}]
+			{code/regarray2.vhd}
+	\end{singlespace}
 	
 	\pagebreak
 	Šajā realizācijā, reģistru masīvs vairāk līdzinās 8 vārdu operatīvajai
@@ -112,13 +104,13 @@ VHDL apraksta kodā.
 		\label{fig:mux2}
 	\end{figure}
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={Multipleksora makrosa entītijas definīcija.},%
-	                linerange={8-12},firstnumber=8,
-	                label=kb:mux%,%
-	                ]
-		{code/gen/muxiitis.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                 caption={Multipleksora makrosa entītijas definīcija.},%
+		                 label=kb:mux,%
+		                 linerange={8-12},firstnumber=8]
+			{code/gen/muxiitis.vhd}
+	\end{singlespace}
 
 \pagebreak[3]
 \subsubsection{Aritmētiski loģiskā ierīce}
@@ -146,14 +138,12 @@ VHDL apraksta kodā.
 	ALU realizēts ar asinhronu darbību, t.i.~izejas vērtība tiek izmainīta
 	uzreiz bez kontroles signāla (takts) pievadīšanas.
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={ALU VHDL apraksts. (\texttt{alu.vhd})},%
-	                label=kb:alu%,%
-	                %basicstyle=\scriptsize\ttfamily%,%
-	                %lastline=59%
-	                ]
-		{code/alu.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={ALU VHDL apraksts. (\texttt{alu.vhd})},%
+		                label=kb:alu]
+			{code/alu.vhd}
+	\end{singlespace}
 
 \pagebreak[3]
 \subsubsection{Bitu bīdes loģiskā ierīce} \label{sec:shifter}
@@ -170,13 +160,14 @@ VHDL apraksta kodā.
 		\label{fig:shift}
 	\end{figure}
 	
-	\lstinputlisting[%float=tp,
-	                language={[qucs]VHDL},%
-	                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
-	                tabsize=3,% TO REDUCE THE CODE WIDTH
-	                label=kb:shifter%,%
-	                ]
-		{code/shifter.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
+		                label=kb:shifter,%
+		                tabsize=3%,% TO REDUCE THE CODE WIDTH
+		                ]
+			{code/shifter.vhd}
+	\end{singlespace}
 
 \clearpage
 \subsubsection{Komparators} \label{sec:comp}
@@ -198,12 +189,12 @@ VHDL apraksta kodā.
 		\label{fig:comp}
 	\end{figure}
 	
-	\lstinputlisting[%float=p,
-	                language={[qucs]VHDL},%
-	                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
-	                label=kb:comp%,%
-	                ]
-		{code/comp.vhd}
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+		                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
+		                label=kb:comp]
+			{code/comp.vhd}
+	\end{singlespace}
 
 \pagebreak[3]
 \subsubsection{Kontroles iekārta}
