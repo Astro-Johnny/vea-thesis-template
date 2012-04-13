@@ -1,26 +1,41 @@
-\section{Procesora uzbūve} \label{sec:cpu}
-	Izstrādātais procesors ir Fon-Neimaņa (\termEn{von~Neumann})
-	arhitektūras pro\-ce\-sors, kas ir
-	daļēji balstīts uz D.~Perija (\termEn{D.~Perry}) grāmatas%
-	\citeet{Perry-VHDL} piedāvāto reali\-zā\-ciju. Procesors izmanto 16 bitu
-	instrukcijas%
-	\footnote{Instrukcijas var būt $N$-skaita 16 bitu vārdi. Šajā darbā
-		realizētas viena un divu vārdu instrukcijas.},
-	adresāciju un atmiņas datu šinas.
+\section{Mikrokontroliera kodols} \label{sec:cpu}
+	Mikrokontroliera kodols, pēc savas būtības un uzbūves, ir procesors,
+	kurš veic kalkulācijas un datu apmaiņu, nodrošinot mikrokontroliera
+	programmas izpildi.
+	
+	Šajā darbā izstrādātais mikrokontroliera kodols ir 
+	Fon-Neimaņa (\termEn{von~Neumann}) arhitektūras pro\-ce\-sors, kurš
+	izmanto 16 bitu instrukcijas%
+		\footnote{Instrukcijas var būt $N$-skaita 16 bitu vārdi. 
+		Šajā darbā realizētas viena un divu vārdu instrukcijas.},
+	kā arī ,,atomiski'' adresējamā atmiņas vienība, kurai pieder unikāla
+	adrese, ir 16 bitu plata. Kā Fon-Neimaņa procesoram, datu un
+	progrmmkoda atmiņa ir kopēja, un vienādi adresējama.\citeet{von-Neumann}
+	
+	Kodola uzbūve ir daļēji balstīta uz D.~Perija (\termEn{D.~Perry}) grāmatas%
+	\citeet{Perry-VHDL} piedāvāto procesora reali\-zā\-ciju, 
+	bet ar ievērojamām izmaiņām, galvenokārt pilnībā no jauna izstrādāta 
+	instrukciju kopa un vienvirziena,
+	cirkulāra datu apmaiņas šina atšķirībā no kopējas,
+	trīsstāvokļu arbitējamas datu šinas. Galvenais šāda risinājuma iemesls
+	ir izmantojamās \termEn{Actel} FPGA darba platformas trīs stāvokļu
+	loģikas atbalsta \mbox{trūkums.\cite[18.~lpp.]{FusionFAQ}}
+	% TODO: Šinu atšķirības
 	
 	Instruckiju kopa ir izstrādāta no jauna un piedāvā vienkāršotu,
 	mini\-mālu kopu līdzīgi RISC (\termEn{Reduced Instruction Set Computing})
 	filo\-so\-fijai. Salīdzinot ar Perija realizāciju, ievērojami samazinātas
 	nosacījuma zarošanās instrukcijas un instrukcijas pieejamie 16 biti
 	tiek efektīvāk izmantoti ieviešot vektorizētus jeb dažāda garuma
-	operāciju kodus.
+	operāciju kodus. (detalizētākam aprakstam sk.~\ref{sec:instrSet}~nod.)
+	\todo
 	
-	Tā kā \termEn{Actel} FPGA risinājums neatbalsta trīs stāvokļu
-	loģiku\cite[18.~lpp.]{FusionFAQ},
-	tad kopēju iekšējo datu šinu nav iespējams
-	izveidot. Tā vietā izveidota vienvirziena, nosacīti cirkulāra datu
-	apmaiņas līnija. Datu līnijas sazarojumi dažādu komponenšu 
-	komunikācijai realizēti ar multipleksoru palīdzību.
+	%Tā kā \termEn{Actel} FPGA risinājums neatbalsta trīs stāvokļu
+	%loģiku\cite[18.~lpp.]{FusionFAQ},
+	%tad kopēju iekšējo datu šinu nav iespējams
+	%izveidot. Tā vietā izveidota vienvirziena, nosacīti cirkulāra datu
+	%apmaiņas līnija. Datu līnijas sazarojumi dažādu komponenšu 
+	%komunikācijai realizēti ar multipleksoru palīdzību.
 	
 	\begin{figure}[bhp]
 		\centering
@@ -40,6 +55,7 @@
 	
 	\pagebreak[4]
 	%\clearpage
+	% TODO: Atmiņas izdalījums, 'von Neumann bottleneck' un kā DMA palīdz
 	\input{core.components.tex} %\pagebreak[3]
 	% CPU LIB
 		\clearpage 
@@ -52,5 +68,6 @@
 				{code/cpu_lib.vhd}
 		\end{singlespace}
 		\clearpage
-	\input{core.instructions.tex} \clearpage %\pagebreak[3]
-	\input{core.revisions.tex} %\pagebreak[3]
+	\input{core.instructions.tex} %\clearpage %\pagebreak[3]
+	% Man vajag revīziju cēsturi?
+	%\input{core.revisions.tex} %\pagebreak[3]

@@ -6,6 +6,7 @@
 \usepackage{xltxtra}		% Umm something else XeTeX
 
 \usepackage[intlimits]{amsmath}	% Math stuff
+%\usepackage{pdftexcmds} % pdf macros: needed for listingsutf8
 \usepackage{listingsutf8}	% Package for code formatting
 \usepackage[dvipsnames]{xcolor}
 %\include{/home/johnlm/code/avr_assembler_listing_def.tex}
@@ -50,6 +51,8 @@
 	\lstset{%
 			numbers=left, numberstyle=\tiny, numbersep=5pt,
 			tabsize=4,%
+			frame=lines,framerule=0.5pt,%
+			belowcaptionskip=2ex,%
 			basicstyle=\footnotesize\ttfamily,%
 			keywordstyle={\bfseries\color{blue}},%
 			keywordstyle=[2]{\color{Brown}},%
@@ -70,7 +73,7 @@
 	%\addcontentsline{toc}{section}{Saturs}	% Saturs ir saturaa?
 	
 	\clearpage
-	%\sloppy %Don't care too much about rigid formatting
+	\sloppy %Don't care too much about rigid formatting
 	\pagestyle{plain}
 	\onehalfspacing % 1.5 spacing
 	
@@ -90,7 +93,7 @@
 	\input{core.tex} % Kodola uzbūve perifērija
 	
 	\clearpage
-	\input{sys.tex} % Sistēmas perifērija
+	\input{periph.tex} % Sistēmas perifērija
 	
 	% Literatūras saraksts
 	\bibliographystyle{ieeetr}
@@ -106,21 +109,26 @@
 			\textit{VHDL: Programming by Example}, 4\nth Edition. \linebreak[2]
 			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
 		
+		\bibitem{von-Neumann}
+			John von Neumann,
+			\textit{First Draft of a Report on the EDVAC},\linebreak[2]
+			University of Pennsylvania, 1945.
+		
 		\bibitem{FusionGuide}
 			Actel corp.,
-			\textit{Fusion Embedded Development Kit User's Guide}. %\linebreak[2]
+			\textit{Fusion Embedded Development Kit User's Guide}, %\linebreak[2]
 			%USA: Actel,
 			2009.
 		
 		\bibitem{FusionFAQ}
 			Actel corp.,
-			\textit{Synplify — Synthesis Frequently Asked Questions}. %\linebreak[2]
+			\textit{Synplify — Synthesis Frequently Asked Questions}, %\linebreak[2]
 			%USA: Actel,
 			2009.
 		
 		\bibitem{FlashROM}
 			Actel corp.,
-			\textit{Fusion FlashROM}, Application Note AC236. %\linebreak[2]
+			\textit{Fusion FlashROM}, Application Note AC236, %\linebreak[2]
 			%USA: Actel,
 			2005.
 		
