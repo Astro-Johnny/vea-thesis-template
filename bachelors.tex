@@ -7,7 +7,7 @@
 
 \usepackage[intlimits]{amsmath}	% Math stuff
 %\usepackage{pdftexcmds} % pdf macros: needed for listingsutf8
-\usepackage{listingsutf8}	% Package for code formatting
+\usepackage{listings}	% Package for code formatting
 \usepackage[dvipsnames]{xcolor}
 %\include{/home/johnlm/code/avr_assembler_listing_def.tex}
 %\input{avr_assembler_listing_def.tex}
@@ -48,27 +48,17 @@
 	\pagestyle{empty}
 	\input{titullapa.tex} % Ielikt titullapu
 	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
-	\lstset{%
-			numbers=left, numberstyle=\tiny, numbersep=5pt,
-			tabsize=4,%
-			frame=lines,framerule=0.5pt,%
-			belowcaptionskip=2ex,%
-			basicstyle=\footnotesize\ttfamily,%
-			keywordstyle={\bfseries\color{blue}},%
-			keywordstyle=[2]{\color{Brown}},%
-			keywordstyle=[3]{\color{OliveGreen}},%
-			keywordstyle=[4]{\color{TealBlue}},%
-			keywordstyle=[5]{\color{Sepia}},%
-			emphstyle={\color{Bittersweet}},%
-			emphstyle={[2]\color{PineGreen}},%
-			emph={[3]{cpu_lib,bus_t,t_alu,t_reg,t_shift}},% My global emphs
-			emphstyle={[3]\color{Green}},%
-			commentstyle=\slshape\color{gray},
-			stringstyle=\color{orange}} % "listings" koda stils
+	
+	%% Number listings within section
+	% Add section number to caption
+	\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
+	% Redefine \section to reset the lstlisting counter
+	\let\oldSection\section
+	\renewcommand\section{\setcounter{lstlisting}{0}\oldSection}
 	
 	%\section*{Saturs}
-	\renewcommand{\contentsname}%
-		{\vspace*{-12mm}\section*{Saturs}\vspace*{-6mm}}
+	%\renewcommand{\contentsname}%
+	%	{\vspace*{-12mm}\section*{Saturs}\vspace*{-6mm}}
 	\tableofcontents
 	%\addcontentsline{toc}{section}{Saturs}	% Saturs ir saturaa?
 	
@@ -95,6 +85,9 @@
 	\clearpage
 	\input{periph.tex} % Sistēmas perifērija
 	
+	%\clearpage
+	\input{tools.tex}
+	
 	% Literatūras saraksts
 	\bibliographystyle{ieeetr}
 	%\renewcommand{\refname}%
@@ -104,25 +97,25 @@
 	\raggedright
 	\begin{thebibliography}{9}
 		\addcontentsline{toc}{section}{\refname}
-		\bibitem{Perry-VHDL}
-			Douglas L.~Perry,
-			\textit{VHDL: Programming by Example}, 4\nth Edition. \linebreak[2]
-			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
+		\bibitem{Flynn-arch}
+			Michael J.~Flynn,
+			\textit{Computer Architecture: Pipelined and Parallel Processor Design}
+			\linebreak[3]
+			London: Jones~and~Bartlett, 1995. ISBN~0-86720-204-1
 		
 		\bibitem{von-Neumann}
 			John von Neumann,
 			\textit{First Draft of a Report on the EDVAC},\linebreak[2]
 			University of Pennsylvania, 1945.
 		
+		\bibitem{Perry-VHDL}
+			Douglas L.~Perry,
+			\textit{VHDL: Programming by Example}, 4\nth Edition. \linebreak[2]
+			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
+		
 		\bibitem{FusionGuide}
 			Actel corp.,
 			\textit{Fusion Embedded Development Kit User's Guide}, %\linebreak[2]
-			%USA: Actel,
-			2009.
-		
-		\bibitem{FusionFAQ}
-			Actel corp.,
-			\textit{Synplify — Synthesis Frequently Asked Questions}, %\linebreak[2]
 			%USA: Actel,
 			2009.
 		
@@ -131,6 +124,12 @@
 			\textit{Fusion FlashROM}, Application Note AC236, %\linebreak[2]
 			%USA: Actel,
 			2005.
+		
+		\bibitem{FusionFAQ}
+			Actel corp.,
+			\textit{Synplify — Synthesis Frequently Asked Questions}, %\linebreak[2]
+			%USA: Actel,
+			2009.
 		
 		%\bibitem{LDD3}
 		%	Corbet~J., Rubini~A., Kroah-Hartman~G.,

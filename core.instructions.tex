@@ -1,4 +1,4 @@
-﻿\subsection{Instrukciju kopa} \label{sec:instrSet}
+\subsection{Instrukciju kopa} \label{sec:instrSet}
 Instukciju kopa ir bāzēta uz RISC procesoru arhitektūrām, un
 satur nedaudz vairāk par minimumu funkcionālam procesoram.
 Instrukciju operāciju kodi ir vektoriski, lai efektīvi izmantotu pieejamo instrukcijas 
@@ -71,20 +71,20 @@ vārda garumu.
 	\mnem{HLT} & 	\instr{11}{0011}{}{XXXX}{}{}{XXXXXX} & nav &
 		{\footnotesize Apstādina procesora darbību} \\ \midrule
 	\mnem{JMP} & 	\instr{11}{0010}{}{XXXX}{}{}{XXXXXX} \newline
-					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{L} &
+					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{L} &
 		\texttt{PC = L} \newline
 		{\footnotesize Beznosacījuma lēciens.} \\ \midrule
 	\mnem{BREQ} & 	\instr{11}{1000}{}{XXXX}{XXX}{XXX}{} \newline
-					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{rD, rS, L} &
 		\texttt{if(rD==rS) PC = L} \\ \midrule
 	\mnem{BRNQ} & 	\instr{11}{1011}{}{XXXX}{XXX}{XXX}{} \newline
-					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{rD, rS, L} &
 		\texttt{if(rD!=rS) PC = L} \\ \midrule
 	\mnem{BRGT} & 	\instr{11}{1010}{}{XXXX}{XXX}{XXX}{} \newline
-					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{rD, rS, L} &
 		\texttt{if(rD>rS) PC = L} \\ \midrule
 	\mnem{BRGE} & 	\instr{11}{1001}{}{XXXX}{XXX}{XXX}{} \newline
-					\instr{}{}{}{}{}{XXXXXXXXXXXXXXXX}{} & \texttt{rD, rS, L} &
+					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{rD, rS, L} &
 		\texttt{if(rD>=rS) PC = L} \\ \midrule
 	\mnem{BRLT} & 	\multicolumn{2}{c}{subst.~\texttt{\textbf{BRGE} rS, rD, L}} &
 		\texttt{if(rD<rS) PC = L}\\ \midrule
