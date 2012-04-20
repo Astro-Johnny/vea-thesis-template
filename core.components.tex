@@ -9,6 +9,13 @@ RTL stila VHDL apraksts panāk augstu implementācijas portabilitāti%
 , lai gan dažas komponentes, veiktspējas palielināšanas nolūkos, ir
 izveidotas izmantojot izstrādes rīka ,,Actel Libero'' makrosus.
 
+Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
+\texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā.
+\lstinputlisting[language={[qucs]VHDL},float=h,%
+                 caption={Procesora \texttt{cpu\_lib} pakas definīcija. (\texttt{cpu\_lib.vhd})},%
+                 label=kb:cpulib,basicstyle=\ttfamily\scriptsize]
+	{code/cpu_lib.vhd}
+
 \subsubsection{Reģistri}
 	Viena no vienkāršākajām komponentēm ir reģistrs.
 	Tā funkcija ir uzglabāt	viena mašīn\-vārda datus 
