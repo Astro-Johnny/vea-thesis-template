@@ -10,7 +10,7 @@ RTL stila VHDL apraksts panāk augstu implementācijas portabilitāti%
 izveidotas izmantojot izstrādes rīka ,,Actel Libero'' makrosus.
 
 Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
-\texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā.
+\texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā. \todo
 \lstinputlisting[language={[qucs]VHDL},float=h,%
                  caption={Procesora \texttt{cpu\_lib} pakas definīcija. (\texttt{cpu\_lib.vhd})},%
                  label=kb:cpulib,basicstyle=\ttfamily\scriptsize]
@@ -84,7 +84,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	jo tiem nav noteikta specializēta nozīme.
 	Tā vietā programmētājs tos lieto pēc vajadzības, piem.~izpildāmās
 	programmas mainīgo uzglabāšanai.
-	\begin{figure}[t!]
+	\begin{figure}[th]
 		\centering
 		%\def\svgwidth{7cm}
 		\def\svgscale{1.25}
@@ -123,7 +123,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	multipleksors tiek izmantots datu šinā, noslēdzot sazarojumu,
 	lai pārslēgtu datu ieejas avotu aiz tā sekojošai komponentei
 	(vai komponentēm).
-	\begin{figure}[thp]
+	\begin{figure}[bhp]
 		\centering
 		%\def\svgwidth{7cm}
 		\def\svgscale{1.25}
@@ -132,6 +132,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 		\label{fig:mux2}
 	\end{figure}
 	
+	\pagebreak[2]
 	Multipleksors, veiktspējas uzlabošanas nolūkos, realizēts ar
 	\termEn{Actel Libero} programmatūras pieejamo multipleksora makrosu,
 	kura instancējamā VHDL entītijas definīcija parādīta \ref{kb:mux}~koda blokā.
@@ -177,20 +178,20 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	(sk.~\ref{fig:cpu-rev3}~att., \pageref{fig:cpu-rev3}~lpp.)
 	
 	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=t,%
+		\lstinputlisting[language={[qucs]VHDL},float=th,%
 		                caption={ALU VHDL apraksts. (\texttt{alu.vhd})},%
 		                label=kb:alu]
 			{code/alu.vhd}
 	%\end{singlespace}
 
-\pagebreak[3]
+\pagebreak
 \subsubsection{Bitu bīdes loģiskā ierīce} \label{sec:shifter}
 	Ierīce, kura šeit nosaukta par ,,bitu bīdes loģisko ierīci'',
 	realizē bitu bīdes operācijas kuras	šī procesora realizācijā ir
 	izdalītas atsevišķi no ALU. 
 	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona.
 
-	\begin{figure}[thb]
+	\begin{figure}[h!]
 		\centering
 		%\def\svgwidth{7cm}
 		\def\svgscale{1.25}
@@ -199,14 +200,14 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 		\label{fig:shift}
 	\end{figure}
 	
-	\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+	%\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},float=th,%
 		                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
 		                label=kb:shifter,%
 		                tabsize=3%,% TO REDUCE THE CODE WIDTH
 		                ]
 			{code/shifter.vhd}
-	\end{singlespace}
+	%\end{singlespace}
 
 %\clearpage
 \pagebreak[3]
@@ -220,7 +221,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	vai operands \texttt{a} ir lielāks par \texttt{b} vai nav. Ar šo
 	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
 	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas.
-	\begin{figure}[thp]
+	\begin{figure}[bhp]
 		\centering
 		%\def\svgwidth{7cm}
 		\def\svgscale{1.25}
@@ -229,14 +230,15 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 		\label{fig:comp}
 	\end{figure}
 	
-	\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
+	%\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},float=hpb,%
 		                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
 		                label=kb:comp]
 			{code/comp.vhd}
-	\end{singlespace}
+	%\end{singlespace}
 
-\pagebreak[3]
+\clearpage
+%\pagebreak[3]
 \subsubsection{Kontroles iekārta}
 	Viena no procesora definējošām un iespējams sarežģītākajām komponentēm
 	— kontroles iekārta ir tā kas nodrošina mikro-operāciju izpildi.
