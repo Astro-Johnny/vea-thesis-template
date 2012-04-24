@@ -214,13 +214,13 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 \subsubsection{Komparators} \label{sec:comp}
 	Komparators jeb salīdzinātājs ir komponente, kas salīdzina 
 	divus operandus un izvada tā vienādības vai nevienādības signālu.
-	
 	Šī komparatora implementācija ir minimizēta, kombinacionāla un nesatur
 	kontroles signālus. Izvadīti tiek tikai divi biti, no kuriem viens
 	norāda uz operandu vienādību vai nevienādību, savukārt otrs norāda
 	vai operands \texttt{a} ir lielāks par \texttt{b} vai nav. Ar šo
 	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
 	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas.
+	(sk.~\ref{sec:branching}~nod.~\pageref{sec:branching}~lpp.)
 	\begin{figure}[bhp]
 		\centering
 		%\def\svgwidth{7cm}
@@ -243,8 +243,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	Viena no procesora definējošām un iespējams sarežģītākajām komponentēm
 	— kontroles iekārta ir tā kas nodrošina mikro-operāciju izpildi.
 	Kontroles iekārta realizēta kā stāvokļa mašīna, kur katrs stāvoklis
-	atbilst mikro-operācijai, un tātad tās VHDL apraksts ir uzskatāms par
-	realizētā procesora mikrokodu.
+	atbilst mikro-operācijai, un tātad tās VHDL apraksts var tikt uzskatīts
+	par analogu mikrokodam.
 	Kontroles iekārtas VHDL apraksts ir garš un sarežģīts, un tā daļas tiks
 	izskatītas instrukciju darbības aprakstos.\\
 	(Pilno kodu sk.~pielikumā~\ref{appx:control} \pageref{appx:control}.~lpp.)

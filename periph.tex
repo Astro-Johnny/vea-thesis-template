@@ -1,15 +1,22 @@
-\section{Sistēmas perifērija}
-	Atsevišķs procesors ir nefunkcionāls, ja tam nevar pievadīt izpildāmās
-	instrukcijas, atgūt datus vai vadīt kādu citu perifēro ierīci.
+\section{Mikrokontroliera realizācijas paraugs}
+	Iepriekšējā nodaļā apskatītais mikrokontroliera kodols, lai gan centrālā
+	komponente, bez papildus komponentēm ir praktiski nefunkcionāls, jo
+	nav iespējams uzglabāt un pievadīt izpildāmās instrukcijas un veikt
+	datu apmaiņu ar perifērām ierīcēm.
 	
-	Praktiski vienmēr procesoram nepieciešama atmiņas iekārta (RAM), kur
-	glabāt izpildāmo programmu, kā arī pirmsapstrādes, pēcapstrādes un 
-	apstrādes laika datus.
+	%Vitāli svarīga komponente, praktiski jebkurā datoriekārtā, 
+	%ir operatīvā atmiņa (RAM), kur
+	%glabāt izpildāmo programmu, kā arī pirmsapstrādes, pēcapstrādes un 
+	%apstrādes laika datus.
 	
-	Šajā nodaļā apskatītas divas sistēmas shēmas, no kurām viena veiksmīgi
-	nosimulēta, bet nav sintezējama (rev.~02) un krietni sarežģītākā
-	sintezējamā shēma, kura satur papildus perifērās ierīces.
+	Šī nodaļa apskata parauga implementāciju mikrokontrolierim, kurā
+	izmantots izstrādātais mikrokontroliera kodols. 
+	Paraug\-implementācija paredzēta mikrokontroliera kodola 
+	darbības demontrēšanai, kā arī kalpošanai par dokumentētu pamatu 
+	turmākajām, iespējams specializētām implementācijām.
 	
-	\input{periph.presynthesis.tex} \clearpage %\pagebreak[3]
+	
+	\input{periph.design.tex}
+	%\input{periph.presynthesis.tex} \clearpage %\pagebreak[3]
 	\input{periph.rev3.tex} \clearpage %\pagebreak[3]
 	\input{periph.revisions.tex}

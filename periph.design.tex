@@ -1,0 +1,22 @@
+\subsection{Implementācijas īpašības} \label{sec:design}
+Izstrādājot mikrokontrolieri tika pieņemti vairāki lēmumi par tā uzbūvi,
+veidojot specifikāciju kopu uz kuras
+balstās izstrādātātās mikrokontroliera komponentes. \todo \\
+\begin{figure}[bhp]
+	\centering
+	\def\svgwidth{\textwidth}
+	{\input{img/uC-sheem.pdf_tex}}
+	\caption{Augšējā līmeņa blokshēma (rev.~03).}
+	\label{fig:top-rev3}
+\end{figure}
+Šim mikrokontrolierim ir sekojošas uzbūves īpašības:
+\begin{description}
+	\item[Vienota adrešu telpa] \hfill \\
+		Mikrokontroliera kodols komunicē ar ārējām ierīcēm tikai caur
+		atmiņas saskarni, bet ne obligāti šai ierīcei arī jābūt atmiņai.
+		Tā vietā kopējai adrešu telpai tiek piekārtotas vairākas ierīces
+		izdalot noteiktus atmiņas apgabalus. Adrešu dekoderis veido saskarni
+		multipleksējot ierīces atkarībā no pieprasītās adreses.
+		(sk.~\ref{sec:mmu}~nod.)
+	\item[] \todo
+\end{description}

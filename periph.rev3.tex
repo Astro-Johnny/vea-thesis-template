@@ -9,13 +9,7 @@ programmas un datu uzglabāšanai. Šīs atmiņas ierīces piekārtotas kopējai
 adresācijas telpai, tādējādi rodas nepieciešamība pēc adreses dekodēšanas
 loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 
-\begin{figure}[bhp]
-	\centering
-	\def\svgwidth{\textwidth}
-	{\input{img/uC-sheem.pdf_tex}}
-	\caption{Augšējā līmeņa blokshēma (rev.~03).}
-	\label{fig:top-rev3}
-\end{figure}
+
 
 \subsubsection{Boot ROM}
 	\termEn{Boot ROM} ir tikai nolasāmā atmiņa, kura paredzēta
@@ -54,7 +48,7 @@ loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 	kur tiks glabāta galvenā izpildāmā programma, kura \termEn{boot} procesa
 	laikā tiks pārvietota uz RAM.
 
-\subsubsection{MMU — adrešu dekoderis}
+\subsubsection{MMU — adrešu dekoderis} \label{sec:mmu}
 	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
 	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
 	ar šīm ierīcēm.
