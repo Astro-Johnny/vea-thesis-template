@@ -1,17 +1,17 @@
-\subsection{Papildinātā shēma (rev.~03)}
-Šī apakšnodaļa apraksta sistēmas papildinājumus funkcionālas, sintezējamas
-sistēmas realizācijai. Šīs revīzijas implementācija \textbf{nav pabeigta},
-tādēļ šī apakšnodaļa ir uzskatāma par \textbf{turpmākā darba dokumentāciju},
-nevis realizētu implementāciju.
+%\subsection{Papildinātā shēma (rev.~03)}
+%Šī apakšnodaļa apraksta sistēmas papildinājumus funkcionālas, sintezējamas
+%sistēmas realizācijai. Šīs revīzijas implementācija \textbf{nav pabeigta},
+%tādēļ šī apakšnodaļa ir uzskatāma par \textbf{turpmākā darba dokumentāciju},
+%nevis realizētu implementāciju.
 
-Trešā sistēmas revīzija pievieno patstāvīgās atmiņas elementus sākotnējās
-programmas un datu uzglabāšanai. Šīs atmiņas ierīces piekārtotas kopējai
-adresācijas telpai, tādējādi rodas nepieciešamība pēc adreses dekodēšanas
-loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
+%Trešā sistēmas revīzija pievieno patstāvīgās atmiņas elementus sākotnējās
+%programmas un datu uzglabāšanai. Šīs atmiņas ierīces piekārtotas kopējai
+%adresācijas telpai, tādējādi rodas nepieciešamība pēc adreses dekodēšanas
+%loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 
 
 
-\subsubsection{Boot ROM}
+\subsection{Boot ROM}
 	\termEn{Boot ROM} ir tikai nolasāmā atmiņa, kura paredzēta
 	\termEn{bootstrap} procesa programmas uzglabāšanai.
 	Šīs programmas uzdevums ir ielādēt reālo izpildes programmu no
@@ -23,7 +23,7 @@ loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
 	1 kilobits jeb 64 vārdi.\citeet{FusionGuide}
 
-\subsubsection{Adrešu telpai piekārtotā ievade/izvade}
+\subsection{Adrešu telpai piekārtotā ievade/izvade}
 	Papildus adresācijas telpā tiks piekārtoti speciālie reģistri dažādu
 	perifēro ierīču datu apmaiņai un konfigurācijai.
 	
@@ -48,7 +48,7 @@ loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 	kur tiks glabāta galvenā izpildāmā programma, kura \termEn{boot} procesa
 	laikā tiks pārvietota uz RAM.
 
-\subsubsection{MMU — adrešu dekoderis} \label{sec:mmu}
+\subsection{MMU — adrešu dekoderis} \label{sec:mmu}
 	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
 	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
 	ar šīm ierīcēm.

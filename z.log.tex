@@ -1,0 +1,49 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{polyglossia}	% XeTeX multi-lingual support
+\usepackage{fontspec}		% The XeTeX font spec package
+\usepackage{xunicode}		% XeTeX Unicode character support
+\usepackage{xltxtra}		% Umm something else XeTeX
+
+\usepackage[landscape]{geometry}	% Make document landscape
+\usepackage{fullpage}
+
+
+%\usepackage{amsmath}	% Math stuff
+%\usepackage{pifont}		% dingbats
+%\usepackage{listings}	% Package for code formatting
+%\usepackage[dvipsnames]{xcolor}
+%\include{/home/johnlm/code/avr_assembler_listing_def.tex}
+%\input{avr_assembler_listing_def.tex}
+%\renewcommand{\lstlistingname}{Koda bloks}
+%\usepackage{booktabs}	% Package for nicer tables
+%\usepackage{wrapfig}
+%\usepackage{rotating}	% Package for landscape figures
+
+\begin{document}
+	\begin{flushright}
+		\fbox{\rule{1.8in}{0pt}\rule{0pt}{0.9in}}
+	\end{flushright}
+
+	\subsection*{Prakses dienasgrāmata}
+	\begin{flushright}
+		\rule[-1em]{15em}{1pt}\\
+		\makebox[15em][c]{\scriptsize (studenta(-es) vārds, uzvārds)}
+	\end{flushright}
+	
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Datumi} & \textbf{Veicamais darbs} & 
+			Apjoms (stundās) & Vadītāja paraksts\\
+		(no\ldots līdz) & \rule{25em}{0pt} & & \\ \hline
+		13.02 – 15.02 & Mikrokontroliera kodolā (rev.~02) izmantojamo komponenšu izstrāde VHDL & 5 & \\ \hline
+		15.02 – 21.02 & Kodola (rev.~02) kontroles iekārtas izstrāde VHDL & 10 & \\ \hline
+		29.02 & Revīzijas 02 kodola simulācija un darbības pārbaude & 2 & \\ \hline
+		29.02 – 01.03 & Kodola VHDL koda izpēte un korekcijas darbības kļūdu novēršanai & 3 & \\ \hline
+		02.03 & Revīzijas 02 kodola simulācija un darbības pārbaude & 2 & \\ \hline
+		12.04 – 13.04 & Mikrokontroliera (rev.~03) ROM un RAM komponenšu izstrāde & 5 & \\ \hline
+		23.04 – 25.04 & Mikrokontroliera (rev.~03) SPI saskarnes izstrāde & 5 & \\ \hline
+	\end{tabular}
+	
+	
+\end{document}

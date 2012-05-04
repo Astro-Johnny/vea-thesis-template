@@ -68,24 +68,30 @@
 	\onehalfspacing % 1.5 spacing
 	
 	% Termini
-		% PCI, PCI Express
 		% Seriālā, paralēlā datu pāraide
+		% Mikrokontrolieris, uC
+		% FPGA
+		% SPI
+		% ALU
 	
-	%\section*{Anotācija}
-	%\renewcommand{\abstractname}%
-	%	{\section*{Anotācija}}
 	\input{abstract.tex}
 	
-	\clearpage
-	\input{ievads.tex} % TODO: Rewrite this bugger
+	% Ievads
+	%\clearpage
+	%\input{ievads.tex} % TODO: Rewrite this bugger
 	
+	% Teorija
+	\clearpage
+	\input{theory.tex}
+	
+	% Praktiskā daļa
 	\clearpage
 	\input{core.tex} % Kodola uzbūve perifērija
 	
 	\clearpage
 	\input{periph.tex} % Sistēmas perifērija
 	
-	%\clearpage
+	\clearpage
 	\input{tools.tex}
 	
 	% Literatūras saraksts
