@@ -16,6 +16,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
                  label=kb:cpulib,basicstyle=\ttfamily\scriptsize]
 	{code/cpu_lib.vhd}
 
+\FloatBarrier
 \subsubsection{Reģistri}
 	Viena no vienkāršākajām komponentēm ir reģistrs.
 	Tā funkcija ir uzglabāt	viena mašīn\-vārda datus 
@@ -34,7 +35,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	izmantots D.~Perija paraugs.\cite[321.~lpp.]{Perry-VHDL}
 	%\begin{singlespace}
 	% NOTE: No Need for singlespace when floated!
-		\lstinputlisting[language={[qucs]VHDL},float=hb,%
+		\lstinputlisting[language={[qucs]VHDL},float=thb,%
 		                caption={Reģistra VHDL apraksts. (\texttt{reg.vhd})},%
 		                label=kb:reg]
 			{code/reg.vhd}
@@ -76,6 +77,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	\end{description}
 
 \pagebreak[3]
+\FloatBarrier
 \subsubsection{Operatīvo reģistru masīvs}
 	Operatīvie reģistri ir adresējama reģistru kopa, kura, atšķirībā no
 	iepriekš apskatītajiem procesora specializētajiem reģistriem,
@@ -102,7 +104,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	instrukcijas\cite[11.~lpp.]{Flynn-arch}, šajā gadījumā \mnem{LD} un \mnem{ST}.
 	
 	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=t!,%
+		\lstinputlisting[language={[qucs]VHDL},float=thb,%
 		                caption={Reģistru masīva VHDL apraksts. (\texttt{regarray2.vhd})},%
 		                label=kb:regArray,%
 		                emph={t_ram}]
@@ -115,6 +117,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	ierakstītie dati tiek saglabāti un uzreiz izlikti uz izvadi.
 
 \pagebreak[3]
+\FloatBarrier
 \subsubsection{Multipleksors}
 	Multipleksors praktiski ir elektroniski kontrolēts ,,slēdzis'',
 	kas pārslēdz divas vai vairāk ieejas uz vienu izeju. Ieejas un izejas
@@ -138,7 +141,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	kura instancējamā VHDL entītijas definīcija parādīta \ref{kb:mux}~koda blokā.
 	VHDL arhitektūra ir programmatūras rīka definēta un	tādēļ netiek parādīta.
 	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=hb,%
+		\lstinputlisting[language={[qucs]VHDL},float=thb,%
 		                 caption={Multipleksora makrosa entītijas definīcija.},%
 		                 label=kb:mux,%
 		                 linerange={8-12},firstnumber=8]
@@ -146,6 +149,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	%\end{singlespace}
 
 \pagebreak[3]
+\FloatBarrier
 \subsubsection{Aritmētiski loģiskā ierīce} \label{sec:alu}
 	Aritmētiski loģiskā ierīce jeb ALU ir viena no galvenajām,
 	procesora definējošām
@@ -184,7 +188,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 			{code/alu.vhd}
 	%\end{singlespace}
 
-\pagebreak
+\pagebreak[3]
+\FloatBarrier
 \subsubsection{Bitu bīdes loģiskā ierīce} \label{sec:shifter}
 	Ierīce, kura šeit nosaukta par ,,bitu bīdes loģisko ierīci'',
 	realizē bitu bīdes operācijas kuras	šī procesora realizācijā ir
@@ -211,6 +216,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 
 %\clearpage
 \pagebreak[3]
+\FloatBarrier
 \subsubsection{Komparators} \label{sec:comp}
 	Komparators jeb salīdzinātājs ir komponente, kas salīdzina 
 	divus operandus un izvada tā vienādības vai nevienādības signālu.

@@ -1,14 +1,7 @@
 \subsection{Implementācijas īpašības} \label{sec:design}
 Izstrādājot mikrokontrolieri tika pieņemti vairāki lēmumi par tā uzbūvi,
 veidojot specifikāciju kopu uz kuras
-balstās izstrādātātās mikrokontroliera komponentes. \todo \\
-\begin{figure}[bhp]
-	\centering
-	\def\svgwidth{\textwidth}
-	{\input{img/uC-sheem.pdf_tex}}
-	\caption{Augšējā līmeņa blokshēma (rev.~03).}
-	\label{fig:top-rev3}
-\end{figure}
+balstās izstrādātātās mikrokontroliera komponentes.
 Šim mikrokontrolierim ir sekojošas uzbūves īpašības:
 \begin{description}
 	\item[Vienota adrešu telpa] \hfill \\
@@ -27,6 +20,25 @@ balstās izstrādātātās mikrokontroliera komponentes. \todo \\
 		\footnote{Metode kurā takts signāls tiek ģenerēts izpildot programmas
 			instrukcijas, pārraidot vienu bitu vienā vai vairākos kodola takts ciklos.}.
 		Tādējādi tiek vienkāršots programmkods SPI pārraidēm, un atbrīvots
-		kodols citu darbību izpildei.
+		kodols citu darbību paralēlai izpildei.
+	\item[\termEn{Boot} izpilde no ROM] \hfill \\
+		Tā kā patstāvīgā atmiņa uz FPGA platformas ir ierobežota, tajā
+		atrodas \termEn{boot} programma, kura veic pamatprogrammas ielādi
+		operatīvajā atmiņā no ārēja datu nesēja --- šajā gadījumā no 
+		SPI \termEn{Flash} atmiņas, kas pieejama uz darba platformas.
 	\item[] \todo
 \end{description}
+
+\begin{figure}[tbhp]
+	\centering
+	\def\svgwidth{\textwidth}
+	{\input{img/uC-sheem.pdf_tex}}
+	\caption{Augšējā līmeņa blokshēma (rev.~03).}
+	\label{fig:top-rev3}
+\end{figure}
+
+Tā kā perifērā mikrokontroliera daļa tieši izmanto realizācijas
+platformas resursus, tiek brīvi izmantoti izstrādes rīka 
+,,Actel Libero'' makrosi, kur tas nepieciešams vai potenciāli uzlabo
+veiktspēju.
+\FloatBarrier % Do not allow figures to "leak out"

@@ -1,14 +1,35 @@
 %\subsection{Papildinātā shēma (rev.~03)}
-%Šī apakšnodaļa apraksta sistēmas papildinājumus funkcionālas, sintezējamas
-%sistēmas realizācijai. Šīs revīzijas implementācija \textbf{nav pabeigta},
-%tādēļ šī apakšnodaļa ir uzskatāma par \textbf{turpmākā darba dokumentāciju},
-%nevis realizētu implementāciju.
 
 %Trešā sistēmas revīzija pievieno patstāvīgās atmiņas elementus sākotnējās
 %programmas un datu uzglabāšanai. Šīs atmiņas ierīces piekārtotas kopējai
 %adresācijas telpai, tādējādi rodas nepieciešamība pēc adreses dekodēšanas
 %loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 
+\subsection{MMU — adrešu dekoderis} \label{sec:mmu}
+	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
+	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
+	ar šīm ierīcēm. MMU tādējādi var uzskatīt par mikrokontroliera kontroles
+	iekārtu. MMU arī satur praktiski visu implementācijas un platformas
+	specifisko kodu, kas tad arī ir galvenā komponente kurā jāveic izmaiņas
+	(vai pat jāimplementē no jauna) izmainot mikrokontroliera uzbūvi.
+	
+	MMU ar procesoru veido tādu pašu saskarni kā RAM un aparatūras
+	līmenī ir pilnībā „caurspīdīga”, savukārt piekārtojamo ierīču saskarne
+	ir implementācijas definēta.
+	
+	\todo ?
+	
+	\subsubsection{Adrešu telpas sadalījums}
+	\begin{figure}[thp]
+		\centering
+		\def\svgwidth{0.75\textwidth}
+		{\ttfamily\small\input{img/remap.pdf_tex}}
+		\caption{Adrešu telpas sadalījums.}
+		\label{fig:memory-map}
+	\end{figure}
+	
+	\termEn{Boot ROM} nepieciešams piekārtot ar sākumu adresē \texttt{0x0000},
+	lai pēc atiestatīšanas procesors sāktu izpildīt \termEn{boot} programmu.
 
 
 \subsection{Boot ROM}
@@ -47,23 +68,3 @@
 	kura pieejama uz izstrādes platformas,\cite[43.~lpp.]{FusionGuide}
 	kur tiks glabāta galvenā izpildāmā programma, kura \termEn{boot} procesa
 	laikā tiks pārvietota uz RAM.
-
-\subsection{MMU — adrešu dekoderis} \label{sec:mmu}
-	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
-	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
-	ar šīm ierīcēm.
-	
-	\begin{figure}[thp]
-		\centering
-		\def\svgwidth{0.75\textwidth}
-		{\ttfamily\small\input{img/remap.pdf_tex}}
-		\caption{Adrešu telpas sadalījums.}
-		\label{fig:memory-map}
-	\end{figure}
-	
-	MMU tādējādi ar procesoru veido tādu pašu saskarni kā RAM un aparatūras
-	līmenī ir pilnībā „caursīdīga”, savukārt piekārtojamo ierīču saskarne
-	ir implementācijas definēta.
-	
-	\termEn{Boot ROM} nepieciešams piekārtot ar sākumu adresē \texttt{0x0000},
-	lai pēc atiestatīšanas procesors sāktu izpildīt \termEn{boot} programmu.
