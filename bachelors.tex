@@ -15,7 +15,7 @@
 \usepackage{longtable}	% Package for tables split accross pages
 \usepackage{booktabs}	% Package for nicer tables
 %\usepackage{wrapfig}
-\usepackage[superscript]{cite}	% Superscript cites
+\usepackage{cite}	% Superscript cites
 \usepackage{rotating}	% Package for landscape figures
 \usepackage{indentfirst}	%Indent first paragraph too
 \usepackage{setspace}	% Line spacing package
@@ -25,7 +25,7 @@
 \usepackage{placeins}
 \usepackage[figurewithin=section,tablewithin=section]%
 	{caption}	% Package for configuring captions format
-\usepackage[a4paper,top=20mm, bottom=20mm, left=35mm, right=20mm]%
+\usepackage[a4paper,xetex,top=20mm, bottom=20mm, left=35mm, right=20mm]%
 %\usepackage[a4paper,top=22mm, bottom=25mm, left=35mm, right=20mm]% DEBUG
 	{geometry}
 
@@ -110,15 +110,32 @@
 			\linebreak[3]
 			London: Jones~and~Bartlett, 1995. ISBN~0-86720-204-1
 		
-		\bibitem{von-Neumann}
-			John von Neumann,
-			\textit{First Draft of a Report on the EDVAC},\linebreak[2]
-			University of Pennsylvania, 1945.
+		\bibitem{Heath}
+			Steve Heath,
+			\textit{Embedded systems design}, 2\nd edition.\linebreak[3]
+			Oxford: Newnes, 2003. ISBN~0-7506-5541-1
+		
+		\bibitem{HDL}
+			Gaurav Mehta, Sridhar Kintali,
+			\textit{Hardware Description Languages},\linebreak[2]
+			University of California, %Santa Barbra
+			2009.
+		
+		%\bibitem{von-Neumann}
+		%	John von Neumann,
+		%	\textit{First Draft of a Report on the EDVAC},\linebreak[2]
+		%	University of Pennsylvania, 1945.
 		
 		\bibitem{Perry-VHDL}
 			Douglas L.~Perry,
-			\textit{VHDL: Programming by Example}, 4\nth Edition. \linebreak[2]
+			\textit{VHDL: Programming by Example}, 4\nth edition. \linebreak[2]
 			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
+		
+		\bibitem{Vahid-RTL}
+			Frank Vahid,
+			\textit{Digital Design with RTL Design, VHDL, and Verilog}, 2\nd edition.\linebreak[2]
+			%New York: % Hell knows which city
+			John Wiley \& Sons, 2011. ISBN~978-0-470-53108-2
 		
 		\bibitem{FusionGuide}
 			Actel corp.,
@@ -137,17 +154,6 @@
 			\textit{Synplify — Synthesis Frequently Asked Questions}, %\linebreak[2]
 			%USA: Actel,
 			2009.
-		
-		%\bibitem{LDD3}
-		%	Corbet~J., Rubini~A., Kroah-Hartman~G.,
-		%	\textit{Linux Device Drivers, Third Edition}.
-		%	Sebastopol: O'Reilly, 2005. ISBN~0-596-00590-3
-		
-		%\bibitem{PCIeArch}
-		%	Burduk~R., Anderson~D., Shanley~T.,
-		%	\textit{PCI Express System Architecture}.
-		%	\linebreak[3]
-		%	Boston: Addison-Wesley, 2009. ISBN~0-321-15630-7
 	\end{thebibliography}
 	
 \end{document}

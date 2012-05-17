@@ -1,32 +1,29 @@
 \subsection{Iekšējās datu šinas uzbūve} \label{sec:databus}
-Izveidotajam procesoram ir sazarota, cirkulāra datu apmaiņas šina atšķirībā no kopējas,
-trīsstāvokļu arbitējamas datu šinas. Šādai šinas uzbūvei ir vairākas
-priekšrocības:
-\begin{description}
-	\item[Nav trīsstāvokļu loģika] \hfill \\
-		Trīsstāvokļu loģikas trūkums atbrīvo no nepieciešamības izmantot
-		trīsstāvokļu komponentes procesora iekšējā uzbūvē,
-		samazinot realizācijas kompleksitāti.
-	\item[Elektriskā drošība] \hfill \\ %TODO: Šitam citādāku nosaukumu?
-		Nevienai no komponentēm pie šinas nav savienotas izejas,
+Izveidotajam procesoram ir vienvirziena, sazarota, 
+cirkulāra datu apmaiņas šina.
+Šādai šinas uzbūvei ir vairākas priekšrocības:
+\begin{itemize}
+	\item \textbf{Nav trīsstāvokļu loģika}, tādējādi zūd nepieciešamība
+		izmantot trīsstāvokļu komponentes procesora iekšējā uzbūvē,
+		kas šajā gadījumā samazina realizācijas kompleksitāti.
+	\item Tā kā šinā esošo komponentēm izejas savstarpēji nevar tikt
+		savienotas, ir nodrošināta zināma \textbf{elektriskā drošība},
 		likvidējot iespējamo kaitējumu arbitācijas kļūdu rezultātā.
-	\item[Mazāk vadības signālu] \hfill \\
-		Šādai implementācijai nav nepieciešami nolases un rakstīšanas
-		vadības signālu pāri katrai pievienotai ierīcei. Vienvirziena datu
-		apmaiņa ļauj tikai pievadīt rakstīšanas vadības signālu%
+	\item Zūd nepieciešamība pēc trīsstāvokļu komponenšu iespējošanas un
+		datu apmaiņas virziena signāliem. Tātad kontroles iekārtai ir
+		\textbf{mazāk vadības signālu}, jo vienvirziena datu
+		apmaiņai nepieciešams pievadīt tikai (pār)rakstīšanas vadības signālus%
 		\footnote{Lai uzsvērtu šo vadības signālu nozīmi reģistru satura
-			atjaunošanā, to nosaukumiem\\ pievienots -\texttt{Updt} piedēklis.}%
+			atjaunošanā, to nosaukumiem VHDL kodā pievienots -\texttt{Updt} piedēklis.}%
 		, vai pat nevienu signālu kombinacionālo komponenšu gadījumā.
-\end{description}
+\end{itemize}
 
 Viens no šādas šinas uzbūves trūkumiem var tikt uzskatīta nepieciešamība
-multipleksēt signālus, bet pēc visu iespējamo datu apmaiņas scenāriju analīzes,
-implementējamās instrukciju kopas ietvaros, tika noskaidrots ka --- 
-pat ne tuvu --- katrai komponentei nepieciešama datu apmaiņa ar visām pārējām.
+multipleksēt signālus, bet pēc visu iespējamo datu apmaiņas scenāriju analīzes
+implementējamās instrukciju kopas ietvaros tika noskaidrots, ka pat ne tuvu 
+katrai komponentei nepieciešama datu apmaiņa ar visām pārējām.
 Konkrēti, tikai piecām komponentēm nepieciešama datu nolase no vairāk
-nekā vienas citas.
-
-%\todo % TODO: Tabula ar nepieciešamajiem savienojumiem
+nekā vienas citas. Šīs komponentes uzrādītas \ref{tbl:muxes}~tabulā.
 \begin{table}[thb]
 	\centering
 	\caption{Komponentes kurām nepieciešama ieejas multipleksēšana.}
@@ -43,9 +40,13 @@ nekā vienas citas.
 		\bottomrule
 	\end{tabular}
 \end{table}
+Apvienojot vienādos multipleksorus, iegūst optimizētu datu apmaiņas šinu
+ar tikai trijiem \texttt{32>16} multipleksoriem (sk.~\ref{fig:cpu-rev3}~att.)
+un, pēc autora domām, kontroles iekārtas vadības signālu samazināšana vairākkārt
+atsver multipleksoru pievienoto kompleksitāti.
 
-Apvienojot vienādos multipleksorus iegūstam optimizētu datu apmaiņas šinu
-ar tikai trijiem \texttt{32>16} multipleksoriem. (sk.~\ref{fig:cpu-rev3}~att.)
+
+
 
 %Galvenais šāda risinājuma iemesls
 %ir izmantojamās \termEn{Actel} FPGA darba platformas trīs stāvokļu

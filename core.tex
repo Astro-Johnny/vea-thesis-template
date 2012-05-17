@@ -1,28 +1,28 @@
-\section{Mikrokontroliera kodols} \label{sec:cpu}
-	Mikrokontroliera kodols, pēc savas būtības un uzbūves, ir procesors,
+\section{Mikrokontroliera kodola realizācija} \label{sec:cpu}
+	Mikrokontroliera kodols pēc savas būtības un uzbūves ir procesors,
 	kurš veic kalkulācijas un datu apmaiņu, nodrošinot mikrokontroliera
 	programmas izpildi.
 	Šajā darbā izstrādātais mikrokontroliera kodols ir 
 	Fon-Neimaņa (\termEn{von~Neumann}) arhitektūras pro\-ce\-sors, kurš
 	izmanto 16 bitu instrukcijas%
 		\footnote{Instrukcijas var būt $N$-skaita 16 bitu vārdi. 
-		Šajā darbā realizētas viena un divu vārdu instrukcijas.},
-	kā arī ,,atomiski'' adresējamā atmiņas vienība, kurai pieder unikāla
+		Šajā darbā realizētas viena un divu vārdu instrukcijas.}
+	un 16 bitu atmiņas adreses. Arī atmiņas vienība, kurai pieder unikāla
 	adrese, ir 16 bitu plata. Kā Fon-Neimaņa procesoram, datu un
-	programmkoda atmiņa ir kopēja, un vienādi adresējama.\citeet{von-Neumann}
+	programmkoda atmiņa ir kopēja un vienādi adresējama.[\todo]
 	
 	Kodola uzbūve ir daļēji balstīta uz D.~Perija (\termEn{D.~Perry}) grāmatas%
-	\citeet{Perry-VHDL} piedāvāto procesora reali\-zā\-ciju, 
-	bet ar ievērojamām izmaiņām, galvenokārt pilnībā no jauna izstrādāta 
+	\cite{Perry-VHDL} piedāvāto procesora reali\-zā\-ciju, 
+	bet ar ievērojamām izmaiņām, galvenokārt, pilnībā no jauna izstrādāta 
 	instrukciju kopa un vienvirziena,
-	cirkulāra datu apmaiņas šina atšķirībā no kopējas,
+	cirkulāra datu apmaiņas šina, atšķirībā no kopējas,
 	trīs\-stāvokļu arbitējamas datu šinas.
 	Galvenais šādas uzbūves datu šinas realizācijas iemesls
 	ir izmantojamās \termEn{Actel} FPGA darba platformas trīs\-stāvokļu
 	loģikas atbalsta \mbox{trūkums.\cite[18.~lpp.]{FusionFAQ}}
 	
 	Kodola saskarne ar pārējām mikrokontroliera komponentēm ir izveidota
-	maksimāli vienkārša un platformas neatkarīga, lai nebūtu nepieciešamas
+	pēc iespējas vienkāršāka un platformas neatkarīga, lai nebūtu nepieciešams
 	veikt izmaiņas kodola uzbūvē izmantojot to dažādās mikrokontroliera
 	implementācijās, t.i.~kodola datu apmaiņa notiek izmantojot
 	asinhronu atmiņas (RAM)	saskarni. Ar dažādām ierīcēm iespējama

@@ -1,6 +1,70 @@
-\section[Teorija]{Teorija \todo} % TODO: Kas tas pa nosaukumu?
+\section{Mikrokontrolieri} %TODO: Normālu nosaukumu?
 \todo
+
+%Dzirdot vārdu ,,mikroprocesors'' un ,,datorsistēma'' vairums cilvēku 
+%iztēlojas personālos datorus un klēpjdatorus, kas arī pēdējos gados ir teju
+%vai katram. Tā gan ir tikai --- tēlaini izsakoties --- aisberga redzamā
+%daļa. Mūsdienās mikroprocesori atrodami ļoti plaša klāsta dažādās sadzīves
+%un industriālās ierīcēs, piem.~automašīnu elektronikā, ražošanas iekārtās,
+%datortīklu maršutētājos, elektromēriekārtās, mobilajos telefonos,
+%veļas mašīnu kontroles blokos un pat rotaļlietās.\cite[1.~lpp.]{Heath}
+
+%% TODO: Šito mošk vajag pārfrāzēt
+%Iekļautā sistēma arī ir datorsistēma, kuras primārā atšķirība no 
+%vispārēja pielietojuma datorsistēmas ir darba specializācija,
+%no kā seko praktiski visas realizācijas atšķirības. \todo
+
 %TODO?: Procesors
-%TODO: Mikrokontrolieris
+
+\section{Aparatūras apraksta valodas}
+Elekronikai attīstoties un paaugstinoties tirgus prasībām, izstrādājamās
+sistēmas kļūst aizvien sarežģītākas. Jo sevišķi komplicētu ciparu shēmu, 
+kā piemēram mikroprocesoru, iekšējo uzbūvi izstrādāt tradicionālā ceļā,
+shematiski attēlojot komponentes un to savstarpējos savienojumus, kļūst
+nepraktiski. Tieši šeit aparatūras apraksta valodas parāda savu efektifitāti.
+% FIXME: Pārfrāzēt šito rindkopu
+
+Aparatūras apraksta valoda jeb HDL
+(no angļu \termEn{Hardware description language}),
+ir valoda, ar kuras izteiksmēm, sekojot konkrētās 
+valodas sintaktiskajiem nosa\-cī\-jumiem, ir iespējams aprakstīt
+izstrādājamās shēmas uzbūvi un/vai darbību.\cite{HDL} %Šo aprakstu dēvē par ,,kodu''.
+HDL gandrīz vienmēr (bet ne obligāti) apraksta ciparu shēmas.
+Līdzīgi program\-mē\-šanas valodām, HDL piedāvā dažādas sintaktiskās 
+konstrukcijas, kas ļauj strukturēt aprakstu un veikt abstrakcijas,
+ar kurām iespējams kompakti aprakstīt sarežģītas shēmas.%
+\cite[1.~lpp.]{Perry-VHDL}
+Savukārt atšķirībā no (vairuma) programmēšanas valodu,
+izpildāmās izteiksmes ir ,,konkurentas'', t.i.~tās tiek izpildītas paralēli, 
+tādējādi shēmas definējošā apgabala izteiksmju secība ir maznozīmīga.%
+\footnote{Izteiksmju secībai ir nozīme secīgajās konstrukcijās.
+	(sk.~\ref{sec:hdl-styles}~nod.)}
+
+Ļoti būtiska aparatūras apraksta valodu priekšrocība ir darbības simulācija.
+Tā ir, ar simulatora palīdzību, programmatūras līmenī 
+atveidota aprakstītās shēmas darbība, no kuras iegūstamas jebkuru
+shēmas signālvadu laika oscilogrammas, atmiņas elementu saturs un to izmaiņas,
+kā arī iespējams citi dati. Analizējot simulācijas rezultātus ir 
+iespējams pārbaudīt aprakstītās shēmas darbības korektumu pirms
+tās fiziskās realizācijas.
+
+Bet galvenais iemesls HDL popularitātei un izmantošanai ir iespējai veikt 
+shēmu sintēzi --- automatizētu fiziskās realizācijas ģenerēšanu pēc HDL apraksta.%
+\cite{HDL}\cite{Perry-VHDL}\cite{Vahid-RTL}
+Sintēzes nianses un izmantotās tehnoloģijas 
+tiks sīkāk apskatīts \ref{sec:synth} nodaļā (\pageref{sec:synth}~lpp.) pēc
+HDL valodu detalizētāka apraksta. \pagebreak[1]
+
+\input{theory.hdl.styles.tex} %\pagebreak[3]
+\input{theory.hdl.fpga.tex}
+
+%\subsection{Shēmu sintēze}
+%\todo
+		
+%\subsubsection{FPGA, ASIC un to nozīme sintēzē}
+%\todo
+
 %TODO: HDL un FPGA
+
+
 %TODO: SPI

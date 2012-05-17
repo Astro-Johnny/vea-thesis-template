@@ -1,0 +1,45 @@
+\subsection{Aprakstu stili} \label{sec:hdl-styles}
+HDL vienādas komponentes var aprakstīt dažādos veidos, bet
+HDL aprakstus var sadalīt divos pieraksta stilos, pēc problēmas pieejas un
+no valodas konstrukciju kopas kas šai pieejai raksturīga.
+\begin{enumerate}
+	\item \textbf{Strukturālais} pieraksta stils --- komponentes tiek
+		izveidotas izmantojot vienkāršākas apakškomponentes un to savstarpējos
+		savienojumus. Šis stils uzskatāms par tekstuālu analogu
+		tradicionālajam, shematiskajam izstrādes veidam.
+	\item \textbf{Funkcionālās} vai izturēšanās modelēšanas pieraksta
+		stils --- komponentes tiek izveidotas aprakstot tās funkcionalitāti
+		abstrahējoties no tās iespējamās uzbūves.
+	\begin{itemize}
+		\item \textbf{Secīgās izturēšanās} pieraksta stils --- apakškopa
+			no funkcionālā stila, kurā izmantotas konstrukcijas, kas ļauj
+			komponentes darbību aprakstīt ar secīgām izpildāmām izteiksmēm,
+			līdzīgi imperatīvām programmēšanas valodām (kā C, Python, u.c.),
+			pretstatā paralēli izpildāmām datu plūsmas izteiksmēm.
+	\end{itemize}
+\end{enumerate}
+
+Šie stili ne tikai ietekmē koda (konkrētā shēmas apraksta teksta) pierakstu,
+bet arī simulācijas un sintēzes procesus, kuriem šis pieraksts ir jāinterpretē.
+Strukturālā pieraksta un tādu funkcionālā pieraksta primitīvu konstrukciju,
+kā loģisko elementu (\texttt{UN}, \texttt{VAI}, utt.),
+sintēze ir tieši translējama uz aparatūras komponentēm un to savienojumiem.
+Savukārt sarežģītu funkcionālo konstrukciju, jo sevišķi secīgo
+konstrukciju, sintēzei nepieciešams translēt funkcionalitātes aprakstu
+uz konkrētu aparatūras implementāciju, t.i.~sintēzes rīkam nepieciešams
+piemeklēt aparatūras komponentes kas realizē konkrēto funkcionalitāti.
+Tā kā funkcionalitātes un implementācijas saistība bieži nav viennozīmīga,
+dažādu sintēzes rīku interpretācija vienādam kodam var stipri atšķirties.
+
+Praktiski visi sintēzes rīki funkcionālo pierakstu translē %uz aparatūras 
+reģistru datu pārraides abstrakcijas līmenī jeb RTL
+(no angļu \termEn{Register tranfer level}).\cite[2.~lpp.]{HDL}%
+\cite[235.~lpp.]{Perry-VHDL}
+RTL \todo
+
+
+Citāda aina ir ar apraksta simulāciju. Tā kā simulācija notiek
+programmatūras līmenī, vairumā gadījumu secīgās izturēšanās modeli
+simulatoram ir vienkāršāk (un tādējādi arī ātrāk) simulēt nekā paralēli
+izpildāmās konkurentās konstrukcijas.
+

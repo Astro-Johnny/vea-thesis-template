@@ -1,16 +1,16 @@
 \subsection{Komponentes}
-Instrādātais procesors --- mikrokontroliera kodols --- sastāv no vairākām
+Izstrādātais procesors (mikrokontroliera kodols) sastāv no vairākām
 apakš\-kom\-po\-nentēm (sk.~\ref{fig:cpu-rev3}~att., \pageref{fig:cpu-rev3}~lpp.). 
 Šo komponenšu uzbūve un darbība aprakstīta sintēzei
-derīgā, RTL (\termEn{Register Transfer Level}) stila VHDL apraksta kodā.
+derīgā, RTL (\termEn{Register Transfer Level}) stila VHDL apraksta kodā. \todo
 
-RTL stila VHDL apraksts panāk augstu implementācijas portabilitāti%
-	\footnote{Iespējamu projekta izmantošanu dažādos izstrādes rīkos.}%
-, lai gan dažas komponentes, veiktspējas palielināšanas nolūkos, ir
-izveidotas izmantojot izstrādes rīka ,,Actel Libero'' makrosus.
+%RTL stila VHDL apraksts panāk augstu implementācijas portabilitāti%
+%	\footnote{Iespējamu projekta izmantošanu dažādos izstrādes rīkos.}%
+%, lai gan dažas komponentes, veiktspējas palielināšanas nolūkos, ir
+%izveidotas izmantojot izstrādes rīka ,,Actel Libero'' makrosus.
 
-Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
-\texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā. \todo
+Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
+\texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā.
 \lstinputlisting[language={[qucs]VHDL},float=h,%
                  caption={Procesora \texttt{cpu\_lib} pakas definīcija. (\texttt{cpu\_lib.vhd})},%
                  label=kb:cpulib,basicstyle=\ttfamily\scriptsize]
@@ -208,9 +208,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	%\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},float=th,%
 		                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
-		                label=kb:shifter,%
-		                tabsize=3%,% TO REDUCE THE CODE WIDTH
-		                ]
+		                label=kb:shifter]
 			{code/shifter.vhd}
 	%\end{singlespace}
 
@@ -237,7 +235,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no pašu definētas
 	\end{figure}
 	
 	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=hpb,%
+		\lstinputlisting[language={[qucs]VHDL},float=thb,%
 		                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
 		                label=kb:comp]
 			{code/comp.vhd}

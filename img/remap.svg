@@ -22,9 +22,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.16"
-     inkscape:cx="157.60261"
-     inkscape:cy="30.989545"
+     inkscape:zoom="7.26"
+     inkscape:cx="89.72206"
+     inkscape:cy="49.768875"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -166,17 +166,23 @@
      id="layer1"
      transform="translate(0,-953.14956)">
     <path
+       style="fill:none;stroke:#c0c0c0;stroke-width:1.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 141.73228,988.58267 0,-7.08666 187.79527,0 0,7.08666"
+       id="path3020"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path3025"
-       d="m 35.433071,988.58263 0,-7.08662 53.149607,0 0,7.08662"
+       d="m 35.433071,988.58263 0,-7.08662 49.606299,0 0,7.08662"
        style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <text
        sodipodi:linespacing="125%"
        id="text3839"
        y="977.9527"
        x="35.433071"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
          y="977.9527"
          x="35.433071"
@@ -195,7 +201,7 @@
          sodipodi:role="line">Boot ROM</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 92.125985,988.58263 0,-7.08662 53.149615,0 0,7.08662"
+       d="m 88.582677,988.58266 0,-7.08665 49.606303,0 0,7.08665"
        id="path3885"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
@@ -203,73 +209,156 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path3887"
-       d="m 148.8189,988.58263 0,-7.08662 124.01575,0 0,7.08662"
+       d="m 166.53543,988.58263 0,-7.08662 63.77953,0 0,7.08662"
        style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="92.125984"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="88.58268"
        y="977.9527"
        id="text3889"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3891"
-         x="92.125984"
+         x="88.58268"
          y="977.9527">\tiny 0x0040</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3893"
        y="977.9527"
-       x="148.81889"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="166.53543"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
          y="977.9527"
-         x="148.81889"
+         x="166.53543"
          id="tspan3895"
-         sodipodi:role="line">\tiny 0x0080</tspan></text>
+         sodipodi:role="line">\tiny 0x8000</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="272.83466"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="230.31496"
        y="977.9527"
        id="text3897"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3899"
-         x="272.83466"
-         y="977.9527">\tiny 0xFFFF</tspan></text>
+         x="230.31496"
+         y="977.9527">\tiny 0x97FF</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="212.59842"
+       x="198.4252"
        y="995.66925"
        id="text3907"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3909"
-         x="212.59842"
+         x="198.4252"
          y="995.66925">RAM</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="116.92913"
+       x="113.38583"
        y="995.66925"
        id="text3901"
        sodipodi:linespacing="125%"><tspan
          id="tspan3905"
          sodipodi:role="line"
-         x="116.92913"
+         x="113.38583"
          y="995.66925">Speciālie</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="116.92913"
-       y="1009.9324"
+       x="113.38583"
+       y="1006.2991"
        id="text3971"
        sodipodi:linespacing="125%"><tspan
          id="tspan3913"
          sodipodi:role="line"
-         x="116.92913"
-         y="1009.9324">Reģistri</tspan></text>
+         x="113.38583"
+         y="1006.2991">Reģistri</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3016"
+       y="977.9527"
+       x="138.18898"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="977.9527"
+         x="138.18898"
+         id="tspan3018"
+         sodipodi:role="line">\tiny 0x007F</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 248.0315,988.58263 0,-7.08662 63.77952,0 0,7.08662"
+       id="path3832"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3834"
+       y="1006.2991"
+       x="198.4252"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="1006.2991"
+         x="198.4252"
+         sodipodi:role="line"
+         id="tspan3836">Bloks A</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3838"
+       y="995.66925"
+       x="279.92126"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="995.66925"
+         x="279.92126"
+         id="tspan3840"
+         sodipodi:role="line">RAM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="279.92126"
+       y="1006.299"
+       id="text3842"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan3844"
+         sodipodi:role="line"
+         x="279.92126"
+         y="1006.299">Bloks B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="248.03149"
+       y="977.9527"
+       id="text3846"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3848"
+         x="248.03149"
+         y="977.9527">\tiny 0xC000</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3850"
+       y="977.9527"
+       x="311.81104"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="977.9527"
+         x="311.81104"
+         id="tspan3852"
+         sodipodi:role="line">\tiny 0xD7FF</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="85.039368"
+       y="977.9527"
+       id="text3873"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3875"
+         x="85.039368"
+         y="977.9527">\tiny 0x003F</tspan></text>
   </g>
 </svg>

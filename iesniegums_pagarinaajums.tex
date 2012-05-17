@@ -1,0 +1,93 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{polyglossia}	% XeTeX multi-lingual support
+\usepackage{fontspec}		% The XeTeX font spec package
+\usepackage{xunicode}		% XeTeX Unicode character support
+\usepackage{xltxtra}		% Umm something else XeTeX
+
+\usepackage{amsmath}	% Math stuff
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}	% Package for nicer tables
+
+% Polyglossia settings
+\setmainlanguage{latvian}
+
+\usepackage[top=25mm, bottom=25mm, left=30mm, right=20mm]{geometry}
+
+
+% FONTS (Empty \setmainfont gives you new Computer Modern)
+% Deja Vu Family (rather good but wide chars)
+%\setmainfont{DejaVu Serif}
+%\setsansfont{DejaVu Sans}
+
+% Liberation Family (my current favourite)
+%\setmainfont{Liberation Serif}
+%\setsansfont{Liberation Sans}
+
+% Monos
+%\setmonofont{DejaVu Sans Mono}
+
+%\newfontfamily\TitleFont[Color=4A6161]{Liberation Serif}
+
+% External common image library
+\graphicspath{{/home/johnlm/Development/resources/tex_graphics_lib/}}
+
+%Don't use hypentenation in this document
+\hyphenpenalty=10000
+
+% Set rubberband values
+%\setlength{\parskip}{1ex plus 3ex minus 1ex}	% Space between paragraphs
+%\setlength{\lineskip}{4pt plus 1pt minus 2pt}	% Space between lines
+
+% Chardump: „” em— en– fig‒ “”
+\begin{document}
+	\sloppy
+	\pagestyle{empty}
+	\begin{minipage}[t]{0.47\textwidth}
+		\begin{flushleft}
+			\textbf{Ventspils Augstskolas}\\
+			Informāciju Tehnoloģiju fakultātes\\
+			Bakalaura studiju programmas „Elektronika”\\
+			3.~kursa students \textbf{Jānis Šmēdiņš}\\
+			p.k.~\texttt{040989-11652}\\
+			matr.n.~\texttt{2009120280}\\
+			mob.t.~\texttt{+371 29937190}
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}[t]{0.47\textwidth}
+		\begin{flushright}
+			\textbf{Ventspils Augstskolas}\\
+			Informāciju Tehnoloģiju\\
+			fakultātes dekānei\\
+			asoc.~prof.~\textbf{G.~Hiļķevičai}
+		\end{flushright}
+	\end{minipage}\\[3em]
+	
+	\vspace{1cm}
+	\begin{center}
+		\Large\scshape Iesniegums
+	\end{center}
+	
+	%\noindent
+	Lūdzu pagarināt bakalaura darba nodošanas termiņu 
+	līdz 2012.~gada 25.~maiju saistībā ar \\ \textcolor{red}{<iemesls>}.
+	
+	\vspace{2cm}
+	
+	\begin{minipage}[t]{0.32\textwidth}
+		\raggedright Saskaņots\\[3ex]
+		Darba vadītājs:\\[3ex]
+		Students:%\\[3ex]
+	\end{minipage}
+	\begin{minipage}[t]{0.32\textwidth}
+		\centering \hfill \\[3ex]
+		\color{gray}\rule[-2pt]{10em}{1pt}\\[3ex]
+		\color{gray}\rule[-2pt]{10em}{1pt}
+	\end{minipage}
+	\begin{minipage}[t]{0.32\textwidth}
+		\raggedleft \today \\[3ex]
+		\scshape 
+		G.~Gaigals\\[3ex]
+		J.~Šmēdiņš
+	\end{minipage}
+		
+\end{document}
