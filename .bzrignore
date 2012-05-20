@@ -4,5 +4,7 @@ img/*.pdf_tex
 *.log
 *.out
 *.toc
+*.snm
+*.nav
 ./*.pdf
 img/HARDLINKED_FILES

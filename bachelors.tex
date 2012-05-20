@@ -14,6 +14,7 @@
 %\renewcommand{\lstlistingname}{Koda bloks}
 \usepackage{longtable}	% Package for tables split accross pages
 \usepackage{booktabs}	% Package for nicer tables
+\usepackage[toc,title,titletoc]{appendix}
 %\usepackage{wrapfig}
 \usepackage{cite}	% Superscript cites
 \usepackage{rotating}	% Package for landscape figures
@@ -25,7 +26,7 @@
 \usepackage{placeins}
 \usepackage[figurewithin=section,tablewithin=section]%
 	{caption}	% Package for configuring captions format
-\usepackage[a4paper,xetex,top=20mm, bottom=20mm, left=35mm, right=20mm]%
+\usepackage[a4paper,xetex,top=20mm, bottom=22mm, left=35mm, right=20mm]%
 %\usepackage[a4paper,top=22mm, bottom=25mm, left=35mm, right=20mm]% DEBUG
 	{geometry}
 
@@ -64,7 +65,6 @@
 	
 	\clearpage
 	\sloppy %Don't care too much about rigid formatting
-	\pagestyle{plain}
 	\onehalfspacing % 1.5 spacing
 	
 	% Termini
@@ -78,12 +78,19 @@
 	\input{abstract.tex}
 	
 	% Ievads
-	%\clearpage
-	%\input{ievads.tex} % TODO: Rewrite this bugger
+	\clearpage
+	\pagestyle{plain} % Start the proper page numbering
+	\input{ievads.tex} % TODO: Rewrite this bugger
 	
 	% Teorija
 	\clearpage
-	\input{theory.tex}
+	\input{hdl.tex}
+	
+	\clearpage
+	\input{platform.tex}
+	
+	\clearpage
+	\input{perry.tex}
 	
 	% Praktiskā daļa
 	\clearpage
@@ -101,24 +108,36 @@
 	%	{\vspace*{-12mm}\section*{Izmantotā literatūra}\vspace*{-6mm}}
 	\clearpage
 	%\pagestyle{empty}
-	\raggedright
+	{\raggedright
 	\begin{thebibliography}{9}
 		\addcontentsline{toc}{section}{\refname}
 		\bibitem{Flynn-arch}
-			Michael J.~Flynn,
-			\textit{Computer Architecture: Pipelined and Parallel Processor Design}
+			%Michael J.~Flynn,
+			Flynn~M.~J.,
+			\textit{Computer Architecture: Pipelined and Parallel Processor Design}.
 			\linebreak[3]
 			London: Jones~and~Bartlett, 1995. ISBN~0-86720-204-1
 		
 		\bibitem{Heath}
-			Steve Heath,
+			%Steve Heath,
+			Heath~S.,
 			\textit{Embedded systems design}, 2\nd edition.\linebreak[3]
 			Oxford: Newnes, 2003. ISBN~0-7506-5541-1
 		
+		\bibitem{Mealy-VHDL}
+			%Bryan Mealy, Fabrizio Tappero,
+			Mealy~B., Tappero~F.,
+			\textit{Free Range VHDL}. [online]
+			% Never printed
+			2012. \linebreak[2]
+			Available at: \url{http://www.freerangefactory.org/dl/free_range_vhdl.pdf}\linebreak[2]
+			\mbox{[Retreived on 2\nd May, 2012]}
+		
 		\bibitem{HDL}
-			Gaurav Mehta, Sridhar Kintali,
-			\textit{Hardware Description Languages},\linebreak[2]
-			University of California, %Santa Barbra
+			%Gaurav Mehta, Sridhar Kintali,
+			Mehta~G., Kintali~S.,
+			\textit{Hardware Description Languages}.\linebreak[2]
+			Santa Barbra: University of California,
 			2009.
 		
 		%\bibitem{von-Neumann}
@@ -127,33 +146,62 @@
 		%	University of Pennsylvania, 1945.
 		
 		\bibitem{Perry-VHDL}
-			Douglas L.~Perry,
+			%Douglas L.~Perry,
+			Perry~D.~L.,
 			\textit{VHDL: Programming by Example}, 4\nth edition. \linebreak[2]
 			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
 		
 		\bibitem{Vahid-RTL}
-			Frank Vahid,
+			%Frank Vahid,
+			Vahid~F.,
 			\textit{Digital Design with RTL Design, VHDL, and Verilog}, 2\nd edition.\linebreak[2]
-			%New York: % Hell knows which city
+			New York: % Hell knows which city
 			John Wiley \& Sons, 2011. ISBN~978-0-470-53108-2
 		
 		\bibitem{FusionGuide}
 			Actel corp.,
-			\textit{Fusion Embedded Development Kit User's Guide}, %\linebreak[2]
+			\textit{Fusion Embedded Development Kit User's Guide}. %\linebreak[2]
 			%USA: Actel,
 			2009.
 		
 		\bibitem{FlashROM}
 			Actel corp.,
-			\textit{Fusion FlashROM}, Application Note AC236, %\linebreak[2]
+			\textit{Fusion FlashROM}, Application Note AC236. %\linebreak[2]
 			%USA: Actel,
 			2005.
 		
 		\bibitem{FusionFAQ}
 			Actel corp.,
-			\textit{Synplify — Synthesis Frequently Asked Questions}, %\linebreak[2]
+			\textit{Synplify — Synthesis Frequently Asked Questions}. %\linebreak[2]
 			%USA: Actel,
 			2009.
+		
+		\bibitem{SmartFusionFabric}
+			Microsemi corp.,
+			\textit{SmartFusion FPGA Fabric User's Guide}.
+			%USA: Microsemi,
+			2011.
+		
+		\bibitem{Xilinx7}
+			Xilinx,
+			\textit{7 Series FPGAs Overview}.
+			%USA: Xilinx,
+			2012.
 	\end{thebibliography}
+	} % "End of \raggedright"
+	
+	\clearpage
+	\input{galvojums.tex}
+	
+	\clearpage
+	%\phantomsection\addcontentsline{toc}{section}{\appendixtocname}
+	%\appendix
+	\begin{appendices} % Pielikumu sākas šeit
+	%\addappheadtotoc
+	%\appendixtocname % Pievienot vārdu 'Pielikums' pie numura
+	\input{appendices.tex}
+	\end{appendices}
+	
+	
 	
 \end{document}

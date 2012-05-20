@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="sub-control.svg">
+   sodipodi:docname="sub-mux.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -22,9 +22,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.94"
-     inkscape:cx="174.42377"
-     inkscape:cy="5.392325"
+     inkscape:zoom="5.88"
+     inkscape:cx="87.46625"
+     inkscape:cy="37.093254"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -144,6 +144,48 @@
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
          id="path3802-2" />
     </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleOutM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="EmptyTriangleOutM-6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4277-40"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.4,0,0,0.4,-1.8,0)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Send-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path3802-7" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleOutM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="EmptyTriangleOutM-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4277-8"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.4,0,0,0.4,-1.8,0)" />
+    </marker>
   </defs>
   <metadata
      id="metadata7">
@@ -172,99 +214,23 @@
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccc" />
     </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#EmptyTriangleOutM);marker-end:url(#Arrow1Send)"
-       d="m 10.629922,999.21257 60.23622,-10e-6"
-       id="path4499"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <text
-       xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       x="67.32283"
-       y="1009.8425"
-       id="text4098"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4100"
-         x="67.32283"
-         y="1009.8425">Data0\_port</tspan></text>
-    <g
-       id="g4999"
-       transform="translate(3.5433074,-3.5433048)">
-      <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path4993"
-         d="m 56.692913,999.21256 -7.086614,7.08664"
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4995"
-         y="995.66925"
-         x="53.149605"
-         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-         xml:space="preserve"><tspan
-           y="995.66925"
-           x="53.149605"
-           id="tspan4997"
-           sodipodi:role="line">16</tspan></text>
-    </g>
     <text
        sodipodi:linespacing="125%"
        id="text3108"
        y="1020.4724"
-       x="102.75591"
+       x="99.212601"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
          y="1020.4724"
-         x="102.75591"
+         x="99.212601"
          id="tspan3110"
-         sodipodi:role="line">\large muxiitis</tspan></text>
-    <path
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path3028"
-       d="m 10.629921,1034.6456 60.23622,0"
-       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#EmptyTriangleOutM);marker-end:url(#Arrow1Send)" />
-    <g
-       transform="translate(3.5433064,31.889735)"
-       id="g3034">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 56.692913,999.21256 -7.086614,7.08664"
-         id="path3036"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cc" />
-      <text
-         xml:space="preserve"
-         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-         x="53.149605"
-         y="995.66925"
-         id="text3038"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           id="tspan3040"
-           x="53.149605"
-           y="995.66925">16</tspan></text>
-    </g>
+         sodipodi:role="line">\large mux\_16</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path5220"
-       d="m 131.10236,1016.9291 38.97638,0"
+       d="m 131.10236,1016.9291 35.43307,0"
        style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
        sodipodi:nodetypes="cc" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text4106"
-       y="1027.559"
-       x="134.64568"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       xml:space="preserve"><tspan
-         y="1027.559"
-         x="134.64568"
-         id="tspan4108"
-         sodipodi:role="line">Result</tspan></text>
     <g
        id="g5004"
        transform="translate(95.669283,14.173193)">
@@ -286,33 +252,109 @@
            x="53.149605"
            y="995.66925">16</tspan></text>
     </g>
-    <text
-       sodipodi:linespacing="125%"
-       id="text4402"
-       y="1045.2755"
-       x="67.322838"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
-       xml:space="preserve"><tspan
-         y="1045.2755"
-         x="67.322838"
-         id="tspan4404"
-         sodipodi:role="line">Data1\_port</tspan></text>
     <path
        sodipodi:nodetypes="ccc"
        inkscape:connector-curvature="0"
        id="path3112"
-       d="m 10.629924,970.86611 95.669286,0 0,24.80315"
+       d="m 38.976378,970.86611 67.322832,0 0,24.80315"
        style="fill:none;stroke:#000000;stroke-width:0.875;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#EmptyTriangleOutM);marker-end:url(#Arrow1Send)" />
     <text
        sodipodi:linespacing="125%"
        id="text4102"
-       y="992.12598"
-       x="109.84252"
+       y="1006.2992"
+       x="106.29921"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="1006.2992"
+         x="106.29921"
+         id="tspan4104"
+         sodipodi:role="line">sel</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.2507874;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#EmptyTriangleOutM);marker-end:url(#Arrow1Send)"
+       d="m 38.976378,1002.7559 31.889764,0"
+       id="path4499-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       x="74.409447"
+       y="1002.7559"
+       id="text4098"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4100"
+         x="74.409447"
+         y="1002.7559">a</tspan></text>
+    <g
+       transform="translate(2.1259843e-7,-2.2531258e-5)"
+       id="g4999">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4993"
+         d="m 56.692913,999.21256 -7.086614,7.08664"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4995"
+         y="995.66925"
+         x="53.149605"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+         xml:space="preserve"><tspan
+           y="995.66925"
+           x="53.149605"
+           id="tspan4997"
+           sodipodi:role="line">16</tspan></text>
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4303"
+       d="m 38.976378,1034.6456 31.889764,0"
+       style="fill:none;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#EmptyTriangleOutM);marker-end:url(#Arrow1Send)" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4305"
+       y="1034.6456"
+       x="74.409447"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
-         y="992.12598"
-         x="109.84252"
-         id="tspan4104"
-         sodipodi:role="line">Sel0</tspan></text>
+         y="1034.6456"
+         x="74.409447"
+         id="tspan4307"
+         sodipodi:role="line">b</tspan></text>
+    <g
+       id="g4309"
+       transform="translate(-5.51181e-8,31.889712)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 56.692913,999.21256 -7.086614,7.08664"
+         id="path4311"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+         x="53.149605"
+         y="995.66925"
+         id="text4313"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4315"
+           x="53.149605"
+           y="995.66925">16</tspan></text>
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4317"
+       y="1016.9291"
+       x="127.55905"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
+       xml:space="preserve"><tspan
+         y="1016.9291"
+         x="127.55905"
+         id="tspan4319"
+         sodipodi:role="line">q</tspan></text>
   </g>
 </svg>

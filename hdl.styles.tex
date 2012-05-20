@@ -1,0 +1,87 @@
+\subsection{Aprakstu stili} \label{sec:hdl-styles}
+HDL vienādas komponentes var aprakstīt dažādos veidos, bet
+HDL aprakstus var sadalīt divos pieraksta stilos, pēc problēmas pieejas un
+no valodas konstrukciju kopas kas šai pieejai raksturīga.
+\begin{enumerate}
+	\item \textbf{Strukturālais} pieraksta stils --- komponentes tiek
+		izveidotas izmantojot vienkāršākas apakškomponentes un to savstarpējos
+		savienojumus. Šis stils uzskatāms par tekstuālu analogu
+		tradicionālajam, shematiskajam izstrādes veidam.
+	\item \textbf{Funkcionālās} vai izturēšanās modelēšanas pieraksta
+		stils --- komponentes tiek izveidotas aprakstot tās funkcionalitāti
+		abstrahējoties no tās iespējamās uzbūves.
+	\begin{itemize}
+		\item \textbf{Secīgās izturēšanās} pieraksta stils --- apakškopa
+			no funkcionālā stila, kurā izmantotas konstrukcijas, kas ļauj
+			komponentes darbību aprakstīt ar secīgām izpildāmām izteiksmēm,
+			līdzīgi imperatīvām programmēšanas valodām (kā C, Python, u.c.),
+			pretstatā paralēli izpildāmām datu plūsmas izteiksmēm.
+	\end{itemize}
+\end{enumerate}
+\pagebreak[3]
+
+Šie stili ne tikai ietekmē koda (konkrētā shēmas apraksta teksta) pierakstu,
+bet arī simulācijas un sintēzes procesus, kuriem šis pieraksts ir jāinterpretē.
+Strukturālā pieraksta un tādu funkcionālā pieraksta primitīvu konstrukciju,
+kā loģisko elementu (\texttt{UN}, \texttt{VAI}, utt.),
+sintēze ir tieši translējama uz aparatūras komponentēm un to savienojumiem.
+Savukārt sarežģītu funkcionālo konstrukciju, jo sevišķi secīgo
+konstrukciju, sintēzei nepieciešams translēt funkcionalitātes aprakstu
+uz konkrētu aparatūras implementāciju, t.i.~sintēzes rīkam nepieciešams
+piemeklēt aparatūras komponentes kas realizē konkrēto funkcionalitāti.
+Tā kā funkcionalitātes un implementācijas saistība bieži nav viennozīmīga,
+dažādu sintēzes rīku interpretācija vienādam kodam var stipri atšķirties.
+
+Praktiski visi sintēzes rīki funkcionālo pierakstu translē %uz aparatūras 
+reģistru datu pārraides abstrakcijas līmenī jeb RTL
+(no angļu \termEn{Register tranfer level}).\cite[2.~lpp.]{HDL}%
+\cite[235.~lpp.]{Perry-VHDL}
+RTL abstrakcijas vienību (elementu) veido kombinacionālās datu transformācijas shēma un
+datu uzglabāšanas reģistrs (sk.~\ref{fig:rtl}~att.).
+\begin{figure}[thb]
+	\centering
+	%\def\svgwidth{7cm}
+	\def\svgscale{1.25}
+	\input{img/rtl-unit.pdf_tex}
+	\caption[RTL abstrakcijas vienība.]{RTL abstrakcijas vienība.\cite[233.~lpp.]{Perry-VHDL}}
+	\label{fig:rtl}
+\end{figure}
+Izstrādājot ierīci sintēzei ar HDL kodu, tiek bieži pieminēts
+,,RTL apraksta stils''. Šis stils efektīvi ir HDL konstrukciju kopa, kas
+pakļaujas sintēzei, un pārklāj visas strukturālā stila konstrukcijas, kā arī
+lielu daļu funkcionālā stila konstrukcijas.
+
+Jāuzsver gan, ka RTL pieraksta stils nepieprasa, lai katrai aprakstītai
+komponentei būtu piekārtojams tieši viens RTL elements. Vienas komponentes
+apraksts var saturēt vairākus RTL elementus, kā arī viens RTL elements var
+pārklāt vairākas komponentes. Kā piemēru pēcākajam variantam, var apskatīt
+darba praktiskajā daļā izstrādāto mikrokontroliera datu kalkulācijas
+signālceļu (sk.~\ref{fig:rtl-alu}~att.).
+\begin{figure}[thb]
+	\centering
+	\def\svgwidth{0.9\textwidth}
+	%\def\svgscale{1.25}
+	{\ttfamily\scriptsize\input{img/rtl-alu.pdf_tex}}
+	\caption{RTL sadalījuma piemērs ALU signālceļam.}
+	\label{fig:rtl-alu}
+\end{figure}
+Šeit \texttt{alu} (Aritmētiski loģiskā ierīce) un \texttt{shift}
+(Bitu bīdes loģiskā ierīce) ir kombinacionālas shēmas, bez iekšējiem atmiņas
+elementiem, savukārt \texttt{reg} (Reģistrs), kura uzdevums ir saglabāt kalkulācijas
+rezultātu, acīmredzami, ir reģistra jeb atmiņas daļa šajā RTL elementa piemērā.
+Tādējādi šīs trīs komponentes sastāda vienu RTL elementu.
+
+Konstrukcijas, kuras nav translējamas RTL, sauc par --- visai aprakstoši ---
+,,tikai simulējamām konstrukcijām''. Tās nav sintezējamas un tiek
+izmantotas simulācijas ietvaros. Viena no vienkāršākajām un biežāk
+izmantotajām ir novēlotā signāla piešķire, piem.~VHDL izteiksme 
+|q <= a after 10 ns;| piešķir |a| vērtību signālam |q| pēc 10 nanosekundēm.
+Tas ir labs veids, kā simulēt komponenšu aiztures, bet tiks ignorēta
+sintēzē, jo elementiem uz kuriem tiks realizēta shēma ir konkrēta aizture,
+ko nosaka tā fiziskā uzbūve.
+
+Svarīgi piezīmēt, ka pretstatā sintēzes rīkam, simulatoram nav nepieciešama
+pieraksta translācija RTL. Tā kā simulācija notiek
+programmatūras līmenī, vairumā gadījumu secīgās izturēšanās modeli
+simulatoram ir vienkāršāk (un tādējādi arī ātrāk) simulēt nekā paralēli
+izpildāmās konkurentās konstrukcijas.

@@ -35,7 +35,7 @@
 \input{jsi_assembler_listing_def.tex}
 %% Number within section
 %\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
-\lstMakeShortInline[language={[qucs]VHDL}]|
+\lstMakeShortInline[language={[qucs]VHDL},basicstyle=\normalsize\ttfamily]|
 
 %% English determined number suffixes
 %\renewcommand{\th}{\textsuperscript{th} }
@@ -43,3 +43,9 @@
 \newcommand{\nd}{\textsuperscript{nd} }
 \newcommand{\rd}{\textsuperscript{rd} }
 \newcommand{\nth}{\textsuperscript{th} }
+
+%% Abstract title style
+\newcommand{\abstitlestyle}[1]{%
+	\noindent \begin{center}
+		\textbf{\Large #1}
+	\end{center}}

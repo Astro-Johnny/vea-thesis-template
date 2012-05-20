@@ -22,17 +22,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.74"
-     inkscape:cx="109.56819"
-     inkscape:cy="52.22951"
+     inkscape:zoom="6.3"
+     inkscape:cx="115.28248"
+     inkscape:cy="95.404113"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      units="mm"
-     inkscape:window-width="1024"
-     inkscape:window-height="749"
-     inkscape:window-x="0"
-     inkscape:window-y="256"
+     inkscape:window-width="1280"
+     inkscape:window-height="955"
+     inkscape:window-x="1024"
+     inkscape:window-y="25"
      inkscape:window-maximized="1">
     <inkscape:grid
        spacingy="1mm"
@@ -140,7 +140,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -301,12 +301,12 @@
     <text
        sodipodi:linespacing="125%"
        id="text4102"
-       y="960.23621"
-       x="95.669289"
+       y="963.77948"
+       x="95.669304"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
-         y="960.23621"
-         x="95.669289"
+         y="963.77948"
+         x="95.669304"
          id="tspan4104"
          sodipodi:role="line">sel</tspan></text>
     <g
@@ -339,13 +339,19 @@
     <text
        sodipodi:linespacing="125%"
        id="text4102-8"
-       y="960.23621"
-       x="138.18896"
+       y="963.77948"
+       x="138.18898"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
-         y="960.23621"
-         x="138.18896"
+         y="963.77948"
+         x="138.18898"
          id="tspan4104-3"
          sodipodi:role="line">clk</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 134.64567,116.92913 7.08661,-7.08662"
+       id="path3990"
+       inkscape:connector-curvature="0"
+       transform="translate(0,839.76375)" />
   </g>
 </svg>

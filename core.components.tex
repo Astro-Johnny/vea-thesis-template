@@ -2,26 +2,33 @@
 Izstrādātais procesors (mikrokontroliera kodols) sastāv no vairākām
 apakš\-kom\-po\-nentēm (sk.~\ref{fig:cpu-rev3}~att., \pageref{fig:cpu-rev3}~lpp.). 
 Šo komponenšu uzbūve un darbība aprakstīta sintēzei
-derīgā, RTL (\termEn{Register Transfer Level}) stila VHDL apraksta kodā. \todo
-
-%RTL stila VHDL apraksts panāk augstu implementācijas portabilitāti%
-%	\footnote{Iespējamu projekta izmantošanu dažādos izstrādes rīkos.}%
-%, lai gan dažas komponentes, veiktspējas palielināšanas nolūkos, ir
-%izveidotas izmantojot izstrādes rīka ,,Actel Libero'' makrosus.
+derīgā ,,RTL stila'' VHDL apraksta kodā izmantojot tikai standarta un
+paša izveidotas pakotnes,
+šādi panākot augstu implementācijas portabilitāti%
+	\footnote{Iespējamu projekta izmantošanu dažādos izstrādes rīkos.}.
+Lai izvairītos no ,,skriešanās problēmām'' (\termEn{race condition})
+simulācijas laikā un arī simulētu signālu aizkavēšanos,
+VHDL aprakstos visai bieži izmantota novēlotās piešķiršanas konstrukcija,
+kuru sintēzes rīks ignorē.
 
 Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 \texttt{cpu\_lib} pakotnes, kas redzama sekojošā koda blokā.
-\lstinputlisting[language={[qucs]VHDL},float=h,%
-                 caption={Procesora \texttt{cpu\_lib} pakas definīcija. (\texttt{cpu\_lib.vhd})},%
+\begin{singlespace}
+\lstinputlisting[language={[qucs]VHDL},%float=b,%
+                 caption={Procesora \texttt{cpu\_lib} pakas definīcija (\texttt{cpu\_lib.vhd}).},%
                  label=kb:cpulib,basicstyle=\ttfamily\scriptsize]
 	{code/cpu_lib.vhd}
+\end{singlespace}
+\pagebreak[3]
 
 \FloatBarrier
 \subsubsection{Reģistri}
 	Viena no vienkāršākajām komponentēm ir reģistrs.
-	Tā funkcija ir uzglabāt	viena mašīn\-vārda datus 
-	— šajā gadījumā 16 bitu vārda — un atjaunot to pēc
-	pieprasījuma (ar \texttt{clk} signālu).
+	Tā funkcija ir uzglabāt	viena mašīn\-vārdu datus 
+	(šajā gadījumā 16 bitu vārda) un pārrakstīt to pēc
+	pieprasījuma. Implementētais reģistrs ir sinhrons un dinamisks, un tā
+	dati tiek pārrakstīti \texttt{clk} signālam pārejot no zema uz augstu
+	stāvokli.
 	\begin{figure}[bh]
 		\centering
 		%\def\svgwidth{7cm}
@@ -31,7 +38,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\label{fig:reg}
 	\end{figure}
 	
-	Reģistra VHDL apraksts ir visai triviāls un, ar nelielām izmaiņām,
+	Reģistra VHDL apraksts ir visai triviāls un, ar nelielām izmaiņām
+	(sk.~\ref{kb:reg}~pirmkodu),
 	izmantots D.~Perija paraugs.\cite[321.~lpp.]{Perry-VHDL}
 	%\begin{singlespace}
 	% NOTE: No Need for singlespace when floated!
@@ -41,50 +49,62 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 			{code/reg.vhd}
 	%\end{singlespace}
 	
-	\pagebreak[3]
+	\pagebreak[2]
 	Lai gan reģistrs ir vienkārša ierīce, to plaši izmanto procesora
 	realizācijā, uzglabājot ļoti dažādas nozīmes datus.
 	Šī darba ietvaros izstrādātajā procesorā ir sekojoši speciālās nozīmes reģistri:
-	\begin{description}
-		\item[\texttt{PC} — Programmskaitītājs] \hfill \\
+	\pagebreak[1]
+	\begin{itemize}
+		\item \textbf{Programmskaitītājs} (\texttt{PC}):
 			Reģistrs, kas uzglabā adresi aktīvajai programmas pozīcijai,
 			t.i.~parasti izpildāmās instrukcijas adresi. Secīgās programmas
 			izpildes laikā \texttt{PC} tiek inkrementēts%
 			\footnote{Konkrētāk — \texttt{PC} tiek palielināts par
 				izpildīto instrukcijas vārdu skaitu (1 vai 2).},
 			savukārt lēcieni (zarošanās)
-			programmā realizēti pārrakstot programmskaitītāja saturu.
-		\item[\texttt{instrReg} — Instrukciju reģistrs] \hfill \\
-			Reģistrs, kurā ieraksta izpildāmo instrukcijas kodu.
+			programmā realizēti pārrakstot programmskaitītāja saturu.\pagebreak[2]
+		\item \textbf{Izpildāmās instrukcijas reģistrs} (\texttt{instrReg})
+			ieraksta izpildāmās instrukcijas kodu.
 			Nepieciešams, lai kontroles stāvokļa mašīna „neaizmirstu”
 			izpildāmo operāciju un tās argumentus izpildot
-			turpmākās mikro\-operācijas.
-		\item[\texttt{addrReg} — Atmiņas adresācijas reģistrs] \hfill \\
-			Reģistrs, kurā ieraksta adresējamo atmiņas adresi tās nolasei
-			vai ierakstei. Nepieciešams lai izvairītos no
-			cirkulārās loģikas ielasot datus no atmiņas.
-			\todo % TODO: Ieliec atsauci, vai pilnu izskadrojumu
-		\item[\texttt{opReg} — Operanda reģistrs] \hfill \\
-			Reģistrs, kas uzglabā vienu no aritmētiskās/loģiskās darbības
+			turpmākās mikro\-operācijas%
+			\footnote{Mikrooperācijas ir soļi kas jāveic vienas instrukcijas
+				izpildei. Kontroles iekārtas stāvokļi atbilst mikrooperācijām
+				(sk.~kodu pielikumā \ref{appx:control}, \pageref{appx:control}~lpp.).}.
+			Divu vārdu instrukcijām saglabāts
+			tiek tikai pirmais vārds, jo tikai tajā ir dekodējamais
+			operācijas kods. Otrais vārds satur tikai argumentus.
+		\item \textbf{Atmiņas adresācijas reģistrs} (\texttt{addrReg})
+			uzglabā adresējamo atmiņas adresi tās nolasei
+			vai ierakstei. Nepieciešams, lai saglabātu adresi izpildot
+			\mnem{LD} un \mnem{ST} instrukcijas (sk.~\ref{sec:instrSet}~nod.),
+			%jo tikai viens no diviem iesaistītajiem operatīvajiem reģistriem
+			jo tikai viens no diviem iesaistītajiem vispārējas nozīmes reģistriem
+			(sk.~\ref{sec:regArray}~nod.) ir nolasāms vai pārrakstāms
+			vienā mikrooperācijas solī.
+		\item \textbf{Operanda reģistrs} (\texttt{opReg})
+			uzglabā vienu no aritmētiskās/loģiskās darbības
 			ope\-ran\-diem. Nepieciešams, jo ALU neuzglabā pievadītos
 			operandus\footnote{ALU ir realizēta kā kombinacionāla shēma.}
 			un abi operandi nolasāmi no tā paša datu avota.
 			(par ALU sk.~\ref{sec:alu}~nod., \pageref{sec:alu}~lpp.)
-		\item[\texttt{outReg} — Izejas reģistrs] \hfill \\
-			Reģistrs, kurā ieraksta aritmētiskās/loģiskās darbības rezultātu.
-			Nepieciešams lai izvairītos no cirkulārās loģikas
-			ierakstot rezultātu operatīvajos reģistros.
-	\end{description}
+		\item \textbf{Rezultāta reģistrs} (\texttt{outReg}),
+			kurā ieraksta aritmētiskās/loģiskās darbības rezultātu.
+			Tā kā ALU datu avots var būt (un parasti ir) arī rezultāta
+			ierakstes mērķis, rezultāta reģistrs novērš 
+			,,skriešanās problēmu'', kas būtu
+			iespējama vienlaicīgi lasot un pārrakstot datu avotu.
+	\end{itemize}
 
 \pagebreak[3]
 \FloatBarrier
-\subsubsection{Operatīvo reģistru masīvs}
-	Operatīvie reģistri ir adresējama reģistru kopa, kura, atšķirībā no
+%\subsubsection{Operatīvo reģistru masīvs}
+\subsubsection{Vispārējas nozīmes reģistru masīvs} \label{sec:regArray}
+	Vispārējas nozīmes reģistri ir reģistru kopa, kura, atšķirībā no
 	iepriekš apskatītajiem procesora specializētajiem reģistriem,
 	ir pieejama	programmētājam tiešai modifikācijai.
-	Tos sauc arī par vispārēja pielietojuma reģistriem, 
-	jo tiem nav noteikta specializēta nozīme.
-	Tā vietā programmētājs tos lieto pēc vajadzības, piem.~izpildāmās
+	Šiem reģistriem nav noteikta specializēta nozīme,
+	tā vietā programmētājs tos lieto pēc vajadzības, piem.~izpildāmās
 	programmas mainīgo uzglabāšanai.
 	\begin{figure}[th]
 		\centering
@@ -95,12 +115,12 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\label{fig:regArray}
 	\end{figure}
 	
-	Operatīvo reģistru masīvs ir izpild\-programmas datu apstrādes
+	Vispārējas nozīmes reģistru masīvs ir izpild\-programmas datu apstrādes
 	krustpunkts. Tas ir tādēļ ka izstrādātais procesors, 
-	līdzīgi vairumam RISC arhitektūru,
+	līdzīgi vairumam RISC tipa arhi\-tek\-tūru,
 	izmanto \termEn{Load/Store} principu, t.i.~visas aritmētiskās darbības
-	tiek veiktas ar operatīvajiem reģistriem un datu apmaiņa ar atmiņu (RAM)
-	notiek ar tikai caur operatīvajiem reģistriem izmantojot datu apmaiņas
+	tiek veiktas ar vispārējas nozīmes reģistriem un datu apmaiņa ar atmiņu (RAM)
+	notiek tikai caur šiem reģistriem izmantojot datu apmaiņas
 	instrukcijas\cite[11.~lpp.]{Flynn-arch}, šajā gadījumā \mnem{LD} un \mnem{ST}.
 	
 	%\begin{singlespace}
@@ -111,17 +131,25 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 			{code/regarray2.vhd}
 	%\end{singlespace}
 	%\pagebreak[2]
-	Šajā realizācijā, reģistru masīvs vairāk līdzinās 8 vārdu operatīvajai
+	Realizācijā, kura redzama \ref{kb:regArray} pirmkoda blokā, 
+	reģistru masīvs vairāk līdzinās 8 vārdu operatīvajai
 	atmiņai, bet netiek realizēta rakstīšanas vai lasīšanas režīma
-	pārslēgšana. Tā vietā ir ieejas un izejas pieslēgvietas, kur
+	pārslēgšana. Tā vietā ir ieejas un izejas pieslēgvietas un
 	ierakstītie dati tiek saglabāti un uzreiz izlikti uz izvadi.
+	
+	Reģistru skaitu masīvā ierobežo pieejamais bitu skaits operācijas
+	koda vārdā reģistra adreses\footnote{Vispārējas nozīmes reģistriem ir
+		sava, neatkarīga adrešu telpa.}
+ 	uzglabāšanai. Konkrēti \mnem{AR} instrukcijai pieejami 3 biti reģistra
+ 	adresei, kas ierobežo vispārējās nozīmes reģistru skaitu līdz 8
+ 	(unikālo adrešu skaits 3 bitos).
 
 \pagebreak[3]
 \FloatBarrier
 \subsubsection{Multipleksors}
 	Multipleksors praktiski ir elektroniski kontrolēts ,,slēdzis'',
 	kas pārslēdz divas vai vairāk ieejas uz vienu izeju. Ieejas un izejas
-	ne obligāti gan ir viens ,,vads'' (bits). Šajā gadījumā tiek pārslēgti
+	ne obligāti ir viens signālvads (bits). Šajā gadījumā tiek pārslēgtas
 	16 bitu platas datu maģistrāles, kur
 	multipleksors tiek izmantots datu šinā, noslēdzot sazarojumu,
 	lai pārslēgtu datu ieejas avotu aiz tā sekojošai komponentei
@@ -135,25 +163,21 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\label{fig:mux2}
 	\end{figure}
 	
-	\pagebreak[2]
-	Multipleksors, veiktspējas uzlabošanas nolūkos, realizēts ar
-	\termEn{Actel Libero} programmatūras pieejamo multipleksora makrosu,
-	kura instancējamā VHDL entītijas definīcija parādīta \ref{kb:mux}~koda blokā.
-	VHDL arhitektūra ir programmatūras rīka definēta un	tādēļ netiek parādīta.
+	Multipleksors realizēts ar ļoti vienkāršu izejas vārda nosacījuma
+	pārslēgšanu (sk.~\ref{kb:mux}~pirmkodu).
 	%\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},float=thb,%
-		                 caption={Multipleksora makrosa entītijas definīcija.},%
-		                 label=kb:mux,%
-		                 linerange={8-12},firstnumber=8]
-			{code/gen/muxiitis.vhd}
+		                 caption={Multipleksora VHDL apraksts (\texttt{mux.vhd}).},%
+		                 label=kb:mux]
+			{code/mux.vhd}
 	%\end{singlespace}
 
 \pagebreak[3]
 \FloatBarrier
 \subsubsection{Aritmētiski loģiskā ierīce} \label{sec:alu}
-	Aritmētiski loģiskā ierīce jeb ALU ir viena no galvenajām,
-	procesora definējošām
-	komponentēm. Tās uzdevums ir veikt doto datu apstrādi, kā arī
+	Aritmētiski loģiskā ierīce jeb ALU ir viena no galvenajām
+	procesora komponentēm. Tās uzdevums ir veikt doto datu apstrādi un,
+	šī procesora realizācijā, arī
 	palielināt programmskaitītāju secīgas programmas izpildes nodrošināšanai.
 	\begin{figure}[thp]
 		\centering
@@ -164,12 +188,12 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\label{fig:alu}
 	\end{figure}
 	
-	Lai gan klasiski bīdes operācijas arī tiek realizētas Aritmētiski
-	loģiskajā ierīcē, šajā gadījumā ALU veic tikai aritmētiskās un bitu
-	loģikas darbības, atstājot bīdes operācijas „bitu bīdes loģiskjai ierīcei”
+	Lai gan klasiski bīdes operācijas arī tiek realizētas ALU,
+	šajā gadījumā ALU veic tikai aritmētiskās un bitu
+	loģikas darbības, atstājot bīdes operācijas „Bitu bīdes loģiskjai ierīcei”
 	(sk.~\ref{sec:shifter}~nod.). Šāda sadalīšana ļauj veikt aritmētiskās
 	un bīdes operācijas vienlaicīgi, uz ko balstās \mnem{AR} instrukcija
-	(sk.~\ref{sec:AR}~nod.~\pageref{sec:AR}~lpp.)
+	(sk.~\ref{sec:AR}~nod.~\pageref{sec:AR}~lpp.).
 	
 	ALU realizēta kā kombinacionāla shēma ar asinhronu darbību,
 	t.i.~izejas vērtība tiek izmainīta uzreiz,
@@ -181,20 +205,26 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	reģistrs viena operanda uzglabāšanai, lai otru varētu nodot tieši.
 	(sk.~\ref{fig:cpu-rev3}~att., \pageref{fig:cpu-rev3}~lpp.)
 	
-	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=th,%
+	\begin{singlespace}
+		\lstinputlisting[language={[qucs]VHDL},%float=th,%
 		                caption={ALU VHDL apraksts. (\texttt{alu.vhd})},%
 		                label=kb:alu]
 			{code/alu.vhd}
-	%\end{singlespace}
+	\end{singlespace}
+	
+	ALU veic operācijas ar 16 bitu vārdiem, kuri reprezentē bezzīmes
+	skaitļus. ALU VHDL implementācija izmanto \texttt{std\_logic\_unsigned}
+	pakotnē	definētās aritmētiskās operācijas,
+	ievērojami vienkāršojot ALU VHDL aprakstu (sk.~\ref{kb:alu}~pirmkodu).
 
 \pagebreak[3]
 \FloatBarrier
 \subsubsection{Bitu bīdes loģiskā ierīce} \label{sec:shifter}
-	Ierīce, kura šeit nosaukta par ,,bitu bīdes loģisko ierīci'',
-	realizē bitu bīdes operācijas kuras	šī procesora realizācijā ir
+	Ierīce, kura šeit nosaukta par ,,Bitu bīdes loģisko ierīci'',
+	realizē bitu bīdes operācijas, kuras šī procesora realizācijā ir
 	izdalītas atsevišķi no ALU. 
-	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona.
+	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona
+	(sk.~\ref{kb:shifter}~pirmkodu).
 
 	\begin{figure}[h!]
 		\centering
@@ -211,6 +241,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		                label=kb:shifter]
 			{code/shifter.vhd}
 	%\end{singlespace}
+	
+	\todo
 
 %\clearpage
 \pagebreak[3]

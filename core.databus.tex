@@ -16,6 +16,11 @@ cirkulāra datu apmaiņas šina.
 		\footnote{Lai uzsvērtu šo vadības signālu nozīmi reģistru satura
 			atjaunošanā, to nosaukumiem VHDL kodā pievienots -\texttt{Updt} piedēklis.}%
 		, vai pat nevienu signālu kombinacionālo komponenšu gadījumā.
+	\item Iespējama datu apmaiņas \textbf{paralelitāte}, jo dati dažādos
+		šinas posmos ir pārraidāmi vienlaicīgi. Šī īpašība izmantota
+		\mnem{BRxx} instrukciju izpildē 
+		(sk.~\ref{sec:branching}~nod.~\pageref{sec:branching}~lpp. un kodu
+		pielikumā \ref{appx:control}).
 \end{itemize}
 
 Viens no šādas šinas uzbūves trūkumiem var tikt uzskatīta nepieciešamība
@@ -45,7 +50,9 @@ ar tikai trijiem \texttt{32>16} multipleksoriem (sk.~\ref{fig:cpu-rev3}~att.)
 un, pēc autora domām, kontroles iekārtas vadības signālu samazināšana vairākkārt
 atsver multipleksoru pievienoto kompleksitāti.
 
-
+Otrs, iespējams trūkums šādai datu šinai ir tās nepārskatāmība shematiskajā
+zīmējumā (sk.~\ref{fig:cpu-rev3}~att.), bet šī ir tikai vizualizācijas
+problēma un neatstāj nekādu iespaidu uz realizāciju.
 
 
 %Galvenais šāda risinājuma iemesls
