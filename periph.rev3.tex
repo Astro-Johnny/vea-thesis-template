@@ -40,13 +40,24 @@
 	no SPI \termEn{Flash} atmiņas.
 	
 	Par \termEn{Boot ROM} kalpos \termEn{Actel Fusion} piedāvātais
-	\termEn{FlashROM} makross.\citeet{FlashROM}
+	\termEn{FlashROM} makross.\cite{FlashROM}
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
-	1 kilobits jeb 64 vārdi.\citeet{FusionGuide}
+	1 kilobits jeb 64 vārdi.\cite{FusionGuide}
 
 \subsection{Adrešu telpai piekārtotā ievade/izvade}
-	Papildus adresācijas telpā tiks piekārtoti speciālie reģistri dažādu
-	perifēro ierīču datu apmaiņai un konfigurācijai.
+	Adrešu telpā arī piekārtotas ievades un izvades komponentes,
+	kuras nodrošina saskarni ar sistēmas perifēriju. Adrešu telpā šīm
+	komponentēm izvietoti datu apmaiņas un konfigurācijas reģistri.
+	
+	\subsubsection{Vispārējas nozīmes ievades/izvades pieslēgvietas}
+	\todo
+	
+	\subsubsection{SPI saskarne}
+	SPI (\termEn{Serial Peripheral Interface Bus}) ir seriālās
+	datu pārraides saskarne, ar vienpusēju plūsmas kontroli pēc
+	\termEn{Master/Slave} modeļa.
+	
+	
 	
 	Uz doto brīdi (un kā redzams blokshēmā — \ref{fig:top-rev3}.~att.)
 	paredzēta tikai SPI saskarne. Tam paredzēts viens pārraides un viens
