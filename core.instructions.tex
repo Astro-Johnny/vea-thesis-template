@@ -1,8 +1,26 @@
 \subsection{Instrukciju kopa} \label{sec:instrSet}
-Instukciju kopa ir bāzēta uz RISC procesoru arhitektūrām, un
-satur nedaudz vairāk par minimumu funkcionālam procesoram.
-Instrukciju operāciju kodi ir vektoriski, lai efektīvi izmantotu pieejamo instrukcijas 
-vārda garumu.
+%Instruckiju kopa ir izstrādāta no jauna un piedāvā vienkāršotu,
+%mini\-mālu kopu līdzīgi RISC (\termEn{Reduced Instruction Set Computing})
+%filo\-so\-fijai. Salīdzinot ar Perija realizāciju, ievērojami samazinātas
+%nosacījuma zarošanās instrukcijas un instrukcijas pieejamie 16 biti
+%tiek efektīvāk izmantoti ieviešot vektorizētus jeb dažāda garuma
+%operāciju kodus. (detalizētākam aprakstam sk.~\ref{sec:instrSet}~nod.)
+
+Instruckiju kopa ir izstrādāta no jauna un piedāvā vienkāršotu kopu, kas
+satur pamata darbības ar bezzīmes veseliem (\texttt{unsigned integer} tipa)
+skaitļiem, RAM ielasīšanas un ierakstes instrukcijas, un zarošanās
+instrukcijas (sk.~\ref{tbl:instructions}~tabulu).
+
+Instrukcijas operāciju kodi ir dažāda garuma, jeb vektoriski\footnote{%
+	Termins aizgūts no programmēšanas metodes, kur viena funkcija
+	satur dažādu operāciju kopu (vektoru), un pēc nodotā argumenta tiek
+	izpildīta viena operācija (mainot pārējo argumentu nozīmi).},
+t.i.~operāciju kods sadalīts ,,grupas'' kodā un ,,vektora'' kodā, kur
+grupas kods ir konstanta garuma (2~biti), bet vektora kods ir konstanta
+garuma tikai piederošās grupas ietvaros. Strikti ņemot, varētu uzskatīt, ka
+vektora kods ir arguments, bet uzskatāms par piederīgu operācijas
+kodam, jo abas tā daļas tiek interpretētas dekodēšanas solī.\footnote{%
+	Izņemot \mnem{AR} instrukciju (sk.~\ref{sec:AR}~nod.).}
 
 \begin{singlespace}\small
 \begin{longtable}[c]{lp{20ex}lp{0.36\textwidth}}
@@ -29,7 +47,7 @@ vārda garumu.
 		\texttt{*(rD) = rS} \newline
 		{\footnotesize Ielasa vārdu no RAM reģistrā \texttt{rD}} \\
 	\midrule \pagebreak[3]
-	\multicolumn{4}{c}{Aritmētika, loģika un bitu bīdes (un \mnem{AR} operācijas saīsnes)}\\
+	\multicolumn{4}{c}{Aritmētikās, loģikās un bitu bīdes instrukcijas (un \mnem{AR} operācijas saīsnes)}\\
 	\midrule
 	\mnem{AR} & 	\instr{10}{}{}{}{XXXX}{XXX}{X}\instr{}{}{}{}{XXX}{XXX}{} & \texttt{kA, kS, rD, rS} &
 		{\footnotesize Aritmētikas/bīdes instrukcija.} \\ \midrule
@@ -55,25 +73,25 @@ vārda garumu.
 		\verb|rD = rS| \\ \midrule
 	\rule{0pt}{1em}\mnem{LSL} & \instr{10}{0101}{001}{X}{XXX}{XXX}{} & \texttt{rD} &
 		\verb|rD = rS * 2| \newline
-		{\footnotesize Loģiskā kreisā bīde (reizina ar 2)} \\ \midrule
+		{\footnotesize loģiskā kreisā bīde (reizina ar 2)} \\ \midrule
 	\rule{0pt}{1em}\mnem{LSR} & \instr{10}{0101}{010}{X}{XXX}{XXX}{} & \texttt{rD} &
 		\texttt{rD = rS / 2} \newline
-		{\footnotesize Loģiskā labā bīde (dala ar 2)} \\ \midrule
+		{\footnotesize loģiskā labā bīde (dala ar 2)} \\ \midrule
 	\rule{0pt}{1em}\mnem{ROL} & \instr{10}{0101}{011}{X}{XXX}{XXX}{} & \texttt{rD} &
-		{\footnotesize Bitu rotācija pa kreisi} \\ \midrule
+		{\footnotesize bitu rotācija pa kreisi} \\ \midrule
 	\rule{0pt}{1em}\mnem{ROR} & \instr{10}{0101}{100}{X}{XXX}{XXX}{} & \texttt{rD} &
-		{\footnotesize Bitu rotācija pa labi} \\ \nopagebreak
+		{\footnotesize bitu rotācija pa labi} \\ \nopagebreak
 	\midrule \pagebreak[3]
 	\multicolumn{4}{c}{Plūsmas kontroles instrukcijas}\\
 	\midrule
 	\mnem{NOP} & 	\instr{00}{}{}{00000000000000}{}{}{} & nav &
-		{\footnotesize „Ne-operācija”} \\ \midrule
+		{\footnotesize tukša operācija} \\ \midrule
 	\mnem{HLT} & 	\instr{11}{0011}{}{XXXX}{}{}{XXXXXX} & nav &
-		{\footnotesize Apstādina procesora darbību} \\ \midrule
+		{\footnotesize apstādina procesora darbību} \\ \midrule
 	\mnem{JMP} & 	\instr{11}{0010}{}{XXXX}{}{}{XXXXXX} \newline
 					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{L} &
 		\texttt{PC = L} \newline
-		{\footnotesize Beznosacījuma lēciens.} \\ \midrule
+		{\footnotesize beznosacījuma lēciens.} \\ \midrule
 	\mnem{BREQ} & 	\instr{11}{1000}{}{XXXX}{XXX}{XXX}{} \newline
 					\instr{}{}{}{}{XXXXXXXXXXXXXXXX}{}{} & \texttt{rD, rS, L} &
 		\texttt{if(rD==rS) PC = L} \\ \midrule
@@ -96,7 +114,7 @@ vārda garumu.
 			\multicolumn{2}{c}{Mašīnkoda krāsu apzīmējumi} \\
 			\textcolor{purple}{\rule[-2pt]{1em}{1em}} Operāciju grupas kods &
 			\textcolor{blue}{\rule[-2pt]{1em}{1em}} \textcolor{cyan}{\rule[-2pt]{1em}{1em}}
-				Operācijas „vektora” kodi \\[2pt]
+				Operācijas vektora kods \\[2pt]
 			\textcolor{lightgray}{\rule[-2pt]{1em}{1em}} Ignorētie biti &
 			\textcolor{OliveGreen}{\rule[-2pt]{1em}{1em}} \textcolor{Green}{\rule[-2pt]{1em}{1em}}
 				Argumentu biti \\
@@ -106,63 +124,83 @@ vārda garumu.
 \end{singlespace}
 \normalsize
 
-\pagebreak
-Kā redzams instrukciju tabulā, instrukcijas
+%\pagebreak
+Instrukcijas
 ir sadalītas grupās vai nu pēc nozīmes, vai pēc izpildes līdzības. Šo
 instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļās.
 
 \subsubsection{\mnem{AR} instrukcija} \label{sec:AR}
 	Lai gan \mnem{AR} instrukcijas apzīmējums ir saīsinājums no „aritmētika”
 	un tā ir instrukcijas primārā nozīme, \mnem{AR} implementē visas
-	aritmētiskās, loģiskās, bīdes operācijas, kā arī reģistru 
-	apmaiņas \mnem{MOV} instrukciju. (sk.~\ref{tbl:instructions}.~tabulu)
-	Šāda implementācija izmantota tāpēc, ka visas šīs instrukcijas tiek
+	aritmētiskās, loģiskās, bīdes operā\-cijas, kā arī reģistru 
+	apmaiņas \mnem{MOV} instrukciju (sk.~\ref{tbl:instructions}~tabulu).
+	Šāda imple\-men\-tā\-cija izmantota tāpēc, ka visas šīs instrukcijas tiek
 	pārvadītas pa to pašu signālceļu. Tādējādi kontroles iekārta tiek
 	vienkāršota, jo atsevišķās operācijas nav nepieciešams izšķirt.
 	
 	Kontroles signāli aritmētiskajai un bīdes ierīcei,
 	kā argumenti jeb vektora kodi,
 	tiek nodoti tieši no instrukcijas vārda, un kontroles iekārtā netiek
-	interpretēti (jeb ir „necaurspīdīgi”). Izņēmums, gan ir 
-	unārās un bezargumentu operācijas
-	\mnem{INC}, \mnem{DEC}, \mnem{NOT} un \mnem{CLR}, kuru ALU
-	vektora koda vecākais bits (\texttt{=1}) tiek interpretēts, lai izlaistu
-	otrā operanda ielasi, tā samazinot nepieciešamo takts ciklu skaitu
-	instrukcijas izpildei. (sk.~\ref{kb:ARdecode}.~koda bloku)
+	interpretēti (jeb ir „necaurspīdīgi”). Izņēmums, gan ir vektora koda
+	vecākais bits, kurš tiek interpretēts un pie augsta stāvokļa (loģiskā |1|)
+	tiek apieta otrā operanda (\texttt{rS}) ielase samazinot nepieciešamo
+	takts ciklu skaitu instrukcijas izpildei (sk.~\ref{kb:ARdecode}~koda bloku).
+	Šis bits ir |1|	unārājām un bezargumentu instrukcijām
+	\mnem{INC}, \mnem{DEC}, \mnem{NOT} un \mnem{CLR}.%
+	\footnote{Instrukcijas \mnem{LSL}, \mnem{LSR}, \mnem{ROL} un \mnem{ROR}
+		nav īsti unāras, bet asemblējot šīs saīsnes izmanto to argumentu gan kā
+		\texttt{rS}, gan kā \texttt{rD}.}
 	
 	\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
-		                caption={\mnem{AR} instrukcijas dekodēšana. (\texttt{control2.vhd})},%
+		                caption={\mnem{AR} instrukcijas dekodēšana (izgriezums).},%
 		                label=kb:ARdecode,%
 		                firstnumber=150]
 			{code/gen/ardecode-snippet.vhd}
 	\end{singlespace}
+	
+	\mnem{AR} instrukcijas saīsnes nenosedz visas iespējamās darbības, kuras
+	iespējamas ar \mnem{AR}. Tā kā ALU un Bitu bīdes loģiskā ierīce ir
+	atsevišķas komponentes uz viena signālceļa, tās darbības ir izpildāmas
+	vienlaicīgi. Tādējādi, izmantojot \mnem{AR} pilno formu, iespējams
+	kombinēt aritmētiskās un bīdes operācijas (piem. saskaitīt un veikt bīdi)
+	izpildei vienā instrukcijā. Jāņem vērā, ka Bitu bīdes loģiskā ierīce
+	atrodas aiz ALU (sk.~\ref{fig:cpu-rev3}~att.),
+	tādēļ bitu bīde vienmēr tiek izpildīta aritmētiskās darbības rezultātam.
 
 
 \subsubsection{Nosacījuma zarošanās instrukcijas} \label{sec:branching}
-	Nosacījuma zarošanās ir vitāla īpašība pilnīgam procesoram. Programmēšanas
+	Nosacījuma zarošanās ir vitāla īpašība procesoram. Programmēšanas
 	valodu \texttt{if()} konstrukcija nav iedomājama bez
 	nosacījuma zarošanās.
 	
-	Izstrādātais procesors par nosacījumu var izmantot divu reģistru
-	vienā\-dības vai nevienādības, kur reģistru saturs tiek interpretēts, kā
-	bezzīmes veseli skaitļi (t.i.~\texttt{unsigned~integer} tips).
+	Izstrādātais procesors par zarošanās nosacījumu var izmantot divu reģistru
+	satura apzīmēto bezzīmes veselo skaitļu salīdzinājumu.
 	Šai salīdzināšanai atbilst \mnem{BRxx} instrukcijas
-	(sk.~\ref{tbl:instructions}.~tabulu), un pašu salīdzināšanu veic komparators
-	(sk.~\ref{sec:comp}.~nod.) kuram tiek pievadīti salīdzināmie operandi.
+	(sk.~\ref{tbl:instructions}~tabulu), un pašu salīdzināšanu veic komparators
+	(sk.~\ref{sec:comp}~nod.) kuram tiek pievadīti salīdzināmie operandi.
 	
-	\noindent Aparatūras līmenī realizētas četras zarošanās instrukcijas:
+	\pagebreak[2]
+	Aparatūras līmenī realizētas četras zarošanās instrukcijas:
 	\begin{itemize}
 		\item \mnem{BREQ} — zaroties, ja operandi ir vienādi;
 		\item \mnem{BRNQ} — zaroties, ja operandi nav vienādi;
 		\item \mnem{BRGE} — zaroties, ja pirmais operands ir lielāks
 			vai vienāds ar otro;
-		\item \mnem{BRGT} — zaroties, ja pirmais operands ir stigri lielāks
+		\item \mnem{BRGT} — zaroties, ja pirmais operands ir stingri lielāks
 			par otro.
 	\end{itemize}
-	Šo instrukciju operāciju kodi nav izvēlēti gluži patvaļīgi, tie tiek
-	izmantoti loģiskā izteiksmē kopā ar komparatora signāliem, lai noteiktu
-	zarošanās izpildes nosacījumus.
+	
+	Zarošās nosacījumā pārbaudei tiek izmantoti šo instrukciju operāciju
+	kodu divi jaunākie biti, kuri turpmāk šajā nodaļā apzīmēti ar
+	\texttt{A} (otrs jaunākais bits) un \texttt{B} (jaunākais bits).
+	
+	Šo četru instrukciju operāciju kodi nav izvēlēti gluži patvaļīgi,
+	bet pielāgoti tā, lai to \texttt{A} un \texttt{B} biti,
+	kopā ar komparatora signāliem |eq| un |gr|
+	(apz.~\texttt{E} un \texttt{G}),
+	veidotu pēc iespējas vienkāršāku loģisko izteiksmi,
+	kas izsaka zarošanās nosacījuma izpildi (sk.~\ref{fig:branch-karnaugh}~att.).
 	
 	\begin{figure}[thp]
 		\centering
@@ -171,15 +209,18 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 		{\ttfamily\input{img/karnaugh.pdf_tex}}\\
 		\(
 			f = \mathtt{\overline{A}E + BG + AG + AB\overline{E}}
-		\)\\[1ex]
-		(apzīmējumu nozīmi sk.~\ref{kb:branchTest}.~kodā)
-		\caption{Zarošanās nosacījuma \termEn{Karnaugh} karte un formula.}
+		\)\\ %[1ex]
+		%(apzīmējumu nozīmi sk.~\ref{kb:branchTest}.~kodā)
+		\caption{Zarošanās nosacījuma Karno karte un formula.}
 		\label{fig:branch-karnaugh}
 	\end{figure}
 	
+	Zarošanās nosacījuma pārbaude implementēta kontroles iekārtā kā
+	VHDL funkcija (sk.~\ref{kb:branchTest}~pirmkodu).
+	
 	\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},%float=pb,%
-		                caption={Zarošanās nosacījuma pārbaudes funkcija (\texttt{control2.vhd})},%
+		                caption={Zarošanās nosacījuma pārbaudes funkcija (izgriezums).},%
 		                label=kb:branchTest,%
 		                linerange={61-69},firstnumber=61,
 		                emph={state,branchTest},%
@@ -191,6 +232,6 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 	Atlikušās zarošanās instrukcijas \mnem{BRLT} un \mnem{BRLE} ir
 	programmatūras līmeņa substitūcijas, jo to ekvivalentus var iegūt
 	izmantojot attiecīgi \mnem{BRGE} un \mnem{BRGT} instrukcijas,
-	apmainot salīdzināmos operandus vietām.
+	apmainot salīdzināmos operandus vietām assemblēšanas brīdī.
 	
 	

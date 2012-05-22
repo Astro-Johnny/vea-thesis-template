@@ -6,20 +6,20 @@
 %loģikas, kuru nodrošina MMU (\termEn{Memory map unit}).
 
 \subsection{MMU — adrešu dekoderis} \label{sec:mmu}
-	MMU jeb adrešu dekoderis ir ierīce, kas atbild par adrešu telpas
-	pārdalīšanu dažādām ierīcēm, kā arī nodrošināt korektu komunikāciju
+	Adrešu dekoderis jeb MMU ir ierīce, kas atbild par adrešu telpas
+	pārdalīšanu dažādām ierīcēm, kā arī nodrošina korektu komunikāciju
 	ar šīm ierīcēm. MMU tādējādi var uzskatīt par mikrokontroliera kontroles
 	iekārtu. MMU arī satur praktiski visu implementācijas un platformas
-	specifisko kodu, kas tad arī ir galvenā komponente kurā jāveic izmaiņas
+	specifisko kodu, kas tadējādi ir galvenā komponente kurā jāveic izmaiņas
 	(vai pat jāimplementē no jauna) izmainot mikrokontroliera uzbūvi.
 	
-	MMU ar procesoru veido tādu pašu saskarni kā RAM un aparatūras
-	līmenī ir pilnībā „caurspīdīga”, savukārt piekārtojamo ierīču saskarne
-	ir implementācijas definēta.
+	MMU ar procesoru veido tādu pašu saskarni kā RAM,
+	savukārt, piekārtojamo ierīču saskarne ir implementācijas definēta.
+	Tādējādi MMU var uzskatīt par aparatūras līmeņa abstrakcijas slāni.
 	
 	\todo ?
 	
-	\subsubsection{Adrešu telpas sadalījums}
+	%\subsubsection{Adrešu telpas sadalījums}
 	\begin{figure}[thp]
 		\centering
 		\def\svgwidth{0.9\textwidth}
@@ -43,6 +43,9 @@
 	\termEn{FlashROM} makross.\cite{FlashROM}
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
 	1 kilobits jeb 64 vārdi.\cite{FusionGuide}
+
+\subsection{RAM}
+	\todo
 
 \subsection{Adrešu telpai piekārtotā ievade/izvade}
 	Adrešu telpā arī piekārtotas ievades un izvades komponentes,

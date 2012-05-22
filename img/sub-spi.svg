@@ -22,9 +22,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.74"
-     inkscape:cx="178.01825"
-     inkscape:cy="73.429073"
+     inkscape:zoom="4.46"
+     inkscape:cx="159.10234"
+     inkscape:cy="55.225086"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -178,11 +178,11 @@
     <text
        sodipodi:linespacing="125%"
        id="text3108"
-       y="1038.189"
+       y="1034.6456"
        x="159.44882"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:CMU Typewriter Text;-inkscape-font-specification:CMU Typewriter Text Medium"
        xml:space="preserve"><tspan
-         y="1038.189"
+         y="1034.6456"
          x="159.44882"
          id="tspan3110"
          sodipodi:role="line">\large spi\_iface\_8\_16</tspan></text>

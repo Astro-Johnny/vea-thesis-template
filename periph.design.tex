@@ -1,33 +1,39 @@
 \subsection{Implementācijas īpašības} \label{sec:design}
 Izstrādājot mikrokontrolieri tika pieņemti vairāki lēmumi par tā uzbūvi,
-veidojot specifikāciju kopu uz kuras
+veidojot specifikāciju kopu, uz kuras
 balstās izstrādātātās mikrokontroliera komponentes.
 Šim mikrokontrolierim ir sekojošas uzbūves īpašības:
-\begin{description}
-	\item[Vienota adrešu telpa] \hfill \\
-		Mikrokontroliera kodols komunicē ar ārējām ierīcēm tikai caur
+\begin{itemize}
+	\item \textbf{Vienota adrešu telpa}:
+		mikrokontroliera kodols komunicē ar ārējām ierīcēm tikai caur
 		atmiņas saskarni, bet ne obligāti šai ierīcei arī jābūt atmiņai.
-		Tā vietā kopējai adrešu telpai tiek piekārtotas vairākas ierīces
-		izdalot noteiktus atmiņas apgabalus. Adrešu dekoderis veido saskarni
-		multipleksējot ierīces atkarībā no pieprasītās adreses.
-		(sk.~\ref{sec:mmu}~nod.)\pagebreak[1]
-	\item[Aparatūras kontrolēta SPI saskarne] \hfill \\
-		Atšķirībā no citiem mikrokontrolieriem ar SPI saskarni
+		Tā vietā kopējai adrešu telpai tiek piekārtotas vairākas ierīces,
+		katrai izdalot noteiktus adrešu apgabalus. Adrešu dekoderis veido saskarni,
+		multipleksējot ierīces atkarībā no pieprasītās adreses
+		(sk.~\ref{sec:mmu}~nod.).\pagebreak[1]
+	\item \textbf{Aparatūras kontrolēta SPI saskarne}:
+		atšķirībā no citiem mikrokontrolieriem ar SPI saskarni
 		[\todo ], % FIXME: Citation needed
 		šis mikro\-kontrolieris nodrošina aparatūras kontrolētu datu pārraidi,
 		atšķirībā no programmatūras kontrolētu pārraidi ar
 		\termEn{bit-banging} metodi%
-		\footnote{Metode kurā takts signāls tiek ģenerēts izpildot programmas
-			instrukcijas, pārraidot vienu bitu vienā vai vairākos kodola takts ciklos.}.
+		\footnote{Metode kurā takts signāls tiek ģenerēts izpildot programmu,
+			pārraidot vienu bitu vienā vai vairākās instrukcijās.}.
 		Tādējādi tiek vienkāršots programmkods SPI pārraidēm, un atbrīvots
 		kodols citu darbību paralēlai izpildei.
-	\item[\termEn{Boot} izpilde no ROM] \hfill \\
-		Tā kā patstāvīgā atmiņa uz FPGA platformas ir ierobežota, tajā
-		atrodas \termEn{boot} programma, kura veic pamatprogrammas ielādi
+	\item \textbf{Sāknēšana no ROM}:
+		tā kā patstāvīgā atmiņa uz FPGA platformas ir ierobežota, tajā
+		atrodas sāknēšanas (\termEn{boot}) programma,
+		kura veic pamatprogrammas ielādi
 		operatīvajā atmiņā no ārēja datu nesēja --- šajā gadījumā no 
-		SPI \termEn{Flash} atmiņas, kas pieejama uz darba platformas.
-	\item[] \todo
-\end{description}
+		SPI \termEn{Flash} atmiņas, kas pieejama uz darba platformas
+		(sk.~\todo{}~nod.).
+\end{itemize}
+
+Tā kā adrešu telpai piekārtotas vairākas ierīces (sk.~\ref{fig:top-rev3}~att.),
+rodas nepieciešamība pēc adreses dekodēšanas loģikas, kuru nodrošina
+adrešu dekoderis jeb MMU, kas veido saskarni un 
+aparatūras līmeņa abstrakcijas slāni, datu apmaiņai starp ierīcēm un kodolu.
 
 \begin{figure}[tbhp]
 	\centering
@@ -38,7 +44,7 @@ balstās izstrādātātās mikrokontroliera komponentes.
 \end{figure}
 
 Tā kā perifērā mikrokontroliera daļa tieši izmanto realizācijas
-platformas resursus, tiek brīvi izmantoti izstrādes rīka 
+platformas resursus, portabilitāte nav aktuāla un tiek brīvi izmantoti izstrādes rīka 
 ,,Actel Libero'' makrosi, kur tas nepieciešams vai potenciāli uzlabo
 veiktspēju.
 \FloatBarrier % Do not allow figures to "leak out"

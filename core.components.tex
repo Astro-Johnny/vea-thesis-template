@@ -70,7 +70,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 			turpmākās mikro\-operācijas%
 			\footnote{Mikrooperācijas ir soļi kas jāveic vienas instrukcijas
 				izpildei. Kontroles iekārtas stāvokļi atbilst mikrooperācijām
-				(sk.~kodu pielikumā \ref{appx:control}, \pageref{appx:control}~lpp.).}.
+				(sk.~kodu pielikumā \ref{appx:control}).}.
 			Divu vārdu instrukcijām saglabāts
 			tiek tikai pirmais vārds, jo tikai tajā ir dekodējamais
 			operācijas kods. Otrais vārds satur tikai argumentus.
@@ -223,8 +223,6 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	Ierīce, kura šeit nosaukta par ,,Bitu bīdes loģisko ierīci'',
 	realizē bitu bīdes operācijas, kuras šī procesora realizācijā ir
 	izdalītas atsevišķi no ALU. 
-	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona
-	(sk.~\ref{kb:shifter}~pirmkodu).
 
 	\begin{figure}[h!]
 		\centering
@@ -235,6 +233,10 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\label{fig:shift}
 	\end{figure}
 	
+	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona. Ieejošie dati
+	tiek pārbīdīti atkarībā pēc |sel| signāla stāvokļa 
+	(sk.~\ref{kb:shifter}~pirmkodu).
+	
 	%\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},float=th,%
 		                caption={Bīdes ierīces VHDL apraksts. (\texttt{shifter.vhd})},%
@@ -242,21 +244,24 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 			{code/shifter.vhd}
 	%\end{singlespace}
 	
-	\todo
+	
 
 %\clearpage
 \pagebreak[3]
 \FloatBarrier
 \subsubsection{Komparators} \label{sec:comp}
 	Komparators jeb salīdzinātājs ir komponente, kas salīdzina 
-	divus operandus un izvada tā vienādības vai nevienādības signālu.
+	divus operandus --- 16 bitu vārdus, kas tiek interpretēti kā bezzīmes
+	skaitļi.
 	Šī komparatora implementācija ir minimizēta, kombinacionāla un nesatur
-	kontroles signālus. Izvadīti tiek tikai divi biti, no kuriem viens
-	norāda uz operandu vienādību vai nevienādību, savukārt otrs norāda
-	vai operands \texttt{a} ir lielāks par \texttt{b} vai nav. Ar šo
+	kontroles signālus (salīdzinājumam ar D.~Perry realizāciju sk.~\todo{}~nod.).
+	Izvadīti tiek tikai divi loģiskie signāli, no kuriem |eq|
+	norāda uz operandu vienādību (loģiskais |1|) vai nevienādību (loģiskā |0|),
+	savukārt |gr| norāda vai operands \texttt{a} ir lielāks (|1|)
+	par \texttt{b} vai nav (|0|). Ar šo
 	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
-	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas.
-	(sk.~\ref{sec:branching}~nod.~\pageref{sec:branching}~lpp.)
+	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas
+	(sk.~\ref{sec:branching}~nod.~\pageref{sec:branching}~lpp.).
 	\begin{figure}[bhp]
 		\centering
 		%\def\svgwidth{7cm}
@@ -267,24 +272,22 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	\end{figure}
 	
 	%\begin{singlespace}
-		\lstinputlisting[language={[qucs]VHDL},float=thb,%
+		\lstinputlisting[language={[qucs]VHDL},float=thbp,%
+		                %basicstyle=\ttfamily\scriptsize,%
 		                caption={Komparatora VHDL apraksts. (\texttt{comp.vhd})},%
 		                label=kb:comp]
 			{code/comp.vhd}
 	%\end{singlespace}
 
-\clearpage
-%\pagebreak[3]
-\subsubsection{Kontroles iekārta}
-	Viena no procesora definējošām un iespējams sarežģītākajām komponentēm
-	— kontroles iekārta ir tā kas nodrošina mikro-operāciju izpildi.
-	Kontroles iekārta realizēta kā stāvokļa mašīna, kur katrs stāvoklis
-	atbilst mikro-operācijai, un tātad tās VHDL apraksts var tikt uzskatīts
-	par analogu mikrokodam.
-	Kontroles iekārtas VHDL apraksts ir garš un sarežģīts, un tā daļas tiks
-	izskatītas instrukciju darbības aprakstos.\\
-	(Pilno kodu sk.~pielikumā~\ref{appx:control} \pageref{appx:control}.~lpp.)
-	\begin{figure}[h!]
+%\clearpage
+%\FloatBarrier
+\pagebreak[3]
+\subsubsection{Kontroles iekārta} \label{sec:control}
+	Viena no galvenajām procesora komponentēm ir kontroles iekārta, kas,
+	iespējams, ir procesora sarežģītākā komponente. Kontroles iekārta
+	nodrošina mikrooperāciju izpildi, kas kontrolē datu plūsmu starp
+	procesora iekšējām komponentēm un datu apmaiņu ar RAM.
+	\begin{figure}[hp]
 		\centering
 		%\def\svgwidth{7cm}
 		\def\svgscale{1.1}
@@ -292,3 +295,38 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 		\caption{Kontroles iekārta.}
 		\label{fig:control}
 	\end{figure}
+	
+	Kontroles iekārta realizēta kā stāvokļa mašīna, kur katrs stāvoklis
+	atbilst vienai mikrooperācijai, un, tātad, tās VHDL apraksts var tikt
+	uzskatīts par analogu mikrokodam. Viena mikrooperācija tiek
+	izpildīta vienā takts ciklā.
+	
+	Kontroles iekārta instrukcijas izpilda pa vienai, izdarot sekojošas
+	soļus katras instrukcijas izpildē:
+	\begin{enumerate}
+		\item \textbf{instrukcijas ielase} (1 mikroop.) nolasa operācijas kodu no RAM
+			un saglabā to turpmākai dekodēšanai;
+		\item \textbf{instrukcijas dekodēšana} (1 mikroop.) pēc operācijas
+			koda nosaka nepieciešamās mikrooperācijas konkrētai instrukcijas
+			izpildei; %\footnote{Konkrēti tikai jānosaka viena nākamā izpildāmā
+				%mikrooperācija, jo aiz tās sekojošas mikroop.~izpildās jau
+				%noteiktā kārtībā};
+		\item \textbf{datu ielase un operācijas izpilde} (0--7 mikroop.)
+			veic instrukcijas specifiskās operācijas, kas var iekļaut
+			nevienu, vienu vai vairākas no sekojošām operācijām:
+			\begin{itemize}
+				\item datu ielase no RAM;\footnote{%
+					Datu nolase var aizņemt vairākus takts ciklus līdz
+					atmiņa ir gatava datu pārraidei (\texttt{ready} tiek pacelts).}
+				\item datu ierakste RAM;
+				\item aritmētiskā un/vai bīdes operācija;
+				\item zarošanās nosacījuma pārbaude;
+				\item programmskaitītāja pārrakstīšana zarošanās izpildei;
+			\end{itemize}\pagebreak[1]
+		\item \textbf{programmskaitītāja inkrementācija} veic sagatavošanos
+			nākamās instrukcijas izpildes ciklam.
+	\end{enumerate}
+	
+	Kontroles iekārtas kods ir pārāk apjomīgs un komplicēts, lai to
+	apskatītu šeit, tādēļ atsevišķas tā daļas tiks izskatītas turpmākajās
+	nodaļās un pilnais kods iekļauts pielikumā~\ref{appx:control}
