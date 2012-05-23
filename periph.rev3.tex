@@ -17,9 +17,6 @@
 	savukārt, piekārtojamo ierīču saskarne ir implementācijas definēta.
 	Tādējādi MMU var uzskatīt par aparatūras līmeņa abstrakcijas slāni.
 	
-	\todo ?
-	
-	%\subsubsection{Adrešu telpas sadalījums}
 	\begin{figure}[thp]
 		\centering
 		\def\svgwidth{0.9\textwidth}
@@ -28,11 +25,24 @@
 		\label{fig:memory-map}
 	\end{figure}
 	
-	\termEn{Boot ROM} nepieciešams piekārtot ar sākumu adresē \texttt{0x0000},
-	lai pēc atiestatīšanas procesors sāktu izpildīt \termEn{boot} programmu.
+	Adrešu telpas sadalījums (sk.~\ref{fig:memory-map}~att.) seko vienkāršiem pamatprincipiem:
+	\begin{itemize}
+		\item lielākie atmiņas bloki (konkrēti RAM) tiek novietoti augstākos
+			atmiņas apgabalos, vienkāršojot dekodēšanas loģiku;
+		\item patstāvīgo atmiņu (ROM) nepieciešams piekārtot ar sākuma
+			adresi \texttt{0x0000}, jo tā saturēs sāknēšanas programmu,
+			kuru nepieciešams izpildīt pēc mikrokontroliera atiestatīšanas
+			(sk.~\ref{sec:rom}~nod.);
+	\end{itemize}
+	
+	Papildus MMU arī satur konfigurācijas reģistru, ar kura palīdzību
+	maināmi pieslēgto ierīču konfigurējamie parametri.
+	\todo
 
 
-\subsection{Boot ROM}
+\subsection{Patstāvīgā atmiņa} \label{sec:rom}
+	Patstāvīgā atmiņa jeb ROM
+	
 	\termEn{Boot ROM} ir tikai nolasāmā atmiņa, kura paredzēta
 	\termEn{bootstrap} procesa programmas uzglabāšanai.
 	Šīs programmas uzdevums ir ielādēt reālo izpildes programmu no
@@ -43,8 +53,18 @@
 	\termEn{FlashROM} makross.\cite{FlashROM}
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
 	1 kilobits jeb 64 vārdi.\cite{FusionGuide}
+	
+	\todo
+	
+	\begin{figure}[thp]
+		\centering
+		\def\svgwidth{\textwidth}
+		{\ttfamily\small\input{img/rom-access.pdf_tex}}
+		\caption{Laika diagramma vārda nolasei no ROM.}
+		\label{fig:rom-time-diag}
+	\end{figure}
 
-\subsection{RAM}
+\subsection{Operatīvā atmiņa}
 	\todo
 
 \subsection{Adrešu telpai piekārtotā ievade/izvade}
