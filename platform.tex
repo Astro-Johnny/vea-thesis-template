@@ -6,17 +6,17 @@ abstrahējoties no mērķa platformas.
 
 Kad sintēzes rīks ir translējis HDL aprakstu un sagatavojis shēmas 
 iekšējo repre\-zen\-tā\-ciju, ir nepieciešams to nokartēt uz konkrētiem
-loģiskajiem elementiem.\cite[5.~lpp.]{HDL}
+loģiskajiem elementiem \cite[5.~lpp.]{HDL}.
 Lai gan tehniski ir iespējama kartēšana uz
 atsevišķām loģisko elementu (piem. 7400 sērijas vai 4000 sērijas)
-mikroshēmām, praktiski vienmēr mērķis ir realizēt shēmu uz vienas
-mikroshēmas. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģija.
+mikroshēmām, praktiski vienmēr mērķis ir realizēt shēmu vienā
+mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 
-\subsection{FPGA}
+\subsection{FPGA} \label{sec:fpga}
 	FPGA (\termEn{field-programmable gate array}) jeb pārprogrammējams
-	loģisko elementu masīvs, ir integrētā shēma, kura sastāv no
+	loģisko elementu masīvs ir integrētā shēma, kura sastāv no
 	programmējamu loģisko bloku matricas ar konfigurējamu starpsavienojumu
-	tīklu (\termEn{the interconnect}). [\todo]
+	tīklu (\termEn{the interconnect}) [\todo].
 	Vienkāršoti, FPGA var uzskatīt par ,,tukšu'' mikroshēmu, kurā, ar HDL
 	un ražotāja programmatūras palīdzību, var ieprogrammēt vēlamo
 	funkcionalitāti.
@@ -103,7 +103,7 @@ mikroshēmas. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģija.
 	vērā konkrētās FPGA arhitektūras uzbūve.
 	
 	
-\subsection{ASIC}
+\subsection{ASIC} \label{sec:asic}
 	Ar ASIC (\textit{Application-specific integrated circuit}) apzīmē
 	integrētās shēmas, kas ir specializētas un paredzētas konkrētam
 	pielietojumam. ASIC izstrāde var notikt dažādos abstrakcijas līmeņos,
@@ -116,7 +116,7 @@ mikroshēmas. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģija.
 	apsvērumi varētu būt arī veiktspēja un/vai mikroshēmas lielums, jo,
 	pretstatā FPGA, ASIC ir pielāgojami projektētāja vajadzībām.
 	
-	\subsubsection*{Standartšūnu ASIC projektēšana}
+	\subsubsection{Standartšūnu ASIC projektēšana}
 		Standartšūna (\termEn{Standard cell}) ir vienkāršas komponentes
 		modelis, ko ASIC ražotājs izstrādājis tranzistoru līmenī
 		izvietošanai uz tā ražotajiem ASIC. ASIC ražotājs projektu
@@ -135,7 +135,7 @@ mikroshēmas. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģija.
 		mikroshēmu izstrādes fotomaskas, nevis
 		pārprogrammēšanas datu fails.
 	
-	\subsubsection*{Specializētā ASIC projektēšana}
+	\subsubsection{Specializētā ASIC projektēšana}
 		Specializētā ASIC (\termEn{full custom ASIC}) projektēšanas gadījumā
 		izstrāde notiek tranzistoru līmenī jeb zemākajā abstrakcijas
 		līmenī. \todo

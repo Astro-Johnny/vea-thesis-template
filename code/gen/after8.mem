@@ -1,0 +1,11 @@
+// memory data file (do not edit the following line - required for mem load use)
+// instance=/testbench/top_0/mem_twoport_0/memproc/mem_data
+// format=hex addressradix=h dataradix=h version=1.0 wordsperline=8
+ @0 5008 0011 5010 0030 5030 0021 E40E 000D 
+ @8 4019 7013 A009 A012 C800 0005 CC00 C800
+@10 FFFF 0001 0002 0003 0004 0005 0006 0007
+@18 0008 0009 000A 000B 000C 000D 000E 000F
+@20 0010 0000 0000 0000 0000 0000 0000 0000
+@28 0000 0000 0000 0000 0000 0000 0000 0000
+@30 0001 0002 0003 0004 0005 0006 0007 0008
+@38 0009 000A 000B 000C 000D 000E 000F 0010

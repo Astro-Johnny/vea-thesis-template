@@ -35,37 +35,90 @@
 			(sk.~\ref{sec:rom}~nod.);
 	\end{itemize}
 	
-	Papildus MMU arī satur konfigurācijas reģistru, ar kura palīdzību
-	maināmi pieslēgto ierīču konfigurējamie parametri.
-	\todo
-
-
-\subsection{Patstāvīgā atmiņa} \label{sec:rom}
-	Patstāvīgā atmiņa jeb ROM
+	Papildus MMU arī satur konfigurācijas reģistru,
+	ar kura palīdzību maināmi pieslēgto ierīču konfigurējamie parametri.
+	Tas nepieciešams lai lokalizētu šo parametru bitus \todo
 	
-	\termEn{Boot ROM} ir tikai nolasāmā atmiņa, kura paredzēta
-	\termEn{bootstrap} procesa programmas uzglabāšanai.
+
+
+\subsection{Sāknēšanas ROM} \label{sec:rom}
+	Sāknēšanas ROM ir tikai nolasāmās, pastāvīgās atmiņas komponente, kura
+	satur sāknēšanas (\termEn{boot}) programmu.
 	Šīs programmas uzdevums ir ielādēt reālo izpildes programmu no
-	patstāvīgās atmiņas — šajā implementācijā konkrēti 
-	no SPI \termEn{Flash} atmiņas.
+	ārēja datu avota. Parauga implementācijas testam tiek izmantota
+	sāknēšanas programma, kas ielasa izpildāmo programmu no SPI \termEn{Flash}
+	atmiņas (sk.~pielikumu~\ref{appx:boot}), kas atrodas uz izmantotās
+	darba platformas (sk.~\ref{sec:devkit}~nod.).
 	
-	Par \termEn{Boot ROM} kalpos \termEn{Actel Fusion} piedāvātais
-	\termEn{FlashROM} makross.\cite{FlashROM}
+	ROM realizēts ar \termEn{Actel Fusion} piedāvāto
+	\texttt{FlashROM} makrosu, kas izmanto \termEn{Actel Fusion} FPGA
+	speciālo \termEn{FlashROM} atmiņu \cite{FlashROM} (sk.~\ref{sec:devkit}~nod.).
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
-	1 kilobits jeb 64 vārdi.\cite{FusionGuide}
+	1 kilobits jeb 64 vārdi \cite[12.~lpp.]{FusionGuide}. ROM mazā ietilpība ir
+	galvenais iemesls kādēļ mikrokontrolieris realizēts ar sāknēšanu.
 	
-	\todo
+	\termEn{FlashROM} adresējamā datu vārda garums ir 8 biti (1 baits),
+	tādēļ realizēta speciāla nolases loģikas saskarne, kas nolasa divus
+	baitus un kombinē tos vienā 16 bitu mašīnvārdā pirms to nodot MMU.
+	Šeit \termEn{FlashROM} glabā 16 bitu vārdus ar jaunāko baitu (LSB) 
+	virspirms, bet nolases loģika šo niansi padara mazsvarīgu.
 	
-	\begin{figure}[thp]
+	Lai nodrošinātu korektu nolasi no \termEn{FlashROM}, bija nepieciešams
+	modulēt \termEn{FlashROM} un nolases loģikas takts impulsa platumu.
+	Šāda realizācija ir kompromiss, jo pagarina ROM nolases laiku, bet
+	nodrošina pret nestabilitāti ,,skriešanās problēmas'' dēļ, kas bija
+	novērojama mikrokontroliera darbības simulācijas laikā (pirms korekcijām).
+	
+	\begin{figure}[tbh]
 		\centering
 		\def\svgwidth{\textwidth}
 		{\ttfamily\small\input{img/rom-access.pdf_tex}}
-		\caption{Laika diagramma vārda nolasei no ROM.}
+		\caption{Laika diagramma datu vārda nolasei no ROM.}
 		\label{fig:rom-time-diag}
 	\end{figure}
+	
+	\pagebreak[2]
+	Nolases loģika datu nolasi no \termEn{FlashROM} veic vairākos soļos (sk.~\ref{fig:rom-time-diag}~att.):
+	\begin{enumerate}[\hspace*{\parindent}1)]
+		\item paceļot ROM izvēles signālu |rom_sel|, tiek iespējota nolases
+			loģika un uzsākts nolases cikls;
+		% FIXME: Is this right?
+		\item paceļot nolases loģikas takti |fetch_clock| 
+			tiek nodrošināta korekts adreses signāls;
+		\item pie lecošās |rom_clk| frontes \termEn{FlashROM} nolasa pievadīto adresi,
+			bet dati izejā nav definēti;
+		\item \termEn{FlashROM} izvada datus pie krītošās |rom_clk|	frontes;
+		\item pie |fetch_clock| krītošās frontes ROM dati tiek ielasīti
+			pagaidu reģistrā --- tiek nolasīts vecākais baits, 
+			2.--5.~solis tiek atkārtots arī jaunākā baita nolasei;
+		\item nolasot jaunāko baitu tiek pacelts |ready| signāls
+			(nav uzrādīts attēlā), pēc kura kodols (vai MMU) datus var
+			nolasīt un atiestatīt |rom_sel| signālu.
+	\end{enumerate}
+	
+	
 
-\subsection{Operatīvā atmiņa}
-	\todo
+\subsection{Operatīvā atmiņa} \label{sec:ram}
+	Operatīvā atmiņa jeb RAM ir galvenā izpildes laika datu uzglabāšanas
+	atmiņa. Tā kā kodols ir Fon~Neimaņa arhitektūras procesors
+	(sk.~\ref{sec:cpu}~nod.), RAM tiek izmantots gan izpildāmās
+	programmas mašīnkoda, gan datu uzglabāšanai.
+	
+	RAM realizēts ar \texttt{RAM4K9} makrosu, kas izmanto specializēto
+	RAM, kas pieejams uz \termEn{Actel Fusion} FPGA \cite{RAM4K9}.
+	Tādējādi tiek
+	efektīvāk izmantoti FPGA resursi, jo nav nepieciešams izmantot
+	programmējamos loģiskos blokus.
+	
+	\termEn{Actel Fusion} FPGA uzbūves un \texttt{RAM4K9} makrosa
+	definīcijas dēļ, RAM ir sadalīts divos blokos \cite{RAM4K9}. 
+	%Tā kā platums un garums
+	%ir konfigurējami ir vairākas iespējas RAM sadalījumam.
+	Katrs no abiem blokiem satur 6144 vārdus,
+	kopā sastādot 12288 vārdu lielu RAM.
+	
+	\todo ?
+	
 
 \subsection{Adrešu telpai piekārtotā ievade/izvade}
 	Adrešu telpā arī piekārtotas ievades un izvades komponentes,
@@ -73,32 +126,111 @@
 	komponentēm izvietoti datu apmaiņas un konfigurācijas reģistri.
 	
 	\subsubsection{Vispārējas nozīmes ievades/izvades pieslēgvietas}
-	\todo
+		Vispārējas nozīmes ievades/izvades pieslēgvietas jeb GPIO ir svarīga
+		mikrokontroliera sastāvdaļa, kas ļauj saņemt un nodot signālus
+		pieslēgvietām pievienotajām ierīcēm.
+		
+		GPIO pieslēgvietas apvieno kopās kuras sauc par portiem. Tipiski, bet
+		ne obligāti, porta platums (atsevšķo pieslēgvietu skaits) ir vienāds
+		ar mašīnvārda garumu (šeit~16). Porta platums nevar pārsniegt
+		mašīnvārda garumu, jo tad, vienkārši, viss ports nav nolasāms, tādēļ ka dati
+		neietilpst datu pārvades šinā. Tā vietā, mikrokontrolierī iestrādā
+		vairākus GPIO portus.
+		
+		\begin{figure}[th]
+			\centering
+			\def\svgwidth{0.9\textwidth}
+			{\ttfamily\footnotesize\input{img/gpio.pdf_tex}}\\
+			\makebox[0.9\textwidth][r]{kur $N$ ir GPIO porta platums bitos}
+			\caption{GPIO porta uzbūve.}
+			\label{fig:gpio}
+		\end{figure}
+		
+		Izstrādātā GPIO porta uzbūves pamatā ir
+		bidirekcionālo buferu kopa, kura realizēta ar $N$ skaita
+		\texttt{BIBUF} makrosa instancēm, kur $N$ ir porta platums,
+		un divi $N$ garuma reģistri \texttt{DDRx} un \texttt{WRRx},
+		no kuriem \texttt{DDRx} kontrolē pieslēgvietu darbības virzienu un
+		\texttt{WRRx} uzglabā izvadāmo vārdu (pielēgvietām, kas ir izvades režīmā).
+		
+		Gan \texttt{DDRx}, gan \texttt{WRRx} ir lasāmi un pārrakstāmi.
+		Pieslēgvietu satura nolasīšanai ir tikai lasāms ,,virtuālais reģistrs''%
+		\footnote{Dati, kas nolasāmi kā reģistrs, kaut gan (mikrokontroliera iekšienē)
+			neeksistē fizisks reģistrs datu uzglabāšanai.}
+		\texttt{RDx}.
 	
-	\subsubsection{SPI saskarne}
-	SPI (\termEn{Serial Peripheral Interface Bus}) ir seriālās
-	datu pārraides saskarne, ar vienpusēju plūsmas kontroli pēc
-	\termEn{Master/Slave} modeļa.
+	Šajā mikrokontroliera paraugā realizēts viens 4 pieslēgvietu ports, kas
+	pievienot uz darba platformas esošajām diodēm.
 	
-	
-	
-	Uz doto brīdi (un kā redzams blokshēmā — \ref{fig:top-rev3}.~att.)
-	paredzēta tikai SPI saskarne. Tam paredzēts viens pārraides un viens
-	konfigurācijas reģistrs. Tam paredzēta iespēja nokonfigurēt datu
-	apmaiņu pa baitam (8 biti) vai pa vārdam (16 biti). Datu pārraide tiek
-	uzsākta uzreiz pēc jauno datu ierakstes reģistrā (ja SPI iespējots) un
-	tiek pārraidīti bez procesora līdzdalības.
-	
-	\begin{figure}[thp]
-		\centering
-		%\def\svgwidth{7cm}
-		\def\svgscale{1.25}
-		{\ttfamily\scriptsize\input{img/sub-spi.pdf_tex}}
-		\caption{SPI saskarnes ierīce.}
-		\label{fig:spi}
-	\end{figure}
-	
-	SPI saskarne nepieciešama komunikācijai ar SPI \termEn{Flash} atmiņu,
-	kura pieejama uz izstrādes platformas,\cite[43.~lpp.]{FusionGuide}
-	kur tiks glabāta galvenā izpildāmā programma, kura \termEn{boot} procesa
-	laikā tiks pārvietota uz RAM.
+	\clearpage %\pagebreak[3]
+	\subsubsection{SPI saskarne} \label{sec:spi}
+		SPI (\termEn{Serial Peripheral Interface Bus}) ir sinhrona seriālās
+		datu pārraides saskarne, ar vienpusēju plūsmas kontroli pēc
+		\termEn{Master/Slave} modeļa [\todo{}]. SPI ir \termEn{de facto}%
+		\footnote{Vispārēji pieņemts, bet neoficiāls.}
+		standarts un ir liels skaits ierīču kas komunicē izmantojot SPI,
+		tādējādi SPI ir vērtīga mikrokontroliera komponente.
+		
+		Darba ietvaros realizēta aparatūras kontrolēta paralēlā uz SPI saskarne.
+		Šī saskarne implementē SPI \termEn{master} pusi, tādējādi mikrokontrolieris
+		vada SPI komunikāciju un saskarnes paralēlajā pusē ir arī izvietoti
+		plūsmas kontroles signāli (sk.~\ref{fig:spi}~att.).
+		
+		\begin{figure}[thp]
+			\centering
+			%\def\svgwidth{7cm}
+			\def\svgscale{1.25}
+			{\ttfamily\scriptsize\input{img/sub-spi.pdf_tex}}
+			\caption{SPI saskarnes ierīce.}
+			\label{fig:spi}
+		\end{figure}
+		
+		SPI saskarne izstrādāta, lai programmatūras līmenī tā būtu vienkārši
+		izmantojama. Datu pārraide viecama ar \mnem{ST} instrukciju ierakstot
+		pārraidāmos datus speciālajā SPI datu reģistrā, kas tūlīt uzsāk datu
+		apmaiņu. Šī pārraide notiek bez procesora kodola līdzdalības.
+		Otras ierīces atgrieztos datus var atgūt vienkārši nolasot
+		SPI datu reģistru (ar \mnem{LD} instrukciju). Pārraidāmo datu garumu
+		ir iespējams konfigurēt datu apmaiņai pa baitam (8 biti) vai
+		pa vārdam (16 biti).
+		
+		Realizētā SPI saskarnes iekārta izmanto divus 8 bitu bīdes reģistrus
+		datu uzglabāšanai. Šo bīdes reģistru apvienojums atbilst SPI datu reģistram.
+		Tipiski arī otra (\termEn{slave})
+		ierīce līdzīgu bīdes reģistru, tādējādi tiek izveidots cilpveida
+		bīdes reģistrs, kur atsevišķie bīdes reģistri, pēc vesela pārraides cilka,
+		datus savā starpā apmaina. Pārraidīto bitu skaits tiek uzskaitīts
+		ar iekšēju skaitītāju. 
+		\begin{figure}[th]
+			\centering
+			\def\svgwidth{\textwidth}
+			{\ttfamily\footnotesize\input{img/spi-tx.pdf_tex}}\\
+			\caption{SPI pārraides laika diagramma.}
+			\label{fig:spi-tx}
+		\end{figure}
+		Pārraide notiek vairākos soļos
+		(sk.~\ref{fig:spi-tx}~att.):
+		\begin{enumerate}[\hspace*{\parindent}1)]
+			\item izpildot \mnem{ST} instrukciju, MMU paceļ |INIT|
+				signalizējot, ka jānolasa jaunais pārraidāmais vārds, kurš
+				tiek paralēlā režīmā ieraktīts bīdes reģistros;
+			\item |INIT| kļūstot zemam, bīdes reģistri tiek pārslēgti
+				seriālā režīmā un tiek uzsākta datu pārraide;
+			\item pie lecošās takts signāla frontes gan \termEn{master},
+				gan \termEn{slave} puses ierīce nolasa datu bitu;
+			\item pie krītošās takts signāla frontes uz datu apmaiņas
+				signālvadiem tiek uzlikts nākamais bits;
+			\item tiek atkārtota 3.~un 4.~darbība pārējiem datu bitiem;
+			\item apmainot pēdējo datu bitu, tiek pacelts |READY|
+				signalizējot, ka datu vārda apmaiņa ir pabeigta, un no
+				\termEn{slave} ierīces
+				saņemtais vārds ir nolasāms no |PDO| pieslēgvietas;
+		\end{enumerate}
+		
+		\todo ? % SPI mode 0
+		
+		SPI saskarne parauga mikrokonrolierī izmantota
+		komunikācijai ar SPI \termEn{Flash} atmiņu,
+		kura pieejama uz izstrādes platformas \cite[43.~lpp.]{FusionGuide},
+		kur tiek glabāta galvenā izpildāmā programma, kura sāknēšanas procesa
+		laikā tiks pārvietota uz RAM (sk.~\ref{sec:rom}~nod.~un pielikumu \ref{appx:boot}).

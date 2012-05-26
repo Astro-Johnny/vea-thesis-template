@@ -14,6 +14,7 @@
 %\renewcommand{\lstlistingname}{Koda bloks}
 \usepackage{longtable}	% Package for tables split accross pages
 \usepackage{booktabs}	% Package for nicer tables
+\usepackage{enumerate}
 \usepackage[toc,title,titletoc]{appendix}
 %\usepackage{wrapfig}
 \usepackage{cite}	% Superscript cites
@@ -111,9 +112,14 @@
 	{\raggedright
 	\begin{thebibliography}{9}
 		\addcontentsline{toc}{section}{\refname}
+		\bibitem{VHSIC}
+			Creasey~D.J.,
+			\textit{Advanced Signal Processing}.\linebreak[1]
+			London: Peter~Peregrinus, 1985. ISBN~0-86341-037-5
+		
 		\bibitem{Flynn-arch}
 			%Michael J.~Flynn,
-			Flynn~M.~J.,
+			Flynn~M.J.,
 			\textit{Computer Architecture: Pipelined and Parallel Processor Design}.
 			\linebreak[3]
 			London: Jones~and~Bartlett, 1995. ISBN~0-86720-204-1
@@ -124,14 +130,23 @@
 			\textit{Embedded systems design}, 2\nd edition.\linebreak[3]
 			Oxford: Newnes, 2003. ISBN~0-7506-5541-1
 		
+		\bibitem{VITAL}
+			IEEE,
+			\textit{IEEE 1076.4/D1, DRAFT Standard, VITAL ASIC Modeling Specification}.
+			New York: IEEE, 2000.
+		
+		\bibitem{ieee-1364.1}
+			IEEE,
+			\textit{IEEE Std. 1364.1-2002, IEEE Standard for Verilog Register Transfer Level Synthesis}.
+			New York: IEEE, 2002.
+		
 		\bibitem{Mealy-VHDL}
 			%Bryan Mealy, Fabrizio Tappero,
 			Mealy~B., Tappero~F.,
-			\textit{Free Range VHDL}. [online]
-			% Never printed
-			2012. \linebreak[2]
-			Available at: \url{http://www.freerangefactory.org/dl/free_range_vhdl.pdf}\linebreak[2]
-			\mbox{[Retreived on 2\nd May, 2012]}
+			\textit{Free Range VHDL}.
+			2012. [tiešsaiste] \linebreak[2]
+			Pieejams: \url{http://www.freerangefactory.org/dl/free_range_vhdl.pdf}\linebreak[2]
+			\mbox{[skatīts on 2012.~gada 2.~maijā]}
 		
 		\bibitem{HDL}
 			%Gaurav Mehta, Sridhar Kintali,
@@ -147,9 +162,27 @@
 		
 		\bibitem{Perry-VHDL}
 			%Douglas L.~Perry,
-			Perry~D.~L.,
+			Perry~D.L.,
 			\textit{VHDL: Programming by Example}, 4\nth edition. \linebreak[2]
 			New York: McGraw-Hill, 2002. ISBN~0-07-140070-2
+		
+		\bibitem{Vivek-Verilog}
+			%Vivek Sagadeo,
+			Sagdeo~V.,
+			\textit{The Complete Verilog Book}.\linebreak[2]
+			Norwell: Kluwer Academic Publishers, 1998. ISBN~0-7923-8188-2
+		
+		\bibitem{vhdl-vs-verilog}
+			Smith~D.J.,
+			\textit{VHDL \& Verilog Compared \& Contrasted}. [tiešsaiste]\linebreak[2]
+			Pieejams: \url{http://www.angelfire.com/in/rajesh52/verilogvhdl.html}
+			\mbox{[skatīts on 2012.~gada 21.~maijā]}
+		
+		\bibitem{Kumar-Verilog}
+			% Deepak Kumar Tala,
+			Tala~D.K., \textit{Gate Level Modeling}. [tiešsaiste]\linebreak[2]
+			Pieejams: \url{http://www.asic-world.com/verilog/gate.html}
+			\mbox{[skatīts on 2012.~gada 24.~maijā]}
 		
 		\bibitem{Vahid-RTL}
 			%Frank Vahid,
@@ -167,6 +200,12 @@
 		\bibitem{FlashROM}
 			Actel corp.,
 			\textit{Fusion FlashROM}, Application Note AC236. %\linebreak[2]
+			%USA: Actel,
+			2005.
+		
+		\bibitem{RAM4K9}
+			Actel corp.,
+			\textit{Fusion SRAM/FIFO Blocks}, Application Note AC237. %\linebreak[2]
 			%USA: Actel,
 			2005.
 		
@@ -202,6 +241,8 @@
 	\input{appendices.tex}
 	\end{appendices}
 	
+	\clearpage
+	\input{veerteejums.tex}
 	
 	
 \end{document}
