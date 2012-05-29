@@ -37,7 +37,7 @@
 	
 	Papildus MMU arī satur konfigurācijas reģistru,
 	ar kura palīdzību maināmi pieslēgto ierīču konfigurējamie parametri.
-	Tas nepieciešams lai lokalizētu šos izkliedētos parametru bitus
+	Tas nepieciešams, lai lokalizētu šos izkliedētos parametru bitus
 	adrešu telpai piekārtotā reģistrā. Šis konfigurācijas reģists arī kalpo
 	par buferi novēlotai parametru izmaiņai, piem.,~SPI pārraides vārda garumu
 	platumu nevar izmanīt pārraides laikā (sk.~\ref{sec:spi}~nod.).
@@ -58,7 +58,7 @@
 	speciālo \termEn{FlashROM} atmiņu \cite{FlashROM} (sk.~\ref{sec:devkit}~nod.).
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
 	1 kilobits jeb 64 vārdi \cite[12.~lpp.]{FusionGuide}. ROM mazā ietilpība ir
-	galvenais iemesls kādēļ mikrokontrolieris realizēts ar sāknēšanu.
+	galvenais iemesls, kādēļ mikrokontrolieris realizēts ar sāknēšanu.
 	
 	\termEn{FlashROM} adresējamā datu vārda garums ir 8 biti (1 baits),
 	tādēļ realizēta speciāla nolases loģikas saskarne, kas nolasa divus
@@ -134,11 +134,11 @@
 		mikrokontroliera sastāvdaļa, kas ļauj saņemt un nodot signālus
 		pieslēgvietām pievienotajām ierīcēm.
 		
-		GPIO pieslēgvietas apvieno kopās kuras sauc par portiem. Tipiski, bet
-		ne obligāti, porta platums (atsevšķo pieslēgvietu skaits) ir vienāds
+		GPIO pieslēgvietas apvieno kopās, kuras sauc par portiem. Tipiski, bet
+		ne obligāti, porta platums (atsevišķo pieslēgvietu skaits) ir vienāds
 		ar mašīnvārda garumu (šeit~16). Porta platums nevar pārsniegt
-		mašīnvārda garumu, jo tad, vienkārši, viss ports nav nolasāms, tādēļ ka dati
-		neietilpst datu pārvades šinā. Tā vietā, mikrokontrolierī iestrādā
+		mašīnvārda garumu, jo tad viss ports nav nolasāms, tādēļ, ka dati
+		neietilpst datu pārvades šinā. Tā vietā mikrokontrolierī iestrādā
 		vairākus GPIO portus.
 		
 		\begin{figure}[th]
@@ -192,7 +192,7 @@
 		\end{figure}
 		
 		SPI saskarne izstrādāta, lai programmatūras līmenī tā būtu vienkārši
-		izmantojama. Datu pārraide viecama ar \mnem{ST} instrukciju ierakstot
+		izmantojama. Datu pārraide viecama ar \mnem{ST} instrukciju, ierakstot
 		pārraidāmos datus speciālajā SPI datu reģistrā, kas tūlīt uzsāk datu
 		apmaiņu. Šī pārraide notiek bez procesora kodola līdzdalības.
 		Otras ierīces atgrieztos datus var atgūt vienkārši nolasot
@@ -203,8 +203,8 @@
 		Realizētā SPI saskarnes iekārta izmanto divus 8 bitu bīdes reģistrus
 		datu uzglabāšanai. Šo bīdes reģistru apvienojums atbilst SPI datu reģistram.
 		Tipiski arī otra (\termEn{slave})
-		ierīce līdzīgu bīdes reģistru, tādējādi tiek izveidots cilpveida
-		bīdes reģistrs, kur atsevišķie bīdes reģistri, pēc vesela pārraides cilka,
+		ierīce izmanto līdzīgu bīdes reģistru, tādējādi tiek izveidots cilpveida
+		bīdes reģistrs, kur atsevišķie bīdes reģistri, pēc vesela pārraides cikla,
 		datus savā starpā apmaina. Pārraidīto bitu skaits tiek uzskaitīts
 		ar iekšēju skaitītāju. 
 		\begin{figure}[th]
@@ -219,7 +219,7 @@
 		\begin{enumerate}[\hspace*{\parindent}1)]
 			\item izpildot \mnem{ST} instrukciju, MMU paceļ |INIT|
 				signalizējot, ka jānolasa jaunais pārraidāmais vārds, kurš
-				tiek paralēlā režīmā ieraktīts bīdes reģistros;
+				tiek paralēlā režīmā ierakstīts bīdes reģistros;
 			\item |INIT| kļūstot zemam, bīdes reģistri tiek pārslēgti
 				seriālā režīmā un tiek uzsākta datu pārraide;
 			\item pie lecošās takts signāla frontes gan \termEn{master},

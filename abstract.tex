@@ -19,21 +19,25 @@
 \vspace{1em}
 Šī bakalaura darba mērķis ir izstrādāt modulāru mikrokontroliera kodolu,
 kurš izmantojams dažādu, specializētu mikrokontrolieru implementācijās,
-kuras bieži nepieciešamas uzdevuma specifiskos elektroniskajos risinājumos,
-galvenokārt, zinātniskajos projektos. Mikrokontroliera, un tādējādi arī
-izstrādājamā kodola mērķa platforma ir FPGA.
+kuras bieži nepieciešamas specifiskos elektroniskajos risinājumos,
+galvenokārt, zinātniskajos projektos. Mikrokontroliera un
+izstrādātā kodola mērķa platforma ir FPGA.
 %FIXME: Saīsinājuma atšifrējumu vajag uzrādīt?
 
 Izstrāde veikta izmantojot aparatūras apraksta valodas, kas ir galvenais
-FPGA projekta izstrādes instruments. Darbā analizēta eksistējoša procesora
-arhitektūra, no kura, veicot pielāgojumus, identificējot arhitektūras 
-trūkumus un izvirzot to risinājumus, izveidota bāzes arhitektūra pēc kuras
+FPGA projekta izstrādes instruments. Ir veikts divu galveno aparatūras
+apraksta valodu (VHDL un Verilog) salīdzinājums, lai pamatotu izstrādes valodas izvēli.
+Darbā analizēta eksistējoša procesora
+arhitektūra, identificēti tās
+trūkumi un izstrādāti uzlabošanas risinājumi, kā rezultātā izveidota 
+bāzes arhitektūra, pēc kuras
 realizēts izstrādājamais mikrokontroliera kodols.
 
-Šī darba laikā kodols tika veiksmīgi izstrādāts un tā pārbaudei un 
+Šī darba laikā kodols tika veiksmīgi izstrādāts, tā pārbaudei un 
 demonstrācijai izstrādāts arī parauga mikrokontrolieris, kurā šis kodols
-izmantots. Izvirzīti arī vairāki priekšlikumi, kuri uzlabo izstrādāto
-mikrokontroliera kodolu, bet nav fundamentāli izvirzīto mērķu sasniegšanai.
+izmantots. Papildus izstrādāts asemblerkoda translators.
+Izvirzīti vairāki priekšlikumi, kā uzlabot izstrādāto
+mikrokontroliera kodolu.
 
 \clearpage
 \begin{english} % The English abstract
@@ -101,7 +105,39 @@ mikrokontroliera kodolu, bet nav fundamentāli izvirzīto mērķu sasniegšanai.
 	\phantomsection\addcontentsline{toc}{section}{\abstractname}
 	\abstitlestyle{\abstractname} % The abstract title (centered)
 	% Abstract text goes here
+	\noindent%
+	\begin{tabularx}{\textwidth}{lX}
+		\textbf{Название работы:} & 
+			\textit{Разработка ядра микроконтроллера во встроенной системы}\\[1ex]
+		\textbf{Автор работы:} & Jānis Šmēdiņš (транслит.~Янис Шмэдиньш)\\[1ex]
+		%\textbf{Руководитель работы:}
+		\textbf{Руководитель:} & Mg.~sc.~comp.~Gatis Gaigals 
+			(транслит.~Гатис Гайгалс)\\[1ex]
+		\textbf{Размер:} & 68 стр., 3 таблицы, 26 изображений,
+			12 листингов (печатей исходного кода), 19 библиографических источников, 5 приложений\\[1ex]
+		\textbf{Ключевые слова:} & ядро микроконтроллера,
+			языки описания аппаратуры, синтезируемый микроконтроллер
+	\end{tabularx}
 	
-	\todo \\
-	%Чо такоё? 13
+	
+	Цель работы бакалавра разработать модулярное ядро микроконтроллера
+	которого можно использовать в разных специализированных имплементациях
+	микроконтроллеров которые часто нужны в специфичных электронных решениях,
+	восновном, в научных проектах. Целевой платформой микрокотроллера и
+	разработанного ядра является FPGA.
+
+	Разработка сделана, используя языки описания аппаратуры, которые
+	являются главным инструментом проекта FPGA. Сделано сравнение двух
+	главных языков описания аппаратуры (VHDL и Verilog), что-бы основать
+	выбор языка разработки. В работе анализируется архитектура существующего
+	процесора, идентифицированы недостатки и разработаны способы улучшения,
+	в результате сделана базовая архитектура, по которой реализовано
+	ядро разрабатываемого микроконтроллера.
+
+	Во время этой работы ядро было успешно разработано, для его
+	проверки и демонстрации  тоже разработан образцовый микроконтроллер,
+	в котором это ядро будет использоватся. Дополнительно разработан
+	транслятор кода ассемблера. Выдвинуто несколько предложений,
+	как улучшить разрабатываемое ядро микроконтроллера.
+	
 \end{russian}
