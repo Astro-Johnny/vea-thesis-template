@@ -1,6 +1,41 @@
 \section*{Secinājumi un priekšlikumi}%
 \addcontentsline{toc}{section}{Secinājumi un priekšlikumi}
-\todo
+Izstrādājot šo darbu, autors izdarījis vairākus secinājumus un atzinumus.
+\begin{itemize}
+	\item VHDL un Verilog, lai arī abas ir aparatūras apraksta valodas,
+		savas uzbūves un atšķirīgas problēmu pieejas rezultātā, piemērotas
+		dažādam pielietojumam. VHDL vairāk piemērota sintezējamu, augstas
+		abstrakcijas līmeņu shēmu aprakstam, savukārt, Verilog piemērota
+		vidēja un zema abstrakcijas līmeņa komponenšu 
+		simulācijas modeļu aprakstam (sk.~\ref{sec:hdl-comparison}~nod.).
+	\item (FPGA arhitektūras granularitāte \todo ) 
+		(sk.~\ref{sec:fpga}~nod.).
+	\item FPGA uzbūves rezultātā, kopēja trīsstāvokļu šina nav realizējama
+		FPGA, bet eksistē alternatīvas, kā piem.,~darbā realizētā sazarotās
+		ķēdes veida šina (sk.~\ref{sec:perry-bus}~un \ref{sec:databus}~nod.).
+	\item Unikālo mikrooperāciju skaitu kontroles iekārtā iespējams samazināt,
+		līdzīgo instrukciju operāciju koda fragmentam piešķirot
+		mērķa komponentes interpretējamu nozīmi, rezultātā izveidojot šablonveida
+		mikroinstrukcijas un deleģējot daļu operācijas koda dekodēšanu ārējai
+		komponentei (sk.~\ref{sec:perry-instr}~un \ref{sec:AR}~nod.).
+\end{itemize}
+
+Izvirzītais darba mērķis tika sasniegts, un izstrādes laikā tika apzināti
+vairāki potenciāli uzlabojumi.
+\begin{itemize}
+	\item Ieviešot pārtraukumu mehānismu, kodols varētu tūlītēji reaģēt
+		uz ārējiem notikumiem ,,preemptīvi''\footnote{%
+			Pārtraucot un atliekot pamatrprogrammas izpildi.}
+		izpildot speciālu, lietotāja definējamu pārtraukuma apakšprogrammu.
+	\item Aparatūras līmeņa apakšprogrammu izsaukšanas atbalsts,
+		sekmētu efektīvāku un modulārāku izpildes programmas kodu.
+\end{itemize}
+Šie uzlabojumi netika uzreiz implementēti,
+tādēļ, ka tie nav fundamentāli mērķa sasniegšanai, un lai būtu iespējams 
+noslēgt pilnu iteratīvu izstrādes ciklu, t.i.~jaunas modifikācijas netiek
+ieviestas pirms iesāktā izstrādes revīzija tiek finalizēta.
+
+
 
 % 1: FPGA ir kruts jo iespeejams sintezeet HDL aprakstus
 

@@ -26,7 +26,7 @@ centrālo datu šinu \cite{Flynn-arch}\cite{Heath}, un ar visām pamata
 komponentēm (sk.~\ref{fig:perry-cpu}~att.), kas nodrošina bāzes prototipa
 spēju izpildīt instrukcijas no tā instrukciju kopas.
 
-\subsection{Iekšējā datu šina}
+\subsection{Iekšējā datu šina} \label{sec:perry-bus}
 	Bāzes prototipa arhitektūra paredz kopēju, trīsstāvokļu iekšējo datu šinu
 	(sk.~\ref{fig:perry-cpu}~att.).
 	Šāda šinas uzbūve ir elektriski vienkārša, un ir shematiski viegli uztverama
@@ -88,7 +88,7 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	risināju skatīt \ref{sec:databus}~nodaļā.
 
 \pagebreak[3]
-\subsection{Instrukciju kopa}
+\subsection{Instrukciju kopa} \label{sec:perry-instr}
 	Bāzes prototips paredz vienkāršu instrukciju kopu, ar konstanta garuma
 	5 bitu operāciju kodiem. Instrukciju kopa ir tipiska \termEn{Load/Store}
 	principa procesoru arhitektūrām. \termEn{Load/Store} princips nosaka, ka
@@ -131,7 +131,7 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	tiek izpildītas praktiski vienādi, iespējams veikt daļēju operācijas
 	koda dekodēšanu un deleģējot atlikušā operācijas koda ,,dekodēšanu''
 	ALU (sk.~\ref{sec:alu}~nod.), nododot tai nozīmīgu informāciju no
-	operācijas koda. Tādējādi tiek panākti viekāršāka dekodēšanas loģika un 
+	operācijas koda. Tādējādi tiek panākta viekāršāka dekodēšanas loģika un 
 	mazāk stāvokļu kontroles iekārtā, jo pietiek ar vienu šablonveida
 	izpildes stāvokļu ķēdi.
 	
@@ -192,7 +192,7 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	rezultātu no divu operandu savstarpējo stāvokļu pārbaudes.
 	
 	Kodola realizācijā izmantots ,,bezrežīmu'' komparators, kas 
-	divus signāla bitus, kas attiecīgi norāda 
+	izvada divus signāla bitus, kas attiecīgi norāda 
 	vai operands |a| ir vienāds ar |b|, 
 	un vai operands |a| ir lielāks par |b| (sk.~\ref{sec:comp}~nod.).
 	Protams šāda implementācija nozīmē papildus loģiku kontroles iekārtā,

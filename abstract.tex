@@ -10,54 +10,30 @@
 		\textit{Iekļautās sistēmas mikrokontroliera kodola izstrāde}\\[1ex]
 	\textbf{Darba autors:} & Jānis Šmēdiņš\\[1ex]
 	\textbf{Darba vadītājs:} & Mg.~sc.~comp.~Gatis Gaigals\\[1ex]
-	\textbf{Darba apjoms:} & ??~lpp., ??~tabulas, ??~attēli,
-		??~pirmkoda izdrukas, ??~bibliogrāfiskie avoti, ?~pielikumi\\[1ex]
+	\textbf{Darba apjoms:} & 68~lpp., 3~tabulas, 26~attēli,
+		12~pirmkoda izdrukas, 19~bibliogrāfiskie avoti, 5~pielikumi\\[1ex]
 	\textbf{Atslēgas vārdi:} & Mikrokontroliera kodols, aparatūras apraksta valodas,
-		sintezējams mikrokontrolieris, \todo{}?
+		sintezējams mikrokontrolieris
 \end{tabularx}
 
 \vspace{1em}
-Šī bakalaura darba mērķis ir izstrādāt mikrokontroliera
-kodolu, kurš izmantojams gan vispārēja pielietojuma mikrokontrolieru,
-gan specializētu integrēto mikrokontrolieru sastāvdaļa sintēzei uz FPGA
-platformas. Tiek arī apskatītas aparatūras apraksta valodas,
-kā galvenais izstrādes rīks.
+Šī bakalaura darba mērķis ir izstrādāt modulāru mikrokontroliera kodolu,
+kurš izmantojams dažādu, specializētu mikrokontrolieru implementācijās,
+kuras bieži nepieciešamas uzdevuma specifiskos elektroniskajos risinājumos,
+galvenokārt, zinātniskajos projektos. Mikrokontroliera, un tādējādi arī
+izstrādājamā kodola mērķa platforma ir FPGA.
+%FIXME: Saīsinājuma atšifrējumu vajag uzrādīt?
 
-Autors izmanto visai praktisku pieeju, risinot un aprakstot problēmas tad,
-kad tās rodas izstrādes procesā. Darbā apskatīta konkrēta procesora
-arhitektūra, uz kura bāzes veikta kodola izstrāde iteratīvos soļos
-(sauktas par revīzijām), katrā
-uzlabojot prototipu un risinot sastaptās problēmas.
+Izstrāde veikta izmantojot aparatūras apraksta valodas, kas ir galvenais
+FPGA projekta izstrādes instruments. Darbā analizēta eksistējoša procesora
+arhitektūra, no kura, veicot pielāgojumus, identificējot arhitektūras 
+trūkumus un izvirzot to risinājumus, izveidota bāzes arhitektūra pēc kuras
+realizēts izstrādājamais mikrokontroliera kodols.
 
-Izstrādes laikā tika ieviesta jauna kodola instrukciju kopa un veiktas
-vairākas arhitektūras izmaiņas, no kurām ievērojamākā ir trīsstāvokļu datu šinas
-pārveidošana sazarotā, vienvirziena, cirkulārā datu apmaiņas šinā.
-Darba rezultātā tika izstrādāts sintezējams mikrokontroliera kodols, kas ir
-trešās revīzijas (rev.~03) galavariants. Papildus izstrādāts arī
-mikrokontroliera, kurā izmantots izstrādātais kodols.
-Šis mikrokontrolieris izmantots kodola pārbaudei un darbības demonstrēšanai,
-un ir izmantojams par paraugu mikrokontrolieru realizācijai, kas izmanto
-šajā darbā izstrādāto kodolu.
-
-Autors darba noslēgumā izvirza vairākus iespējamus uzlabojumus potenciālajam,
-nākamajam izstrādes ciklam, bet secina ka šādi izstrādes cikli var būt
-bezgalīgi, un nav nepieciešamība uzsākt nākamo, ja izvirzītās prasības
-tiek pilnībā apmierinātas.
-
-
-
-%%%%%%%%%
-%Šajā bakalaura darbā ir apskatīta konkrēta procesora prototipa arhitektūra un
-%analizēta tās nianses un trūkumi izvirzot problēmu risinājumus un uzlabojumus.
-%Autors patsāvīgi izstrādājis sintezējamu mikrokontroliera kodolu, daļēji balstoties uz
-%apskatītā procesora arhitektūru, iestrādājot arī izvirzītos uzlabojumus.
-%Papildus izstrādāts arī parauga mikrokontroliera prototips,
-%kurā šis kodols izmantots.
-
-%Darbā arī apskatītas aparatūras apraksta valodas, no kurām VHDL izmantots kā galvenais
-%izstrādes instruments, un FPGA, kas ir izstrādātā mikrokontroliera fiziskās
-%realizācijas mērķa platforma.
-%%%%%%%%%
+Šī darba laikā kodols tika veiksmīgi izstrādāts un tā pārbaudei un 
+demonstrācijai izstrādāts arī parauga mikrokontrolieris, kurā šis kodols
+izmantots. Izvirzīti arī vairāki priekšlikumi, kuri uzlabo izstrādāto
+mikrokontroliera kodolu, bet nav fundamentāli izvirzīto mērķu sasniegšanai.
 
 \clearpage
 \begin{english} % The English abstract

@@ -41,10 +41,10 @@
 	Vienkāršs loģiskā elementa \texttt{UN} VHDL apraksta paraugs redzams
 	\ref{kb:vhdl-example}~pirmkoda izdrukā. Piemērā redzami pamata sintaktiskās
 	konstrukcijas komponentes aprakstam.
-	Pirmkārt, ,,entītija'' definē aprakstāmās komponentes ,,no ārpuses''
+	Pirmkārt, entītija definē aprakstāmās komponentes ,,no ārpuses''
 	redzamās daļas, no kurām svarīgākā (un piemērā vienīgā) ir pieslēgvietu
-	saraksts; otrkārt, ,,arhitektūra'' ir komponentes implementācijas definīcija,
-	kurā tiek aprakstīta ,,entītijā'' definētās komponentes darbība.
+	saraksts; otrkārt, arhitektūra ir komponentes implementācijas definīcija,
+	kurā tiek aprakstīta entītijā definētās komponentes darbība.
 
 	Tā kā izmantojot aprakstīto komponenti hierarhiālā shēmas projektēšanā, 
 	galvenokārt ir svarīga komponentes darbība, nevis tās konkrētā implementācija,
@@ -82,7 +82,7 @@
 
 \pagebreak[3]
 \subsection{Verilog} \label{sec:verilog}
-	,,Verilog'' ir aparatūras apraksta valoda, kuru 1980-ajos gados izstrādāja
+	Verilog ir aparatūras apraksta valoda, kuru 1980-ajos gados izstrādāja
 	\termEn{P.~Moorby} un \termEn{P.~Goel}. Verilog sintakse ir daļēji modelēta
 	pēc C programmēšanas valodas sintakses, kas papildus faktam, ka Verilog
 	jau sākotnēji izstrādāta shēmu simulācijai, nevis
@@ -103,7 +103,7 @@
 
 	Vienkāršs loģiskā elementa \texttt{UN} Verilog apraksta paraugs redzams
 	\ref{kb:verilog-example}~pirmkoda izdrukā.
-	Verilog ,,modulis'' ir konstrukcija kas satur komponentes aprakstu
+	Verilog modulis ir konstrukcija kas satur komponentes aprakstu
 	--- gan ārējo saskarni, gan implementāciju.
 	
 	Verilog moduļus var izmantot citu moduļu definēšanā, tādējādi veicot
@@ -190,7 +190,7 @@
 		\label{fig:abstractions}
 	\end{figure}
 	
-	Otra, ne mazāk būtiska, bet ne uzreiz redzama, atšķirība ir abstrakcijas
+	Otra, ne mazāk būtiska, bet ne uzreiz redzama atšķirība ir abstrakcijas
 	līmeņi, kādos ar šim valodām var strādāt. VHDL un Verilog piedāvātais
 	modelēšanas abstrakcijas līmeņu ,,spektrs'' ir nedaudz atšķirīgs
 	(sk.~\ref{fig:abstractions}~att.) \cite{vhdl-vs-verilog}, kuru nosaka
@@ -207,7 +207,7 @@
 	tika izveidots VITAL (\termEn{VHDL Initiative Toward ASIC Libraries})
 	papildinājums \cite{VITAL}. VITAL definē pakotnes un apakšprogrammas,
 	kuras ASIC un FPGA ražotāji izmanto lai konstruētu modeļus
-	ASIC standartšunām (sk.~\ref{sec:asic}~nod.) un FPGA loģiskajiem blokiem
+	ASIC standartšūnām (sk.~\ref{sec:asic}~nod.) un FPGA loģiskajiem blokiem
 	(sk.~\ref{sec:fpga}~nod.), sastādot VITAL modeļu bibliotēkas.
 	Izmantojot šīs bibliotēkas ir iespējams simulēt loģisko elementu līmeņa
 	(\termEn{gate level}) shēmas modeli, kurai pēc izvietošanas un trasēšanas
@@ -217,7 +217,7 @@
 	rīks no shēmas RTL apraksta, jo	
 	lai gan VITAL ir
 	lietotāja izmantojams, tas nav VITAL mērķis, un VHDL pieraksts ar VITAL
-	ir ļoti izsmeļošs (un nepārskatāms).
+	ir ļoti izsmeļošs, un tādēļ arī nepārskatāms.
 	
 	
 	\begin{table}[thb]\small
@@ -254,8 +254,8 @@
 		\end{tabular}
 	\end{table}
 	
-	Kā redzams VHDL un Verilog valodu atšķirības ir daudz komplicētākas,
-	nekā tikai shēmas modeļu pieraksts. Un atkarībā no projekta specifikas,
+	Kā redzams VHDL un Verilog valodu atšķirības ir daudz komplicētākas
+	nekā tikai shēmas modeļu pieraksts, un, atkarībā no projekta specifikas,
 	katrai valodai eksistē objektīvi iemesli tās izmantošanai. Īss pārskats
 	valodu īpašību salīdzinājumam redzams \ref{tbl:hdl-comparison}~tabulā.
 	
