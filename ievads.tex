@@ -1,29 +1,42 @@
 \section*{Ievads} \addcontentsline{toc}{section}{Ievads}
+% FIXME: Should I do the "screaming" first sentence?
+Zinātne nestāv uz vietas! Nepārtraukti tiek uzsākti jauni zinātniskie projekti,
+un arvien biežāk tajos nepieciešami specializēti elektroniskie risinājumi.
+Šie risinājumi ir projekta specifiski, bet tajos bieži ir nepieciešamas
+kontroles iekārtas, datu formēšanas un pārraides iekārtas, un
+šim pielietojumam var izmantot specializētus mikrokontrolierus.
+Šādu mikrokontrolieru izstrāde tiek krietni vienkāršota, ja pieejams
+modulārs mikrokontroliera kodols ar vienkāršu un adaptējamu saskarni.
+
+Sevišķas prasības specializētu mikrokontrolieru izstrādei ir kosmosa
+tehnoloģijās, kur jaunas ierīces un komponentes pieprasa īpaši rūpīgu
+pārbaudi, uzticama mikrokontroliera kodola universalitāte ir sevišķi
+vērtīga.
+
+Šī bakalaura darba mērķis ir, pirmkārt, izstrādāt modulāru mikrokontroliera kodolu,
+kurš, bez vai ar minimālām modifikācijām, būtu izmantojams,
+vispārēja un specializēta pielietojuma, mikrokontrolieru implemetācijās,
+sintēzei FPGA (\termEn{{field-programmable} gate array}), un otrkārt,
+izstrādāt vienkāršu parauga mikrokontrolieri, kas šo kodolu izmanto,
+demonstrējot izstrādātā kodola izmantošanu šim nolūkam.
+Mērķa sasniegšanai ir izvirzīti vairāki uzdevumi.
+\begin{enumerate}
+	\item Kodola un perifērijas saskarnes definēšana,
+		kurai jābūt pietiekami vienkāršai, lai atbalstītu plašu spektru
+		komponenšu.
+	\item Kodola izmantojamās instrukciju kopas definēšana. Tai jābūt
+		vienkāršai un jānodrošina pamata funkcionalitāti.
+	\item Kodola arhitektūras definēšana un izstrāde. Tas galvenokārt nozīmē
+		visu kodola apakškomponenšu izstrādi un komplektēšanu.
+	\item Parauga mikrokontroliera uzbūves definēšana un komponenšu izstrāde.
+\end{enumerate}
+
+Darba izstrādes galvenais instruments ir VHDL, kas ir
+aparatūras apraksta valoda (HDL) ar kuru var aprakstīt shēmas darbību un uzbūvi.
+HDL nozīmīgākā īpašība ir shēmas aprakstu sintezējamība fiziskā realizācijā,
+galvenokārt FPGA mikroshēmā, kas ir darba mērķa platforma.
+FPGA ir integrētā shēma, kuru vienkāršoti var 
+uzskatīt par ,,tukšu'', ar HDL palīdzību, programmējamu mikroshēmu.
+
 \todo
 
-%Šis darbs apraksta mikrokontroliera kodola un tā perifērijas izveidi
-%funkcionālai parauga mikrokontroliera realizācijai. \todo
-
-%% TODO: Potenciālais pielietojums
-
-%VHDL apraksta valodā. Izklāstītā informācija balstīta vairāk uz
-%praktiskā darba rezultātiem un tādējādi arī darba gaitā pieņemtajiem
-%lēmumiem sastapto problēmu risinājumam.
-
-%Apskatīta procesora uzbūve bez kopējās datu šinas un reducētu instruk\-ciju
-%kopu, realizācijai uz FPGA čipa platformas — konkrēti,
-%\termEn{Actel Fusion Embedded Development Kit} ar \texttt{M1AFS1500}
-%FPGA čipu. Darba mērķi tātad ir:
-%\begin{itemize}
-	%%\item Funkcionāla procesora izstrāde VHDL;
-	%%\item Perifērijas izstrāde sintezējamai sistēmai;
-	%%\item Sistēmas sintēze un pārbaude.
-	%\item \todo
-%\end{itemize}
-
-%Darba gaitā pieņemtie lēmumiem, kas ievērojami izmaina sistēmas
-%imple\-men\-tā\-ciju un ir izstrādes pagrieziena punkts, nosauktas par
-%„Revīzijām”.
-%Lai gan pamatā darbs atspoguļo galējo rezultātu, nodaļu
-%beigās pievienots pārskats par Revīziju vēsturi — to iespaids uz
-%izstrādi, kā arī šo izmaiņu pieņemšanas iemesli.

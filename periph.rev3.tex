@@ -37,7 +37,10 @@
 	
 	Papildus MMU arī satur konfigurācijas reģistru,
 	ar kura palīdzību maināmi pieslēgto ierīču konfigurējamie parametri.
-	Tas nepieciešams lai lokalizētu šo parametru bitus \todo
+	Tas nepieciešams lai lokalizētu šos izkliedētos parametru bitus
+	adrešu telpai piekārtotā reģistrā. Šis konfigurācijas reģists arī kalpo
+	par buferi novēlotai parametru izmaiņai, piem.,~SPI pārraides vārda garumu
+	platumu nevar izmanīt pārraides laikā (sk.~\ref{sec:spi}~nod.).
 	
 
 
@@ -117,9 +120,10 @@
 	Katrs no abiem blokiem satur 6144 vārdus,
 	kopā sastādot 12288 vārdu lielu RAM.
 	
-	\todo ?
+	%\todo ?
 	
 
+\clearpage
 \subsection{Adrešu telpai piekārtotā ievade/izvade}
 	Adrešu telpā arī piekārtotas ievades un izvades komponentes,
 	kuras nodrošina saskarni ar sistēmas perifēriju. Adrešu telpā šīm
@@ -166,7 +170,9 @@
 	\subsubsection{SPI saskarne} \label{sec:spi}
 		SPI (\termEn{Serial Peripheral Interface Bus}) ir sinhrona seriālās
 		datu pārraides saskarne, ar vienpusēju plūsmas kontroli pēc
-		\termEn{Master/Slave} modeļa [\todo{}]. SPI ir \termEn{de facto}%
+		\termEn{Master/Slave} modeļa.
+		%[\todo{}] % FIXME: Citation needed. 
+		SPI ir \termEn{de facto}%
 		\footnote{Vispārēji pieņemts, bet neoficiāls.}
 		standarts un ir liels skaits ierīču kas komunicē izmantojot SPI,
 		tādējādi SPI ir vērtīga mikrokontroliera komponente.
@@ -227,7 +233,7 @@
 				saņemtais vārds ir nolasāms no |PDO| pieslēgvietas;
 		\end{enumerate}
 		
-		\todo ? % SPI mode 0
+		%\todo ? % SPI mode 0
 		
 		SPI saskarne parauga mikrokonrolierī izmantota
 		komunikācijai ar SPI \termEn{Flash} atmiņu,

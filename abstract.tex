@@ -1,29 +1,123 @@
 %% Abstracts
 % The 'abstract' enviroment makes more problems than it is useful
+
 \phantomsection\addcontentsline{toc}{section}{\abstractname}
 \abstitlestyle{\abstractname} % The abstract title (centered)
 % Abstract text goes here
 \noindent%
-\begin{description}
-	\item[Darba nosaukums:]
-		\textit{Iekļautās sistēmas mikrokontroliera kodola izstrāde}
-	\item[Darba autors:] Jānis Šmēdiņš
-	\item[Darba vadītājs:] Mg.~sc.~comp.~Gatis Gaigals
-	\item[Darba apjoms:] \todo
-	\item[Atslēgas vārdi:] Mikrokontroliera kodols, aparatūras apraksta valodas,
-		sintezējams mikrokontrolieris, \todo ?
-\end{description}
+\begin{tabularx}{\textwidth}{lX}
+	\textbf{Darba nosaukums:} & 
+		\textit{Iekļautās sistēmas mikrokontroliera kodola izstrāde}\\[1ex]
+	\textbf{Darba autors:} & Jānis Šmēdiņš\\[1ex]
+	\textbf{Darba vadītājs:} & Mg.~sc.~comp.~Gatis Gaigals\\[1ex]
+	\textbf{Darba apjoms:} & ??~lpp., ??~tabulas, ??~attēli,
+		??~pirmkoda izdrukas, ??~bibliogrāfiskie avoti, ?~pielikumi\\[1ex]
+	\textbf{Atslēgas vārdi:} & Mikrokontroliera kodols, aparatūras apraksta valodas,
+		sintezējams mikrokontrolieris, \todo{}?
+\end{tabularx}
 
-\todo\\
-tralliii
+\vspace{1em}
+Šī bakalaura darba mērķis ir izstrādāt mikrokontroliera
+kodolu, kurš izmantojams gan vispārēja pielietojuma mikrokontrolieru,
+gan specializētu integrēto mikrokontrolieru sastāvdaļa sintēzei uz FPGA
+platformas. Tiek arī apskatītas aparatūras apraksta valodas,
+kā galvenais izstrādes rīks.
 
+Autors izmanto visai praktisku pieeju, risinot un aprakstot problēmas tad,
+kad tās rodas izstrādes procesā. Darbā apskatīta konkrēta procesora
+arhitektūra, uz kura bāzes veikta kodola izstrāde iteratīvos soļos
+(sauktas par revīzijām), katrā
+uzlabojot prototipu un risinot sastaptās problēmas.
+
+Izstrādes laikā tika ieviesta jauna kodola instrukciju kopa un veiktas
+vairākas arhitektūras izmaiņas, no kurām ievērojamākā ir trīsstāvokļu datu šinas
+pārveidošana sazarotā, vienvirziena, cirkulārā datu apmaiņas šinā.
+Darba rezultātā tika izstrādāts sintezējams mikrokontroliera kodols, kas ir
+trešās revīzijas (rev.~03) galavariants. Papildus izstrādāts arī
+mikrokontroliera, kurā izmantots izstrādātais kodols.
+Šis mikrokontrolieris izmantots kodola pārbaudei un darbības demonstrēšanai,
+un ir izmantojams par paraugu mikrokontrolieru realizācijai, kas izmanto
+šajā darbā izstrādāto kodolu.
+
+Autors darba noslēgumā izvirza vairākus iespējamus uzlabojumus potenciālajam,
+nākamajam izstrādes ciklam, bet secina ka šādi izstrādes cikli var būt
+bezgalīgi, un nav nepieciešamība uzsākt nākamo, ja izvirzītās prasības
+tiek pilnībā apmierinātas.
+
+
+
+%%%%%%%%%
+%Šajā bakalaura darbā ir apskatīta konkrēta procesora prototipa arhitektūra un
+%analizēta tās nianses un trūkumi izvirzot problēmu risinājumus un uzlabojumus.
+%Autors patsāvīgi izstrādājis sintezējamu mikrokontroliera kodolu, daļēji balstoties uz
+%apskatītā procesora arhitektūru, iestrādājot arī izvirzītos uzlabojumus.
+%Papildus izstrādāts arī parauga mikrokontroliera prototips,
+%kurā šis kodols izmantots.
+
+%Darbā arī apskatītas aparatūras apraksta valodas, no kurām VHDL izmantots kā galvenais
+%izstrādes instruments, un FPGA, kas ir izstrādātā mikrokontroliera fiziskās
+%realizācijas mērķa platforma.
+%%%%%%%%%
 
 \clearpage
 \begin{english} % The English abstract
 	\phantomsection\addcontentsline{toc}{section}{\abstractname}
 	\abstitlestyle{\abstractname} % The abstract title (centered)
 	% Abstract text goes here
-	\todo
+	\noindent%
+	\begin{tabularx}{\textwidth}{lX}
+		\textbf{Title:} & 
+			\textit{Development of embedded system microcontroller core}\\[1ex]
+		\textbf{Author:} & Jānis Šmēdiņš\\[1ex]
+		\textbf{Supervisor:} & Mg.~sc.~comp.~Gatis Gaigals\\[1ex]
+		\textbf{Scope:} & ??~pages, ??~tables, ??~figures, ??~listings,
+			??~bibliographical references, ?~appendices\\[1ex]
+		\textbf{Keywords:} & Microcontroller core, hardware description languages,
+				synthesisable microcontroller
+	\end{tabularx}
+	
+	\vspace{1em}
+	This bachelors thesis purpose is to develop a microcontroller core for
+	synthesis on FPGA, as part of microcontroller, whether stand-alone or
+	control device within special purpose integrated circuit.
+	The thesis also focuses on hardware description languages
+	(HDL) as a main tool of attaining this goal.
+	
+	The author takes a more practical approach by developing first and
+	addressing problems as they arise. The work used an existing
+	architecture of central processing unit as base which was then improved
+	and modified in successive, iterative development cycles
+	(dubbed revisions), where each such cycle is to result in a working
+	prototype.
+	
+	During the development the instruction set of core was completely
+	revised and several notable architectural changes done, most evidently
+	the internal data bus was reimplemented as one-way, branched, circular
+	pipeline. The author successfully developed a synthesisable
+	microcontroller core which is the result of third development cycle (rev.~03).
+	For testing	and demonstration purposes a complete microcontroller prototype
+	incorporating the core was developed as well.
+	
+	The author proposes several possible improvements for a
+	potential next development cycle, but also acknowledging that there
+	could be indefinite number of such cycles, and that one fulfilling
+	requirements will suffice.
+	
+	%%%%%%%%%%%%
+	%This bachelors thesis focuses on an existing architecture of 
+	%central processing unit	prototype. The author analyses the architecture,
+	%identifying design flaws and suggesting solutions to these flaws.
+	%These solutions are put to practical use by developing a
+	%synthesisable microcontroller core (essentialy a CPU),
+	%improving upon the existing	architecture.
+	
+	%To demonstrate use of the developed microcontroller core, a prototype
+	%microcontroller is developed as well, which incorporates the core.
+	
+	%Hardware description languages are analysed as well, of which the VHDL
+	%is used as a main tool of development. A short introduction and
+	%analysis is done on FPGAs, which is the target platform for design
+	%synthesis.
 \end{english}
 
 \clearpage
@@ -33,5 +127,5 @@ tralliii
 	% Abstract text goes here
 	
 	\todo \\
-	Чо такоё?
+	%Чо такоё? 13
 \end{russian}

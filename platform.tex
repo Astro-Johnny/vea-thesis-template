@@ -16,14 +16,15 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 	FPGA (\termEn{field-programmable gate array}) jeb pārprogrammējams
 	loģisko elementu masīvs ir integrētā shēma, kura sastāv no
 	programmējamu loģisko bloku matricas ar konfigurējamu starpsavienojumu
-	tīklu (\termEn{the interconnect}) [\todo].
+	tīklu (\termEn{the interconnect})
+	\cite[370.~lpp.]{Perry-VHDL}\cite{SmartFusionFabric}\cite{Xilinx7}.
 	Vienkāršoti, FPGA var uzskatīt par ,,tukšu'' mikroshēmu, kurā, ar HDL
 	un ražotāja programmatūras palīdzību, var ieprogrammēt vēlamo
 	funkcionalitāti.
 	
 	Konkrēta loģisko bloku un to starpsavienojumu implementācija ir ražotāja un 
 	FPGA modeļa	specifiska\cite{SmartFusionFabric}\cite{Xilinx7}, 
-	bet parasti piedāvā loģiskos blokus konfigurēt kā:
+	bet parasti tiek piedāvāts loģiskos blokus konfigurēt kā:
 	\begin{itemize}
 		\item kombinacionālos loģikas elementus (ar 2--6 ieejām);
 		\item statiskos D tipa trigerus;
@@ -31,11 +32,12 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 	\end{itemize}
 	
 	Kombinacionālās shēmas FPGA loģiskajos blokos praktiski vienmēr tiek
+	% TODO: Kā LUT sauc latviski???
 	realizētas ar LUT (\termEn{Look-up table}) elementiem%
 	\cite{SmartFusionFabric}\cite{Xilinx7}, t.i.~reāli loģiskie elementi
 	netiek imple\-men\-tēti, bet tiek uzmeklētas izejas vērtības no LUT
-	uzglabātās patiesības tabulas. Var teikt ka LUT ,,emulē'' loģiskos
-	elementus (sk.~piem.~\ref{fig:and2lut}~att.),
+	uzglabātās patiesības tabulas. Var teikt ka LUT ,,emulē'' 
+	kombinacionālās shēmas (sk.~piem.~\ref{fig:and2lut}~att.),
 	bet funkcionāli šī atšķirība ir maznozīmīga, savukārt
 	iespēja LUT elementus pielāgot nepieciešamajai loģiskajai funkcijai ir 
 	FPGA tehnoloģijas pamatā.
@@ -44,22 +46,23 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 		%\def\svgwidth{7cm}
 		%\def\svgscale{1.25}
 		{\ttfamily\small\input{img/and2lut.pdf_tex}}
-		\caption{Loģiskais elements \texttt{UN}, ar tā ekvivalento LUT.}
+		\caption{Loģiskais elements \texttt{UN} un tā ekvivalentais LUT.}
 		\label{fig:and2lut}
 	\end{figure}
 	
-	Saskarnei ar perifēriju, pa mikroshēmas perimetru tiek izvietotas
+	Saskarnei ar perifēriju pa mikroshēmas perimetru tiek izvietotas
 	ieejas/izejas pieslēgvietas. Papildus loģiskajiem blokiem un
-	pieslēgvietām, uz mikroshēmas specializētus resursus, piem. operatīvo
+	pieslēgvietām, uz mikroshēmas novieto specializētus resursus, piem.,~operatīvo
 	atmiņu, \textit{Flash} atmiņu, analogo signālu ciparotājus un 
-	atciparotājus, standarta perifērās saskarnes, u.c.,%
-	\cite{SmartFusionFabric}\cite{Xilinx7} kuri veiktspējas uzlabošanas 
-	un mikroshēmas aizņemtā laukuma samazināšanas nolūkos, implementēti
-	tradicionālā stilā ar nekonfigurējamu, ,,cieto'' loģiku.
+	atciparotājus, standarta perifērās saskarnes u.c.
+	\cite{SmartFusionFabric}\cite{Xilinx7}, kurus veiktspējas uzlabošanas 
+	un mikroshēmas aizņemtā laukuma samazināšanas nolūkos, implementē
+	tradicionālā stilā ar nekonfigurējamu (,,cieto'') loģiku.
 	
-	Lai sintezētu shēmu priekš FPGA, sintēzes rīks nokartē iekšējo shēmas
-	reprezentāciju uz elementiem, kuru spēj implementēt FPGA loģiskie bloki.[\todo]
-	Šo elementu saraksts ir pieejams FPGA ražotāja bibliotēkā, un ir
+	Lai sintezētu shēmu FPGA, sintēzes rīks nokartē iekšējo shēmas
+	reprezentāciju uz elementiem, kurus spēj realizēt FPGA loģiskie bloki
+	\cite{HDL}\cite{Perry-VHDL}.
+	Šo elementu saraksts ir pieejams FPGA ražotāja bibliotēkā un ir
 	iekļauts ražotāja FPGA projektēšanas rīku programmpakā.
 	
 	Visai nozīmīgs, bet grūti salīdzināms, FPGA arhitektūras rādītājs ir 
@@ -72,13 +75,13 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 	Rupjas granularitātes loģisko bloku iespējams nokonfigurēt par
 	komplicētāku kombinacionālo vai secīgo elementu, pretstatā smalkas
 	granularitātes loģiskajam blokam. Piemēram, CLB bloks satur 4 LUT un
-	dinamisko trigeru pārus, kuru katru iespējams
+	dinamisko trigeru pārus, kurā katru iespējams
 	konfigurēt par 6 ieeju (un vienas izejas) kombinacionālo loģisko
-	funkciju, kura izejas vērtību iespējams saglabāt trigerī.%
-	\cite[6.~lpp.]{Xilinx7}
+	funkciju, kuras izejas vērtību iespējams saglabāt trigerī
+	\cite[6.~lpp.]{Xilinx7}.
 	Savukārt VersaTile bloku var konfigurēt par 3 ieeju kombinacionālo
-	loģisko funkciju vai trigeri (dinamisko vai statisko).%
-	\cite[3.~lpp.]{SmartFusionFabric}
+	loģisko funkciju vai trigeri (dinamisko vai statisko)
+	\cite[3.~lpp.]{SmartFusionFabric}.
 	Var visai vienkārši secināt, ka, ignorējot citas uzbūves īpašības, 
 	noteiktā laukumā iespējams novietot daudz vairāk smalkās granularitātes
 	bloku, nekā rupjās granularitātes bloku (sk.~\ref{fig:tiles}~att.).
@@ -96,11 +99,11 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 	uz smalkas granularitātes arhitektūras,
 	izmantoto loģisko elementu blīvums ir tuvu konstants, savukārt rupjas
 	granularitātes arhitektūrai izmantoto loģisko elementu blīvums var
-	ievērojami mainīties atkarībā cik liela daļa no katra loģiskā bloka
+	ievērojami mainīties atkarībā, cik liela daļa no katra loģiskā bloka
 	resursiem tiek izmantota. Tādējādi, autors uzskata, ka smalkas
 	granularitātes arhitektūra ir universālāka, bet rupjas granularitātes 
 	arhitektūra potenciāli ir ar lielāku veiktspēju, ja izstrādē tiek ņemta
-	vērā konkrētās FPGA arhitektūras uzbūve.
+	vērā konkrētā FPGA arhitektūra.
 	
 	
 \subsection{ASIC} \label{sec:asic}
@@ -114,14 +117,17 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 	ASIC izstrādei ir ievērojami lielākas vienreizējās izmaksas, tādēļ ASIC
 	izstrādi izmanto tikai ja paredzams liels vienību apjoms. Papildus
 	apsvērumi varētu būt arī veiktspēja un/vai mikroshēmas lielums, jo,
-	pretstatā FPGA, ASIC ir pielāgojami projektētāja vajadzībām.
+	pretstatā FPGA, ASIC ir pielāgojamas projektētāja vajadzībām.
 	
 	\subsubsection{Standartšūnu ASIC projektēšana}
 		Standartšūna (\termEn{Standard cell}) ir vienkāršas komponentes
 		modelis, ko ASIC ražotājs izstrādājis tranzistoru līmenī
-		izvietošanai uz tā ražotajiem ASIC. ASIC ražotājs projektu
-		izstrādei piedāvā standartšūnu bibliotēku, kura satur vismaz pamata
-		loģiskos elementus un parasti arī trigerus un citas bieži
+		izvietošanai uz tā ražotajiem ASIC \cite{Golshan-ASIC}.
+		ASIC ražotājs projektu
+		izstrādei piedāvā standartšūnu bibliotēku
+		\cite{Golshan-ASIC}\cite{Perry-VHDL},
+		kura satur vismaz pamata
+		loģiskos elementus un parasti arī trigerus, un citas bieži
 		izmantojamas komponentes. Standartšūnas mikroshēmas izstrādē ir
 		uzskatāms par analoģisku standarta loģiskajām (piem. 7400 sērijas)
 		komponentēm spiesto elektronisko plašu izstrādē.
@@ -131,14 +137,24 @@ mikroshēmā. Šādai realizācijai tiek izmantota FPGA un ASIC tehnoloģijas.
 		bibliotēkas elementiem notiek identiski. Būtiskākā atšķirība
 		ir ,,izvietošanas un savienošanas'' (\termEn{Place and Route}) solis,
 		jo ierobežojošais faktors ir mikroshēmas laukums, nevis
-		loģisko bloku skaits, [\todo{}?] un rezultāts ir 
+		loģisko bloku skaits, un rezultāts ir 
 		mikroshēmu izstrādes fotomaskas, nevis
-		pārprogrammēšanas datu fails.
+		pārprogrammēšanas datu fails \cite{Golshan-ASIC}.
 	
 	\subsubsection{Specializētā ASIC projektēšana}
 		Specializētā ASIC (\termEn{full custom ASIC}) projektēšanas gadījumā
 		izstrāde notiek tranzistoru līmenī jeb zemākajā abstrakcijas
-		līmenī. \todo
+		līmenī. Izstrādājot specializētos ASIC, shēma netiek sintezēta, bet
+		projektēta manuāli. Tātad sintezējami HDL apraksti nav aktuāli, bet
+		HDL ir izmantojama shēmas simulācijai. Specializēto ASIC izstrāde 
+		ļauj pilnībā
+		pielāgot un optimizēt shēmu projekta vajadzībām, panāktot
+		augstu veiktspēju un/vai minimālu mikroshēmas laukumu.
+		
+		Specializēto ASIC izstrāde ir ļoti darbietilpīga un tai nepieciešami
+		augtas kompetences mikroelektronikas inžinieri. Tas padara šo
+		izstrādes modeli ārkārtīgi dārgu un tas kļūst rentabls tikai pie
+		liela tirgū realizēto vienību skaita.
 		
 		
 	%TODO: Strukturētais ASIC

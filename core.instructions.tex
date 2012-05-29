@@ -18,7 +18,7 @@ Instrukcijas operāciju kodi ir dažāda garuma, jeb vektoriski\footnote{%
 t.i.~operāciju kods sadalīts ,,grupas'' kodā un ,,vektora'' kodā, kur
 grupas kods ir konstanta garuma (2~biti), bet vektora kods ir konstanta
 garuma tikai piederošās grupas ietvaros. Strikti ņemot, varētu uzskatīt, ka
-vektora kods ir arguments, bet uzskatāms par piederīgu operācijas
+vektora kods ir arguments, bet ir piederīgs operācijas
 kodam, jo abas tā daļas tiek interpretētas dekodēšanas solī.\footnote{%
 	Izņemot \mnem{AR} instrukciju (sk.~\ref{sec:AR}~nod.).}
 
@@ -138,8 +138,7 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 	pārvadītas pa to pašu signālceļu. Tādējādi kontroles iekārta tiek
 	vienkāršota, jo atsevišķās operācijas nav nepieciešams izšķirt.
 	
-	Kontroles signāli aritmētiskajai un bīdes ierīcei,
-	kā argumenti jeb vektora kodi,
+	Kontroles signāli aritmētiskajai un bīdes ierīcei kā argumenti jeb vektora kodi,
 	tiek nodoti tieši no instrukcijas vārda, un kontroles iekārtā netiek
 	interpretēti (jeb ir „necaurspīdīgi”). Izņēmums, gan ir vektora koda
 	vecākais bits, kurš tiek interpretēts un pie augsta stāvokļa (loģiskā |1|)

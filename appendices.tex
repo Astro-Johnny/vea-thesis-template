@@ -6,6 +6,15 @@
                 breaklines,breakatwhitespace,
                 basicstyle=\ttfamily\scriptsize ]{code/control2.vhd}
 
+\clearpage
+\section{Atmiņas dekodera pilnais kods} \label{appx:mmu}
+\lstinputlisting[language={[qucs]VHDL},%
+                caption={Atmiņas dekodera VHDL apraksts. (\texttt{mmu.vhd})},%
+                label=kb:mmu,
+                %emph={state,branchTest},%
+                breaklines,breakatwhitespace,
+                basicstyle=\ttfamily\scriptsize ]{code/mmu.vhd}
+
 %\clearpage
 %\section{RAM pilnais kods} \label{appx:ram-code}
 %\lstinputlisting[language={[qucs]VHDL},%
@@ -16,7 +25,7 @@
                 %basicstyle=\ttfamily\scriptsize ]{code/mem.twoport.vhd}
 
 \clearpage
-\section{Pirmssintēzes simulācijas rezultāti (rev.~02)} \label{appx:simulation}
+\section{Simulācijas rezultāti (rev.~02)} \label{appx:simulation}
 % MEMORY DUMP "language" definition
 \lstdefinelanguage{memdump}
 {
@@ -77,9 +86,30 @@
                  label=kb:asm-header]{code/JSIonFUSIONr3.inc}
 
 \clearpage
-\section{Sāknēšanas programma (rev.~03)} \label{appx:boot}
+\section{Sāknēšanas programma un simulācijas rezultāti (rev.~03)} \label{appx:boot}
 \lstinputlisting[%float=hp,
                  language={JSI},
                  caption={Sāknēšanas programmas assemblera kods.},
                  basicstyle=\ttfamily\scriptsize,
                  label=kb:boot]{code/boot.asm}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0cm 0cm 8.75cm 0cm,clip,angle=-90,width=\linewidth]{sim1_init}\\
+	\caption{Mikrokontroliera inicializācijas laika diagramma.}
+	\label{fig:sim-boot}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0.5cm 0cm 3.25cm 0cm,clip,angle=-90,width=\linewidth]{sim3_tx}\\
+	\caption{SPI \termEn{Flash} nolases komandas nosūtīšanas laika diagramma.}
+	\label{fig:sim-spi-tx}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[trim = 0.5cm 0cm 3.25cm 0cm,clip,angle=-90,width=\linewidth]{sim3_rx}\\
+	\caption{SPI \termEn{Flash} datu nolases cikla laika diagramma.}
+	\label{fig:sim-spi-rx}
+\end{sidewaysfigure}

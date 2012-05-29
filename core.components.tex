@@ -40,7 +40,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	
 	Reģistra VHDL apraksts ir visai triviāls un, ar nelielām izmaiņām
 	(sk.~\ref{kb:reg}~pirmkodu),
-	izmantots D.~Perija paraugs.\cite[321.~lpp.]{Perry-VHDL}
+	izmantots D.~Perija paraugs \cite[321.~lpp.]{Perry-VHDL}.
 	%\begin{singlespace}
 	% NOTE: No Need for singlespace when floated!
 		\lstinputlisting[language={[qucs]VHDL},float=thb,%
@@ -55,8 +55,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	Šī darba ietvaros izstrādātajā procesorā ir sekojoši speciālās nozīmes reģistri:
 	\pagebreak[1]
 	\begin{itemize}
-		\item \textbf{Programmskaitītājs} (\texttt{PC}):
-			Reģistrs, kas uzglabā adresi aktīvajai programmas pozīcijai,
+		\item \textbf{Programmskaitītājs} (\texttt{PC}) ir
+			reģistrs, kas uzglabā adresi aktīvajai programmas pozīcijai,
 			t.i.~parasti izpildāmās instrukcijas adresi. Secīgās programmas
 			izpildes laikā \texttt{PC} tiek inkrementēts%
 			\footnote{Konkrētāk — \texttt{PC} tiek palielināts par
@@ -193,7 +193,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	loģikas darbības, atstājot bīdes operācijas „Bitu bīdes loģiskjai ierīcei”
 	(sk.~\ref{sec:shifter}~nod.). Šāda sadalīšana ļauj veikt aritmētiskās
 	un bīdes operācijas vienlaicīgi, uz ko balstās \mnem{AR} instrukcija
-	(sk.~\ref{sec:AR}~nod.~\pageref{sec:AR}~lpp.).
+	(sk.~\ref{sec:AR}~nod.).
 	
 	ALU realizēta kā kombinacionāla shēma ar asinhronu darbību,
 	t.i.~izejas vērtība tiek izmainīta uzreiz,
@@ -215,7 +215,8 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	ALU veic operācijas ar 16 bitu vārdiem, kuri reprezentē bezzīmes
 	skaitļus. ALU VHDL implementācija izmanto \texttt{std\_logic\_unsigned}
 	pakotnē	definētās aritmētiskās operācijas,
-	ievērojami vienkāršojot ALU VHDL aprakstu (sk.~\ref{kb:alu}~pirmkodu).
+	ievērojami vienkāršojot ALU VHDL aprakstu (sk.~\ref{kb:alu}~pirmkodu),
+	kurš ir bāzēts uz D.~Perija parauga \cite[307.~lpp.]{Perry-VHDL}.
 
 \pagebreak[3]
 \FloatBarrier
@@ -236,6 +237,10 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	Realizācija, līdzīgi ALU, ir kombinacionāla un asinhrona. Ieejošie dati
 	tiek pārbīdīti atkarībā pēc |sel| signāla stāvokļa 
 	(sk.~\ref{kb:shifter}~pirmkodu).
+	VHDL kods ir gandrīz identisks D.~Perija paraugam
+	\cite[324.~lpp.]{Perry-VHDL}. Izmainīta ir \verb+t_shift+ tipa
+	definīcija (sk.~\ref{kb:cpulib}~pirmkodu) uz \verb+std_logic_vector+
+	tipu, lai |sel| signālu	varētu nodot tieši no operācijas koda.
 	
 	%\begin{singlespace}
 		\lstinputlisting[language={[qucs]VHDL},float=th,%
@@ -254,14 +259,14 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	divus operandus --- 16 bitu vārdus, kas tiek interpretēti kā bezzīmes
 	skaitļi.
 	Šī komparatora implementācija ir minimizēta, kombinacionāla un nesatur
-	kontroles signālus (salīdzinājumam ar D.~Perry realizāciju sk.~\todo{}~nod.).
+	kontroles signālus (salīdzinājumam ar D.~Perry realizāciju sk.~\ref{sec:perry-comp}~nod.).
 	Izvadīti tiek tikai divi loģiskie signāli, no kuriem |eq|
 	norāda uz operandu vienādību (loģiskais |1|) vai nevienādību (loģiskā |0|),
 	savukārt |gr| norāda vai operands \texttt{a} ir lielāks (|1|)
 	par \texttt{b} vai nav (|0|). Ar šo
 	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
 	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas
-	(sk.~\ref{sec:branching}~nod.~\pageref{sec:branching}~lpp.).
+	(sk.~\ref{sec:branching}~nod.).
 	\begin{figure}[bhp]
 		\centering
 		%\def\svgwidth{7cm}

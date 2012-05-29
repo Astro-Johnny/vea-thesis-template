@@ -12,10 +12,11 @@
 %\include{/home/johnlm/code/avr_assembler_listing_def.tex}
 %\input{avr_assembler_listing_def.tex}
 %\renewcommand{\lstlistingname}{Koda bloks}
+\usepackage{tabularx}
 \usepackage{longtable}	% Package for tables split accross pages
 \usepackage{booktabs}	% Package for nicer tables
 \usepackage{enumerate}
-\usepackage[toc,title,titletoc]{appendix}
+\usepackage[title,titletoc]{appendix}
 %\usepackage{wrapfig}
 \usepackage{cite}	% Superscript cites
 \usepackage{rotating}	% Package for landscape figures
@@ -91,6 +92,9 @@
 	\input{platform.tex}
 	
 	\clearpage
+	\input{tools.tex}
+	
+	\clearpage
 	\input{perry.tex}
 	
 	% Praktiskā daļa
@@ -101,7 +105,7 @@
 	\input{periph.tex} % Sistēmas perifērija
 	
 	\clearpage
-	\input{tools.tex}
+	\input{conclusions.tex}
 	
 	% Literatūras saraksts
 	\bibliographystyle{ieeetr}
@@ -110,7 +114,7 @@
 	\clearpage
 	%\pagestyle{empty}
 	{\raggedright
-	\begin{thebibliography}{9}
+	\begin{thebibliography}{99}
 		\addcontentsline{toc}{section}{\refname}
 		\bibitem{VHSIC}
 			Creasey~D.J.,
@@ -123,6 +127,12 @@
 			\textit{Computer Architecture: Pipelined and Parallel Processor Design}.
 			\linebreak[3]
 			London: Jones~and~Bartlett, 1995. ISBN~0-86720-204-1
+		
+		\bibitem{Golshan-ASIC}
+			%Steve Heath,
+			Golshan~K.,
+			\textit{Physical Design Essentials: An ASIC Design Implementation Perspective}.
+			New York: Springer, 2007. ISBN~0-387-36642-3
 		
 		\bibitem{Heath}
 			%Steve Heath,
@@ -139,14 +149,6 @@
 			IEEE,
 			\textit{IEEE Std. 1364.1-2002, IEEE Standard for Verilog Register Transfer Level Synthesis}.
 			New York: IEEE, 2002.
-		
-		\bibitem{Mealy-VHDL}
-			%Bryan Mealy, Fabrizio Tappero,
-			Mealy~B., Tappero~F.,
-			\textit{Free Range VHDL}.
-			2012. [tiešsaiste] \linebreak[2]
-			Pieejams: \url{http://www.freerangefactory.org/dl/free_range_vhdl.pdf}\linebreak[2]
-			\mbox{[skatīts on 2012.~gada 2.~maijā]}
 		
 		\bibitem{HDL}
 			%Gaurav Mehta, Sridhar Kintali,
@@ -171,18 +173,6 @@
 			Sagdeo~V.,
 			\textit{The Complete Verilog Book}.\linebreak[2]
 			Norwell: Kluwer Academic Publishers, 1998. ISBN~0-7923-8188-2
-		
-		\bibitem{vhdl-vs-verilog}
-			Smith~D.J.,
-			\textit{VHDL \& Verilog Compared \& Contrasted}. [tiešsaiste]\linebreak[2]
-			Pieejams: \url{http://www.angelfire.com/in/rajesh52/verilogvhdl.html}
-			\mbox{[skatīts on 2012.~gada 21.~maijā]}
-		
-		\bibitem{Kumar-Verilog}
-			% Deepak Kumar Tala,
-			Tala~D.K., \textit{Gate Level Modeling}. [tiešsaiste]\linebreak[2]
-			Pieejams: \url{http://www.asic-world.com/verilog/gate.html}
-			\mbox{[skatīts on 2012.~gada 24.~maijā]}
 		
 		\bibitem{Vahid-RTL}
 			%Frank Vahid,
@@ -226,6 +216,26 @@
 			\textit{7 Series FPGAs Overview}.
 			%USA: Xilinx,
 			2012.
+		
+		\bibitem{Mealy-VHDL}
+			%Bryan Mealy, Fabrizio Tappero,
+			Mealy~B., Tappero~F.,
+			\textit{Free Range VHDL}.
+			2012. [tiešsaiste] \linebreak[2]
+			Pieejams: \url{http://www.freerangefactory.org/dl/free_range_vhdl.pdf}\linebreak[2]
+			\mbox{[skatīts on 2012.~gada 2.~maijā]}
+		
+		\bibitem{vhdl-vs-verilog}
+			Smith~D.J.,
+			\textit{VHDL \& Verilog Compared \& Contrasted}. [tiešsaiste]\linebreak[2]
+			Pieejams: \url{http://www.angelfire.com/in/rajesh52/verilogvhdl.html}
+			\mbox{[skatīts on 2012.~gada 21.~maijā]}
+		
+		\bibitem{Kumar-Verilog}
+			% Deepak Kumar Tala,
+			Tala~D.K., \textit{Gate Level Modeling}. [tiešsaiste]\linebreak[2]
+			Pieejams: \url{http://www.asic-world.com/verilog/gate.html}
+			\mbox{[skatīts on 2012.~gada 24.~maijā]}
 	\end{thebibliography}
 	} % "End of \raggedright"
 	
