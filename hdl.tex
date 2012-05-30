@@ -1,0 +1,78 @@
+%\section{Mikrokontrolieri} %TODO: Normālu nosaukumu?
+%\todo
+
+%Dzirdot vārdu ,,mikroprocesors'' un ,,datorsistēma'' vairums cilvēku 
+%iztēlojas personālos datorus un klēpjdatorus, kas arī pēdējos gados ir teju
+%vai katram. Tā gan ir tikai --- tēlaini izsakoties --- aisberga redzamā
+%daļa. Mūsdienās mikroprocesori atrodami ļoti plaša klāsta dažādās sadzīves
+%un industriālās ierīcēs, piem.~automašīnu elektronikā, ražošanas iekārtās,
+%datortīklu maršutētājos, elektromēriekārtās, mobilajos telefonos,
+%veļas mašīnu kontroles blokos un pat rotaļlietās.\cite[1.~lpp.]{Heath}
+
+%% TODO: Šito mošk vajag pārfrāzēt
+%Iekļautā sistēma arī ir datorsistēma, kuras primārā atšķirība no 
+%vispārēja pielietojuma datorsistēmas ir darba specializācija,
+%no kā seko praktiski visas realizācijas atšķirības. \todo
+
+%TODO?: Procesors
+
+\section{Aparatūras apraksta valodas}
+Šajā darbā mikrokontroliera kodols un paraugimplementācija izstrādāta
+galvenokārt izmantojot aparatūras apraksta valodu, un tādēļ lai radītu
+priekšstatu par darba metodiku, šī nodaļa apskata 
+aparatūras apraksta valodas, to īpašības un pielietojumu.
+
+Elektronikai attīstoties un paaugstinoties tirgus prasībām produkta funkcionalitātei,
+izstrādājamās sistēmas kļūst aizvien sarežģītākas. Jo sevišķi komplicētu ciparu shēmu, 
+kā piemēram mikroprocesoru, iekšējo uzbūvi izstrādāt tradicionālā ceļā,
+shematiski attēlojot komponentes un to savstarpējos savienojumus, kļūst
+nepraktiski. Aparatūras apraksta valodas, savukārt, piedāvā augstākas
+abstrakcijas izstrādes modeli, kas saīsina izstrādes laiku.
+% [\todo{}?]. % Citation needed
+
+Aparatūras apraksta valoda jeb HDL
+(no angļu \termEn{Hardware description language})
+ir valoda, ar kuras izteiksmēm, sekojot konkrētās 
+valodas sintaktiskajiem nosa\-cī\-jumiem, ir iespējams aprakstīt
+izstrādājamās shēmas uzbūvi un darbību \cite{HDL}. %Šo aprakstu dēvē par ,,kodu''.
+HDL gandrīz vienmēr (bet ne obligāti) apraksta ciparu shēmas.
+Līdzīgi program\-mē\-šanas valodām, HDL piedāvā dažādas sintaktiskās 
+konstrukcijas, kas ļauj strukturēt aprakstu un veikt abstrakcijas,
+ar kurām iespējams kompakti aprakstīt sarežģītas shēmas
+\cite[1.~lpp.]{Perry-VHDL}.
+Savukārt, atšķirībā no vairuma programmēšanas valodu,
+izpildāmās izteiksmes ir ,,konkurentas'', t.i.,~tās tiek izpildītas paralēli, 
+tādējādi shēmas definējošā apgabala izteiksmju secība ir maznozīmīga%
+\footnote{Izteiksmju secībai ir nozīme secīgajās konstrukcijās.
+	(sk.~\ref{sec:hdl-styles}~nod.)}.
+
+HDL apraksti ir mašīn\-apstrādājami, kas dod iespēju izmantot
+HDL simulācijas rīku, lai varētu veikt HDL aprakstītās shēmas 
+darbības simulāciju, t.i.,~programmatūras līmenī 
+atveidota aprakstītās shēmas darbība, no kuras iegūstamas jebkuru
+shēmas signālvadu laika oscilogrammas, atmiņas elementu saturs un to izmaiņas,
+kā arī iespējams citi dati. Analizējot simulācijas rezultātus ir 
+iespējams pārbaudīt aprakstītās shēmas darbības korektumu pirms
+tās fiziskās realizācijas. Iespēja simulēt HDL aprakstu ir ievērojama
+priekšrocība izstrādei ar HDL.
+
+Tomēr galvenais iemesls HDL izmantošanai un popularitātei ir iespējai veikt 
+shēmu sintēzi --- automatizētu fiziskās realizācijas ģenerēšanu pēc HDL apraksta
+\cite{HDL}\cite{Perry-VHDL}\cite{Vahid-RTL}. Tieši HDL aprakstu sintezējamība ir
+īpašība, kas padara izstrādi ar HDL rūpnieciski nozīmīgu.
+HDL pieraksta nianses sintēzei tiks apskatītas sekojošā \ref{sec:hdl-styles}~%
+nodaļā, bet konkrētās sintēzei izmantotās tehnoloģijas --- 
+\ref{sec:synth}~nodaļā (\pageref{sec:synth}~lpp.).
+
+Eksistē daudz aparatūras apraksta valodu, gan valodas, kas izveidotas
+speciāli aparatūras aprakstam --- gan speciālas pakotnes, kuras pielāgo
+eksistējošas programmēšanas valodas aparatūras aprakstam.
+Tomēr nozarē svarīgākās ir VHDL un Verilog, kas ir arī
+vienas no vecākajām un visvairāk attīstītajām HDL.
+Šīs valodas īsumā tiek apskatītas \ref{sec:vhdl}~un \ref{sec:verilog}~%
+nodaļā, un to salīdzinājums --- \ref{sec:hdl-comparison} nodaļā.
+
+\input{hdl.styles.tex} \clearpage %\pagebreak[3]
+\input{hdl.languages.tex}
+
+%TODO: SPI

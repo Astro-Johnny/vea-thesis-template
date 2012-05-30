@@ -1,0 +1,51 @@
+%% This file contains special, document-specific preamble settings
+% Binary code formatting for instruction table
+\newcommand{\instr}[7]{\texttt{%
+	\textcolor{purple}{#1}%		Group OPCODE
+	\textcolor{blue}{#2}%		Vector OPCODE (part 1)
+	\textcolor{cyan}{#3}%		Vector OPCODE (part 2)
+	\textcolor{lightgray}{#4}%		Middle Slack bits
+	\textcolor{OliveGreen}{#5}%		Argument 1
+	\textcolor{Green}{#6}%	Argument 2
+	\textcolor{lightgray}{#7}}}%		Trailing Slack bits
+\newcommand{\mnem}[1]{\texttt{\bfseries #1}}
+
+%% listings formateeshanas uzstaadiijumi
+%% Stili
+\lstset{%
+	numbers=left, numberstyle=\tiny, numbersep=5pt,
+	tabsize=2,%
+	frame=lines,framerule=0.5pt,%
+	belowcaptionskip=2ex,%
+	basicstyle=\footnotesize\ttfamily,%
+	lineskip=-0.5ex,
+	keywordstyle={\bfseries\color{blue}},%
+	keywordstyle=[2]{\color{Brown}},%
+	keywordstyle=[3]{\color{OliveGreen}},%
+	keywordstyle=[4]{\color{TealBlue}},%
+	keywordstyle=[5]{\color{Sepia}},%
+	emphstyle={\color{Bittersweet}},%
+	emphstyle={[2]\color{PineGreen}},%
+	emph={[3]{cpu_lib,bus_t,t_alu,t_reg,t_shift}},% My global emphs
+	emphstyle={[3]\color{Green}},%
+	commentstyle=\slshape\color{gray},
+	stringstyle=\color{orange}} % "listings" koda stils
+%% listings definiicijas
+\input{vhdl_listing_def.tex}
+\input{jsi_assembler_listing_def.tex}
+%% Number within section
+%\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
+\lstMakeShortInline[language={[qucs]VHDL},basicstyle=\normalsize\ttfamily]|
+
+%% English determined number suffixes
+%\renewcommand{\th}{\textsuperscript{th} }
+\newcommand{\st}{\textsuperscript{st} }
+\newcommand{\nd}{\textsuperscript{nd} }
+\newcommand{\rd}{\textsuperscript{rd} }
+\newcommand{\nth}{\textsuperscript{th} }
+
+%% Abstract title style
+\newcommand{\abstitlestyle}[1]{%
+	\noindent \begin{center}
+		\textbf{\Large #1}
+	\end{center}}

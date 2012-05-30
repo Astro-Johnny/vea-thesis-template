@@ -1,0 +1,60 @@
+\subsection{Iekšējās datu kopnes uzbūve} \label{sec:databus}
+Izveidotajam procesoram ir vienvirziena, sazarota, 
+cirkulāra datu kopne.
+Šādai kopnes uzbūvei ir vairākas priekšrocības:
+\begin{itemize}
+	\item \textbf{Nav trīsstāvokļu loģika}, tādējādi zūd nepieciešamība
+		izmantot trīsstāvokļu komponentes procesora iekšējā uzbūvē,
+		kas šajā gadījumā samazina realizācijas kompleksitāti.
+	\item Tā kā kopnē esošo komponentēm izejas savstarpēji nevar tikt
+		savienotas, ir nodrošināta zināma \textbf{elektriskā drošība},
+		likvidējot iespējamo kaitējumu arbitrācijas kļūdu rezultātā.
+	\item Zūd nepieciešamība pēc trīsstāvokļu komponenšu iespējošanas un
+		datu apmaiņas virziena signāliem. Tātad kontroles iekārtai ir
+		\textbf{mazāk vadības signālu}, jo vienvirziena datu
+		apmaiņai nepieciešams pievadīt tikai (pār)rakstīšanas vadības signālus%
+		\footnote{Lai uzsvērtu šo vadības signālu nozīmi reģistru satura
+			atjaunošanā, to nosaukumiem VHDL kodā pievienots -\texttt{Updt} piedēklis.}%
+		, vai pat nevienu signālu kombinacionālo komponenšu gadījumā.
+	\item Iespējama datu apmaiņas \textbf{paralelitāte}, jo dati dažādos
+		kopnes posmos ir pārraidāmi vienlaicīgi. Šī īpašība izmantota
+		\mnem{BRxx} instrukciju izpildē 
+		(sk.~\ref{sec:branching}~nod.~un kodu
+		pielikumā \ref{appx:control}).
+\end{itemize}
+
+Viens no šādas kopnes uzbūves trūkumiem var tikt uzskatīta nepieciešamība
+multipleksēt signālus, bet pēc visu iespējamo datu apmaiņas scenāriju analīzes
+implementējamās instrukciju kopas ietvaros tika noskaidrots, ka pat ne tuvu 
+katrai komponentei nepieciešama datu apmaiņa ar visām pārējām.
+Konkrēti, tikai piecām komponentēm nepieciešama datu nolase no vairāk
+nekā vienas citas. Šīs komponentes uzrādītas \ref{tbl:muxes}~tabulā.
+\begin{table}[thb]
+	\centering
+	\caption{Komponentes kurām nepieciešama ieejas multipleksēšana.}
+	\label{tbl:muxes}
+	\begin{tabular}{ll}
+		\toprule
+		Komponente & Ienākošie (multipleksējamie) dati\\ 
+		\midrule
+		Programmskaitītājs & Atmiņas ielase; ALU signālceļa dati\\
+		Reģistru masīvs & Atmiņas ielase; ALU signālceļa dati\\
+		ALU (pirmais operands) & Programmskaitītājs; Reģistru masīvs\\
+		Komparators (pirmais operands) & Programmskaitītājs; Reģistru masīvs\\
+		Adresācijas reģistrs & ALU signālceļa dati; Reģistru masīvs\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+Apvienojot vienādos multipleksorus, iegūst optimizētu datu kopni
+ar tikai trijiem \texttt{32>16} multipleksoriem (sk.~\ref{fig:cpu-rev3}~att.)
+un, pēc autora domām, kontroles iekārtas vadības signālu samazināšana vairākkārt
+atsver multipleksoru pievienoto kompleksitāti.
+
+Otrs, iespējams trūkums šādai datu kopnei ir tās nepārskatāmība shematiskajā
+zīmējumā (sk.~\ref{fig:cpu-rev3}~att.), bet šī ir tikai vizualizācijas
+problēma un neatstāj nekādu iespaidu uz realizāciju.
+
+
+%Galvenais šāda risinājuma iemesls
+%ir izmantojamās \termEn{Actel} FPGA darba platformas trīs stāvokļu
+%loģikas atbalsta \mbox{trūkums.\cite[18.~lpp.]{FusionFAQ}}

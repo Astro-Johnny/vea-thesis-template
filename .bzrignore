@@ -1,0 +1,10 @@
+img/*.pdf
+img/*.pdf_tex
+*.aux
+*.log
+*.out
+*.toc
+*.snm
+*.nav
+./*.pdf
+img/HARDLINKED_FILES

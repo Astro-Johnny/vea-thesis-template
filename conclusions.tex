@@ -1,0 +1,54 @@
+\section*{Secinājumi un priekšlikumi}%
+\addcontentsline{toc}{section}{Secinājumi un priekšlikumi}
+Izstrādājot šo darbu, autors izdarījis vairākus secinājumus un atzinumus.
+\begin{itemize}
+	\item Lai arī abas ir aparatūras apraksta valodas, VHDL un Verilog,
+		savas uzbūves un atšķirīgas problēmu pieejas rezultātā piemērotas
+		dažādam pielietojumam, VHDL vairāk piemērota sintezējamu, augstas
+		abstrakcijas līmeņu shēmu aprakstam, savukārt, Verilog piemērota
+		vidēja un zema abstrakcijas līmeņa komponenšu 
+		simulācijas modeļu aprakstam (sk.~\ref{sec:hdl-comparison}~nod.).
+	\item FPGA uzbūves rezultātā kopēja trīsstāvokļu kopne nav realizējama
+		FPGA, bet eksistē alternatīvas, kā, piem.,~darbā realizētā sazarotās
+		ķēdes veida kopne (sk.~\ref{sec:perry-bus}~un \ref{sec:databus}~nod.).
+	\item Unikālo mikrooperāciju skaitu kontroles iekārtā iespējams samazināt
+		līdzīgo instrukciju operāciju koda fragmentam piešķirot
+		mērķa komponentes interpretējamu nozīmi, rezultātā izveidojot šablonveida
+		mikroinstrukcijas un deleģējot daļu operācijas koda dekodēšanu ārējai
+		komponentei (sk.~\ref{sec:perry-instr}~un \ref{sec:AR}~nod.).
+\end{itemize}
+
+Darba izstrādes laikā, pētot un salīdzinot FPGA arhitektūras, 
+izvirzīta hipotēze, ka
+ FPGA loģisko bloku granularitāte ietekmē tajā implementetās
+loģikas veiktspēju. Respektīvi, rupjas granularitātes 
+arhitektūra potenciāli ir ar lielāku veiktspēju kombinacionālo shēmu realizācijā,
+salīdzinājumā ar smalkas granularitātes arhitektūru (sk.~\ref{sec:fpga}~nod.).
+Šī hipotēze šajā darbā netiek pierādīta un
+tās pārbaudei būtu nepieciešams papildus pētījums.
+
+Izstrādes laikā tika apzināti
+vairāki potenciāli uzlabojumi:
+\begin{itemize}
+	\item aparatūras līmeņa apakšprogrammu izsaukšanas atbalsts
+		sekmētu efektīvāku un modulārāku izpildes programmas kodu,
+	\item ieviešot pārtraukumu mehānismu, kodols varētu tūlītēji reaģēt
+		uz ārējiem notikumiem 
+		izpildot speciālu, lietotāja definējamu pārtraukuma apstrādes apakšprogrammu.
+\end{itemize}
+
+Šie uzlabojumi netika implementēti līdz darba nodošanas brīdim,
+lai varētu sasniegt darba sākumā izvirzīto funkcionalitāti.
+Papildus izstrādāts asemblerkoda translators, kas nodrošina asemblerkodā
+rakstīto testa programmu translēšanu mašīnkodā tā ielādei VHDL simulatorā
+procesora kodola un mikrokontroliera testēšanai.
+
+Darba izpildes sākumā izvirzītie uzdevumi ir izpildīti un mērķi sasniegti
+--- ir izstrādāts modulārs mikrokontroliera kodols un tā implementācijas
+paraugs mikrokontrolierī.
+
+
+
+% 1: FPGA ir kruts jo iespeejams sintezeet HDL aprakstus
+
+% Vaig RJMP
