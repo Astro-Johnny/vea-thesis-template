@@ -10,7 +10,7 @@
 	pārdalīšanu dažādām ierīcēm, kā arī nodrošina korektu komunikāciju
 	ar šīm ierīcēm. MMU tādējādi var uzskatīt par mikrokontroliera kontroles
 	iekārtu. MMU arī satur praktiski visu implementācijas un platformas
-	specifisko kodu, kas tadējādi ir galvenā komponente kurā jāveic izmaiņas
+	specifisko kodu, kas tādējādi ir galvenā komponente kurā jāveic izmaiņas
 	(vai pat jāimplementē no jauna) izmainot mikrokontroliera uzbūvi.
 	
 	MMU ar procesoru veido tādu pašu saskarni kā RAM,
@@ -38,7 +38,7 @@
 	Papildus MMU arī satur konfigurācijas reģistru,
 	ar kura palīdzību maināmi pieslēgto ierīču konfigurējamie parametri.
 	Tas nepieciešams, lai lokalizētu šos izkliedētos parametru bitus
-	adrešu telpai piekārtotā reģistrā. Šis konfigurācijas reģists arī kalpo
+	adrešu telpai piekārtotā reģistrā. Šis konfigurācijas reģistrs arī kalpo
 	par buferi novēlotai parametru izmaiņai, piem.,~SPI pārraides vārda garumu
 	platumu nevar izmanīt pārraides laikā (sk.~\ref{sec:spi}~nod.).
 	
@@ -53,21 +53,21 @@
 	atmiņas (sk.~pielikumu~\ref{appx:boot}), kas atrodas uz izmantotās
 	darba platformas (sk.~\ref{sec:devkit}~nod.).
 	
-	ROM realizēts ar \termEn{Actel Fusion} piedāvāto
-	\texttt{FlashROM} makrosu, kas izmanto \termEn{Actel Fusion} FPGA
-	speciālo \termEn{FlashROM} atmiņu \cite{FlashROM} (sk.~\ref{sec:devkit}~nod.).
+	ROM realizēts ar Actel Fusion piedāvāto
+	\texttt{FlashROM} makrosu, kas izmanto Actel Fusion FPGA
+	speciālo FlashROM atmiņu \cite{FlashROM} (sk.~\ref{sec:devkit}~nod.).
 	Maksimāli pieejamais ROM garums uz izmantojamās platformas ir
 	1 kilobits jeb 64 vārdi \cite[12.~lpp.]{FusionGuide}. ROM mazā ietilpība ir
 	galvenais iemesls, kādēļ mikrokontrolieris realizēts ar sāknēšanu.
 	
-	\termEn{FlashROM} adresējamā datu vārda garums ir 8 biti (1 baits),
+	FlashROM adresējamā datu vārda garums ir 8 biti (1 baits),
 	tādēļ realizēta speciāla nolases loģikas saskarne, kas nolasa divus
 	baitus un kombinē tos vienā 16 bitu mašīnvārdā pirms to nodot MMU.
-	Šeit \termEn{FlashROM} glabā 16 bitu vārdus ar jaunāko baitu (LSB) 
-	virspirms, bet nolases loģika šo niansi padara mazsvarīgu.
+	Šeit FlashROM glabā 16 bitu vārdus ar jaunāko baitu (LSB) 
+	vispirms, bet nolases loģika šo niansi padara mazsvarīgu.
 	
-	Lai nodrošinātu korektu nolasi no \termEn{FlashROM}, bija nepieciešams
-	modulēt \termEn{FlashROM} un nolases loģikas takts impulsa platumu.
+	Lai nodrošinātu korektu nolasi no FlashROM, bija nepieciešams
+	modulēt FlashROM un nolases loģikas takts impulsa platumu.
 	Šāda realizācija ir kompromiss, jo pagarina ROM nolases laiku, bet
 	nodrošina pret nestabilitāti ,,skriešanās problēmas'' dēļ, kas bija
 	novērojama mikrokontroliera darbības simulācijas laikā (pirms korekcijām).
@@ -81,16 +81,16 @@
 	\end{figure}
 	
 	\pagebreak[2]
-	Nolases loģika datu nolasi no \termEn{FlashROM} veic vairākos soļos (sk.~\ref{fig:rom-time-diag}~att.):
+	Nolases loģika datu nolasi no FlashROM veic vairākos soļos (sk.~\ref{fig:rom-time-diag}~att.):
 	\begin{enumerate}[\hspace*{\parindent}1)]
 		\item paceļot ROM izvēles signālu |rom_sel|, tiek iespējota nolases
 			loģika un uzsākts nolases cikls;
 		% FIXME: Is this right?
 		\item paceļot nolases loģikas takti |fetch_clock| 
 			tiek nodrošināta korekts adreses signāls;
-		\item pie lecošās |rom_clk| frontes \termEn{FlashROM} nolasa pievadīto adresi,
+		\item pie lecošās |rom_clk| frontes FlashROM nolasa pievadīto adresi,
 			bet dati izejā nav definēti;
-		\item \termEn{FlashROM} izvada datus pie krītošās |rom_clk|	frontes;
+		\item FlashROM izvada datus pie krītošās |rom_clk|	frontes;
 		\item pie |fetch_clock| krītošās frontes ROM dati tiek ielasīti
 			pagaidu reģistrā --- tiek nolasīts vecākais baits, 
 			2.--5.~solis tiek atkārtots arī jaunākā baita nolasei;
@@ -108,12 +108,12 @@
 	programmas mašīnkoda, gan datu uzglabāšanai.
 	
 	RAM realizēts ar \texttt{RAM4K9} makrosu, kas izmanto specializēto
-	RAM, kas pieejams uz \termEn{Actel Fusion} FPGA \cite{RAM4K9}.
+	RAM, kas pieejams uz Actel Fusion FPGA \cite{RAM4K9}.
 	Tādējādi tiek
 	efektīvāk izmantoti FPGA resursi, jo nav nepieciešams izmantot
 	programmējamos loģiskos blokus.
 	
-	\termEn{Actel Fusion} FPGA uzbūves un \texttt{RAM4K9} makrosa
+	Actel Fusion FPGA uzbūves un \texttt{RAM4K9} makrosa
 	definīcijas dēļ, RAM ir sadalīts divos blokos \cite{RAM4K9}. 
 	%Tā kā platums un garums
 	%ir konfigurējami ir vairākas iespējas RAM sadalījumam.
@@ -138,7 +138,7 @@
 		ne obligāti, porta platums (atsevišķo pieslēgvietu skaits) ir vienāds
 		ar mašīnvārda garumu (šeit~16). Porta platums nevar pārsniegt
 		mašīnvārda garumu, jo tad viss ports nav nolasāms, tādēļ, ka dati
-		neietilpst datu pārvades šinā. Tā vietā mikrokontrolierī iestrādā
+		neietilpst datu pārvades kopnē. Tā vietā mikrokontrolierī iestrādā
 		vairākus GPIO portus.
 		
 		\begin{figure}[th]
@@ -155,7 +155,7 @@
 		\texttt{BIBUF} makrosa instancēm, kur $N$ ir porta platums,
 		un divi $N$ garuma reģistri \texttt{DDRx} un \texttt{WRRx},
 		no kuriem \texttt{DDRx} kontrolē pieslēgvietu darbības virzienu un
-		\texttt{WRRx} uzglabā izvadāmo vārdu (pielēgvietām, kas ir izvades režīmā).
+		\texttt{WRRx} uzglabā izvadāmo vārdu (pieslēgvietām, kas ir izvades režīmā).
 		
 		Gan \texttt{DDRx}, gan \texttt{WRRx} ir lasāmi un pārrakstāmi.
 		Pieslēgvietu satura nolasīšanai ir tikai lasāms ,,virtuālais reģistrs''%
@@ -192,7 +192,7 @@
 		\end{figure}
 		
 		SPI saskarne izstrādāta, lai programmatūras līmenī tā būtu vienkārši
-		izmantojama. Datu pārraide viecama ar \mnem{ST} instrukciju, ierakstot
+		izmantojama. Datu pārraide veicama ar \mnem{ST} instrukciju, ierakstot
 		pārraidāmos datus speciālajā SPI datu reģistrā, kas tūlīt uzsāk datu
 		apmaiņu. Šī pārraide notiek bez procesora kodola līdzdalības.
 		Otras ierīces atgrieztos datus var atgūt vienkārši nolasot
@@ -235,7 +235,7 @@
 		
 		%\todo ? % SPI mode 0
 		
-		SPI saskarne parauga mikrokonrolierī izmantota
+		SPI saskarne parauga mikrokontrolierī izmantota
 		komunikācijai ar SPI \termEn{Flash} atmiņu,
 		kura pieejama uz izstrādes platformas \cite[43.~lpp.]{FusionGuide},
 		kur tiek glabāta galvenā izpildāmā programma, kura sāknēšanas procesa

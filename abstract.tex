@@ -10,7 +10,7 @@
 		\textit{Iekļautās sistēmas mikrokontroliera kodola izstrāde}\\[1ex]
 	\textbf{Darba autors:} & Jānis Šmēdiņš\\[1ex]
 	\textbf{Darba vadītājs:} & Mg.~sc.~comp.~Gatis Gaigals\\[1ex]
-	\textbf{Darba apjoms:} & 68~lpp., 3~tabulas, 26~attēli,
+	\textbf{Darba apjoms:} & 50~lpp., 3~tabulas, 26~attēli,
 		12~pirmkoda izdrukas, 19~bibliogrāfiskie avoti, 5~pielikumi\\[1ex]
 	\textbf{Atslēgas vārdi:} & Mikrokontroliera kodols, aparatūras apraksta valodas,
 		sintezējams mikrokontrolieris
@@ -22,7 +22,6 @@ kurš izmantojams dažādu, specializētu mikrokontrolieru implementācijās,
 kuras bieži nepieciešamas specifiskos elektroniskajos risinājumos,
 galvenokārt, zinātniskajos projektos. Mikrokontroliera un
 izstrādātā kodola mērķa platforma ir FPGA.
-%FIXME: Saīsinājuma atšifrējumu vajag uzrādīt?
 
 Izstrāde veikta izmantojot aparatūras apraksta valodas, kas ir galvenais
 FPGA projekta izstrādes instruments. Ir veikts divu galveno aparatūras
@@ -50,54 +49,32 @@ mikrokontroliera kodolu.
 			\textit{Development of embedded system microcontroller core}\\[1ex]
 		\textbf{Author:} & Jānis Šmēdiņš\\[1ex]
 		\textbf{Supervisor:} & Mg.~sc.~comp.~Gatis Gaigals\\[1ex]
-		\textbf{Scope:} & ??~pages, ??~tables, ??~figures, ??~listings,
-			??~bibliographical references, ?~appendices\\[1ex]
+		\textbf{Extent:} & 50~pages, 3~tables, 26~figures, 12~listings,
+			19~bibliographical references, 5~appendices\\[1ex]
 		\textbf{Keywords:} & Microcontroller core, hardware description languages,
 				synthesisable microcontroller
 	\end{tabularx}
 	
 	\vspace{1em}
-	This bachelors thesis purpose is to develop a microcontroller core for
-	synthesis on FPGA, as part of microcontroller, whether stand-alone or
-	control device within special purpose integrated circuit.
-	The thesis also focuses on hardware description languages
-	(HDL) as a main tool of attaining this goal.
+	This purpose of this bachelor's thesis is to develop a modular 
+	microcontroller core that can be used in 
+	different kinds of specialised microcontroller implementations,
+	which are often needed for custom electronic solutions in various projects,
+	scientific projects in particular.
 	
-	The author takes a more practical approach by developing first and
-	addressing problems as they arise. The work used an existing
-	architecture of central processing unit as base which was then improved
-	and modified in successive, iterative development cycles
-	(dubbed revisions), where each such cycle is to result in a working
-	prototype.
+	The development was done mostly by use of hardware description
+	language which is an instrumental part of FPGA project development.
+	A comparison of two industry standard hardware description languages
+	(VHDL and Verilog) was carried out to justify the choice of language for development.
+	An existing processor architecture was analysed, it's flaws identified
+	and improvements devised resulting in base architecture upon which
+	the core was developed.
 	
-	During the development the instruction set of core was completely
-	revised and several notable architectural changes done, most evidently
-	the internal data bus was reimplemented as one-way, branched, circular
-	pipeline. The author successfully developed a synthesisable
-	microcontroller core which is the result of third development cycle (rev.~03).
-	For testing	and demonstration purposes a complete microcontroller prototype
-	incorporating the core was developed as well.
-	
-	The author proposes several possible improvements for a
-	potential next development cycle, but also acknowledging that there
-	could be indefinite number of such cycles, and that one fulfilling
-	requirements will suffice.
-	
-	%%%%%%%%%%%%
-	%This bachelors thesis focuses on an existing architecture of 
-	%central processing unit	prototype. The author analyses the architecture,
-	%identifying design flaws and suggesting solutions to these flaws.
-	%These solutions are put to practical use by developing a
-	%synthesisable microcontroller core (essentialy a CPU),
-	%improving upon the existing	architecture.
-	
-	%To demonstrate use of the developed microcontroller core, a prototype
-	%microcontroller is developed as well, which incorporates the core.
-	
-	%Hardware description languages are analysed as well, of which the VHDL
-	%is used as a main tool of development. A short introduction and
-	%analysis is done on FPGAs, which is the target platform for design
-	%synthesis.
+	During the work the core was successfully completed, for it's testing
+	and demonstration a example microcontroller incorporating the core
+	was developed as well. In addition an assembler for the core was written.
+	Several further improvements to the core were proposed at the conclusion
+	of the work.
 \end{english}
 
 \clearpage
@@ -113,30 +90,31 @@ mikrokontroliera kodolu.
 		%\textbf{Руководитель работы:}
 		\textbf{Руководитель:} & Mg.~sc.~comp.~Gatis Gaigals 
 			(транслит.~Гатис Гайгалс)\\[1ex]
-		\textbf{Размер:} & 68 стр., 3 таблицы, 26 изображений,
-			12 листингов (печатей исходного кода), 19 библиографических источников, 5 приложений\\[1ex]
+		\textbf{Размер:} & 50 стр., 3 таблицы, 26 изображений,
+			12 листингов, % (печатей исходного кода),
+			19 библиографических источников, 5 приложений\\[1ex]
 		\textbf{Ключевые слова:} & ядро микроконтроллера,
 			языки описания аппаратуры, синтезируемый микроконтроллер
 	\end{tabularx}
 	
-	
+	\vspace{1em}
 	Цель работы бакалавра разработать модулярное ядро микроконтроллера
 	которого можно использовать в разных специализированных имплементациях
 	микроконтроллеров которые часто нужны в специфичных электронных решениях,
-	восновном, в научных проектах. Целевой платформой микрокотроллера и
+	в основном, в научных проектах. Целевой платформой микроконтроллера и
 	разработанного ядра является FPGA.
 
 	Разработка сделана, используя языки описания аппаратуры, которые
 	являются главным инструментом проекта FPGA. Сделано сравнение двух
 	главных языков описания аппаратуры (VHDL и Verilog), что-бы основать
 	выбор языка разработки. В работе анализируется архитектура существующего
-	процесора, идентифицированы недостатки и разработаны способы улучшения,
+	процессора, идентифицированы недостатки и разработаны способы улучшения,
 	в результате сделана базовая архитектура, по которой реализовано
 	ядро разрабатываемого микроконтроллера.
 
 	Во время этой работы ядро было успешно разработано, для его
 	проверки и демонстрации  тоже разработан образцовый микроконтроллер,
-	в котором это ядро будет использоватся. Дополнительно разработан
+	в котором это ядро будет использоваться. Дополнительно разработан
 	транслятор кода ассемблера. Выдвинуто несколько предложений,
 	как улучшить разрабатываемое ядро микроконтроллера.
 	

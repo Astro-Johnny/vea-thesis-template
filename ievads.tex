@@ -3,9 +3,9 @@
 Zinātne nestāv uz vietas --- nepārtraukti tiek uzsākti jauni zinātniskie projekti,
 un arvien biežāk tajos nepieciešami specializēti elektroniskie risinājumi.
 Šie risinājumi ir projekta specifiski, bet tajos bieži ir nepieciešamas
-kontroles iekārtas, datu formēšanas un pārraides iekārtas, un
-šim pielietojumam var izmantot specializētus mikrokontrolierus.
-Šādu mikrokontrolieru izstrāde tiek krietni vienkāršota, ja pieejams
+specifiskas kontroles iekārtas, datu formēšanas un pārraides iekārtas.
+Šim pielietojumam var izmantot specializētus mikrokontrolierus, kuru
+izstrāde tiek krietni vienkāršota, ja pieejams
 modulārs mikrokontroliera kodols ar vienkāršu un adaptējamu saskarni.
 
 Sevišķas prasības specializētu mikrokontrolieru izstrādei ir kosmosa
@@ -16,7 +16,10 @@ vērtīga.
 Šī bakalaura darba mērķis ir, pirmkārt, izstrādāt modulāru mikrokontroliera kodolu,
 kurš, bez vai ar minimālām modifikācijām, būtu izmantojams,
 vispārēja un specializēta pielietojuma, mikrokontrolieru implemetācijās,
-sintēzei FPGA (\termEn{{field-programmable} gate array}), un otrkārt,
+sintēzei FPGA (\termEn{{field-programmable} gate array}) ---
+integrētā shēma, kuru vienkāršoti var 
+uzskatīt par ,,tukšu'', ar HDL palīdzību programmējamu mikroshēmu.
+Otrkārt,
 izstrādāt vienkāršu parauga mikrokontrolieri, kas šo kodolu izmanto,
 demonstrējot izstrādātā kodola izmantošanu šim nolūkam.
 Mērķa sasniegšanai ir izvirzīti vairāki uzdevumi.
@@ -35,8 +38,6 @@ Darba izstrādes galvenais instruments ir VHDL, kas ir
 aparatūras apraksta valoda (HDL) ar kuru var aprakstīt shēmas darbību un uzbūvi.
 HDL nozīmīgākā īpašība ir shēmas aprakstu sintezējamība fiziskā realizācijā,
 galvenokārt FPGA mikroshēmā, kas ir darba mērķa platforma.
-FPGA ir integrētā shēma, kuru vienkāršoti var 
-uzskatīt par ,,tukšu'', ar HDL palīdzību, programmējamu mikroshēmu.
 
 Darbā apskatīta eksistējoša, HDL aprakstīta procesora prototipa arhitektūra,
 veikta tās analīze, ieviešot arhitektūras optimizācijas un risinājumus tās
@@ -48,7 +49,7 @@ uzlabojumiem, izmantots par bāzi izstrādājamā kodola izstrādē.
 %Darba turpinājumā tiek apskatīta HDL sintēzes mērķa platformu ---
 %FPGA un ASIC --- uzbūve un tās iespaidu uz izstrādi.
 
-Šis darbs ir sadalāms divās daļās, no kurām pirmā sniedz ieskatu
+Šis darbs ir sadalāms divās lielās daļās, no kurām pirmā sniedz ieskatu
 izmantotajās tehnoloģijās --- HDL, to pielietojumu un uzbūvi, kā arī HDL
 sintēzes mērķa platformu (t.sk.,~FPGA) uzbūvi. Otrā daļā tiek veikta bāzes
 prototipa analīze un izvirzīti uzlabojumi, pēc kuras izklāstīta izstrādātā

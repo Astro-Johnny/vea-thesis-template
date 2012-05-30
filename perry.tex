@@ -22,36 +22,36 @@ sīkāk apskatītas \ref{sec:cpu}~un \ref{sec:uC}~nodaļā.
 
 D.~Perija procesors (turpmāk tekstā ,,bāzes prototips'')
 ir vienkāršs 16 bitu procesors ar klasisku trīsstāvokļu 
-centrālo datu šinu \cite{Flynn-arch}\cite{Heath}, un ar visām pamata
+centrālo datu kopni \cite{Flynn-arch}\cite{Heath}, un ar visām pamata
 komponentēm (sk.~\ref{fig:perry-cpu}~att.), kas nodrošina bāzes prototipa
 spēju izpildīt instrukcijas no tā instrukciju kopas.
 
-\subsection{Iekšējā datu šina} \label{sec:perry-bus}
-	Bāzes prototipa arhitektūra paredz kopēju, trīsstāvokļu iekšējo datu šinu
+\subsection{Iekšējā datu kopne} \label{sec:perry-bus}
+	Bāzes prototipa arhitektūra paredz kopēju, trīsstāvokļu iekšējo datu kopne
 	(sk.~\ref{fig:perry-cpu}~att.).
-	Šāda šinas uzbūve ir elektriski vienkārša, un ir shematiski viegli uztverama
-	(sk.~\ref{fig:multidrop}~att.). Bet šāda uzbūve pieprasa šinas 
-	,,arbitēšanu'', t.i.,~nepieciešams
-	nodrošināt, ka tikai viena no šinai pievienotajām ierīcēm ir aktīvs devējs,
+	Šāda kopnes uzbūve ir elektriski vienkārša, un ir shematiski viegli uztverama
+	(sk.~\ref{fig:multidrop}~att.). Bet šāda uzbūve pieprasa kopnes
+	,,arbitrēšanu'', t.i.,~nepieciešams
+	nodrošināt, ka tikai viena no kopnei pievienotajām ierīcēm ir aktīvs devējs,
 	kamēr pārējo ierīču izvadiem jābūt augstas impedances režīmā, kā arī
-	jānodrošina, lai pareizā ierīce (vai ierīces) šos datus nolasītu no šinas.
+	jānodrošina, lai pareizā ierīce (vai ierīces) šos datus nolasītu no kopnes.
 
 	\begin{figure}[thb]
 		\centering
 		\includegraphics[scale=1.25]{multidrop}
-		\caption{Kopējas trīstāvokļu datu šinas shēma.}
+		\caption{Kopējas trīsstāvokļu datu kopnes shēma.}
 		\label{fig:multidrop}
 	\end{figure}
 
-	Galvenā problēma šādas šinas izmantošanai sintezējama kodola izstrādei ir
+	Galvenā problēma šādas kopnes izmantošanai sintezējama kodola izstrādei ir
 	fakts, ka vairums (vai pat visas) FPGA neatbalsta iekšēju trīsstāvokļu
 	loģiku, ko var secināt no fakta, ka neviena no apskatītajām FPGA neatbalsta
-	loģisko bloku konfigurāciju ar |Z| stāvokļa izejām
+	loģisko bloku konfigurāciju ar trīsstāvokļu izejām
 	\cite[18.~lpp.]{FusionFAQ}\cite{SmartFusionFabric}\cite{Xilinx7}.
-	Tas nozīmē, ka pat, ja sintēzes rīks atbalsta šādas šinas HDL aprakstu, tas
-	ģenerēs ievērojami sarežģītāku struktūru, kas emulētu trīsstāvokļu datu šinu.
+	Tas nozīmē, ka pat, ja sintēzes rīks atbalsta šādas kopnes HDL aprakstu, tas
+	ģenerēs ievērojami sarežģītāku struktūru, kas emulētu trīsstāvokļu datu kopni.
 
-	Alternatīvas šinas uzbūvē ir ķēdes savienojumi vai maršrutējams tīkls.
+	Alternatīvas kopnes uzbūvē ir ķēdes savienojumi vai maršrutējams tīkls.
 	Maršrutējami tīkli ir sarežģītas uzbūves un pieprasa tikpat sarežģītu
 	kontroles loģiku. Savukārt, ķēdes savienojumi ir pietiekami vienkārši,
 	tādēļ tiek izvēlēti par risinājumu.
@@ -66,24 +66,24 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	Visai komplicēta ķēdes savienojumu struktūra ir redzama \ref{fig:chain}~attēlā,
 	bet kas idejiski atbilst risinājuma rezultātam. 
 	Ar ķēdes savienojumiem datu pārraide notiek vienā virzienā,
-	tādējādi nav nepieciešamas bidirekcionālās pieslēgvietas, bet ir nepieciešamas
+	tādējādi nav nepieciešamas divvirzienu pieslēgvietas, bet ir nepieciešamas
 	atsevišķas pieslēgvietas datu ievadei un izvadei. Noslēdzot sazarojumus ar
 	multipleksoriem zūd nepieciešamība pēc trīsstāvokļu loģikas.
 
-	Ķēdes savienojumu priekšrocība ir arbitēšanas vienkāršums. Ierīces uz šinas
+	Ķēdes savienojumu priekšrocība ir arbitrēšanas vienkāršums. Ierīces uz kopnes
 	jau ir savienotas ar datu saņēmejierīcēm, tādējādi vienīgā arbitrēšana ir
 	datu plūsmas nodrošināšana (signalizēt datu nolasi) un sazarojumu noslēdzošo
 	multipleksoru komutēšana.
 	
-	Ķēdes savienojumu šinas ieguvums ir arī tā potenciālais datu caurlaides
+	Ķēdes savienojumu kopnes ieguvums ir arī tā potenciālais datu caurlaides
 	apjoms (\termEn{troughput}), kas ir ievērojami lielāks, jo ierīces nav
-	savienotas pie viena mezgla, kas kopējā datu šinā ir sastrēguma punkts
+	savienotas pie viena mezgla, kas kopējā datu kopnē ir sastrēguma punkts
 	(\termEn{bottleneck}). Datus dažādos ķēdes posmos var pārraidīt
-	paralēli un šinas atzaru datu pārraides ātrumi drīkst savā starpā 
+	paralēli un kopnes atzaru datu pārraides ātrumi drīkst savā starpā 
 	atšķirties.
 
 	Tā kā procesora komponentēm nav nepieciešams komunicēt katrai ar katru, ir
-	iespējams izveidot optimizētu kēžveida datu šinu, kur tieši savienotas ir tikai
+	iespējams izveidot optimizētu kēžveida datu kopni, kur tieši savienotas ir tikai
 	komponentes, starp kurām notiek tieša komunikācija. Kodolā iestrādāto
 	risināju skatīt \ref{sec:databus}~nodaļā.
 
@@ -110,7 +110,7 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 			(operanda) datiem.
 	\end{itemize}
 	
-	Autorprāt, izmantotā instrukciju kopas izvēle ir racionāla, bet
+	Pēc autora domām, izmantotā instrukciju kopas izvēle ir racionāla, bet
 	implementācija ir neoptimizēta. Pirmkārt, 5 bitu operācijas kods
 	neefektīvi izmanto pieejamo 16 bitu mašīnvārdu
 	(sk.~\ref{fig:5bit-opcode}~att.), efektīvāk būtu izmantot mainīga
@@ -131,7 +131,7 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	tiek izpildītas praktiski vienādi, iespējams veikt daļēju operācijas
 	koda dekodēšanu un deleģējot atlikušā operācijas koda ,,dekodēšanu''
 	ALU (sk.~\ref{sec:alu}~nod.), nododot tai nozīmīgu informāciju no
-	operācijas koda. Tādējādi tiek panākta viekāršāka dekodēšanas loģika un 
+	operācijas koda. Tādējādi tiek panākta vienkāršāka dekodēšanas loģika un 
 	mazāk stāvokļu kontroles iekārtā, jo pietiek ar vienu šablonveida
 	izpildes stāvokļu ķēdi.
 	
@@ -183,20 +183,20 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	\[
 		\neg (a>b) \land (a \neq b) \iff (a<b)
 	\]
-	skaidri parādot, ka pārbaudot jebkurus divus stāvokļus trešais
-	nosakāms pēc noklusējuma.
+	skaidri parādot, ka pārbaudot jebkurus divus stāvokļus, trešais
+	nosakāms pēc izslēgšanas principa.
 	\pagebreak[3]
 	
-	Tad tā vietā lai nodotu vienu no sešiem pārbaudes režīmiem,
-	varam optimizēt, likvidējot režīmu pārslēgšanu vispār, un vienmēr izvadot
+	Tā vietā, lai nodotu vienu no sešiem pārbaudes režīmiem, komparatoru
+	varam optimizēt, likvidējot režīmu pārslēgšanu vispār, un vienmēr izvadīt
 	rezultātu no divu operandu savstarpējo stāvokļu pārbaudes.
 	
 	Kodola realizācijā izmantots ,,bezrežīmu'' komparators, kas 
 	izvada divus signāla bitus, kas attiecīgi norāda 
-	vai operands |a| ir vienāds ar |b|, 
+	vai operands |a| ir vienāds ar |b| 
 	un vai operands |a| ir lielāks par |b| (sk.~\ref{sec:comp}~nod.).
 	Protams šāda implementācija nozīmē papildus loģiku kontroles iekārtā,
-	bet tās implementācija ir visai vienkārša, kā apskatīts
+	bet tās implementācija ir visai vienkārša kā parādīts
 	\ref{sec:branching}~nodaļā.
 
 %\subsection{Kontroles iekārta}

@@ -1,14 +1,14 @@
-\subsection{Iekšējās datu šinas uzbūve} \label{sec:databus}
+\subsection{Iekšējās datu kopnes uzbūve} \label{sec:databus}
 Izveidotajam procesoram ir vienvirziena, sazarota, 
-cirkulāra datu apmaiņas šina.
-Šādai šinas uzbūvei ir vairākas priekšrocības:
+cirkulāra datu kopne.
+Šādai kopnes uzbūvei ir vairākas priekšrocības:
 \begin{itemize}
 	\item \textbf{Nav trīsstāvokļu loģika}, tādējādi zūd nepieciešamība
 		izmantot trīsstāvokļu komponentes procesora iekšējā uzbūvē,
 		kas šajā gadījumā samazina realizācijas kompleksitāti.
-	\item Tā kā šinā esošo komponentēm izejas savstarpēji nevar tikt
+	\item Tā kā kopnē esošo komponentēm izejas savstarpēji nevar tikt
 		savienotas, ir nodrošināta zināma \textbf{elektriskā drošība},
-		likvidējot iespējamo kaitējumu arbitācijas kļūdu rezultātā.
+		likvidējot iespējamo kaitējumu arbitrācijas kļūdu rezultātā.
 	\item Zūd nepieciešamība pēc trīsstāvokļu komponenšu iespējošanas un
 		datu apmaiņas virziena signāliem. Tātad kontroles iekārtai ir
 		\textbf{mazāk vadības signālu}, jo vienvirziena datu
@@ -17,13 +17,13 @@ cirkulāra datu apmaiņas šina.
 			atjaunošanā, to nosaukumiem VHDL kodā pievienots -\texttt{Updt} piedēklis.}%
 		, vai pat nevienu signālu kombinacionālo komponenšu gadījumā.
 	\item Iespējama datu apmaiņas \textbf{paralelitāte}, jo dati dažādos
-		šinas posmos ir pārraidāmi vienlaicīgi. Šī īpašība izmantota
+		kopnes posmos ir pārraidāmi vienlaicīgi. Šī īpašība izmantota
 		\mnem{BRxx} instrukciju izpildē 
 		(sk.~\ref{sec:branching}~nod.~un kodu
 		pielikumā \ref{appx:control}).
 \end{itemize}
 
-Viens no šādas šinas uzbūves trūkumiem var tikt uzskatīta nepieciešamība
+Viens no šādas kopnes uzbūves trūkumiem var tikt uzskatīta nepieciešamība
 multipleksēt signālus, bet pēc visu iespējamo datu apmaiņas scenāriju analīzes
 implementējamās instrukciju kopas ietvaros tika noskaidrots, ka pat ne tuvu 
 katrai komponentei nepieciešama datu apmaiņa ar visām pārējām.
@@ -45,12 +45,12 @@ nekā vienas citas. Šīs komponentes uzrādītas \ref{tbl:muxes}~tabulā.
 		\bottomrule
 	\end{tabular}
 \end{table}
-Apvienojot vienādos multipleksorus, iegūst optimizētu datu apmaiņas šinu
+Apvienojot vienādos multipleksorus, iegūst optimizētu datu kopni
 ar tikai trijiem \texttt{32>16} multipleksoriem (sk.~\ref{fig:cpu-rev3}~att.)
 un, pēc autora domām, kontroles iekārtas vadības signālu samazināšana vairākkārt
 atsver multipleksoru pievienoto kompleksitāti.
 
-Otrs, iespējams trūkums šādai datu šinai ir tās nepārskatāmība shematiskajā
+Otrs, iespējams trūkums šādai datu kopnei ir tās nepārskatāmība shematiskajā
 zīmējumā (sk.~\ref{fig:cpu-rev3}~att.), bet šī ir tikai vizualizācijas
 problēma un neatstāj nekādu iespaidu uz realizāciju.
 

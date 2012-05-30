@@ -16,9 +16,9 @@
 	\cite{Perry-VHDL} piedāvāto procesora reali\-zā\-ciju, 
 	bet ar ievērojamām izmaiņām, galvenokārt, pilnībā no jauna izstrādāta 
 	instrukciju kopa un vienvirziena,
-	cirkulāra datu apmaiņas šina, atšķirībā no kopējas,
-	trīs\-stāvokļu arbitējamas datu šinas.
-	Galvenais šādas uzbūves datu šinas realizācijas iemesls
+	cirkulāra datu kopne, atšķirībā no kopējas,
+	trīs\-stāvokļu arbitrējamas datu kopnes.
+	Galvenais šādas uzbūves datu kopnes realizācijas iemesls
 	ir izmantojamās Actel FPGA darba platformas trīs\-stāvokļu
 	loģikas atbalsta \mbox{trūkums.\cite[18.~lpp.]{FusionFAQ}}
 	
@@ -35,36 +35,13 @@
 	(sk.~\ref{sec:design}~un \ref{sec:mmu}~nod.)
 	% TODO: 
 	
-	Instruckiju kopa ir izstrādāta no jauna un piedāvā vienkāršotu
+	Instrukciju kopa ir izstrādāta no jauna un piedāvā vienkāršotu
 	kopu līdzīgi RISC (\termEn{Reduced Instruction Set Computing})
 	filo\-so\-fijai. Salīdzinot ar Perija realizāciju, ievērojami samazinātas
 	nosacījuma zarošanās instrukcijas un instrukcijas pieejamie 16 biti
 	tiek efektīvāk izmantoti ieviešot vektorizētus jeb dažāda garuma
 	operāciju kodus. (detalizētākam aprakstam sk.~\ref{sec:instrSet}~nod.)
 	
-	
-	%Tā kā \termEn{Actel} FPGA risinājums neatbalsta trīs stāvokļu
-	%loģiku\cite[18.~lpp.]{FusionFAQ},
-	%tad kopēju iekšējo datu šinu nav iespējams
-	%izveidot. Tā vietā izveidota vienvirziena, nosacīti cirkulāra datu
-	%apmaiņas līnija. Datu līnijas sazarojumi dažādu komponenšu 
-	%komunikācijai realizēti ar multipleksoru palīdzību.
-	
-	%\begin{figure}[bhp]
-	%	\centering
-	%	\def\svgwidth{\textwidth}
-	%	{\ttfamily\scriptsize\input{img/control.pdf_tex}}
-	%	\caption{Procesora kontrole un atmiņas saskarne.}
-	%	\label{fig:controlPipeline}
-	%\end{figure}
-	%
-	%\begin{figure}[thp]
-	%	\centering
-	%	\def\svgwidth{\textwidth}
-	%	{\ttfamily\footnotesize\input{img/aluPipeline.pdf_tex}}
-	%	\caption{Aritmētikas un loģikas signālceļš un uzbūve.}
-	%	\label{fig:aluPipeline}
-	%\end{figure}
 	
 	\begin{figure}[thb]
 		\centering

@@ -6,7 +6,7 @@
 %tiek efektīvāk izmantoti ieviešot vektorizētus jeb dažāda garuma
 %operāciju kodus. (detalizētākam aprakstam sk.~\ref{sec:instrSet}~nod.)
 
-Instruckiju kopa ir izstrādāta no jauna un piedāvā vienkāršotu kopu, kas
+Instrukciju kopa ir izstrādāta no jauna un piedāvā vienkāršotu kopu, kas
 satur pamata darbības ar bezzīmes veseliem (\texttt{unsigned integer} tipa)
 skaitļiem, RAM ielasīšanas un ierakstes instrukcijas, un zarošanās
 instrukcijas (sk.~\ref{tbl:instructions}~tabulu).
@@ -47,7 +47,7 @@ kodam, jo abas tā daļas tiek interpretētas dekodēšanas solī.\footnote{%
 		\texttt{*(rD) = rS} \newline
 		{\footnotesize Ielasa vārdu no RAM reģistrā \texttt{rD}} \\
 	\midrule \pagebreak[3]
-	\multicolumn{4}{c}{Aritmētikās, loģikās un bitu bīdes instrukcijas (un \mnem{AR} operācijas saīsnes)}\\
+	\multicolumn{4}{c}{Aritmētiskās, loģiskās un bitu bīdes instrukcijas (un \mnem{AR} operācijas saīsnes)}\\
 	\midrule
 	\mnem{AR} & 	\instr{10}{}{}{}{XXXX}{XXX}{X}\instr{}{}{}{}{XXX}{XXX}{} & \texttt{kA, kS, rD, rS} &
 		{\footnotesize Aritmētikas/bīdes instrukcija.} \\ \midrule
@@ -190,7 +190,7 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 			par otro.
 	\end{itemize}
 	
-	Zarošās nosacījumā pārbaudei tiek izmantoti šo instrukciju operāciju
+	Zarošanās nosacījumā pārbaudei tiek izmantoti šo instrukciju operāciju
 	kodu divi jaunākie biti, kuri turpmāk šajā nodaļā apzīmēti ar
 	\texttt{A} (otrs jaunākais bits) un \texttt{B} (jaunākais bits).
 	
@@ -231,6 +231,6 @@ instrukciju realizācijas detaļas tiks apskatītas turpmākajās apakšnodaļā
 	Atlikušās zarošanās instrukcijas \mnem{BRLT} un \mnem{BRLE} ir
 	programmatūras līmeņa substitūcijas, jo to ekvivalentus var iegūt
 	izmantojot attiecīgi \mnem{BRGE} un \mnem{BRGT} instrukcijas,
-	apmainot salīdzināmos operandus vietām assemblēšanas brīdī.
+	apmainot salīdzināmos operandus vietām asemblēšanas brīdī.
 	
 	

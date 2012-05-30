@@ -151,7 +151,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	kas pārslēdz divas vai vairāk ieejas uz vienu izeju. Ieejas un izejas
 	ne obligāti ir viens signālvads (bits). Šajā gadījumā tiek pārslēgtas
 	16 bitu platas datu maģistrāles, kur
-	multipleksors tiek izmantots datu šinā, noslēdzot sazarojumu,
+	multipleksors tiek izmantots datu kopnē noslēdzot sazarojumu,
 	lai pārslēgtu datu ieejas avotu aiz tā sekojošai komponentei
 	(vai komponentēm).
 	\begin{figure}[bhp]
@@ -190,7 +190,7 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	
 	Lai gan klasiski bīdes operācijas arī tiek realizētas ALU,
 	šajā gadījumā ALU veic tikai aritmētiskās un bitu
-	loģikas darbības, atstājot bīdes operācijas „Bitu bīdes loģiskjai ierīcei”
+	loģikas darbības, atstājot bīdes operācijas „Bitu bīdes loģiskai ierīcei”
 	(sk.~\ref{sec:shifter}~nod.). Šāda sadalīšana ļauj veikt aritmētiskās
 	un bīdes operācijas vienlaicīgi, uz ko balstās \mnem{AR} instrukcija
 	(sk.~\ref{sec:AR}~nod.).
@@ -259,12 +259,12 @@ Komponenšu VHDL aprakstos piesaukti tipi un konstantes no paša definētas
 	divus operandus --- 16 bitu vārdus, kas tiek interpretēti kā bezzīmes
 	skaitļi.
 	Šī komparatora implementācija ir minimizēta, kombinacionāla un nesatur
-	kontroles signālus (salīdzinājumam ar D.~Perry realizāciju sk.~\ref{sec:perry-comp}~nod.).
+	kontroles signālus (salīdzinājumam ar D.~Perija realizāciju sk.~\ref{sec:perry-comp}~nod.).
 	Izvadīti tiek tikai divi loģiskie signāli, no kuriem |eq|
 	norāda uz operandu vienādību (loģiskais |1|) vai nevienādību (loģiskā |0|),
 	savukārt |gr| norāda vai operands \texttt{a} ir lielāks (|1|)
 	par \texttt{b} vai nav (|0|). Ar šo
-	informāciju ir pilnīgi pietiekami, lai būtu iepējams realizēt visas
+	informāciju ir pilnīgi pietiekami, lai būtu iespējams realizēt visas
 	nosacījuma zarošanās (\mnem{BRxx}) instrukcijas
 	(sk.~\ref{sec:branching}~nod.).
 	\begin{figure}[bhp]
