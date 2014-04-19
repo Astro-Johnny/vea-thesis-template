@@ -1,0 +1,90 @@
+\subsection{Centrālais procesors} \label{sec:cpu}
+Centrālais procesors jeb CPU (no angļu \termEn{central processing unit}), ir
+praktiski visās datorsistēmās --- gan personālajos datoros (PC), gan serveros,
+gan iekļautajās sistēmās. CPU kalpo par galveno vadības komponenti un, vairumā
+gadījumu, arī kā galvenais skaitļošanas resurss.
+
+CPU arhitektūra ir vēsturiski attīstīta kopš 20.~gadsimta vidus~%
+\cite{Flynn-arch}\cite{von-Neumann}.
+Klasiskas arhitektūras CPU raksturo ātra secīgu instrukciju izpilde, 
+bet kam nepiemīt ne datu, ne uzdevumu paralelitāte~\cite{Owens-GPU}.
+Šādi CPU aritmētiskās instrukcijas izpilda ar vienu datu vienību --- 
+operandu vai operandu pāri (piem.,~divu skaitļu saskaitīšanu)~\cite{Flynn-arch},
+kā tas vienkāršoti parādīts \ref{fig:cpu-arch}~attēlā.
+Līdz 21.~gadsimtam veiktspējas palielināšanai pamatā bija 
+instrukcijas izpildes laika saīsināšana vienkārši 
+palielinot takts signāla frekvenci
+un/vai optimizējot izpildes signālceļu (\termEn{pipeline})~\cite{Flynn-arch}.
+20.~gadsimta 90-o~gadu beigās plaši pieejamo CPU arhitektūrā tika ieviestas
+vektoru jeb SIMD (\termEn{single instruction, multiple data}) 
+instrukcijas, kas ieviesa zināmu datu paralelitāti jo ar šo instrukciju
+palīdzību, varēja izdarīt darbības ar vairāk datu vienībām (skaitļu vektoru)
+vienlaikus~\cite{SIMD}.
+Savukārt, sākoties 21.~gadsimtam, \newTerm{vairāku kodolu} procesori
+sāka kļūt komerciāli pieejami, kas nodrošināja arī uzdevumu paralelitāti.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/CPU-arch.pdf_tex}}
+	\caption{Skaitļošanas resursi CPU arhitektūrā.}
+	\label{fig:cpu-arch}
+\end{figure}
+
+Palielinot CPU instrukciju izpildes ātrumu par
+,,vājāko ķēdes posmu'' kļuva datu atgūšana no operatīvās atmiņas (RAM).
+Šo problēmu jau 60-ajos gados risināja radot
+\termTech{kešatmiņu} (angļu \termEn{cache})~\cite[473.~lpp.]{Patterson},
+kuras pamatprincips ir
+mazākas ietilpības, bet augstākas datu caurlaides (ātrākas)
+atmiņas izmantošana, lai uzglabātu datu apakškopas kopiju no
+RAM ar kuru, potenciāli, tūlītēji tiks veiktas darbības.
+\cite{Flynn-arch}\cite{Patterson2}\cite{Patterson}\cite{Cache}
+
+\termTech{Kešatmiņa} būtiski uzlabo CPU aprīkotas sistēmas vispārējo
+ātrdarbību, bet tās trūkumi sistēmas paralelitātē kļuva acīmredzami
+izstrādājot vairāku kodolu CPU~\cite{Fatahalian}\cite{Owens-GPU}\cite{Cache}.
+Vairāku procesoru vai vairāku procesora kodolu%
+\footnote{Turpmāk nodaļas tekstā minēti kā atsevišķi procesori.}
+sistēmas nodrošina
+\termTech{kešatmiņas} \newTerm{koherenci}
+(angļu \termEn{cache coherence}), t.i.,~visām vienas datu vienības
+kopijām \termTech{kešatmiņā(s)} pēc izmaiņas vienādi jāatspoguļo tās
+jaunākā vērtība, kā arī jānodrošina, ka šo vērtību vienlaicīgi 
+izmainīt drīkst tikai viens no procesoriem.
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/snoop-cache-bottleneck.pdf_tex}}
+	\caption{\termTech{Kešatmiņas} koherence vairāku procesoru sistēmā.}
+	\label{fig:snoop-bottleneck}
+\end{figure}
+Šādā sistēmā, koherences nodrošināšanai, nepieciešama papildus loģika.
+Pie tam, tipiskā implementācijā, šī komunikācija
+jānodrošina procesoram ,,katram ar katru''.
+Tas nozīmē, ka pie $N$ skaita
+procesoru nepieciešama komunikācija $\frac{N^2-N}{2}$ skaitam procesoru pāru
+(sk.~\ref{fig:snoop-bottleneck}~att.), tādējādi koherences nodrošināšana ir
+kavējošais faktors liela skaita procesoru sistēmās.
+Šādu koherences nodrošināšanas protokola modeli dēvē ,,okšķērējošo''
+(\termEn{snooping}) modeli, kur izmaiņas par datu vienības vērtības izmaiņu
+tiek apraidītas visu procesoru \termTech{kešatmiņas}.
+\cite{Cache}
+
+Eksistē arī alternatīvs modelis --- direktorija (\termEn{directory}) modelis,
+kur centrāli tiek \termTech{kešatmiņas} datu vienībām piedēvēts ,,īpašnieks''
+un komunikācija notiek tikai starp šo ,,īpašnieku'' un procesoru, kurš
+pieprasa pieeju datu vienībai. Šādi tiek samazināts komunikācijas apjoms pie
+liela procesoru skaita, bet modelis ir komplicētāks, kas prasa papildus
+atmiņu direktorijam un atmiņas transakcijas izpildes laiks ir garāks.
+\cite{Cache}
+
+Savukārt, būtiski citādāka pieeja ir izmantota grafiskā procesora (GPU)
+uzbūvē. GPU definē citādu atmiņas izmantošanas
+modeli, kas padara \termTech{kešatmiņas} koherenci mazsvarīgu,
+atbrīvojot arhitektūras uzbūvi no koherences nodrošināšanas loģikas un
+sekmējot paralelitāti. GPU arhitektūra plašāk apskatīta \ref{sec:gpu}~nodaļā.
+
+
+
+

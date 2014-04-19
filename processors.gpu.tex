@@ -1,0 +1,23 @@
+\subsection{Grafiskais procesors} \label{sec:gpu}
+Grafiskais procesors jeb GPU (no angļu \termEn{graphics processing unit})
+ir specializēta skaitļošanas iekārta, kura izstrādāta
+un attīstīta divdimensiju un trīsdimensiju attēlu atveidošanai un apstrādei
+to izvadei uz displeja.
+Grafiskos procesorus izvieto:
+\begin{itemize}
+	\item uz \newTerm{video kartēm} --- kopā ar tam speciāli paredzētu
+		atmiņu (VRAM) --- kuras var pieslēgt PC \newTerm{mātes platei};
+	\item tieši uz mātes plates, kur GPU var izmantot speciāli paredzētu
+		atmiņu un/vai koplietot (ar CPU) datora operatīvo atmiņu (RAM);
+	\item iestrādājot vienā mikroshēmā ar CPU (tipiski jaunos klēpjdatoros);
+	\item arvien biežāk, iekļautajās sistēmās iestrādājot SoC
+		(angļu \termEn{system-on-chip}) mikroshēmās.
+\end{itemize}
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/GPU-arch.pdf_tex}}
+	\caption{Skaitļošanas resursi GPU arhitektūrā.}
+	\label{fig:gpu-arch}
+\end{figure}

@@ -1,0 +1,67 @@
+%% Mans Maģistrs
+\documentclass[magjistrs]{vea-diplomdarbs}
+\usepackage{setspace}	% Line spacing package
+\usepackage{calc}
+
+\setotherlanguages{english,russian}
+
+\newcommand{\TODO}{\textcolor{red}{TODO}}
+
+%% Inline Word inclusion formatting
+\newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
+\newcommand{\termTech}[1]{\textit{#1}} % technical term (LV?)
+\newcommand{\newTerm}[1]{,,{#1}''} %newly mentioned term
+
+%% Pāris matemātikas komandu definīcijas
+\newcommand{\vb}[1]{\mathbf{#1}}
+
+%% English determined number suffixes
+\newcommand{\st}{\textsuperscript{st} }
+\newcommand{\nd}{\textsuperscript{nd} }
+\newcommand{\rd}{\textsuperscript{rd} }
+\newcommand{\nth}{\textsuperscript{th} }
+
+\hyphenpenalty=7500
+\clubpenalty=9000
+\widowpenalty=9000
+
+\title{Attēlu raksturpunktu atrašanas un salāgošanas algoritmu veiktspējas
+       izpēte uz dažādām aparatūras platformām}
+\author{Jānis Šmēdiņš}
+
+% Hyperref package for links in PDF (should be last package)
+\usepackage[hyperfootnotes=false,linkbordercolor={blue},hyperindex]{hyperref}
+\hypersetup{pdftitle={Attēlu raksturpunktu atrašanas un salāgošanas algoritmu veiktspējas izpēte uz dažādām aparatūras platformām}}
+\hypersetup{pdfauthor={Jānis Šmēdiņš}}
+\usepackage{fixlatvian}
+
+\begin{document}
+	\maketitle
+	\onehalfspacing % 1.5 spacing
+	\tableofcontents\clearpage
+	\sloppy % Don't be too fussy about line formatting
+	
+	%% TODO: Abstracts
+	%\input{abstract.tex}
+	
+	%% Termini
+		%% kešatmiņa
+	
+	%% Ievads
+	%\clearpage
+	\input{ievads.tex}
+	
+	
+	%% Teorija
+	\clearpage\input{processors.tex} % CPU/GPU/FPGA
+	% TODO: Video apstrādes algoritmi
+	
+	
+	%% Praktiskā daļa
+	% TODO
+	
+	
+	%% Literatūras saraksts
+	\clearpage\input{references.tex}
+	
+\end{document}
