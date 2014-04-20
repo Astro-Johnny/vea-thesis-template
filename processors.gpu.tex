@@ -14,6 +14,34 @@ Grafiskos procesorus izvieto:
 		(angļu \termEn{system-on-chip}) mikroshēmās.
 \end{itemize}
 
+Lai gan GPU idejiski nav izstrādāts, lai veiktu vispārējus skaitļošanas
+uzdevumus, GPU arhitektūras attīstības tendences pavēra šādu iespēju un GPU
+kļuva nozīmīga skaitļošanas platforma augstās veiktspējas dēļ, ko,
+galvenokārt, nodrošina GPU arhitektūras izteiktā paralelitāte.
+
+Sākotnēji GPU arhitektūras pamatā bija vairāku pakāpju signāltrakts, kur
+katra pakāpe veica fiksētu funkciju ar lielu apjomu datu. Katra pakāpe
+signāltraktā varēja darboties vienlaicīgi, tādējādi GPU arhitektūrai
+piemita gan uzdevumu, gan datu paralelitāte no tās pirmsākumiem.
+Programmējamība GPU arhitektūrā parādījās programmējamas \newTerm{ēnotāju}
+(\termEn{pixel shader} un \termEn{vertex shader}) pakāpes,
+kuras iepriekš arī bija fiksētas funkcijas. Šādam signāltraktam bija būtiska
+problēma ar slodzes sadalīšanu, jo slodze dažādās pakāpēs bija atkarīga
+no datiem un ēnotāju programmējuma. Šo problēmu risināja izstrādājot
+,,vienotu ēnotāju arhitektūru'' (\termEn{unified shader architecture}),
+kuras pamatā ir liels skaits programmējami, paralēli
+\newTerm{straumes procesori} (\termEn{stream processors}), kuru lomu
+signāltraktā, kurš tagad vairs nav fiksēts aparatūras līmeni, var mainīt.
+GPU straumes procesori izmanto SIMD instrukcijas darbībām ar skaitļu
+vektoriem (sk.~\ref{fig:gpu-arch}~att.), pie tam katrs no šiem straumes procesoriem
+arī izmanto \newTerm{vairākpavedienošanu} (\termEn{multithreading}) aparatūras
+līmenī. Ņemot vērā lielo skaitu%
+\footnote{AMD Radeon HD7990 ir 4096 straumes procesori.
+	\url{http://www.amd.com/en-us/products/graphics/desktop/7000/7990}}
+šādu SIMD straumes procesoru, GPU var attīstīt ļoti lielu datu caurlaides spēju
+(\termEn{throughput}).
+\cite{Fatahalian}\cite{Owens-GPU}
+
 \begin{figure}[tbh]
 	\centering
 	\def\svgscale{1.2}
@@ -21,3 +49,31 @@ Grafiskos procesorus izvieto:
 	\caption{Skaitļošanas resursi GPU arhitektūrā.}
 	\label{fig:gpu-arch}
 \end{figure}
+
+GPU atmiņas izmantošanas modeli arī definē tā pamatuzdevums --- atveidot jeb
+\termTech{rasterizēt} attēlus vadoties pēc trīsdimensiju objektu datiem.
+Šie dati signāltraktā tiek transformēti un apstrādāti attēla iegūšanai,
+bet ieejas dati \termTech{rasterizējot} netiek modificēti
+un iegūtais attēls (vairumā gadījumu) pēc tā izvades uz displeja neietekmē
+nākamo attēlu, respektīvi, esošie, koplietojamie dati netiek pārrakstīti,
+bet tiek radīti jauni dati no tiem. Tas atbrīvo GPU no atmiņas koherences
+problēmas, kāda ir CPU arhitektūrā (sk.~\pageref{sec:cache}~lpp.).
+
+Vēl viens būtisks paralelitātes aspekts atmiņas izmantošanas modelī ir
+uzsvars uz datu caurlaidi, nevis zemu atmiņas latentumu.
+,,\termTech{Kešatmiņas}'' loma GPU arhitektūrā arī novirzīt slodzi no
+pamatatmiņas, kas, galvenokārt, ir tikai lasāmā
+(\termEn{read-only}) \termTech{kešatmiņa}%
+\footnote{GPU arhitektūrā speciālām datu grupām izmanto arī
+	rakstāmu (\termEn{read/write}) \termTech{kešatmiņu}~\cite{Owens-GPU}.}
+\cite{Fatahalian}. Augsto atmiņas latentumu SIMD straumes procesori kompensē
+ar vairākpavedienošanu. Katrs SIMD straumes procesors uzglabā informāciju
+par vairākiem%
+\footnote{NVIDIA GeForce GTX 280 atbalsta līdz 128 pavedieniem uz katru
+	straumes procesoru \cite{Fatahalian}.}
+izpildes pavedieniem (\termEn{threads}), kur aktīvais pavediens, kas izdara
+pieprasījumu no atmiņas un ir spiests gaidīt, tiek aizvietots ar
+citu pavedienu, kurš ir tūlītēji izpildāms~\cite{Fatahalian}. Tādējādi tiek samazināts
+gaidīšanas laiks un tiek efektīvāk izmantoti skaitļošanas resursi.
+
+

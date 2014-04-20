@@ -14,7 +14,7 @@ kā tas vienkāršoti parādīts \ref{fig:cpu-arch}~attēlā.
 Līdz 21.~gadsimtam veiktspējas palielināšanai pamatā bija 
 instrukcijas izpildes laika saīsināšana vienkārši 
 palielinot takts signāla frekvenci
-un/vai optimizējot izpildes signālceļu (\termEn{pipeline})~\cite{Flynn-arch}.
+un/vai optimizējot izpildes signāltraktu (\termEn{pipeline})~\cite{Flynn-arch}.
 20.~gadsimta 90-o~gadu beigās plaši pieejamo CPU arhitektūrā tika ieviestas
 vektoru jeb SIMD (\termEn{single instruction, multiple data}) 
 instrukcijas, kas ieviesa zināmu datu paralelitāti jo ar šo instrukciju
@@ -31,12 +31,13 @@ sāka kļūt komerciāli pieejami, kas nodrošināja arī uzdevumu paralelitāti
 	\label{fig:cpu-arch}
 \end{figure}
 
+\phantomsection\label{sec:cache}
 Palielinot CPU instrukciju izpildes ātrumu par
-,,vājāko ķēdes posmu'' kļuva datu atgūšana no operatīvās atmiņas (RAM).
+,,vājāko ķēdes posmu'' kļuva datu atgūšana no operatīvās atmiņas (RAM) jeb
+tās latentums.
 Šo problēmu jau 60-ajos gados risināja radot
 \termTech{kešatmiņu} (angļu \termEn{cache})~\cite[473.~lpp.]{Patterson},
-kuras pamatprincips ir
-mazākas ietilpības, bet augstākas datu caurlaides (ātrākas)
+kuras pamatprincips ir mazākas ietilpības, bet zemāka latentuma (ātrākas)
 atmiņas izmantošana, lai uzglabātu datu apakškopas kopiju no
 RAM ar kuru, potenciāli, tūlītēji tiks veiktas darbības.
 \cite{Flynn-arch}\cite{Patterson2}\cite{Patterson}\cite{Cache}
