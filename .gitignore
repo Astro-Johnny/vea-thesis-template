@@ -1,0 +1,12 @@
+# LaTeX temp files
+/*.aux
+/*.log
+/*.out
+/*.toc
+
+# Output files
+/masters.pdf
+
+# Image temp files
+img/*.tmp.pdf
+img/*.pdf_tex
