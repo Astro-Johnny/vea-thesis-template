@@ -3,6 +3,14 @@
 \usepackage{setspace}	% Line spacing package
 \usepackage{calc}
 
+%% Use proper Aurora Bold Condensed BT
+\definecolor{SeaBlue}{cmyk}{1,0,0.37,0.52}
+\newfontfamily\TitleFont[%
+	Path = /home/johnlm/Development/resources/tex_graphics_lib/fonts/ ,%
+	FakeStretch = 1.5 ,
+	Color = SeaBlue
+	]{aurora-BT-condensed-bold}
+
 \setotherlanguages{english,russian}
 
 \newcommand{\TODO}{\textcolor{red}{TODO}}
@@ -36,7 +44,11 @@
 \usepackage{fixlatvian}
 
 \begin{document}
-	\maketitle
+	% Titullapa
+	\pagestyle{empty}
+	\input{titullapa.tex} % Ielikt titullapu
+	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
+	
 	\onehalfspacing % 1.5 spacing
 	\tableofcontents\clearpage
 	\sloppy % Don't be too fussy about line formatting
@@ -49,6 +61,7 @@
 	
 	%% Ievads
 	%\clearpage
+	\pagestyle{plain} % Start the proper page numbering
 	\input{ievads.tex}
 	
 	

@@ -8,6 +8,7 @@ PDFTK = $(shell which pdftk)
 # OUTPUT
 NAME = masters
 SUBPARTS = ievads.tex references.tex \
+titullapa.tex \
 processors.tex processors.cpu.tex processors.gpu.tex \
 algorithms.tex algorithms.matching.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
