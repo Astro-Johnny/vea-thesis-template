@@ -30,7 +30,7 @@ un ir noturīga pret sagaidāmām attēla īpašību izmaiņām.
 		neatkarīgi no tā koordinātēm attēlā;
 	\item \emph{rotācijas invariance} --- spēja salāgot raksturpunktus
 		neatkarīgi no attēla rotācijas leņķa;
-	\item \emph{intensitātes invariance} --- spēja salāgot raksturpunktus
+	\item \emph{intensitātes nobīdes invariance} --- spēja salāgot raksturpunktus
 		neatkarīgi no globālas intensitātes izmaiņas;
 	\item \emph{mēroga invariance} --- spēja salāgot raksturpunktus
 		neatkarīgi no mēroga (attēla izmēru un/vai raksturpunkta objekta attāluma izmaiņa);
@@ -52,18 +52,22 @@ SURF, BRIEF un tā varianti, ORB, u.c..
 Algoritmus var izvērtēt pēc jau uzdotajām īpašībām, 
 bet jāņem vērā arī to veiktspējas īpašības:
 \begin{itemize}
-	\item \emph{skaitļošanas kompleksitāte}, kas tieši ietekmē laiku
-		kurā viens attēls var tikt apstrādāts;
+	\item \emph{skaitļošanas kompleksitāte}, kas tieši ietekmē algoritma
+		ātrdarbību;
 	\item \emph{informācijas blīvums}, kas atspoguļo cik liela ir katra
 		informācijas bita variance, kas ļauj sasniegt lielāku diskriminitāti
 		pie mazāka bitu skaita.
 \end{itemize}
+% TODO?: Izvērst dažādo algoritmu teorētisko aprakstu?
 
-Šajā darbā, ORB ir izvēlēts par algoritmu, kura veiktspēju salīdzināt uz
-dažādām aparatūras platformām. ORB izvēlēts, jo tā raksturpunktu salāgošanas
+Šajā darbā, turpmākai algoritma implementāciju veiktspējas izvērtēšanai
+un salīdzināšanai izvēlēts, ORB algoritms, vai konkrētāk tā salāgošanas
+komponente --- rBRIEF.
+% TODO: Forward ref
+Šāda izvēle pamatota ar to, ka rBRIEF raksturpunktu salāgošanas
 spēja ir līdzīga vai labāka nekā SIFT, bet ir par divām kārtām ātrāks nekā
 SIFT un par kārtu ātrāks nekā SURF \cite{ORB}.
-ORB izmantotais rBRIEF \termTech{deskriptors} ir
-noturīgāks pret troksni nekā SIFT un tā rotācijas invariance līdzvērtīga SIFT.
+rBRIEF \termTech{deskriptors} ir arī noturīgāks pret troksni nekā
+SIFT un tā rotācijas invariance līdzvērtīga SIFT \cite{ORB}.
 
 
