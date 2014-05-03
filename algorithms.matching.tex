@@ -60,6 +60,16 @@ bet jāņem vērā arī to veiktspējas īpašības:
 \end{itemize}
 % TODO?: Izvērst dažādo algoritmu teorētisko aprakstu?
 
+Netiešs, bet būtisks, salāgošanu ietekmējošais faktors ir raksturpunktu
+atlase no attēla, jo salāgošana tiek veikta tikai starp atlasītajiem
+punktiem. Raksturpunktu (un to atlases algoritmu) galvenās īpašības
+ir to variance, kas nosaka cik aprakstoši ir šie punkti,
+un \newTerm{atkārtojamība}, kas ir ieviests termins un izsaka
+atbilstošo (salāgojamo) punktu pārus pret kopējo raksturpunktu skaitu~%
+\cite{FAST}\cite{SIFT-FPGA}.
+Raksturpunktu atlases algoritmi un to īpašības plašāk apskatītas
+\ref{sec:corners}~apakšnodaļā.
+
 Šajā darbā, turpmākai algoritma implementāciju veiktspējas izvērtēšanai
 un salīdzināšanai izvēlēts, ORB algoritms, vai konkrētāk tā salāgošanas
 komponente --- rBRIEF.

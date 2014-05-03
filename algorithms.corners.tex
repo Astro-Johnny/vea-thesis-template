@@ -4,9 +4,73 @@ kritērijiem. Kā jau minēts nodaļas ievadā (\pageref{sec:algo}~lpp.),
 raksturpunktu atlasei bieži tiek izmantoti ,,stūru'' meklēšanas algoritmi,
 kādi ir arī visi šajā darbā apskatītie raksturpunktu atlases algoritmi.
 
-% TODO: Algoritmu aprakstošās īpašības
+Attēlu raksturpunktu atlasei ir vairāki pamatojumi, bet šī darba kontekstā
+--- raksturpunktu salāgošanai --- būtiski ir atlasīt atbilstošos punktus
+dažādos attēlos, kuru lokālajai apkārtnei konkrētajā attēlā piemīt
+augsta variance. Sekundārs pamatojums raksturpunktu atlasei ir
+skaitļošanas apjoma samazināšanai, jo turpmākā salāgošana tiek veikta
+tikai atlasītajiem punktiem. Raksturpunktu atlase gan ir nepieciešama
+datu priekšapstrāde, jo veicot salāgošanu visiem attēlu punktiem tiek
+degradēta arī salāgošanas kvalitāte, ne tikai ātrdarbība, jo tiek
+iekļauti daudz zemas variances punkti, kuri sastādīs
+,,nepatiesi~pozitīvi'' salāgotu punktu pāru kopu, kas būs ievērojami
+lielāka par derīgo rezultātu kopu, kā arī radīs neviennozīmīgus
+konfliktējošus pārus,
+t.i.~viena attēla vairāku punktu ,,atbilstība'' vienam (vai vairākiem)
+punktiem otrā attēlā.
+% TODO?: "Konfliktējošo" pāru attēls?
 
 Eksistē vairāki stūru atrašanas algoritmi: \termEn{Harris} stūru detektors,
-SUSAN, SIFT, KFT, FAST, u.c.. 
-Šajā darbā apskatītais ORB algoritms, rakturpunktu atlasei izmanto oFAST, kas
-ir FAST modifikācija, kas nosaka arī virziena informāciju.
+SUSAN, DoG~(SIFT), KLT, FAST, u.c.. 
+Lai gan stūru atrašanas algoritmu skaits un to aprakstošā literatūra ir
+visai liela, ļoti maz ir informācijas ir pieejama to salīdzināšanai. Pie
+tam, aprakstītās metodes ne vienmēr ir adevkāti raksturojošas vai pat
+objektīvas~\cite{Mokhtarian}\cite{FAST}. Autors par nozīmīgu un 
+pietiekami kvantitatīvu īpašību atzīst 
+Rostena~un~Dramonda\cite{FAST}~(\termEn{Rosten~and~Drummond}) piedāvāto
+\newTerm{atkārtojamību}, kas novērtē punktu salāgojamību vairākos attēlos
+no datu kopas, tādējādi izvērtējot algoritmus pēc to mērķa pielietojuma.
+Tātad izvirzītās īpašības ir:
+\begin{itemize}
+	\item \emph{pozīcijas} un \emph{rotācijas invariance} --- spēja atlasīt
+		raksturpunktus neatkarīgi no to koordinātēm un rotācijas attēlā;
+	\item \emph{intensitātes nobīdes invariance} --- spēja atlasīt
+		raksturpunktus neatkarīgi no globālas intensitātes izmaiņas;
+	\item \emph{mēroga invariance} --- spēja atlasīt raksturpunktu
+		neatkarīgi no mēroga;
+	\item \emph{atkārtojamība}, kas apraksta izvēlēto punktu salāgojamību%
+			\footnote{Pārbaudot ar raksturpunktu salāgošanas algoritmu.}
+		vairākos attēlos no datu kopas, ko --- ne tik striktā terminoloģijā ---
+		var arī uzdot kā ,,invarianci laikā'', ja datu kopas attēli ir
+		uzņemti secīgi.
+	\item \emph{trokšņu noturība} --- spēja atlasīt kvalitatīvus%
+			\footnote{Spriežot pēc atkārtojamības rādītāja.}
+		raksturpunktus attēlā (iespējami) neatkarīgi no ,,trokšņa'' līmeņa attēlā;
+\end{itemize}
+
+No uzskaitītajiem algoritmiem FAST stūru detektors ir
+visātrākais~\cite{Rosten-tracking}\cite{FAST} izpildei uz CPU un
+tas uzrāda līdzīgus vai labākus atkārtojamības rādītājus~\cite{FAST},
+pretstatā citiem salīdzinātajiem stūru detektoriem. Iepriekšējā apakšnodaļā
+izvēlētais raksturpunktu salāgošanas algoritms ORB par raksturpunktu atlases
+komponenti izmanto FAST modifikāciju, kas izmaina raksturpunktu
+%FIXME: Nav izskaidrota lokālo maksimumu noteikšanas (non-max suppression)
+lokālo maksimumu noteikšanas metodi un pievieno ,,stūra virziena''
+noteikšanu, kas nepieciešama rBRIEF rotācijas invariances nodrošināšanai~%
+\cite{ORB}. Šo modifikāciju Rublē~u.c.\cite{ORB}
+(\termEn{Rublee}~\termLatin{et~al.}) nodēvē par oFAST (\termEn{oriented FAST}).
+%TODO: Apraksts un reference
+%TODO: Pārbaudīt vai oFAST modifikācija neizmaina ātrdarbību un 
+%      "atkārtojamības" rādītājus
+Gan oFAST, gan nemodificēts FAST ir izvēlēts turpmākai 
+to algoritmu implementāciju salīdzināšanai.
+% TODO: Forward ref
+
+Jāpiemin gan, ka FAST trokšņa noturība%
+	\footnote{Pārbaudot mākslīgi pievienojot attēlam Gausāna troksni.}
+atpaliek no DoG~(SIFT) un SUSAN, bet ir līdzvērtīga ar citiem
+salīdzinātajiem detektoriem (t.sk.,~\termEn{Harris})~\cite{FAST}.
+Autorprāt, FAST trokšņa noturība ir adekvāta, bet norāda, ka augsta signāla
+trokšņa gadījumā, DoG vai SUSAN varētu būt labāka izvēle.
+
+%TODO?: Smalkāk aprakstīt stūru/raksturpunktu detektoru darbību?
