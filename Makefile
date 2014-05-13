@@ -50,4 +50,4 @@ ifneq ($(PDFTK),)
 endif
 
 $(filter %.tbl_tex,$(TABLES)):%.tbl_tex: tables/$$(basename $$(subst -,.,$$*)).gnumeric
-	ssconvert -T Gnumeric_stf:stf_assistant -O 'sheet=$(subst .,,$(suffix $(subst -,.,$*))) quoting-mode=never separator=& format=preserve' $< fd://1 | sed -r -e '/^\&*$$/!s/$$/\\\\/' -e 's/^\&*$$/\\midrule/' -e 's/\&/ \& /g' > $@
+	ssconvert -T Gnumeric_stf:stf_assistant -O 'sheet=$(subst .,,$(suffix $(subst -,.,$*))) quoting-mode=never separator=& format=preserve' $< fd://1 | sed -r -e '/^\&*$$/!s/\&*$$/\\\\/' -e 's/^\&*$$/\\midrule/' -e 's/\&/ \& /g' > $@
