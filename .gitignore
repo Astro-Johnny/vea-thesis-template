@@ -10,3 +10,6 @@
 # Image temp files
 img/*.tmp.pdf
 img/*.pdf_tex
+
+# Table temp files
+/*.tbl_tex

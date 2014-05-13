@@ -2,6 +2,10 @@
 \documentclass[magjistrs]{vea-diplomdarbs}
 \usepackage{setspace}	% Line spacing package
 \usepackage{calc}
+\usepackage{booktabs}
+
+\usepackage[title,toc]{appendix}
+\renewcommand{\setthesubsection}{\Alph{subsection}}
 
 %% Use proper Aurora Bold Condensed BT
 \definecolor{SeaBlue}{cmyk}{1,0,0.37,0.52}
@@ -78,4 +82,6 @@
 	%% Literatūras saraksts
 	\clearpage\input{references.tex}
 	
+	%% Pielikumi
+	\clearpage\input{appendices.tex}
 \end{document}

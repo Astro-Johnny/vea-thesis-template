@@ -1,0 +1,51 @@
+\subsection{Eksperimenta protokols: FAST implementāciju salīdzinājums}\label{appx:test1}
+Eksperimenta mērķis ir salīdzināt
+eksistējošo FAST algoritma implementāciju ātrdarbību CPU platformai, 
+dodot iespēju izvērtēt implementācijas detaļas vadoties 
+pēc kvantitatīva rādītāja. Iegūtie rezultāti arī uzstāda ātrdarbības 
+,,etalonu'' GPU un FPGA platformu implementācijām.
+
+Eksperiments tika veikts uz vairākiem datoriem, kuru aprīkojums norādīts
+\ref{tbl:test1-dev}~tabulā. Izmantotie datori nosedz vairākas procesoru
+sēriju paaudzes, kā arī reprezentē dažādas veiktspējas ,,spektra'' daļas.
+\begin{table}[hb]\footnotesize
+	\centering
+	\caption{Izmantotās iekārtas (datori).}
+	\label{tbl:test1-dev}
+	\vspace{4pt}
+	\begin{tabular}{cllll}
+		\toprule
+		\textbf{Nr.} & \textbf{Procesors} & \textbf{Takts frekvence} & 
+			\textbf{Operētājsistēma} & \textbf{Arhitektūra}\\
+		\midrule
+		I & AMD Phenom 9950 & 2.60 GHz & Linux 3.10.7 (Gentoo) & \texttt{x86\_64}\\
+		II & Intel Pentium M 740 & 1.73 GHz & Linux 3.10.17 (Gentoo) & \texttt{x86}\\
+		III & Intel Core i5-2430M & 2.40 GHz & Windows 7 (+cygwin) & \texttt{x86\_64}\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[hb]\small
+	\centering
+	\caption{Ātrdarbības rezultāti.}
+	\label{tbl:test1-data}
+	\vspace{4pt}
+	\begin{tabular}{clcccr}
+		\toprule
+		\input{results1-t1.tbl_tex}
+		\bottomrule
+	\end{tabular}
+\end{table}
+\footnotetext{Kadri sekundē (angļu \termEn{frames per second}).}
+
+Par ieejas datiem tika izmantota ,,\termEn{bas-relief}'' attēlu kopa%
+	\footnote{Pieejama no \url{http://www.edwardrosten.com/work/junk.tar}},
+kuru ātrdarbības pārbaudēm izmantoja arī Rostens~un~Dramonds\cite{FAST}.
+Uzstādītais jutības slieksnis $t$ visos testos bija 25, un katra 
+attēla, iekārtas un implementācijas testa permutācija tika atkārtota 10 reizes.
+Lielā datu apjoma dēļ (600 ieraksti) visa kopa netiek atspoguļota. Datu
+apkopojums redzams \ref{tbl:test1-data}~tabulā, kur ,,Vid.~max'' kolonna
+atspoguļo augstāko vērtību no kopas attēlu vidējiem rādītājiem
+(t.i., ,,grūtākā'' kopas attēla vidējais apstrādes laiks 10 mērījumos).
+,,Min'' un ,,Max'' kolonnas atspoguļo attiecīgi absolūto minimumu un absolūto
+maksimumu no (80) uzņemto mērījumu sērijas. \TODO
