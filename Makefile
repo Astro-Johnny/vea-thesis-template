@@ -7,10 +7,12 @@ PDFTK = $(shell which pdftk)
 
 # OUTPUT
 NAME = masters
-SUBPARTS = ievads.tex references.tex \
+SUBPARTS = abstracts.tex ievads.tex conclusions.tex references.tex \
 titullapa.tex \
 processors.tex processors.cpu.tex processors.gpu.tex processors.fpga.tex \
 algorithms.tex algorithms.matching.tex \
+fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex \
+rbrief.tex \
 appendices.tex appx.test1.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
 orb-match.png FPGA-arch.pdf_tex

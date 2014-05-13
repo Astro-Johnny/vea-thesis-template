@@ -3,6 +3,7 @@
 \usepackage{setspace}	% Line spacing package
 \usepackage{calc}
 \usepackage{booktabs}
+\usepackage{tabularx}
 
 \usepackage[title,toc]{appendix}
 \renewcommand{\setthesubsection}{\Alph{subsection}}
@@ -16,6 +17,9 @@
 	]{aurora-BT-condensed-bold}
 
 \setotherlanguages{english,russian}
+
+% Russian Font
+\newfontfamily\cyrillicfont{CMU Serif}	% Unicode Computer modern font
 
 \newcommand{\TODO}{\textcolor{red}{TODO}}
 
@@ -33,6 +37,13 @@
 \newcommand{\nd}{\textsuperscript{nd} }
 \newcommand{\rd}{\textsuperscript{rd} }
 \newcommand{\nth}{\textsuperscript{th} }
+
+%% Abstract title style
+\newcommand{\abstitlestyle}[1]{%
+	\noindent \begin{center}
+		\textbf{\Large #1}
+	\end{center}}
+
 
 \hyphenpenalty=7500
 \clubpenalty=9000
@@ -57,27 +68,26 @@
 	\tableofcontents\clearpage
 	\sloppy % Don't be too fussy about line formatting
 	
-	%% TODO: Abstracts
-	%\input{abstract.tex}
+	% Anotācijas
+	\input{abstracts.tex}
 	
 	%% Termini
 		%% kešatmiņa
 	
 	%% Ievads
-	%\clearpage
+	\clearpage
 	\pagestyle{plain} % Start the proper page numbering
 	\input{ievads.tex}
 	
 	
-	%% Teorija
+	%% Teorija un praktiskā daļa
 	\clearpage\input{processors.tex} % CPU/GPU/FPGA
 	\clearpage\input{algorithms.tex}
-	% TODO: Video apstrādes algoritmi
+	\clearpage\input{fast.tex}
+	\clearpage\input{rbrief.tex}
 	
-	
-	%% Praktiskā daļa
-	% TODO
-	
+	%% Secinājumi
+	\clearpage\input{conclusions.tex}
 	
 	%% Literatūras saraksts
 	\clearpage\input{references.tex}
