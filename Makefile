@@ -9,11 +9,11 @@ PDFTK = $(shell which pdftk)
 NAME = masters
 SUBPARTS = ievads.tex references.tex \
 titullapa.tex \
-processors.tex processors.cpu.tex processors.gpu.tex \
+processors.tex processors.cpu.tex processors.gpu.tex processors.fpga.tex \
 algorithms.tex algorithms.matching.tex \
 appendices.tex appx.test1.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
-orb-match.png
+orb-match.png FPGA-arch.pdf_tex
 TABLES = results1-t1.tbl_tex
 
 # First target (here - 'default') gets invoked if make is run with no target

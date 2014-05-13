@@ -1,0 +1,45 @@
+\subsection{FPGA} \label{sec:fpga}
+FPGA (angļu \termEn{field-programmable gate array}) jeb
+pārprogrammējams loģisko elementu masīvs ir integrētā shēma, kura sastāv no
+liela skaita programmējamiem loģiskajiem blokiem. Šie bloki ir pārprogrammējami
+izmantojot aparatūras apraksta valodas (HDL) un ražotāja programmatūru,
+ļaujot lietotājam ar FPGA realizēt vēlamo funkcionalitāti.
+FPGA loģisko bloku un starpsavienojumu tīkla (\termEn{the interconnect})
+uzbūve, loģisko bloku un citu resursu skaits ir ražotāja un
+FPGA modeļa specifiska.\cite{JIS}
+
+FPGA, kā skaitļošanas resurss, ir unikāls ar to, ka tā arhitektūras definēšana
+ir ļoti elastīga un, vairumā gadījumu, arhitektūru pielāgo veicamajam
+uzdevumam vai algoritmam, nevis otrādi, kā iepriekš apskatītajiem CPU un GPU.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/FPGA-arch.pdf_tex}}
+	\caption{Fiksēta signāltrakta arhitektūra.}
+	\label{fig:fpga-arch}
+\end{figure}
+Autorprāt, efektīvs un visai intuitīvs arhitektūras uzbūves modelis ir
+fiksēta signāltrakta modelis. Kā ilustrēts \ref{fig:fpga-arch}~attēlā, šādā
+modelī datu vienība --- tipiski, matrica vai vektors --- tiek virzīta caur
+signāltraktam, kur tā tiek transformēta lai iegūtu rezultātu. Atšķirībā no
+CPU un GPU, kur skaitļošanas algoritmus realizē ar secīgu instrukciju izpildi
+starprezultātus no ALU (aritmētiski loģiskās ierīces)
+atgriežot uzglabāšanai koplietojamos reģistros vai RAM,
+FPGA, pēc signāltrakta modeļa, RAM vai koplietojamie reģistri nav
+nepieciešami, jo starprezultāti tiek nākamajām pakāpēm nodoti tieši.
+Šādi tiek efektīvi izmantoti FPGA resursi un sekmēta ātrdarbība.
+%~ Nav nepieciešams dekodēt instrukcijas...
+
+Pēc CPU analoģijas, var uzskatīt, ka šādā modelī FPGA, veic vienu
+īpaši augstas kompleksitātes instrukciju kura tiek izpildīta noteikta,
+iespējams mainīga, skaita takts ciklu laikā.
+
+Ja ir pieejami FPGA resursi, tad var iegūt datu paralelitāti replicējot 
+vairākus paralēlus signāltraktus, palielinot datu caurlaides spēju. Kā arī, ja ir
+jāapstrādā datu straume, ievērojamu datu caurlaides spējas uzlabojumu var
+iegūt ar ,,konveijera principu'' --- virzot jaunu datu vienību
+signāltrakta pakāpē pirms iepriekšējā datu vienība ir šķērsojusi visu
+signāltraktu, tādējādi signāltraktā, dažādās pakāpēs, vienlaikus
+var atrasties vairākas datu vienības, līdzīgi CPU instrukciju ,,konveijeram''
+(\termEn{instruction pipeline})~\cite{Flynn-arch}.
