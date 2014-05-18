@@ -6,7 +6,7 @@ izmantojot aparatūras apraksta valodas (HDL) un ražotāja programmatūru,
 ļaujot lietotājam ar FPGA realizēt vēlamo funkcionalitāti.
 FPGA loģisko bloku un starpsavienojumu tīkla (\termEn{the interconnect})
 uzbūve, loģisko bloku un citu resursu skaits ir ražotāja un
-FPGA modeļa specifiska.\cite{JIS}
+FPGA modeļa specifiska. \cite{JIS}
 
 FPGA, kā skaitļošanas resurss, ir unikāls ar to, ka tā arhitektūras definēšana
 ir ļoti elastīga un, vairumā gadījumu, arhitektūru pielāgo veicamajam
@@ -43,3 +43,30 @@ signāltrakta pakāpē pirms iepriekšējā datu vienība ir šķērsojusi visu
 signāltraktu, tādējādi signāltraktā, dažādās pakāpēs, vienlaikus
 var atrasties vairākas datu vienības, līdzīgi CPU instrukciju ,,konveijeram''
 (\termEn{instruction pipeline})~\cite{Flynn-arch}.
+
+Papildus apsvērums realizācijai ir gadījumi, kad viena neatkarīgā datu vienība
+--- ar ko saprot datu kopu, kuras apstrādei nav ārēju atkarību --- ir
+ļoti liela, piem.,~vesels attēls (pikseļu kopa).
+% TODO: Piemērs no praktiskā darba -- atgūt patchu pēc keypoint apstiprinājuma
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/FPGA-arch2.pdf_tex}}
+	\caption{Modificēta signāltrakta arhitektūra ar atliktu datu ielasi.}
+	\label{fig:fpga-arch2}
+\end{figure}
+Šo situāciju var risināt apstrādājot datus pa daļām, ja konkrētai pakāpei
+nepieciešama tikai datu vienības apakškopa. Veiktspējas palielināšanai datu
+kopu vēlams glabāt lokālā atmiņā, kam noder FPGA specializētie atmiņas
+resursi (RAM bloki). Šāda arhitektūras modifikācija ilustrēta
+\ref{fig:fpga-arch2}~attēlā.
+
+Atliktā datu ielase ir īpaši izdevīga, ja
+atliktā datu daļa nav nepieciešama vienmēr, t.i.,~tās nepieciešamība
+atkarīga no iepriekšējās pakāpes rezultāta.
+Šajā darbā praktiskais piemērs ir, kur raksturpunkta \termTech{deskriptors}
+jānosaka tikai attēla apgabaliem, kam nepieciešami vairāk datu, nekā pakāpei,
+kura nosaka atbilstību raksturpunkta kritērijiem.
+%TODO: Forward ref
+
+

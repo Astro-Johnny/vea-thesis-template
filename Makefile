@@ -15,7 +15,7 @@ fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex \
 rbrief.tex \
 appendices.tex appx.test1.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
-orb-match.png FPGA-arch.pdf_tex
+orb-match.png FPGA-arch.pdf_tex FPGA-arch2.pdf_tex
 TABLES = results1-t1.tbl_tex
 
 # First target (here - 'default') gets invoked if make is run with no target
