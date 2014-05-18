@@ -1,0 +1,116 @@
+\subsection{Salīdzinājums} \label{sec:proc-cmp}
+CPU, GPU un FPGA salīdzinājums nav vienkāršs, jo šīs platformas ir ļoti
+atšķirīgas, gan uzbūves, gan pielietojuma, gan programmēšanas stila ziņā.
+Ievērojamas arhitekturālas atšķirības arī ir novērojamas konkrētās
+platformas tipa ietvaros, piem.,~dažādu arhitektūru un paaudzes CPU.
+
+Autors secina, ka nozīmīgs šo platformu tipu salīdzinājums ir to
+raksturojošo īpašību kvalitatīva analīze nosakot to priekšrocības vai
+trūkumus un to iespaidu uz algoritmu realizāciju. Savukārt to
+kvantitatīvie rādītāji, kā piemēram, takts frekvence vai operācijas sekundē
+(IPS vai FLOPS), ir tikai nozīmīgas salīdzināšanai viena tipa platformas,
+bet ir nederīgi salīdzinot dažādus platformas tipus, vai pat salīdzinot viena tipa
+platformas, ja netiek ņemta vērā veicamā uzdevuma specifika.
+
+Apakšnodaļas turpinājumā tiks izvirzītas konkrētas platformu īpašības un
+platformu tipi salīdzināti šīs īpašības kontekstā.
+
+\subsubsection*{Skaitļošanas pamatelementi un darbības}
+\emph{CPU} galvenie skaitļošanas pamatelementi ir veselie skaitļi jeb
+\termEn{\emph{integer}} tips. Praktiski vienmēr aparatūrā tiek realizētas
+bitu operācijas, saskaitīšana un atņemšana.
+Reizināšana un dalīšana tiek realizēta retāk. Augstākas veiktspējas CPU,
+tiek arī realizētas \emph{peldošā komata skaitļu} (\termEn{floating-point})
+aritmētika, kā arī realizētas \emph{SIMD instrukcijas},
+kas ļauj veikt darbības ar skaitļu vektoriem.
+\cite{Flynn-arch}\cite{Patterson}\cite{SIMD}
+
+\emph{GPU} veiktspējas pamatā ir SIMD darbības ar \emph{peldošā komata
+skaitļu vektoriem}, bet dubultprecizitātes (\termEn{double-precision})
+peldošā komata skaitļu atbalsts ir ierobežots vai neeksistējošs.
+\termTech{Integer} tipa skaitļu aritmētikai ir atbalsts, bet tās veiktspēja
+var būt ierobežota.
+\cite{Fatahalian}\cite{Owens-GPU}
+
+\emph{FPGA} uzbūves pamatā ir \emph{bits}, no kura var tik konstruēti
+patvaļīga garuma (t.i.,~ne obligāti $2^n \cdot 8$ bitu garuma) reģistri
+\termTech{integer} skaitļiem. Veicamās operācijas arī definējamas ar FPGA
+programmējumu~\cite{JIS}, un tādējādi tās var būt sākot no pamata aritmētiskajām darbībām
+līdz pat ļoti specializētām vai ezotēriskām operācijām. Realizējot FPGA
+iepriekš \ref{sec:fpga}~nodaļā aprakstīto signāltrakta modeli, atsevišķu
+operāciju izdalīšana ir apgrūtināta un par operāciju var uzskatīt pat visu
+realizēto algoritmu. FPGA arī nodrošina \emph{paralelitāti} līdzīgi SIMD, ja
+veicamā operācija tiek veikta vairākiem elementiem vienlaikus.
+Peldošā komata skaitļu atbalsts ir iespējams, bet izmanto ievērojami vairāk
+resursu~\cite{FPGA-fp}.
+
+\subsubsection*{Operāciju izpildes paradigma}
+\emph{CPU} pamatā ir viena pavediena secīgas izpildes ātrdarbības
+palielināšana~\cite{Owens-GPU}.
+Nosacījuma zarošanās ir tipiska operācija~\cite{Flynn-arch}\cite{Patterson},
+kuras izpildei nav īpaši apsvērumi.
+Šāda paradigma ir piemērota \emph{secīgos algoritmos},
+piem.,~datu parsēšanas algoritmos un vadības programmās,
+kur izpildes rezultāti un/vai veicamās operācijas ir atkarīgas
+no iepriekšējo soļu rezultātiem. Nozīmīga CPU priekšrocība ir arī tā spēja
+izpildīt jebkuru algoritmu, kuru spēj izpildīt GPU vai FPGA, bet ar
+ierobežotu ātrdarbību, jo, vairumā gadījumu, tiek zaudēta paralelitāte%
+\footnote{Pieejamās SIMD instrukcijas nodrošina
+	ierobežotu paralelitāti (salīdzinājumā ar GPU un FPGA).}.
+
+\emph{GPU} pamatā ir vienas programmas operāciju veikšana \emph{paralēli}
+lielam apjomam
+datu elementu~\cite{Fatahalian}\cite{Owens-GPU}.
+Lai sekmētu ātrdarbību GPU iespējami izmanto SIMD darbības,
+kā arī straumes procesori ir apvienoti grupās kuri koplieto instrukciju
+(programmas) atmiņu. Tas uzliek ierobežojumu uz nosacījuma zarošanos ---
+tai jābūt koherentai visai datu kopai procesoru grupas ietvaros. Pretējā
+gadījumā GPU ir spiests izpildīt abus (vai visus) secības variantus~\cite{Owens-GPU}.
+Tādējādi GPU ir piemēroti algoritmi kuru operācijas nav atkarīgas no datiem,
+kā arī datiem nav savstarpējās sakarības, t.i.,~tos var apstrādāt atsevišķi
+un paralēli.
+
+\emph{FPGA} nepiemīt izpildes paradigma --- to definē tā programmējums.
+Tomēr, datu caurlaidspējas palielināšanai,
+datu un/vai uzdevumu paralelitāte ir būtisks apsvērums
+FPGA programmējuma izstrādē.
+
+\subsubsection*{Atmiņas un komunikācijas saskarnes}
+Platformas skaitļošanas jauda ir nebūtiska, ja to nevar nodrošināt ar datiem.
+Atmiņas apakšsistēmai jābūt pietiekami ātrai, lai nodrošinātu datu plūsmu.
+Heterogēnās sistēmās (sk.~\ref{sec:heterogenous}~nod.), kā, piemēram,
+datorsistēmās ar CPU un GPU, ir būtiska arī komunikācijas saskarne datu
+apmaiņai starp šīm platformām. Šādām sistēmām realizējot algoritmus,
+lai efektīvi izmantotu skaitļošanas resursus, cenšas samazināt pārraidāmo
+datu apjomu, vai pat izmanto datu kompresiju.
+\cite{ACDA}\cite{OpenCL-book}
+
+\subsubsection*{Programmēšanas rīki un valodas}
+Programmēšanas valodas ir attīstītas uz \emph{CPU} platformas pamata un
+ir pieejamās programmēšanas valodas, bibliotēkas un rīki ir ļoti lielā
+skaitā. Valodu konstrukcijas lielā mērā atspoguļo CPU secīgo instrukciju
+izpildi. Autors izstrādes laikā CPU programmēšanai izvēlējās C un C++
+programmēšanas valodas.
+
+\emph{GPU} programmēšana vispārējus skaitļošanas uzdevumiem (GPGPU) ir jauna
+tādēļ programmēšanas rīki GPU platformai ir ierobežoti. GPU gan nekad netiek
+izmantots neatkarīgi, tādēļ GPGPU pamatā ir programmēšanas saskarne
+kas dod pieeju GPU resursiem, bet programmas vadība ir CPU pārziņā.
+Eksistē divas populāras GPU programmēšanas vides: \emph{OpenCL} un
+Nvidia~\emph{CUDA}. CUDA pamatā ir C un C++ paplašinājumi un bibliotēkas,
+kur ar speciālu kompilatoru var sagatavot lietojumprogrammu, kas izmanto
+GPU resursus. Savukārt OpenCL definē programmēšanas valodu --- līdzīgu C ---
+kuras pirmkods tiek kompilēts izpildes laikā (\termEn{Just-in-time} kompilācija)
+izmantojot ražotāja piedāvātu rīku kopu ar OpenCL atbalsu.
+\cite{Fatahalian}\cite{Owens-GPU}\cite{OpenCL-book}\cite{CUDA}
+
+\emph{FPGA} programmējums tiek sagatavots izmantojot \emph{VHDL} vai
+\emph{Verilog} aparatūras apraksta valodas, kas līdzinās programmēšanas
+valodām, bet tās konstrukcijas atspoguļo FPGA uzbūvi, t.sk.,~operāciju
+izpildes paralelitāti~\cite{JIS}.
+Eksistē arī grafiskās vides, kur aparatūras aprakstu
+var izstrādāt shematiski līdzīgi elektronisko shēmu sagatavošanai.
+Aparatūras aprakstu kods tiek pārveidots programmējumā izmantojot
+ražotāja sintēzes rīku~\cite{JIS}. Jauna tendence ir arī izmantot FPGA
+heterogēnās sistēmās un to programmēt augstākā abstrakcijas līmenī ar
+OpenCL~\cite{FPGA-ocl}.

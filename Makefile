@@ -10,7 +10,7 @@ NAME = masters
 SUBPARTS = abstracts.tex ievads.tex conclusions.tex references.tex \
 titullapa.tex \
 processors.tex processors.cpu.tex processors.gpu.tex processors.fpga.tex \
-processors.hetero.tex \
+processors.hetero.tex processors.comparison.tex \
 algorithms.tex algorithms.matching.tex \
 fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex \
 rbrief.tex \
