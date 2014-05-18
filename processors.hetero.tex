@@ -1,0 +1,35 @@
+\subsection{Heterogēnas sistēmas} \label{sec:heterogenous}
+Par heterogēnu sistēmu sauc sistēmu, uz kuras ir pieejamas vairākas
+skaitļošanas ierīces. Vistipiskākā heterogēnā sistēma uz CPU pamata ar
+GPGPU spējīgu video adapteri (ar GPU), kam atbilst vairums datoru, kas
+ražoti kopš 2010.~gada.
+GPU šajā kontekstā vienmēr var uzskatīt par ,,palīgprocesoru'',
+jo šī platforma nevar funkcionēt autonomi, pretstatā CPU un FPGA.
+
+Retāk kombinē CPU un FPGA vienā sistēmā, kas vairumā gadījumu realizēta,
+datoram pieslēdzot perifērijas karti ar FPGA pie kādas no datora
+pamatplates perifērijas saskarnēm, visbiežāk --- pie PCI Express
+saskarnes. OpenCL ir arī radījis pirmo standartizēto programmēšanas
+saskarni CPU un FPGA kombinācijai. %TODO: Citation needed!
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.4}
+	{\input{img/full-hetero-system.pdf_tex}}
+	\caption{,,Pilnas'' heterogēnas sistēmas modelis.}
+	\label{fig:hetero-sys}
+\end{figure}
+
+Protams, ir iespējama arī visu trīs platformu kombinācija vienā sistēmā, kā
+shematiski ilustrēts \ref{fig:hetero-sys}~attēlā. Arī CPU procesors var
+būt (un bieži ir) vairāku kodolu procesors, veidojot augstas paralelitātes
+sistēmu ar ļoti augstu potenciālo skaitļošanas jaudu.
+
+Programmējot heterogēnas sistēmas ir iespējams dalīt algoritmu daļās
+izpildei dažādās platformās. Tomēr jāņem vērā, ka datu pārraide starp
+platformām ir būtisks ātrdarbības ierobežojums, jo starpplatformu 
+datu pārraides ātrums, praktiski vienmēr, ir ievērojami zemāks nekā
+platformu skaitļošanas ātrums.
+
+
+% TODO?: Nodaļa vai apakšnodaļa par OpenCL?
