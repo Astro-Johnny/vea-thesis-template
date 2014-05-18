@@ -16,7 +16,7 @@ fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex \
 rbrief.tex \
 appendices.tex appx.test1.tex appx.test3.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
-orb-match.png FPGA-arch.pdf_tex FPGA-arch2.pdf_tex full-hetero-system.pdf_tex \
+orb-match.jpg FPGA-arch.pdf_tex FPGA-arch2.pdf_tex full-hetero-system.pdf_tex \
 chart-fpga.pdf
 TABLES = results1-t1.tbl_tex fpga_test-t1.tbl_tex
 
