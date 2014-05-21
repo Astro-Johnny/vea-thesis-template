@@ -1,2 +1,28 @@
 \subsubsection{OpenCV FAST impementācija} \label{sec:fast-ocv}
-\TODO
+OpenCV\footnote{\url{http://opencv.org/}} piedāvā alternatīvu FAST9 algoritma
+implementāciju (FAST ar citām $n$ vērtībām netiek implementētas).
+Tās pamatā ir segmenta tests ar papildinātu
+priekšpārbaudi\cite{Rosten-tracking}\cite{FAST}, kas var klasificēt vairumu
+gadījumu, kad punkts $\vec{p}$ nav ,,stūris''. Priekšpārbaudi iztur
+punkti kas ir ,,stūri'', jeb visi $\vec{p} \in F_9(\vb{A}, t)$,
+un noteikta apakškopa punktu, kuri neatbilst $F_9(\vb{A}, t)$ un kuru
+apkārtne ir ļoti specifiska un reālos attēlos ir statistiski reti.
+Neskatoties
+uz to, jebkuram punktam, kas iztur priekšpārbaudi, tiek veikts segmenta
+tests, lai nodrošinātu pilnīgu klasifikāciju.
+Var tikt veikts arī daļējs segmenta tests, jo priekšpārbaude var,
+vairumā gadījumu, papildus noteikt vai ir meklējams ,,tumšs'' segments, vai
+,,gaišs'' segments.
+
+Šāda implementācija, ,,skalāra~koda\footnote{Kods, kas neizmanto SIMD
+	instrukcijas, pretstatā ,,vektoriskam'' kodam.}''
+izpildījumā, dod nelielu uzlabojumu. OpenCV implementācijas galvenā
+priekšrocība ir SSE2 SIMD instrukciju izmantojums, kas ļauj vienlaikus
+apstrādāt 16 kandidātu punktus (pikseļus). Empīriski novērotais
+uzlabojums ir līdz 4 reizēm ātrāk (sk.~pielikumu~\ref{appx:test1})
+par neapmācītu mašīnmācāmo implementāciju.
+
+OpenCV arī piedāvā OpenCL FAST implementāciju izpildei GPU, bet tās
+ātrdarbība testos nepārsniedza CPU implementāciju ar CPU.
+
+%TODO: test2 ref

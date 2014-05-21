@@ -5,6 +5,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{amsmath}
+\usepackage{listings}
 
 \usepackage[title,toc]{appendix}
 \renewcommand{\setthesubsection}{\Alph{subsection}}
@@ -46,6 +47,18 @@
 		\textbf{\Large #1}
 	\end{center}}
 
+%% listings formateeshanas uzstaadiijumi
+%% Stili
+\lstset{%
+	numbers=left, numberstyle=\tiny, numbersep=5pt,
+	tabsize=4,%
+	frame=lines,framerule=0.5pt,%
+	belowcaptionskip=2ex,%
+	basicstyle=\footnotesize\ttfamily,%
+	lineskip=-0.5ex,
+	keywordstyle={\bfseries\color{blue}},%
+	commentstyle=\slshape\color{gray},
+	stringstyle=\color{orange}} % "listings" koda stils
 
 \hyphenpenalty=7500
 \clubpenalty=9000
@@ -69,6 +82,9 @@
 	\onehalfspacing % 1.5 spacing
 	\tableofcontents\clearpage
 	\sloppy % Don't be too fussy about line formatting
+	
+	%% Listings within section
+	\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
 	
 	% Anotācijas
 	\input{abstracts.tex}

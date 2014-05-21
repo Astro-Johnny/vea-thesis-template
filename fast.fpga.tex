@@ -1,2 +1,34 @@
 \subsubsection{FAST FPGA implementācijas modelis} \label{sec:fast-fpga}
+FAST potenciālās ātrdarbības salīdzināšanai FPGA platformai, autors
+izstrādājis savu implementācijas modeli. Pēc vairākiem uzbūves variantiem,
+%TODO?: Atmestie modeļi?
+autors par piemērotāko atzinis modeli, kas balstās atsevišķu apstrādes
+vienību izmantoto resursu samazināšanu, un caurlaidspējas palielināšanu
+instancējot lielu skaitu šo vienību.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{\linewidth}
+	{\small\input{img/fpga-model.pdf_tex}}
+	\caption{Vienkāršota uzbūves shēma viena punkta apstrādes vienībai.}
+	\label{fig:fast-fpga}
+\end{figure}
+
+Tā kā viena elementa --- punkta $\vec{p}$ piederības $F_9(\vb{A},t)$ ---
+noteikšanas latentums nav prioritāte, apstrādes vienība, kā ilustrēts
+\ref{fig:fast-fpga}~attēlā, resursu ekonomijas nolūkos, ir secīgas uzbūves.
+Salīdzināšana ar apkārtnes punktiem notiek secīgi, to intensitātes vērtības
+pārvietojot caur bīdes reģistru un ar skaitītājiem uzskaitot secīgu
+gaišo un tumšo loka punktu skaitu. Šāda FAST-9 apstrādes vienība vienu punktu
+var klasificēt $16+(n-1)$ jeb 24 takts ciklos, bet papildus takts cikli
+var būt nepieciešami datu sagatavošanai.
+
+Katra FAST punkta apstrādes vienība tad var tikt instancēta un vairāki
+punkti klasificēti paralēli. Testiem tika izveidots
+,,attēlu apgabalu procesors'', kas vienlaikus apstrādāja $m \times m$ attēla
+apakškopu, kur ${(m-6)}^2$ punkta apstrādes instances klasificē attēla
+apakškopas punktus. Sintēzes rezultāti uzrādīja CPU līdzvērtīgu datu
+caurlaidspēju izmantojot tikai 18\% Virtex-6 resursu
+(sk.~pielikumu~\ref{appx:test3}).
+
 \TODO
