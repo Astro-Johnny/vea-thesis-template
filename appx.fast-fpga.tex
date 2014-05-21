@@ -1,0 +1,55 @@
+\subsection{FAST FPGA implementācijas pirmkoda izraksti}\label{appx:fast-fpga}
+\setcounter{lstlisting}{0} %Reset listings counter for the (sub)appendix
+\begin{singlespace}
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={Attēlu datu tipu VHDL pakotne (\texttt{bitmap\_lib.vhd}).},%
+	                 breaklines,breakatwhitespace,%
+	                 mathescape=true,%
+	                 label=kb:bitmap-lib]
+		{code/fast-vhdl/bitmap_lib.vhd}
+	
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={Asinhroni atiestatāma skaitītāja VHDL entītija (\texttt{fast.vhd}).},%
+	                 linerange={44-57},firstnumber=44,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:counter-entity]
+		{code/fast-vhdl/fast.vhd}
+	
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={Asinhroni atiestatāma skaitītāja VHDL arhitektūra (\texttt{fast.vhd}).},%
+	                 linerange={203-212},firstnumber=203,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:counter-arch]
+		{code/fast-vhdl/fast.vhd}
+	
+	\pagebreak
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={FAST$n$ apstrādes vienības VHDL entītija (\texttt{fast.vhd}).},%
+	                 linerange={26-41},firstnumber=26,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:fast-unit-entity]
+		{code/fast-vhdl/fast.vhd}
+	
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={FAST9 apstrādes vienības VHDL arhitehtūra (\texttt{fast.vhd}).},%
+	                 linerange={139-201},firstnumber=139,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:fast-unit-arch]
+		{code/fast-vhdl/fast.vhd}
+	
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={FAST$n$ apgabalu apstrādes procesora VHDL entītija (\texttt{fast.vhd}).},%
+	                 linerange={8-23},firstnumber=8,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:chunkproc-entity]
+		{code/fast-vhdl/fast.vhd}
+	
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={FAST$n$ apgabalu apstrādes procesora VHDL arhitektūra (\texttt{fast.vhd}).},%
+	                 linerange={60-137},firstnumber=60,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:chunkproc-arch]
+		{code/fast-vhdl/fast.vhd}
+	
+	
+\end{singlespace}

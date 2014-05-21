@@ -57,8 +57,18 @@
 	basicstyle=\footnotesize\ttfamily,%
 	lineskip=-0.5ex,
 	keywordstyle={\bfseries\color{blue}},%
+	keywordstyle=[2]{\color{Brown}},%
+	keywordstyle=[3]{\color{OliveGreen}},%
+	keywordstyle=[4]{\color{TealBlue}},%
+	keywordstyle=[5]{\color{Sepia}},%
+	emphstyle={\color{Bittersweet}},%
+	emph={[3]{U8,image8_chunk,image8_line,image1_chunk,image1_line,S9}},% My global emphs
+	emphstyle={[3]\color{Green}},%
 	commentstyle=\slshape\color{gray},
 	stringstyle=\color{orange}} % "listings" koda stils
+%% listings definiicijas
+\input{vhdl_listing_def.tex}
+
 
 \hyphenpenalty=7500
 \clubpenalty=9000

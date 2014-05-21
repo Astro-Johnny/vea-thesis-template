@@ -1,0 +1,3 @@
+[submodule "code/fast-vhdl"]
+	path = code/fast-vhdl
+	url = ../fast-vhdl
