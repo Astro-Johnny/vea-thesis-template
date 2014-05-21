@@ -14,11 +14,11 @@ processors.hetero.tex processors.comparison.tex \
 algorithms.tex algorithms.matching.tex \
 fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex fast.comparison.tex \
 rbrief.tex \
-appendices.tex appx.test1.tex appx.test3.tex
+appendices.tex appx.test1.tex appx.test2.tex appx.test3.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
 orb-match.jpg FPGA-arch.pdf_tex FPGA-arch2.pdf_tex full-hetero-system.pdf_tex \
 chart-fpga.pdf chart-cpu.pdf nonmax-suppression.pdf_tex fpga-model.pdf_tex
-TABLES = results1-t1.tbl_tex fpga_test-t1.tbl_tex
+TABLES = results1-t1.tbl_tex fpga_test-t1.tbl_tex results2-t1.tbl_tex
 
 # First target (here - 'default') gets invoked if make is run with no target
 default: $(addprefix img/,$(IMAGES)) $(addprefix img/,$(filter %.pdf,$(TABLES))) $(filter %.tbl_tex,$(TABLES)) $(SUBPARTS)
