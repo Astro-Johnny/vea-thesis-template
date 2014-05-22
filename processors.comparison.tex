@@ -45,7 +45,7 @@ Peldošā komata skaitļu atbalsts ir iespējams, bet izmanto ievērojami vairā
 resursu~\cite{FPGA-fp}.
 
 \subsubsection*{Operāciju izpildes paradigma}
-\emph{CPU} pamatā ir viena pavediena secīgas izpildes ātrdarbības
+\emph{CPU} pamatā ir viena izpildes pavediena secīgas izpildes ātrdarbības
 palielināšana~\cite{Owens-GPU}.
 Nosacījuma zarošanās ir tipiska operācija~\cite{Flynn-arch}\cite{Patterson},
 kuras izpildei nav īpaši apsvērumi.
@@ -56,7 +56,7 @@ no iepriekšējo soļu rezultātiem. Nozīmīga CPU priekšrocība ir arī tā s
 izpildīt jebkuru algoritmu, kuru spēj izpildīt GPU vai FPGA, bet ar
 ierobežotu ātrdarbību, jo, vairumā gadījumu, tiek zaudēta paralelitāte%
 \footnote{Pieejamās SIMD instrukcijas nodrošina
-	ierobežotu paralelitāti (salīdzinājumā ar GPU un FPGA).}.
+	ierobežotu (salīdzinājumā ar GPU un FPGA) paralelitāti.}.
 
 \emph{GPU} pamatā ir vienas programmas operāciju veikšana \emph{paralēli}
 lielam apjomam
@@ -86,10 +86,10 @@ datu apjomu, vai pat izmanto datu kompresiju.
 \cite{ACDA}\cite{OpenCL-book}
 
 \subsubsection*{Programmēšanas rīki un valodas}
-Programmēšanas valodas ir attīstītas uz \emph{CPU} platformas pamata un
-ir pieejamās programmēšanas valodas, bibliotēkas un rīki ir ļoti lielā
+Vairums programmēšanas valodu ir attīstītas uz \emph{CPU} platformas pamata un
+pieejamās programmēšanas valodas, bibliotēkas un rīki ir ļoti lielā
 skaitā. Valodu konstrukcijas lielā mērā atspoguļo CPU secīgo instrukciju
-izpildi. Autors izstrādes laikā CPU programmēšanai izvēlējās C un C++
+izpildi. Autors, CPU programmēšanai izstrādes laikā, izvēlējās C un C++
 programmēšanas valodas.
 
 \emph{GPU} programmēšana vispārējus skaitļošanas uzdevumiem (GPGPU) ir jauna
