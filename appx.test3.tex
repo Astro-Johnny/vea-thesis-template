@@ -55,14 +55,16 @@ Pēc rezultātiem var novērot, ka $12 \times 12$ pikseļu gabala apstrāde pie
 aptuveni $400\units{MHz}$ takts frekvences sasniedz labākos iegūtos
 ātrdarbības rezultātus CPU platformai
 (atzīmēts \ref{fig:test3-data}~attēlā ar pārtrauktu, melnu līniju)
-izmantojot tikai ceturtdaļu FPGA resursu. Tomēr, lai gan FPGA resursu pietiek
-skaitļošanas veiktspējas palielināšanai, šī veiktspēja nav izmantojama, jo
-ātrdarbību ierobežo Virtex-6 ātrākās saskarnes (PCI~Express~v2.0~x8)
-caurlaidspēja: 20~Gbps (atzīmēts \ref{fig:test3-data}~attēlā ar pārtrauktu,
-sarkanu līniju). Var secināt, ka skaitļošanas kompleksitāte salīdzinājumā
-ar ieejas datu apjomu nav pietiekami liela, lai panāktu būtisku uzlabojumu
-pār CPU. Jānorāda, ka papildus skaitļošana būs nepieciešama raksturpunktu
-deskriptoru izveidei un salāgošanai, ko pievienojot ir sagaidāma lielāks
-ātrdarbības uzlabojums, jo CPU veiktspēja samazināsies papildus skaitļošanas
-dēļ, bet FPGA vēl ir pieejami resursi un papildus skaitļošanu varēs veikt
-paralēli FAST algoritmam.
+izmantojot tikai ceturtdaļu FPGA resursu.
+Gan FPGA resursi, gan datu maģistrāles caurlaidspēja\footnote{
+	Virtex-6 ātrākās saskarnes --- PCI~Express~v2.0~x8 caurlaidspēja
+	ir līdz 20~Gbps (2.5~GPix/s).}
+(atzīmēta \ref{fig:test3-data}~attēlā ar pārtrauktu, sarkanu līniju)
+ir pietiekama papildus veiktspējas palielināšanai, bet ņemot vērā mērķa
+pielietojumu --- raksturpunktu pāru salāgošanai tiešaistes video datu
+straumei --- augstāka veiktspēja nav nepieciešama.
+
+Jānorāda, ka papildus skaitļošana būs nepieciešama raksturpunktu
+deskriptoru izveidei un salāgošanai, kam izmantojami atlikušie FPGA resursi.
+Izmantojot konveijera tipa (\termEn{pipeline}) būtiski uzlabos relatīvo
+ātrdarbību pār CPU, jo CPU ir spiests veikt papildus skaitļošanu secīgi.
