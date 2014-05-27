@@ -29,6 +29,7 @@ objektīvas~\cite{Mokhtarian}\cite{FAST}. Autors par nozīmīgu un
 pietiekami kvantitatīvu īpašību atzīst 
 Rostena~un~Dramonda\cite{FAST}~(\termEn{Rosten~and~Drummond}) piedāvāto
 \newTerm{atkārtojamību}, kas novērtē punktu salāgojamību vairākos attēlos
+%TODO: Vai atkārtojamība ņem vērā punktu salāgojamību???
 no datu kopas, tādējādi izvērtējot algoritmus pēc to mērķa pielietojuma.
 Tātad izvirzītās īpašības ir:
 \begin{itemize}
@@ -53,21 +54,13 @@ visātrākais~\cite{Rosten-tracking}\cite{FAST} izpildei uz CPU un
 tas uzrāda līdzīgus vai labākus atkārtojamības rādītājus~\cite{FAST},
 pretstatā citiem salīdzinātajiem stūru detektoriem. Iepriekšējā apakšnodaļā
 izvēlētais raksturpunktu salāgošanas algoritms ORB par raksturpunktu atlases
-komponenti izmanto FAST modifikāciju, kas izmaina raksturpunktu
+komponenti izmanto FAST, kas arī izvēlēta
 %FIXME: Nav izskaidrota lokālo maksimumu noteikšanas (non-max suppression)
-lokālo maksimumu noteikšanas metodi un pievieno ,,stūra virziena''
-noteikšanu, kas nepieciešama rBRIEF rotācijas invariances nodrošināšanai~%
-\cite{ORB}. Šo modifikāciju Rublē~u.c.\cite{ORB}
-(\termEn{Rublee}~\termLatin{et~al.}) nodēvē par oFAST (\termEn{oriented FAST}).
-%TODO: Apraksts un reference
-%TODO: Pārbaudīt vai oFAST modifikācija neizmaina ātrdarbību un 
-%      "atkārtojamības" rādītājus
-Gan oFAST, gan nemodificēts FAST ir izvēlēts turpmākai 
-to algoritmu implementāciju salīdzināšanai.
-% TODO: Forward ref
+turpmākai to algoritmu implementāciju salīdzināšanai
+(sk.~\ref{sec:fast}~nod.).
 
 Jāpiemin gan, ka FAST trokšņa noturība%
-	\footnote{Pārbaudot mākslīgi pievienojot attēlam Gausāna troksni.}
+	\footnote{Pārbaudot mākslīgi pievienojot attēlam Gausa (\textit{Gauß}) troksni.}
 atpaliek no DoG~(SIFT) un SUSAN, bet ir līdzvērtīga ar citiem
 salīdzinātajiem detektoriem (t.sk.,~\termEn{Harris})~\cite{FAST}.
 Autorprāt, FAST trokšņa noturība ir adekvāta, bet norāda, ka augsta signāla
@@ -75,6 +68,6 @@ trokšņa gadījumā, DoG vai SUSAN varētu būt labāka izvēle.
 
 FAST, no iepriekšminētajām īpašībām, nepiemīt mēroga invariance, bet šo
 trūkumu var novērst apstrādājot vienu attēlu vairākos mērogos (mēroga piramīda).
-Šādu pieeju Rublē izmanto ORB algoritmā~\cite{ORB}.
+Šādu pieeju Rublē~u.c.\cite{ORB} (\termEn{Rublee~et~al.}) izmanto ORB algoritmā.
 
 %TODO?: Smalkāk aprakstīt stūru/raksturpunktu detektoru darbību?

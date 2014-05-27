@@ -20,15 +20,15 @@ noteikšanas latentums nav prioritāte, apstrādes vienība, kā ilustrēts
 Salīdzināšana ar apkārtnes punktiem notiek secīgi, to intensitātes vērtības
 pārvietojot caur bīdes reģistru un ar skaitītājiem uzskaitot secīgu
 gaišo un tumšo loka punktu skaitu. Šāda FAST-9 apstrādes vienība vienu punktu
-var klasificēt $16+(n-1)$ jeb 24 takts ciklos, bet papildus takts cikli
+var klasificēt $16+(n-1)=24$ takts ciklos, bet papildus takts cikli
 var būt nepieciešami datu sagatavošanai.
 
 Katra FAST punkta apstrādes vienība tad var tikt instancēta un vairāki
 punkti klasificēti paralēli. Testiem tika izveidots
-,,attēlu apgabalu procesors'', kas vienlaikus apstrādāja $m \times m$ attēla
-apakškopu, kur ${(m-6)}^2$ punkta apstrādes instances klasificē attēla
-apakškopas punktus. Sintēzes rezultāti uzrādīja CPU līdzvērtīgu datu
-caurlaidspēju izmantojot tikai 18\% Virtex-6 resursu
+,,attēlu apgabalu procesors'', kas vienlaikus apstrādā $w \times w$ attēla
+apakškopu, kur ${(w-6)}^2$ punkta apstrādes instances klasificē attēla
+apakškopas punktus. Sintēzes rezultāti uzrādīja CPU līdzvērtīgu ātrdarbību
+izmantojot tikai 18\% Virtex-6 resursu
 (sk.~pielikumu~\ref{appx:test3}).
 
 \TODO

@@ -33,7 +33,11 @@ Katrs no riņķa punktiem, kurus apzīmēsim ar $\vec{p}\to c$, kur $c \in [1; 1
 var būt vienā no trīs stāvokļiem:
 \begin{equation}\label{eq:fast}
 	\Spc := \left\{
-		\begin{array}{c} d\text{,}\\ s\text{,}\\ b\text{,} \end{array}
+		\begin{array}{c}
+			d\text{,}\quad\text{ja}\\
+			s\text{,}\quad\text{ja}\\
+			b\text{,}\quad\text{ja}
+		\end{array}
 		\begin{aligned}
 			           & \Ipc < \Ip-t \\
 			\Ip-t \leq & \Ipc \leq \Ip+t \\
@@ -84,7 +88,7 @@ neatbilst definīcijai.
 %\begin{singlespace}
 % NOTE: No Need for singlespace when floated!
 	\lstinputlisting[language={C++},float=thb,%
-	                 caption={,,Stūra'' punkta vērtēšanas funkcija (no CVD bibliotēkas).},%
+	                 caption={,,Stūra'' punkta vērtēšanas funkcija~\cite{FASTER-src}.},%
 	                 linerange={2915-2933},firstnumber=2915,%
 	                 breaklines,breakatwhitespace,%
 	                 label=kb:fast-score-cvd]
@@ -98,8 +102,8 @@ punkts joprojām atbilst ,,stūra'' kritērijam.
 
 Formāli, ja FAST klasifikāciju uzdodam kā funkciju $F_n(\vec{p}, t)$,
 kura ir patiesa, ja punkts $\vec{p}$ pie sliekšņa $t$ ir klasificējams
-kā ,,stūris'', tad vērtības funkciju varam uzdot kā:
-\begin{equation}
+kā ,,stūris'', tad vērtības funkciju varam definēt kā:
+\begin{equation}\label{eq:fast-response}
 	V(\vec{p}) := \left\{ \max{t} : F_n(\vec{p}, t) \right\}
 \end{equation}
 Funkcionāli ekvivalenta realizācija izmantota visās apskatītajās FAST
@@ -125,6 +129,7 @@ noteikts lokālais maksimums $3 \times 3$ pikseļu logā katram
 \phantomsection\label{sym:A}
 $\vec{p} \in F_n(\vb{A}, t)$, kur $\vb{A}$ ir viss attēls.
 Punkti, kuri nav lokālie maksimumi tiek atmesti no raksturpunktu kopas.
+Rezultējošo kopu apzīmēsim ar $\hat{F_n}(\vb{I}, t)$.
 
 FAST lokālo maksimumu atlasei tiek izmantoti divi varianti:
 \begin{itemize}
@@ -141,12 +146,8 @@ Pie tam, pat ja tā nav, tad pozīcijas nenoteiktības dēļ, raksturpunkti tik
 un tā ir uzskatāmi par nekvalitatīviem un ir nevēlami iekļaušanai
 raksturpunktu kopā.
 
-\subsection{oFAST modifikācija} \label{sec:ofast}
-\TODO
-
 \subsection{Implementāciju modeļi} \label{sec:fast-impl}
 \input{fast.original.tex}
 \input{fast.opencv.tex}
 \input{fast.fpga.tex}
 \input{fast.comparison.tex}
-%TODO?: Atmestie modeļi?
