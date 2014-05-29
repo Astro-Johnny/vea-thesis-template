@@ -12,7 +12,7 @@ kvantitatīvie rādītāji, kā piemēram, takts frekvence vai operācijas sekun
 bet ir nederīgi salīdzinot dažādus platformas tipus, vai pat salīdzinot viena tipa
 platformas, ja netiek ņemta vērā veicamā uzdevuma specifika.
 
-Apakšnodaļas turpinājumā tiks izvirzītas konkrētas platformu īpašības un
+Nodaļas izklāsta turpinājumā tiks izvirzītas konkrētas platformu īpašības un
 platformu tipi salīdzināti šīs īpašības kontekstā.
 
 \subsubsection*{Skaitļošanas pamatelementi un darbības}
@@ -66,7 +66,7 @@ kā arī straumes procesori ir apvienoti grupās kuri koplieto instrukciju
 (programmas) atmiņu. Tas uzliek ierobežojumu uz nosacījuma zarošanos ---
 tai jābūt koherentai visai datu kopai procesoru grupas ietvaros. Pretējā
 gadījumā GPU ir spiests izpildīt abus (vai visus) secības variantus~\cite{Owens-GPU}.
-Tādējādi GPU ir piemēroti algoritmi kuru operācijas nav atkarīgas no datiem,
+Tādējādi GPU platformai ir piemēroti algoritmi kuru operācijas nav atkarīgas no datiem,
 kā arī datiem nav savstarpējās sakarības, t.i.,~tos var apstrādāt atsevišķi
 un paralēli.
 
@@ -93,10 +93,11 @@ izpildi. Autors, CPU programmēšanai izstrādes laikā, izvēlējās C un C++
 programmēšanas valodas.
 
 \emph{GPU} programmēšana vispārējus skaitļošanas uzdevumiem (GPGPU) ir jauna
+tendence un izpētes nozare,
 tādēļ programmēšanas rīki GPU platformai ir ierobežoti. GPU gan nekad netiek
 izmantots neatkarīgi, tādēļ GPGPU pamatā ir programmēšanas saskarne
 kas dod pieeju GPU resursiem, bet programmas vadība ir CPU pārziņā.
-Eksistē divas populāras GPU programmēšanas vides: \emph{OpenCL} un
+Eksistē divas populāras GPGPU programmēšanas vides: \emph{OpenCL} un
 Nvidia~\emph{CUDA}. CUDA pamatā ir C un C++ paplašinājumi un bibliotēkas,
 kur ar speciālu kompilatoru var sagatavot lietojumprogrammu, kas izmanto
 GPU resursus. Savukārt OpenCL definē programmēšanas valodu --- līdzīgu C ---

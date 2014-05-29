@@ -4,8 +4,8 @@ implementāciju (FAST ar citām $n$ vērtībām netiek implementētas)~\cite{Ope
 Tās pamatā ir segmenta tests ar papildinātu
 priekšpārbaudi\cite{Rosten-tracking}\cite{FAST}, kas var klasificēt vairumu
 gadījumu, kad punkts $\vec{p}$ nav ,,stūris''. Priekšpārbaudi iztur
-punkti kas ir ,,stūri'', jeb visi $\vec{p} \in F_9(\vb{A}, t)$,
-un noteikta apakškopa punktu, kuri neatbilst $F_9(\vb{A}, t)$ un kuru
+punkti kas ir ,,stūri'', jeb visi $\vec{p} \in F_9(\vb{I}, t)$,
+un noteikta apakškopa punktu, kuri neatbilst $F_9(\vb{I}, t)$ un kuru
 apkārtne ir ļoti specifiska un reālos attēlos ir statistiski reti.
 Neskatoties
 uz to, jebkuram punktam, kas iztur priekšpārbaudi, tiek veikts segmenta
@@ -22,9 +22,36 @@ apstrādāt 16 kandidātu punktus (pikseļus). Empīriski novērotais
 uzlabojums ir līdz 4 reizēm ātrāk (sk.~pielikumu~\ref{appx:test1})
 par neapmācītu mašīnmācāmo implementāciju.
 
-\subsubsection*{OpenCL versija}
-OpenCV arī piedāvā OpenCL FAST implementāciju izpildei GPU, bet tās
-ātrdarbība testos nepārsniedza CPU implementāciju ar CPU
-(sk.~pielikumu~\ref{appx:test2}).
+%~ \subsubsection*{OpenCL versija}
+\subsubsection{OpenCV FAST impementācijas OpenCL versija}
+OpenCV piedāvā arī OpenCL FAST implementāciju izpildei GPU~\cite{OpenCV-src}.
+Atšķirībā no CPU versijas, OpenCL implementē pilnu segmenta testu bez
+priekšpārbaudes. Tas ir, galvenokārt, tādēļ, ka priekšpārbaudes loma ir
+īsākā laikā konstatēt, ka apskatāmais punkts nav stūris un turpmākās pārbaudes
+neveikt. Priekšpārbaude realizē zarošanos, kas degradē veiktspēju
+nekoherentas zarošanās gadījumā (sk.~\ref{sec:gpu}~un \ref{sec:proc-cmp}~nod.).
 
-\TODO
+Būtiska gan ir šīs implementācijas paralēlā darbība. Algoritms tiek
+izpildīts divos secīgos etapos (atspoguļojot FAST definīciju):
+\begin{enumerate}
+	\item \emph{punktu klasifikācija}, kas pārbauda vai
+		$\vec{p} \in F_9(\vb{I}; t)$, izveidojot izpildes pavedienu katram
+		attēla punktam $\vec{p}$;
+	\item \emph{lokālo maksimumu atlase}, kur atmetot raksturpunktus,
+		kuri nav maksimumi $3 \times 3$ pikseļu logā atlasa apakškopu
+		$\hat{F_9}(\vb{I}; t) \subseteq F_9(\vb{I}; t)$, izveidojot
+		izpildes pavedienam katram klasificētajam raksturpunktam
+		$\vec{p} \in F_9(\vb{I}; t)$.
+\end{enumerate}
+
+Interesanta implementācijas detaļa ir, ka lokālo maksimumu atlases solī
+visiem punktiem $3 \times 3$ logā tiek aprēķināts stūra mērs,
+nepārbaudot, vai tie ir klasificēti kā raksturpunkti iepriekšējā solī.
+Šī pārbaude nav obligāta, jo stūru mērs $V(\vec{p})$ punktiem,
+kas nav raksturpunkti ir vienmēr mazāks, un rezultāti ir identiski ar
+CPU implementācijas rezultātiem.
+
+GPU implementācijas ātrdarbība tika eksperimentāli salīdzināta ar CPU
+implementāciju, bet tās ātrdarbība nepārsniedza CPU implementāciju
+(sk.~pielikumu~\ref{appx:test2}).
+Salīdzinājums izvērsts \ref{sec:fast-compare}~nodaļā.

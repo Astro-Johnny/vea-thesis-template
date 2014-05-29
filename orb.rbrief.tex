@@ -1,0 +1,50 @@
+\subsubsection{rBRIEF deskriptors} \label{sec:rbrief-def}
+rBRIEF ir rotācijas invarianta modifikācija
+BRIEF deskriptoram (sk.~\ref{sec:brief}~nod.),
+kura tiek izmantota par salāgošanas komponenti ORB
+algoritmam. Idejas pamatā ir aprēķināt BRIEF deskriptoru izmantojot
+rotētas salīdzināšanas pāru punktu koordinātes, rotācijas leņķi nosakot pēc
+raksturpunkta virziena komponentes (sk.~\ref{sec:ofast}~nod.).
+
+Apzīmēsim rBRIEF deskriptoru ar $D_{n_d}$, kuru mēs varam definēt
+pievienojot BRIEF deskriptoram $B_{n_d}$ rotācijas komponenti ar leņķi $\theta$:
+\begin{equation}\label{eq:rbrief}
+	D_{n_d}(\hat{\vb{p}}, \theta) := \sum_{i=1}^{n_d} 2^{i-1}
+		\tau\left(\hat{\vb{p}},
+		          \vb{R}(\theta) \times \vb{a}_i,
+		          \vb{R}(\theta) \times \vb{b}_i\right)
+\end{equation}
+kur $\vb{R}(\theta)$ ir rotācijas matrica leņķim $\theta$, kas ir definēta kā:
+\[
+	\vb{R}(\theta) = 
+		\begin{pmatrix}
+			\cos\theta & -\sin\theta\\
+			\sin\theta & \cos\theta
+		\end{pmatrix}
+\]
+
+Uzdotā definīcija \eqref{eq:rbrief} ir idejiski ekvivalenta bet 
+pierakstīta ievērojami citādāk nekā \cite{ORB} avotā, jo 
+Rublē~u.c. visai liberāli reinterpretē mainīgo nozīmi.
+
+Jānorāda, ka nodrošinot rotācijas invarianci, šī informācija tiek
+,,atmesta'' no deskriptora, kas samazina tā varianci un tādējādi arī
+tā diskriminitāti. Rublē~u.c.\cite{ORB}, šī samazinājuma kompensēšanai,
+izstrādā mašīnmācīšanās metodes, ar kuru palīdzību tiek izvēlēti
+salīdzināšanas pāri ar augstāko varianci. Izvēlētie punkti attēloti
+\ref{fig:pattern2}a.~attēlā un ir novērojama salīdzināšanu pāru tendence
+orientēties raksturpunkta rotācijas virzienā (attēlā virzienā uz augšu).
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{0.7\linewidth}
+	{\input{img/rBRIEF.pdf_tex}}
+	\caption{Mašīnmācīšanās metožu izvēlēti salīdzināšanas pāri
+		(attēloti 64 pāri)~\cite{ORB}.}
+	\label{fig:pattern2}
+\end{figure}
+Bet ir arī novērojams, ka izvēlētie pāri ir izvietoti līdzīgi, kas palielina
+to savstarpējo korelāciju
+un tādējādi samazina to informatīvo vērtību. Rublē~u.c.\cite{ORB} izvēles
+kritēriju papildina atlasot augstākās variances pārus, kuri atbilst
+noteiktam korelācijas slieksnim (sk.~\ref{fig:pattern2}b.~att.), panākot
+augstāku kopējo deskriptora diskriminitāti.

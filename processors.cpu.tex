@@ -36,28 +36,28 @@ Palielinot CPU instrukciju izpildes ātrumu par
 ,,vājāko ķēdes posmu'' kļuva datu atgūšana no operatīvās atmiņas (RAM) jeb
 tās latentums.
 Šo problēmu jau 60-ajos gados risināja radot
-\termTech{kešatmiņu} (angļu \termEn{cache})~\cite[473.~lpp.]{Patterson},
+\newTerm{kešatmiņu} (angļu \termEn{cache})~\cite[473.~lpp.]{Patterson},
 kuras pamatprincips ir mazākas ietilpības, bet zemāka latentuma (ātrākas)
 atmiņas izmantošana, lai uzglabātu datu apakškopas kopiju no
 RAM ar kuru, potenciāli, tūlītēji tiks veiktas darbības.
 \cite{Flynn-arch}\cite{Patterson2}\cite{Patterson}\cite{Cache}
 
-\termTech{Kešatmiņa} būtiski uzlabo CPU aprīkotas sistēmas vispārējo
+Kešatmiņa būtiski uzlabo CPU aprīkotas sistēmas vispārējo
 ātrdarbību, bet tās trūkumi sistēmas paralelitātē kļuva acīmredzami
 izstrādājot vairāku kodolu CPU~\cite{Fatahalian}\cite{Owens-GPU}\cite{Cache}.
 Vairāku procesoru vai vairāku procesora kodolu%
 \footnote{Turpmāk nodaļas tekstā minēti kā atsevišķi procesori.}
 sistēmas nodrošina
-\termTech{kešatmiņas} \newTerm{koherenci}
+kešatmiņas \newTerm{koherenci}
 (angļu \termEn{cache coherence}), t.i.,~visām vienas datu vienības
-kopijām \termTech{kešatmiņā(s)} pēc izmaiņas vienādi jāatspoguļo tās
+kopijām kešatmiņā(s) pēc izmaiņas vienādi jāatspoguļo tās
 jaunākā vērtība, kā arī jānodrošina, ka šo vērtību vienlaicīgi 
 izmainīt drīkst tikai viens no procesoriem.
 \begin{figure}[tbh]
 	\centering
 	\def\svgscale{1.2}
 	{\input{img/snoop-cache-bottleneck.pdf_tex}}
-	\caption{\termTech{Kešatmiņas} koherence vairāku procesoru sistēmā.}
+	\caption{Kešatmiņas koherence vairāku procesoru sistēmā.}
 	\label{fig:snoop-bottleneck}
 \end{figure}
 Šādā sistēmā, koherences nodrošināšanai, nepieciešama papildus loģika.
@@ -69,11 +69,11 @@ procesoru nepieciešama komunikācija $\frac{N^2-N}{2}$ skaitam procesoru pāru
 kavējošais faktors liela skaita procesoru sistēmās.
 Šādu koherences nodrošināšanas protokola modeli dēvē ,,okšķērējošo''
 (\termEn{snooping}) modeli, kur izmaiņas par datu vienības vērtības izmaiņu
-tiek apraidītas visu procesoru \termTech{kešatmiņas}.
+tiek apraidītas visu procesoru kešatmiņas.
 \cite{Cache}
 
 Eksistē arī alternatīvs modelis --- direktorija (\termEn{directory}) modelis,
-kur centrāli tiek \termTech{kešatmiņas} datu vienībām piedēvēts ,,īpašnieks''
+kur centrāli tiek kešatmiņas datu vienībām piedēvēts ,,īpašnieks''
 un komunikācija notiek tikai starp šo ,,īpašnieku'' un procesoru, kurš
 pieprasa pieeju datu vienībai. Šādi tiek samazināts komunikācijas apjoms pie
 liela procesoru skaita, bet modelis ir komplicētāks, kas prasa papildus
@@ -82,7 +82,7 @@ atmiņu direktorijam un atmiņas transakcijas izpildes laiks ir garāks.
 
 Savukārt, būtiski citādāka pieeja ir izmantota grafiskā procesora (GPU)
 uzbūvē. GPU definē citādu atmiņas izmantošanas
-modeli, kas padara \termTech{kešatmiņas} koherenci mazsvarīgu,
+modeli, kas padara kešatmiņas koherenci mazsvarīgu,
 atbrīvojot arhitektūras uzbūvi no koherences nodrošināšanas loģikas un
 sekmējot paralelitāti. GPU arhitektūra plašāk apskatīta \ref{sec:gpu}~nodaļā.
 

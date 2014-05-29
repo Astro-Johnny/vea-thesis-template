@@ -33,14 +33,33 @@ kuras pamatā ir liels skaits programmējami, paralēli
 \newTerm{straumes procesori} (\termEn{stream processors}), kuru lomu
 signāltraktā, kurš tagad vairs nav fiksēts aparatūras līmeni, var mainīt.
 GPU straumes procesori izmanto SIMD instrukcijas darbībām ar skaitļu
-vektoriem (sk.~\ref{fig:gpu-arch}~att.), pie tam katrs no šiem straumes procesoriem
-arī izmanto \newTerm{vairākpavedienošanu} (\termEn{multithreading}) aparatūras
-līmenī. Ņemot vērā lielo skaitu%
+vektoriem, kā ilustrēts \ref{fig:gpu-arch}~attēlā. Ņemot vērā lielo skaitu%
 \footnote{AMD Radeon HD7990 ir 4096 straumes procesori.
 	\url{http://www.amd.com/en-us/products/graphics/desktop/7000/7990}}
 šādu SIMD straumes procesoru, GPU var attīstīt ļoti lielu datu caurlaidspēju
 (\termEn{throughput}).
 \cite{Fatahalian}\cite{Owens-GPU}
+
+Būtiska nianse, kas uzliek ierobežojumus algoritmu implementācijām, ir tas,
+ka straumes procesori nav pilnībā neatkarīgi. Tie ir apvienoti grupās, kuras
+sauc par ,,straumes multiprocesoriem'', ,,pavedienu procesoriem'' vai
+vienkāršāk (bet ne visai korekti) par GPU ,,kodoliem''. Katra šāda grupa
+koplieto vienu instrukciju atmiņu, kas nozīmē, visi grupas straumes
+procesori izpilda to pašu instrukciju, bet ar dažādiem datiem.
+Šo izpildes modeli sauc par SPMD (\termEn{single program, multiple data})
+modeli.
+
+Šis izpildes modelis uzliek ierobežojumus uz zarošanos.
+Situāciju, ja algoritms izmanto
+zarošanos (piem.,~\texttt{if} konstrukciju),
+bet dažādiem grupas straumes procesoriem zarošanās nosacījums neizpildās
+vienādi, sauc par ,,nekoherentu zarošanos''. Ņemot vērā, ka visai grupai
+jāizpilda tās pašas instrukcijas, GPU ir spiests izpildīt
+abus (vai visus) instrukciju secības variantus. Pēc abu (visu) variantu
+izpildes, korektais reģistru saturs katram straumes procesoram tiek
+atjaunots ar datu maskas palīdzību, kas atspoguļo kuru secību
+konkrētajam straumes procesoram būtu jāizpilda pēc algoritma.
+\cite{Owens-GPU}
 
 \begin{figure}[tbh]
 	\centering
@@ -61,19 +80,20 @@ problēmas, kāda ir CPU arhitektūrā (sk.~\pageref{sec:cache}~lpp.).
 
 Vēl viens būtisks paralelitātes aspekts atmiņas izmantošanas modelī ir
 uzsvars uz datu caurlaidspēju, nevis zemu atmiņas latentumu.
-,,\termTech{Kešatmiņas}'' loma GPU arhitektūrā arī novirzīt slodzi no
-pamatatmiņas, kas, galvenokārt, ir tikai lasāmā
-(\termEn{read-only}) \termTech{kešatmiņa}%
+Tādēļ kešatmiņas loma GPU arhitektūrā ir novirzīt slodzi no
+pamatatmiņas, un pie tam šī kešatmiņa, galvenokārt, ir tikai lasāmā
+(\termEn{read-only}) kešatmiņa%
 \footnote{GPU arhitektūrā speciālām datu grupām izmanto arī
-	rakstāmu (\termEn{read/write}) \termTech{kešatmiņu}~\cite{Owens-GPU}.}
-\cite{Fatahalian}. Augsto atmiņas latentumu SIMD straumes procesori kompensē
-ar vairākpavedienošanu. Katrs SIMD straumes procesors uzglabā informāciju
+	rakstāmu (\termEn{read/write}) kešatmiņu~\cite{Owens-GPU}.}
+(no izpildes procesoru puses)~\cite{Fatahalian}.
+Augsto atmiņas latentumu GPU kompensē
+ar \newTerm{vairākpavedienošanu} aparatūras līmenī.
+Katra straumes procesoru grupa uzglabā informāciju
 par vairākiem%
 \footnote{NVIDIA GeForce GTX 280 atbalsta līdz 128 pavedieniem uz katru
-	straumes procesoru \cite{Fatahalian}.}
+	straumes procesoru grupu~\cite{Fatahalian}.}
 izpildes pavedieniem (\termEn{threads}), kur aktīvais pavediens, kas izdara
 pieprasījumu no atmiņas un ir spiests gaidīt, tiek aizvietots ar
-citu pavedienu, kurš ir tūlītēji izpildāms~\cite{Fatahalian}. Tādējādi tiek samazināts
-gaidīšanas laiks un tiek efektīvāk izmantoti skaitļošanas resursi.
-
-
+citu pavedienu, kurš ir tūlītēji izpildāms~\cite{Fatahalian}.
+Tādējādi tiek samazināts gaidīšanas laiks un tiek efektīvāk
+izmantoti skaitļošanas resursi.

@@ -1,0 +1,43 @@
+\section{ORB raksturpunktu pāru noteikšanas algoritms}\label{sec:orb}
+Iepriekšējās nodaļās attēlu raksturpunktu detektēšana (FAST) un
+deskriptoru noteikšana (BRIEF) tika apskatītas atsevišķi. Lai arī tie
+algoritmi ir neatkarīgi, tos
+var izmantot kā komponentes augstākas abstrakcijas algoritmos, kāds ir ORB,
+līdzīgi kā zemākas abstrakcijas algoritmi ir
+definēti ar matemātiskām operācijām, transformācijām vai citiem algoritmiem.
+
+ORB izmanto FAST-9 par raksturpunktu noteikšanas komponenti
+ un rBRIEF 
+(rotācijas invariantu BRIEF modifikāciju) par raksturpunktu salāgošanas
+komponenti~\cite{ORB}.
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{\linewidth}
+	{\small\input{img/orb.pdf_tex}}
+	\caption{ORB algoritma blokshēma.}
+	\label{fig:orb-sheem}
+\end{figure}
+Papildus lokālo maksimumu atlasei, ko veic FAST algoritms, ORB izmanto
+Harisa (\termEn{Harris}) stūra mēru, lai no FAST raksturpunktiem atlasītu
+$N$ skaitu labākos elementus~\cite{ORB}.
+Rublē~u.c.\cite{ORB} to pamato ar relatīvi lielo FAST jutību attēla
+objektu malām (pretstatā stūriem). Vienkāršota algoritma blokshēma attēlota
+\ref{fig:orb-sheem}~attēlā.
+
+FAST definīcija apskatīta \ref{sec:fast}~nodaļā
+(\pageref{sec:fast}~lapā) un BRIEF definīcija --- \ref{sec:brief}~nodaļā
+(\pageref{sec:brief}~lapā). Pārējās ORB algoritma komponenšu definīcijas
+tiks apskatītas turpmākajās apakšnodaļās.
+
+\subsection{Komponentes}
+\input{orb.harris.tex}
+\input{orb.ofast.tex}
+\input{orb.rbrief.tex}
+
+
+%~ \input{orb.opencv.tex}
+
+%~ \subsection{Potenciālās ātrdarbības uzlabojumu analīze}
+%~ \TODO
+
+

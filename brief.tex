@@ -1,6 +1,6 @@
 \section{BRIEF deskriptors} \label{sec:brief}
 BRIEF ir $S \times S$ attēla apgabala deskriptors, kas satur informāciju par
-apgabalu, kas ir salīdzināma ar citu deskriptoru, lai noteiktu to līdzību.
+apgabalu, un ir salīdzināma ar citu deskriptoru, lai noteiktu to līdzību.
 Neapstrādāta pikseļu informācija nav tieši izmantojama, jo to salīdzinot
 netiek nodrošināta dažādu attēla transformāciju invariance
 (sk.~\ref{sec:matching}~nod.), tādēļ nepieciešams pikseļu informāciju
@@ -24,11 +24,10 @@ bināro vektoru ar $n_d$ bitu garumu, kas arī ir deskriptors.
 \cite{BRIEF}\cite{ORB}
 
 Formāli, uzdodam apskatāmo $S \times S$ izmēra attēla gabalu par
-$\vb{p}$, kas ir attēla $\vb{A}$
-(ko definējām \pageref{sym:A}~lapā, \ref{sym:A}~nodaļā) apakškopa:
-$\vb{p} \subseteq \vb{A}$. Lai nodrošinātu lielāku salāgojamību nepieciešams
+$\vb{p}$, kas ir attēla $\vb{I}$ apakškopa:
+$\vb{p} \subseteq \vb{I}$. Lai nodrošinātu lielāku salāgojamību nepieciešams
 veikt attēla filtrēšanu, kam BRIEF izmanto Gausa (\textit{Gauß}) filtrēšanu
-\cite{BRIEF}, definējot rezultējošo attēlu kā:
+\cite{BRIEF}, definējot rezultējošo attēla gabalu kā:
 \[
 	\hat{\vb{p}} := \vb{p} \ast G(\sigma)
 \]
@@ -38,7 +37,7 @@ Kalanders~u.c.\cite{BRIEF}~(\termEn{Calonder~et~al.})
 rekomendē filtrēšanu veikt ar $\sigma \in [0; 3]$ un šajā darbā izmantots
 $\sigma = 2$ Gausa filtrs.
 
-Pikseļu intensitātes salīdzināšanu attēla gabalā $\vb{p}$ definējam kā funkciju:
+Pikseļu intensitātes salīdzināšanu attēla gabalā $\hat{\vb{p}}$ definējam kā funkciju:
 \begin{equation}
 	\tau (\hat{\vb{p}}, \vb{a}, \vb{b}) := 
 		\begin{cases}
@@ -75,67 +74,16 @@ $\vb{p}$ centru) ar varianci $\sigma^2 = \frac{1}{25} S^2$, kā ilustrēts
 \end{figure}
 dod labus rezultātus.
 
-Rublē~u.c.\cite{ORB} savukārt, lai kompensētu variances samazinājumu rBRIEF
-deskriptoram, izmanto mašīnmācīšanās metodes, atlasot
-salīdzināšanas pārus ar lielāko vērtības varianci un zemāko savstarpējo
-korelāciju (sk.~\ref{sec:rbrief-def}~nod.).
-
 BRIEF deskriptora aprēķināšanai, salīdzināmu deskriptoru kopas ietvaros
 izmanto tos pašus salīdzināšanas pārus (matricas $\vb{a}$ un $\vb{b}$).
 Tā kā šo pāru koordinātu punkti ir piesaistīti $\vb{p}$, un līdz ar to arī
 attēla orientācijai, var viegli secināt, ka BRIEF nav rotācijas invariants.
-Šo problēmu risina rBRIEF, kas apskatīts sekojošā apakšnodaļā.
+%~ Šo problēmu risina rBRIEF, kas apskatīts sekojošā apakšnodaļā.
+Šo probēmu risina Rublē~u.c.\cite{ORB} izstrādātā modifikācija rBRIEF.
+Pie tam, lai kompensētu variances samazinājumu rBRIEF
+deskriptoram, Rublē~u.c.\cite{ORB} izmanto mašīnmācīšanās metodes, atlasot
+salīdzināšanas pārus ar lielāko vērtības varianci un zemāko savstarpējo
+korelāciju. rBRIEF plašāk apskatīts \ref{sec:rbrief-def}~nodaļā.
 
-\subsection{rBRIEF modifikācija} \label{sec:rbrief-def}
-rBRIEF ir Rublē~u.c.\cite{ORB} izstrādāta rotācijas invarianta modifikācija
-BRIEF deskriptoram, kura tiek izmantota par salāgošanas komponenti ORB
-algoritmam. Idejas pamatā ir aprēķināt deskriptoru izmantojot
-rotētas salīdzināšanas pāru punktu koordinātes, rotācijas leņķi nosakot pēc
-raksturpunkta virziena komponentes (sk.~\ref{sec:ofast}~nod.).
+\input{brief.fpga.tex}
 
-Apzīmēsim rBRIEF deskriptoru ar $D_{n_d}$, kuru mēs varam definēt
-pievienojot BRIEF $B_{n_d}$ rotācijas komponenti ar leņķi $\theta$:
-\begin{equation}\label{eq:rbrief}
-	D_{n_d}(\hat{\vb{p}}, \theta) := \sum_{i=1}^{n_d} 2^{i-1}
-		\tau\left(\hat{\vb{p}},
-		          \vb{R}(\theta) \times \vb{a}_i,
-		          \vb{R}(\theta) \times \vb{b}_i\right)
-\end{equation}
-kur $\vb{R}(\theta)$ ir rotācijas matrica leņķim $\theta$, kas ir definēta kā:
-\[
-	\vb{R}(\theta) = 
-		\begin{pmatrix}
-			\cos\theta & -\sin\theta\\
-			\sin\theta & \cos\theta
-		\end{pmatrix}
-\]
-
-Uzdotā definīcija \eqref{eq:rbrief} ir idejiski ekvivalenta bet 
-pierakstīta ievērojami citādāk nekā \cite{ORB} avotā, jo 
-Rublē~u.c. visai liberāli reinterpretē mainīgo nozīmi.
-
-Jānorāda, ka nodrošinot rotācijas invarianci, šī informācija tiek
-,,atmesta'' no deskriptora, kas samazina tā varianci un tādējādi arī
-tā diskriminitāti. Rublē~u.c.\cite{ORB}, šī samazinājuma kompensēšanai,
-izstrādā mašīnmācīšanās metodes, ar kuru palīdzību tiek izvēlēti
-salīdzināšanas pāri ar augstāko varianci. Izvēlētie punkti attēloti
-\ref{fig:pattern2}a.~attēlā un ir novērojama salīdzināšanu pāru tendence
-orientēties raksturpunkta rotācijas virzienā (attēlā virzienā uz augšu).
-\begin{figure}[tbh]
-	\centering
-	\def\svgwidth{0.7\linewidth}
-	{\input{img/rBRIEF.pdf_tex}}
-	\caption{Mašīnmācīšanās metožu izvēlēti salīdzināšanas pāri
-		(attēloti 64 pāri)~\cite{ORB}.}
-	\label{fig:pattern2}
-\end{figure}
-Bet ir arī novērojams, ka izvēlētie pāri ir izvietoti līdzīgi, kas palielina
-to savstarpējo korelāciju
-un attiecīgi samazina to informatīvo vērtību. Rublē~u.c.\cite{ORB} izvēles
-kritēriju papildina atlasot augstākās variances pārus, kuri atbilst
-noteiktam korelācijas slieksnim (sk.~\ref{fig:pattern2}b.~att.), panākot
-augstāku kopējo deskriptora diskriminitāti.
-
-\subsection{Implementācijas modeļi}
-\subsubsection{OpenCV algoritma implementācija} \label{sec:rbrief-ocv}
-\TODO

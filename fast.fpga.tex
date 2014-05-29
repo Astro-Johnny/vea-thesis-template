@@ -14,7 +14,7 @@ instancējot lielu skaitu šo vienību.
 	\label{fig:fast-fpga}
 \end{figure}
 
-Tā kā viena elementa --- punkta $\vec{p}$ piederības $F_9(\vb{A},t)$ ---
+Tā kā viena elementa --- punkta $\vec{p}$ piederības $F_9(\vb{I},t)$ ---
 noteikšanas latentums nav prioritāte, apstrādes vienība, kā ilustrēts
 \ref{fig:fast-fpga}~attēlā, resursu ekonomijas nolūkos, ir secīgas uzbūves.
 Salīdzināšana ar apkārtnes punktiem notiek secīgi, to intensitātes vērtības
@@ -31,4 +31,60 @@ apakškopas punktus. Sintēzes rezultāti uzrādīja CPU līdzvērtīgu ātrdarb
 izmantojot tikai 18\% Virtex-6 resursu
 (sk.~pielikumu~\ref{appx:test3}).
 
-\TODO
+\begin{figure}[tbh]
+	\centering
+	\includegraphics[scale=0.77]{chart-overhead}
+	\caption{Caurlaidspējas virstēriņš pret FAST instanču skaitu.}
+	\label{fig:overhead}
+\end{figure}
+Lai arī ,,attēla apgabalu procesors'' ir adekvāta konstrukcija
+ātrdarbības pārbaudei, tika konstatēts, ka lielāku attēlu dalīšana
+apstrādei gabalos, ļoti neefektīvi izmanto pieejamo caurlaidspēju, ja
+netiek izmantoti atmiņas buferi pārklājošās informācijas saglabāšanai.
+Caurlaidspējas \newTerm{virstēriņa} (\termEn{overhead}) apjoms ir atkarīgs no
+izvēlētā $w$ --- virstēriņš strauji samazinās pie lielāka $w$,
+kā redzams \ref{fig:overhead}~attēlā, kur ar melnu, pārtrauktu līniju
+atzīmēta nepieciešamā caurlaidspēja konstantai (patvaļīgi uzdotai)
+mērķa veiktspējai.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{0.9\linewidth}
+	{\small\input{img/chunk-overhead.pdf_tex}}
+	\caption{Apstrādājamais gabals un blakusesošo gabalu pārklāšanās.}
+	\label{fig:chunks}
+\end{figure}
+Virstēriņš rodas, jo daļa no apstrādājamā attēla gabala, t.i.~tā malas,
+satur nepilnīgu informāciju par punkta apkārtni. Tādēļ, lai apstrādātu
+visu attēlu, apstrādes gabaliem ir jāpārklājas, kā ilustrēts
+\ref{fig:chunks}~attēlā. Pie lielāka gabala malas garuma $w$,
+virstēriņš mazinās.
+
+Vienkāršākais risinājums būtu pārraidīt visu attēlu FPGA lokālā atmiņā,
+un tad apstrādāt attēlu pa gabaliem, līdzīgi kā iepriekš. Šim
+risinājumam ir divas problēmas: pirmkārt, FPGA atmiņas resursi bieži
+vien ir ierobežoti, tādēļ visu attēlu var arī nebūt iespējams saglabāt,
+pie tam papildus problēmas var sagādāt, ja attēla izmērs drīkst mainīties.
+Otrkārt, atmiņas datu caurlaidspēja var papildus ierobežot
+maksimālo $w$.
+
+Par paraugu izmantotajam Virtex-6 (\texttt{XC6VLX75T}) FPGA,
+ir 156 vienlaicīgi adresējami RAM bloki, ar
+64 bitu maksimālo datu platumu (72 biti, ja izmanto 9.~baita bitu)%
+\cite{Virtex6}. Maksimālā caurlaidspēja ir $156 \cdot \frac{64}{8} = 1248$
+baitu takts ciklā, kas spēj nodrošināt
+$\left\lfloor \frac{1248}{17} \right\rfloor = 73$ FAST punktu apstrādes vienības,
+kas atbilst $8 \times 8$ apgabalam.
+Ņemot vērā, ka apstrāde notiek vairākos takts ciklos, papildus
+FAST vienības var tikt nodrošinātas ar datiem izveidojot datu
+konveijeru (\termEn{pipeline}) līdz pat 24 pakāpēm
+(kam gan trūkst loģikas bloku resursu izmantotajam FPGA).
+
+Gadījumā, ja nav pieejami resursi visa attēla saglabāšanai atmiņā,
+autors iesaka attēla dalīšanu gabalos divos līmeņos, t.i.~pārraides
+vienībās, kas ir pietiekami lielas, lai mazinātu pārraides caurlaidspējas
+virstēriņu, un apstrādes gabalos, kas pa daļām apstrādā lokālā atmiņā
+uzglabātu pārraides vienību. Šādi tiek samazināts virstēriņš un var tikt
+samazināts loģikas resursu patēriņš instancējot tikai tik FAST punktu 
+apstrādes vienības, lai sasniegtu mērķa veiktspēju.
+

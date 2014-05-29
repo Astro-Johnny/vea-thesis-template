@@ -1,16 +1,25 @@
 \section{Attēlu raksturpunkti} \label{sec:algo}
-Attēla \newTerm{raksturpunkti} (\termEn{feature points} vai \termEn{keypoints})
+Attēla \newTerm{raksturpunkti} (\termEn{keypoints} vai \termEn{feature points})
 ir attēla punkti (pikseļi), kuru apkārtne attēlā 
 satur (vai potenciāli satur) noderīgu informāciju mašīnredzes algoritmiem.
 Raksturpunktus ļoti bieži (t.i.~praktiski vienmēr)
-atlasa ar ,,stūru meklēšanas'' algoritmiem
+nosaka ar ,,stūru meklēšanas'' algoritmiem
 (sk.~\ref{sec:corners}~nod.,~\pageref{sec:corners}~lpp.),
 tāpēc literatūrā vārdi ,,raksturpunkts'' (\termEn{keypoint}) un ,,stūris''
-(\termEn{corner}) bieži tiek izmantoti kā sinonīmi. Piemēram, vairāku attēlu
-raksturpunktu salāgošanas algoritmiem ir 
+(\termEn{corner}) bieži tiek izmantoti kā sinonīmi.
+
+Šis darbs apskata attēlu raksturpunktu pāru noteikšanu, un šādiem
+algoritmiem ir
 nozīmīga raksturpunktu apkārtnes unikalitāte,
 lai raksturpunktus būtu iespējams salāgot ar pēc iespējas mazāk kļūdām,
 nevis to strikta atbilstība kādam attēlā redzamā objekta stūrim.
+Raksturpunktu pāru noteikšanas algoritmos var iedalīt divos etapos:
+\begin{enumerate}
+	\item raksturpunktu detektēšana;
+	\item atbilstošo raksturpunktu atrašana vairākos attēlos.
+\end{enumerate}
+Turpmākās apakšnodaļas apskata šos etapus (sākot no pēdējā),
+un to algoritmus plašāk.
 
 \input{algorithms.matching.tex}
 \input{algorithms.corners.tex}

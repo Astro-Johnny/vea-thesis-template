@@ -1,0 +1,42 @@
+\subsubsection{Raksturpunktu atlase pēc Harisa mēra}
+ORB izmanto FAST9 algoritma noteikto raksturpunktu pēcapstrādi novērtējot tos
+pēc Harisa (\termEn{Harris}) stūru mēra un atlasot $N$ skaitu
+raksturpunktus ar augstākajiem Harisa mēra rādītājiem~\cite{ORB}.
+FAST detektora slieksnis $t$ tiek izvēlēts pietiekami zems, lai
+raksturpunktu kopā būtu vismaz $N$ skaits elementu un $t$ tiek samazināts,
+ja tā nav~\cite{ORB}.
+Šī ir otrreizēja raksturpunktu atlase, jo tiek veikta pēc FAST 
+lokālo maksimumu atlases.
+
+%~ Harisa stūra mērs balstās uz starpību kvadrātu summu starp attēla
+%~ apgabalu un no tā nobīdītiem apgabaliem, kura aprēķināšanai
+%~ Haris\cite{Harris} definē aproksimācijas tenzoru~\cite{FAST}:
+%~ \[
+	%~ \vb{H} =
+	%~ \begin{pmatrix}
+		%~ \overline{{I_x'}^2} & \overline{{I_x'}{I_y'}}\\
+		%~ \overline{{I_x'}{I_y'}} & \overline{{I_y'}^2}
+	%~ \end{pmatrix}
+%~ \]
+%~ kur $I_x'$ un $I_y'$ ir attēla parciālie atvasinājumi (pēc $x$ un $y$),\\
+%~ un
+Harisa stūru mērs tiek izmantots Harisa stūru detektorā~\cite{Harris}\cite{FAST},
+kuru aprēķina ar:
+\begin{equation}
+	V_H = |\vb{H}| - k \cdot {(H_{11}+H_{22})}^2
+\end{equation}
+kur\\
+$\vb{H}$ ir Harisa definēts struktūras tenzors\cite{Harris}\cite{FAST} un\\
+$k$ ir konstante kas kontrolē stūra vai malas jutību.
+
+Tenzors $\vb{H}$ iekļauj viduvējošanu (summēšanu) noteiktā
+logā~\cite{FAST}. Lai gan avots \cite{ORB} nenorāda konkrētos parametrus,
+autors analizējot ORB OpenCV implementācijas pirmkodu\cite{OpenCV-src}
+secina, ka viduvējošanai izmantots $7 \times 7$ kvadrāta formas logs un
+izmantotais $k=0.04$.
+
+Ņemot vērā, ka Harisa stūru mērs $V_H$ tiek noteikts punktiem
+$\vec{p} \in \hat{F_9}(\vb{I}, \vec{p}, t)$, kas ir apakškopa no attēla
+$\vb{I}$, pretstatā Harisa stūru detektoram, kas $V_H$ nosaka visiem attēla
+punktiem~\cite{Harris}, var arī uzskatīt, ka šajā gadījumā FAST funkcionē kā
+filtrs Harisa stūru detektoram.

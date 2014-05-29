@@ -1,31 +1,32 @@
-\subsection{Attēlu raksturpunktu salāgošanas algoritmi} \label{sec:matching}
+\subsection{Attēlu raksturpunktu pāru atrašanas algoritmi} \label{sec:matching}
 \begin{figure}[tbh]
 	\centering
 	\includegraphics[width=0.8\textwidth]{orb-match}
-	\caption{Attēlu pāra raksturpunktu salāgošana ar ORB~\cite{ORB}.}
+	\caption{Divu attēlu atbilstošo raksturpunktu pāru noteikšana ar ORB~\cite{ORB}.}
 	\label{fig:orb}
 \end{figure}
 
-Raksturpunktu salāgošana ir punktu pāru (vai kopu) atrašana divos
+Raksturpunktu pāru atrašanas ir atbilstošo punktu atrašana divos
 (vai vairākos) attēlos, kuri atbilst vienam un tam pašam attēlā redzamam
-objektam. Salāgošanas piemērs redzams \ref{fig:orb}~attēlā, kur ar zaļām līnijām
-savienoti salāgotie raksturpunktu pāri un ar sarkanu apzīmēti raksturpunkti,
+objektam. Piemērs redzams \ref{fig:orb}~attēlā, kur ar zaļām līnijām
+savienoti atrastie raksturpunktu pāri un ar sarkanu apzīmēti raksturpunkti,
 kuriem pāris nav atrasts.
 
-Raksturpunktu salāgošana tiek izmantota tādos mašīnredzes pielietojumos, kā
+Raksturpunktu pāru noteikšana tiek izmantota tādos mašīnredzes pielietojumos, kā
 % TODO: citēt pielietojumus
 objektu atpazīšanā un sekošanā, attēlu ,,sašūšanā'', 
 telpiskās informācijas rekonstrukcijā (kartēšanā) no attēliem,
 vienlaicīgā pašlokalizācijā un kartēšanā (SLAM), u.c..
 
-Raksturpunktu salāgošanas pamatā ir šo punktu ,,aprakstīšana'' izveidojot
-raksturpunkta \termTech{deskriptoru}, kas satur informāciju,
+Raksturpunktu pāru noteikšanas pamatā ir šo punktu ,,aprakstīšana'' izveidojot
+raksturpunkta \newTerm{deskriptoru}, kas satur informāciju,
 kas ir pietiekami unikāla, lai nesakristu ar citiem raksturpunktiem attēlā
-un ir noturīga pret sagaidāmām attēla īpašību izmaiņām.
-\termEn{Deskriptoram} tātad nepieciešamas vai vēlamas šādas īpašības:
+un ir noturīga pret sagaidāmām attēla īpašību izmaiņām, un to salāgošana
+atrodot līdzīgos deskriptoru pārus.
+Deskriptoram tātad nepieciešamas vai vēlamas šādas īpašības:
 \begin{itemize}
 	\item \newTerm{\emph{diskriminitāte}} --- spēja izšķirt raksturpunktus
-		pēc to \termTech{deskriptoriem};
+		pēc to deskriptoriem;
 	\item \emph{pozīcijas invariance} --- spēja salāgot raksturpunktus
 		neatkarīgi no tā koordinātēm attēlā;
 	\item \emph{rotācijas invariance} --- spēja salāgot raksturpunktus
@@ -40,12 +41,13 @@ un ir noturīga pret sagaidāmām attēla īpašību izmaiņām.
 		attēlā (iespējami) neatkarīgi no ,,trokšņa'' līmeņa attēlā;
 \end{itemize}
 Ir norādītas vairākas attēla izmaiņu invariances īpašības,
-kas nozīmē ka tās nevar izmantot lai aprakstītu raksturpunktu.
-Variance ir nepieciešama lai nodrošināti diskriminitāti un, praktiski visos
+kas nozīmē, ka šī informācija nav izmantojama,
+lai aprakstītu raksturpunktu.
+Variance ir nepieciešama, lai nodrošinātu diskriminitāti un, praktiski visos
 algoritmos, tiek izmantota lokālas intensitātes izmaiņas attēlā 
 rakturpunkta tuvējā apkārtnē.
 
-Eksistē vairāki algoritmi \termTech{deskriptoru} izgūšanai un
+Eksistē vairāki algoritmi deskriptoru izgūšanai un
 salīdzināšanai, t.sk.,~%
 SIFT, % FIXME: Vai SIFT arī apzīmē deskriptoru?
 SURF, BRIEF un tā varianti, ORB, u.c..
@@ -60,12 +62,13 @@ bet jāņem vērā arī to veiktspējas īpašības:
 \end{itemize}
 % TODO?: Izvērst dažādo algoritmu teorētisko aprakstu?
 
-Netiešs, bet būtisks, salāgošanu ietekmējošais faktors ir raksturpunktu
+Netiešs, bet būtisks, pāru noteikšanas ietekmējošais faktors ir 
+labu raksturpunktu
 atlase no attēla, jo salāgošana tiek veikta tikai starp atlasītajiem
-punktiem. Raksturpunktu (un to atlases algoritmu) galvenās īpašības
+punktiem. Raksturpunktu (un to detektēšanas algoritmu) galvenās īpašības
 ir to variance, kas nosaka cik aprakstoši ir šie punkti,
-un \newTerm{atkārtojamība}, kas ir ieviests termins un izsaka
-atbilstošo (salāgojamo) punktu pārus pret kopējo raksturpunktu skaitu~%
+un \newTerm{atkārtojamība}, kas izsaka atbilstošo punktu pāru piederību
+raksturpunktu kopai dažādos attēlos pret kopējo raksturpunktu skaitu~%
 \cite{FAST}\cite{SIFT-FPGA}.
 Raksturpunktu atlases algoritmi un to īpašības plašāk apskatītas
 \ref{sec:corners}~apakšnodaļā.
@@ -77,7 +80,7 @@ komponente --- rBRIEF.
 Šāda izvēle pamatota ar to, ka rBRIEF raksturpunktu salāgošanas
 spēja ir līdzīga vai labāka nekā SIFT, bet ir par divām kārtām ātrāks nekā
 SIFT un par kārtu ātrāks nekā SURF \cite{ORB}.
-rBRIEF \termTech{deskriptors} ir arī noturīgāks pret troksni nekā
+rBRIEF deskriptors ir arī noturīgāks pret troksni nekā
 SIFT un tā rotācijas invariance līdzvērtīga SIFT \cite{ORB}.
 
 

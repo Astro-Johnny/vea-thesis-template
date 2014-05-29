@@ -1,0 +1,31 @@
+\subsubsection{oFAST: raksturpunkta virziens} \label{sec:ofast}
+oFAST ir ORB algoritma raksturpunktu virziena noteikšanas metode.
+Neskatoties uz Rublē~u.c.\cite{ORB} piedēvēto nosaukumu, oFAST tiešā veidā
+nemodificē FAST algoritmu un tādēļ autors to uzskata par atsevišķu ORB
+algoritma komponenti.
+
+Raksturpunktu virziena informācija ir nepieciešama
+ORB rotācijas invariances nodrošināšanai~\cite{ORB}
+(sk.~\ref{sec:rbrief-def}~nod.).
+Tā noteikšanai izmanto
+,,intensitātes centroīdu''\cite{Rosin}\cite{ORB} (jeb ,,masas'' centru, pēc fizikālās
+līdzības), kas ir definēta kā:
+\begin{equation}
+	\vec{C} = \left( \frac{m_{10}}{m_{00}},\; \frac{m_{01}}{m_{00}} \right)
+\end{equation}
+kur $m_{00}$, $m_{01}$, $m_{10}$ ir attēla momenti, kurus aprēķina pēc:
+\begin{equation}
+	m_{pq} = \sum_{x,y} x^p y^p I(x,y)
+\end{equation}
+
+oFAST virzienu uzdod kā leņķi, kas vienāds ar centroīdas $\vec{C}$
+lenķi pret $x$ asi (tās pozitīvo virzienu), ko aprēķina ar~\cite{ORB}:
+\begin{equation}
+	\theta = \mathrm{atan2}(m_{01}, m_{10})
+\end{equation}
+kur $\mathrm{atan2}()$ ir divu argumentu arktangenss (kas arī nosaka kvadrantu).
+
+Lai šo virziena mēru padarītu maksimāli rotācijas invariantu,
+momentu noteikšanai izvēlas riņķa formas attēla apgabalu ar diametru, kas
+vienāds ar salāgotāja (kvadrāta formas) apgabala malas garumu $S$
+(definēta~\ref{sec:brief}~nodaļā).

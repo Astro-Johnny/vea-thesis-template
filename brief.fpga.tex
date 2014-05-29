@@ -1,0 +1,34 @@
+\subsection{BRIEF FPGA implementācijas modelis} \label{sec:brief-fpga}
+Principā,
+BRIEF deskriptora noteikšana ir īpaši piemērota implementēšanai FPGA, jo
+tiek izmantota vienkārša salīdzināšana un 
+FPGA atsevišķu, konkrētu, iepriekš definētu elementu izgūšana
+no masīva ļoti efektīva, jo tiek realizēts kā vienkāršs loģisko elementu 
+savienojums (vads).
+\begin{figure}[tbh]
+	\centering
+	%\def\svgwidth{\linewidth}
+	\def\svgscale{1.1}
+	{\small\input{img/brief-fpga.pdf_tex}}
+	\caption{Vienkāršota uzbūves shēma BRIEF aprēķina vienībai.}
+	\label{fig:brief-fpga}
+\end{figure}
+Pēc modeļa, kas parādīts \ref{fig:brief-fpga}~attēlā,
+izmantojot $n_d$ salīdzinātājus, var noteikt BRIEF deskriptoru
+vienā takts ciklā, pieņemot ka visu punktu vērtības no attēla gabala ir 
+izgūstamas vienlaikus.
+
+Tomēr, lielākais veiktspējas ierobežojums ir $\hat{\vb{p}}$ iegūšana
+filtrējot attēla gabalu $\vb{p}$ ar Gausa filtru. Attēla gabala filtrēšanai
+nepieciešams realizēt konvolūciju, kas prasa lielu skaitu reizināšanas un
+saskaitīšanas operācijas. Pie tam Gausa matricas $G$ elementi ir skaitļi
+ar decimāldaļu, nevis veseli (\termEn{integer}) skaitļi, kam nepieciešams
+izmantot peldošā vai fiksētā komata skaitļu formātu.
+
+Zināma resursu ekonomiju dod tas, ka ne visi attēla gabala $\hat{\vb{p}}$
+punkti tiek izmantoti BRIEF noteikšanai, tādēļ var implementēt daļēju Gausa
+filtru, aprēķinot tikai nepieciešamo $2n_d$ skaita punktu vērtības.
+Bet, neskatoties uz to,
+pieņemot, ka $n_d = 256$ un izmantotā matrica $G$ ir $5 \times 5$ pikseļu
+liela, nepieciešamo reizināšanas un saskaitīšanas operāciju skaits ir
+$2\cdot 256 \cdot 5^2 = 12800$.

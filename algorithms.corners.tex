@@ -1,15 +1,18 @@
-\subsection{Attēlu raksturpunktu atlases algoritmi} \label{sec:corners}
-Attēlu raksturpunktu atlase ir punktu apakškopas atlase pēc noteiktiem
+\subsection{Attēlu raksturpunktu detektēšanas algoritmi} \label{sec:corners}
+Attēlu raksturpunktu detektēšana ir raksturpunktu kopas atlase ,
+no visiem attēla punktiem, pēc noteiktiem
 kritērijiem. Kā jau minēts nodaļas ievadā (\pageref{sec:algo}~lpp.),
 raksturpunktu atlasei bieži tiek izmantoti ,,stūru'' meklēšanas algoritmi,
 kādi ir arī visi šajā darbā apskatītie raksturpunktu atlases algoritmi.
 
-Attēlu raksturpunktu atlasei ir vairāki pamatojumi, bet šī darba kontekstā
---- raksturpunktu salāgošanai --- būtiski ir atlasīt atbilstošos punktus
+Raksturpunktu kopas atlasei no attēla ir vairāki pamatojumi,
+bet šī darba kontekstā
+--- raksturpunktu pāru noteikšanai --- būtiski ir atlasīt atbilstošos punktus
 dažādos attēlos, kuru lokālajai apkārtnei konkrētajā attēlā piemīt
-augsta variance. Sekundārs pamatojums raksturpunktu atlasei ir
-skaitļošanas apjoma samazināšanai, jo turpmākā salāgošana tiek veikta
-tikai atlasītajiem punktiem. Raksturpunktu atlase gan ir nepieciešama
+augsta variance. Sekundārs pamatojums punktu atlasei ir
+skaitļošanas apjoma samazināšanai, jo turpmākā salāgošana (pāru meklēšana)
+tiek veikta
+tikai atlasītajiem punktiem. Raksturpunktu detektēšana gan ir nepieciešama
 datu priekšapstrāde, jo veicot salāgošanu visiem attēlu punktiem tiek
 degradēta arī salāgošanas kvalitāte, ne tikai ātrdarbība, jo tiek
 iekļauti daudz zemas variances punkti, kuri sastādīs
@@ -28,9 +31,13 @@ tam, aprakstītās metodes ne vienmēr ir adevkāti raksturojošas vai pat
 objektīvas~\cite{Mokhtarian}\cite{FAST}. Autors par nozīmīgu un 
 pietiekami kvantitatīvu īpašību atzīst 
 Rostena~un~Dramonda\cite{FAST}~(\termEn{Rosten~and~Drummond}) piedāvāto
-\newTerm{atkārtojamību}, kas novērtē punktu salāgojamību vairākos attēlos
-%TODO: Vai atkārtojamība ņem vērā punktu salāgojamību???
-no datu kopas, tādējādi izvērtējot algoritmus pēc to mērķa pielietojuma.
+\newTerm{atkārtojamību}, kas novērtē atbilstošo objekta punktu detektēšanu
+vairākos attēlos no datu kopas. Ja raksturpunktam atbilstošais punkts
+citā attēlā netiek detektēts (kā raksturpunkts),
+to salāgošana nav iespējama.
+Bet bet abu atbilstošo punktu uzdošana par raksturpunktiem ,,automātiski''
+nenozīmē arī to salāgošanu.
+%~ tādējādi izvērtējot algoritmus pēc to mērķa pielietojuma.
 Tātad izvirzītās īpašības ir:
 \begin{itemize}
 	\item \emph{pozīcijas} un \emph{rotācijas invariance} --- spēja atlasīt
@@ -39,11 +46,11 @@ Tātad izvirzītās īpašības ir:
 		raksturpunktus neatkarīgi no globālas intensitātes izmaiņas;
 	\item \emph{mēroga invariance} --- spēja atlasīt raksturpunktu
 		neatkarīgi no mēroga;
-	\item \emph{atkārtojamība}, kas apraksta izvēlēto punktu salāgojamību%
-			\footnote{Pārbaudot ar raksturpunktu salāgošanas algoritmu.}
-		vairākos attēlos no datu kopas, ko --- ne tik striktā terminoloģijā ---
-		var arī uzdot kā ,,invarianci laikā'', ja datu kopas attēli ir
-		uzņemti secīgi.
+	\item \emph{atkārtojamība}, kas izsaka vai atbilstošais punkts vairākos
+		attēlos tiek detektēts kā raksturpunkts;
+		%~ vairākos attēlos no datu kopas, ko --- ne tik striktā terminoloģijā ---
+		%~ var arī uzdot kā ,,invarianci laikā'', ja datu kopas attēli ir
+		%~ uzņemti secīgi.
 	\item \emph{trokšņu noturība} --- spēja atlasīt kvalitatīvus%
 			\footnote{Spriežot pēc atkārtojamības rādītāja.}
 		raksturpunktus attēlā (iespējami) neatkarīgi no ,,trokšņa'' līmeņa attēlā;
