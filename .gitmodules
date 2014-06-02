@@ -1,3 +1,9 @@
 [submodule "code/fast-vhdl"]
 	path = code/fast-vhdl
 	url = ../fast-vhdl
+[submodule "code/saturation"]
+	path = code/saturation
+	url = ../saturation_arith
+[submodule "code/imagelib"]
+	path = code/imagelib
+	url = ../testbench_image_io
