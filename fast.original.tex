@@ -1,4 +1,4 @@
-\subsubsection{Mašīnmācāma FAST implementācija} \label{sec:fast-original}
+\subsubsection{Mašīnmācāma FAST CPU implementācija} \label{sec:fast-original}
 Pirmo FAST definīciju Rostens~un~Dramonds piedāvā jau \cite{Rosten-tracking}
 publikācijā, bet tās implementācija bija tikai uzlabots segmenta
 pārbaudītājs pie minimālā segmenta garuma $n=12$
@@ -14,18 +14,18 @@ mašīnmācību, lai samazinātu nepieciešamo pārbaužu skaitu starp
 kandidātu punktu un punktiem no FAST riņķa. Ar mašīnmācīšanos tiek
 noskaidroti tie riņķa punkti $c$, kuriem ir vislielākais informatīvais
 ieguldījums punktu klasificēšanā pielietojot $F_n$, apmācības attēlu
-kopai $\vb{P}$. Pēc apmācības rezultātiem tiek izveidots
+kopai. Pēc apmācības rezultātiem tiek izveidots
 ,,jautājumu koks'', pēc kura salīdzinājumu (jautājumu) secība tiek
-mainīta pēc rezultātiem (atbildēm) kas ļauj veikt klasifikāciju ar
-minimālu pārbaužu skaitu. Šis jautājumu koks ir tuva aproksimācija
+mainīta pēc rezultātiem (atbildēm), kas ļauj veikt klasifikāciju ar
+minimālu pārbaužu skaitu~\cite{FAST}. Šis jautājumu koks ir tuva aproksimācija
 segmenta testa funkcionalitātei, bet ne pilnīgs tās funkcionālais
 ekvivalents, lai gan autors nav konstatējis atšķirības
-pārbaužu rezultātos. \cite{FAST}
+pārbaužu rezultātos.
 
 Izmantojot iegūto jautājumu koku tiek ģenerēts kods, pēc hierarhiālas
 struktūras ar pakārtotām \texttt{if\ldots{}else} konstrukcijām C valodā%
 \footnote{Rostens arī publicējis ģeneratorus citām programmēšanas valodām},
-kura tiešā veidā atveido jautājumu koku. \cite{FAST}
+kura tiešā veidā atveido jautājumu koku~\cite{FAST}.
 
 Šī implementācija ir virzīta tieši secīgās izpildes operāciju samazināšanai,
 un tādējādi sekmē ātrdarbības uzlabošanu CPU platformai. Autora eksperimentā,

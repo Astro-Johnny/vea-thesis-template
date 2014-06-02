@@ -9,21 +9,20 @@ jo šī platforma nevar funkcionēt autonomi, pretstatā CPU un FPGA.
 Retāk kombinē CPU un FPGA vienā sistēmā, kas vairumā gadījumu realizēta,
 datoram pieslēdzot perifērijas karti ar FPGA pie kādas no datora
 pamatplates perifērijas saskarnēm, visbiežāk --- pie PCI Express
-saskarnes. OpenCL ir arī radījis pirmo standartizēto programmēšanas
-saskarni CPU un FPGA kombinācijai. %TODO: Citation needed!
-
-\begin{figure}[tbh]
-	\centering
-	\def\svgscale{1.4}
-	{\input{img/full-hetero-system.pdf_tex}}
-	\caption{,,Pilnas'' heterogēnas sistēmas modelis.}
-	\label{fig:hetero-sys}
-\end{figure}
+saskarnes.
 
 Protams, ir iespējama arī visu trīs platformu kombinācija vienā sistēmā, kā
 shematiski ilustrēts \ref{fig:hetero-sys}~attēlā. Arī CPU procesors var
-būt (un bieži ir) vairāku kodolu procesors, veidojot augstas paralelitātes
+būt (un bieži ir) vairāku kodolu procesors, kopumā veidojot augstas paralelitātes
 sistēmu ar ļoti augstu potenciālo skaitļošanas jaudu.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.3}
+	{\small\input{img/full-hetero-system.pdf_tex}}
+	\caption{,,Pilnas'' heterogēnas sistēmas modelis.}
+	\label{fig:hetero-sys}
+\end{figure}
 
 Programmējot heterogēnas sistēmas ir iespējams dalīt algoritmu daļās
 izpildei dažādās platformās. Tomēr jāņem vērā, ka datu pārraide starp
@@ -31,5 +30,12 @@ platformām ir būtisks ātrdarbības ierobežojums, jo starpplatformu
 datu pārraides ātrums, praktiski vienmēr, ir ievērojami zemāks nekā
 platformu skaitļošanas ātrums.
 
+%\subsubsection{OpenCL}
+Heterogēnu sistēmu programmēšanai ir pieejama OpenCL programmēšanas vide.
+OpenCL definē uz C programmēšanas valodas bāzētu valodu (OpenCL C), kurā
+apraksta apakšprogrammas izpildei heterogēnās sistēmās~\cite{OpenCL-book}. 
 
-% TODO?: Nodaļa vai apakšnodaļa par OpenCL?
+OpenCL apakšprogrammas tiek kompilētas izpildes laikā, izmantojot mērķa
+platformas ražotāja rīku kopu. Šādas rīku kopas ir pieejamas gan CPU, gan GPU,
+gan FPGA platformām~\cite{OpenCL-book}.
+

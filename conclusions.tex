@@ -1,4 +1,56 @@
 \section*{Secinājumi un priekšlikumi}%
 \addcontentsline{toc}{section}{Secinājumi un priekšlikumi}
-Izstrādājot šo darbu, autors izdarījis vairākus secinājumus un atzinumus.
-\TODO
+%FIXME: Izdalīt atsevišķu nodaļu kopsavilkumam?
+%~ Autors, šī maģistra darba ietvaros ir veicis gan teorētisku,
+%~ gan empīrisku pētījumu par attēlu raksturpunktu noteikšanas algoritmiem,
+%~ to komponentēm un skaitļošanas platformām, kurām analizētie 
+%~ algoritmi ir implementējami. Darbā veikto var izdalīt sekojošos punktos:
+%~ \begin{itemize}
+	%~ \item CPU, GPU un FPGA skaitļošanas platformu apskats un salīdzinājums;
+	%~ \item ORB algoritma literatūras analīze;
+	%~ \item ORB ātrdarbības salīdzinājums vairākām platformām;
+	%~ \item FAST FPGA implementācijas izstrāde; %(sk.~\ref{sec:fast-fpga}~nod. un pielikumu~\ref{appx:fast-fpga});
+	%~ \item BRIEF FPGA implementācijas modeļa izveide; %(sk.~\ref{sec:fast-fpga}~nod.);
+%~ \end{itemize}
+
+Izstrādājot šo darbu, autors izdarījis vairākus secinājumus un atzinumus,
+tajā skaitā:
+\begin{itemize}
+	\item Eksistē liels skaits stūru detektoru, bet trūkst literatūras to
+		kvalitātes salīdzinājumam, jo ir apgrūtināta salīdzināšanas
+		kritēriju definēšana.
+	\item ORB algoritms sastāv no vairākām komponentēm, no kurām
+		Gausa filtrēšana un Harisa mērs ir komponentes ar lielāko skaitu
+		matemātisko operāciju. Lielāko iespaidu uz kopējo ātrdarbību dos
+		uzlabojumi tieši šajās komponentēs.
+	\item BRIEF (un ORB) ātrdarbība uzlabojama veicot ,,selektīvu'' Gausa
+		filtrēšanu tikai izmantotajiem pikseļiem, samazinot operāciju
+		skaitu pat 4 reizes\footnote{4 reizes tipiskā gadījumā. Uzlabojums atkarīgs no BRIEF parametriem.}
+		(sk.~\pageref{C:selective-gauss}~lpp.).
+	\item Teorētiskie skaitļošanas jaudas rādītāji (piem.~FLOPS) nav
+		objektīvs platformu salīdzināšanas kritērijs, jo neņem vērā
+		arhitektūras struktūras atšķirības.
+	\item Liels skaits ātrdarbības ietekmējošo faktoru nosaka, ka 
+		\emph{tikai empīriska analīze} dod objektīvus rezultātus
+		algoritmu ātrdarbības salīdzināšanai.
+	\item Konkrēta algoritma augsta veiktspēja vienam platformas tipam (piem.~CPU),
+		nenosaka ,,automātisku'' tā augstu veiktspēju visiem skaitļošanas
+		platformu tipiem. Kā arī, viens algoritms var sasniegt augstāko
+		veiktspēju vienā platformā,
+		kamēr cits algoritms --- citā platformā.
+	\item Algoritma ātrdarbības uzlabojumi var dot atšķirīgus rezultātus
+		pat vienas platformas arhitektūras sērijas (piem.~\texttt{x86}) 
+		dažādu paaudžu ierīcēm, arhitektūras attīstības dēļ
+		(sk.~\ref{sec:fast-compare}~nod).
+	\item Algoritmu \emph{ātrdarbību}, tiešā veidā, \emph{nosaka} tā
+		\emph{implementācijas struktūras pielāgojamība} konkrētai
+		skaitļošanas \emph{platformai} un tās aparatūras definētai struktūrai.
+	\item Datorredzes algoritmu implementēšanai iegultajās sistēmās, FPGA
+		platformai ir vislielākais veiktspējas potenciāls, pētījumā uzrādot
+		augstākos rezultātus, pateicoties tā arhitektūras elastībai,
+		pielāgojot to algoritmam aparatūras līmenī.
+\end{itemize}
+
+Darba sākumā izvirzītie mērķi ir sasniegti --- ir veikts pētījums par
+raksturpunktu noteikšanas algoritmu ātrdarbību, iegūti empīriski rezultāti un
+izstrādāti risinājumi ātrdarbības uzlabošanai ar FPGA.

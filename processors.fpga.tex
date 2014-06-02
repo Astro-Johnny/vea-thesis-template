@@ -3,15 +3,17 @@ FPGA (angļu \termEn{field-programmable gate array}) jeb
 pārprogrammējams loģisko elementu masīvs ir integrētā shēma, kura sastāv no
 liela skaita programmējamiem loģiskajiem blokiem. Šie bloki ir pārprogrammējami
 izmantojot aparatūras apraksta valodas (HDL) un ražotāja programmatūru,
-ļaujot lietotājam ar FPGA realizēt vēlamo funkcionalitāti.
+ļaujot lietotājam realizēt vēlamo funkcionalitāti FPGA ierīcē.
 FPGA loģisko bloku un starpsavienojumu tīkla (\termEn{the interconnect})
 uzbūve, loģisko bloku un citu resursu skaits ir ražotāja un
-FPGA modeļa specifiska. \cite{JIS}
+FPGA modeļa specifiska~\cite{JIS}.
 
 FPGA, kā skaitļošanas resurss, ir unikāls ar to, ka tā arhitektūras definēšana
 ir ļoti elastīga un, vairumā gadījumu, arhitektūru pielāgo veicamajam
 uzdevumam vai algoritmam, nevis otrādi, kā iepriekš apskatītajiem CPU un GPU.
 
+Autorprāt, efektīvs un visai intuitīvs arhitektūras uzbūves modelis ir
+fiksēta signāltrakta modelis. Kā ilustrēts \ref{fig:fpga-arch}~attēlā,
 \begin{figure}[tbh]
 	\centering
 	\def\svgscale{1.2}
@@ -19,20 +21,18 @@ uzdevumam vai algoritmam, nevis otrādi, kā iepriekš apskatītajiem CPU un GPU
 	\caption{Fiksēta signāltrakta arhitektūra.}
 	\label{fig:fpga-arch}
 \end{figure}
-Autorprāt, efektīvs un visai intuitīvs arhitektūras uzbūves modelis ir
-fiksēta signāltrakta modelis. Kā ilustrēts \ref{fig:fpga-arch}~attēlā, šādā
-modelī datu vienība --- tipiski, matrica vai vektors --- tiek virzīta caur
-signāltraktam, kur tā tiek transformēta lai iegūtu rezultātu. Atšķirībā no
-CPU un GPU, kur skaitļošanas algoritmus realizē ar secīgu instrukciju izpildi
+šādā modelī datu vienība --- tipiski, matrica vai vektors --- tiek virzīta cauri
+signāltraktam, kur tā tiek transformēta, lai iegūtu rezultātu. %Atšķirībā no
+CPU un GPU, kas skaitļošanas algoritmus realizē ar secīgu instrukciju izpildi,
 starprezultātus no ALU (aritmētiski loģiskās ierīces)
-atgriežot uzglabāšanai koplietojamos reģistros vai RAM,
-FPGA, pēc signāltrakta modeļa, RAM vai koplietojamie reģistri nav
+atgriežot uzglabāšanai koplietojamos reģistros vai RAM.
+Turpretī FPGA, pēc signāltrakta modeļa, RAM vai koplietojamie reģistri nav
 nepieciešami, jo starprezultāti tiek nākamajām pakāpēm nodoti tieši.
 Šādi tiek efektīvi izmantoti FPGA resursi un sekmēta ātrdarbība.
 %~ Nav nepieciešams dekodēt instrukcijas...
 
 Pēc CPU analoģijas, var uzskatīt, ka šādā modelī FPGA, veic vienu
-īpaši augstas kompleksitātes instrukciju kura tiek izpildīta noteikta,
+īpaši augstas kompleksitātes instrukciju, kura tiek izpildīta noteikta,
 iespējams mainīga, skaita takts ciklu laikā.
 
 Ja ir pieejami FPGA resursi, tad var iegūt datu paralelitāti replicējot 
@@ -40,7 +40,7 @@ vairākus paralēlus signāltraktus, palielinot datu caurlaidspēju. Kā arī, j
 jāapstrādā datu straume, ievērojamu datu caurlaidspējas uzlabojumu var
 iegūt ar ,,konveijera principu'' --- virzot jaunu datu vienību
 signāltrakta pakāpē pirms iepriekšējā datu vienība ir šķērsojusi visu
-signāltraktu, tādējādi signāltraktā, dažādās pakāpēs, vienlaikus
+signāltraktu. Tādējādi signāltraktā, dažādās pakāpēs, vienlaikus
 var atrasties vairākas datu vienības, līdzīgi CPU instrukciju ,,konveijeram''
 (\termEn{instruction pipeline})~\cite{Flynn-arch}.
 
@@ -48,6 +48,11 @@ Papildus apsvērums realizācijai ir gadījumi, kad viena neatkarīgā datu vien
 --- ar ko saprot datu kopu, kuras apstrādei nav ārēju atkarību --- ir
 ļoti liela, piem.,~vesels attēls (pikseļu kopa).
 % TODO: Piemērs no praktiskā darba -- atgūt patchu pēc keypoint apstiprinājuma
+Šo situāciju var risināt apstrādājot datus pa daļām, ja konkrētai pakāpei
+nepieciešama tikai datu vienības apakškopa. Veiktspējas palielināšanai datu
+kopu vēlams glabāt lokālā atmiņā, kam noder FPGA specializētie atmiņas
+resursi (RAM bloki). Šāda arhitektūras modifikācija ilustrēta
+\ref{fig:fpga-arch2}~attēlā.
 \begin{figure}[tbh]
 	\centering
 	\def\svgscale{1.2}
@@ -55,18 +60,16 @@ Papildus apsvērums realizācijai ir gadījumi, kad viena neatkarīgā datu vien
 	\caption{Modificēta signāltrakta arhitektūra ar atliktu datu ielasi.}
 	\label{fig:fpga-arch2}
 \end{figure}
-Šo situāciju var risināt apstrādājot datus pa daļām, ja konkrētai pakāpei
-nepieciešama tikai datu vienības apakškopa. Veiktspējas palielināšanai datu
-kopu vēlams glabāt lokālā atmiņā, kam noder FPGA specializētie atmiņas
-resursi (RAM bloki). Šāda arhitektūras modifikācija ilustrēta
-\ref{fig:fpga-arch2}~attēlā.
+
 
 Atliktā datu ielase ir īpaši izdevīga, ja
 atliktā datu daļa nav nepieciešama vienmēr, t.i.,~tās nepieciešamība
 atkarīga no iepriekšējās pakāpes rezultāta.
-Šajā darbā praktiskais piemērs ir, kur raksturpunkta deskriptors
-jānosaka tikai attēla apgabaliem, kam nepieciešami vairāk datu, nekā pakāpei,
-kura nosaka atbilstību raksturpunkta kritērijiem.
+Šajā darbā praktiskais piemērs ir, 
+kur konstatējot punkta atbilstību raksturpunkta kritērijam, tiek noteikts
+apkārtnes deskriptors, ielasot papildus datus par attēlu.
+Savukārt ja punkts neatbilst raksturpunkta kritērijam, papildus datu ielase
+nav nepieciešama.
 %TODO: Forward ref
 
 

@@ -1,5 +1,6 @@
-\subsubsection{OpenCV FAST impementācija} \label{sec:fast-ocv}
-OpenCV\footnote{\url{http://opencv.org/}} piedāvā alternatīvu FAST9 algoritma
+\subsubsection{OpenCV FAST impementācija (CPU)} \label{sec:fast-ocv}
+OpenCV\footnote{\url{http://opencv.org/}} piedāvā alternatīvu FAST9 
+(FAST ar $n=9$) algoritma
 implementāciju (FAST ar citām $n$ vērtībām netiek implementētas)~\cite{OpenCV-src}.
 Tās pamatā ir segmenta tests ar papildinātu
 priekšpārbaudi\cite{Rosten-tracking}\cite{FAST}, kas var klasificēt vairumu
@@ -23,7 +24,7 @@ uzlabojums ir līdz 4 reizēm ātrāk (sk.~pielikumu~\ref{appx:test1})
 par neapmācītu mašīnmācāmo implementāciju.
 
 %~ \subsubsection*{OpenCL versija}
-\subsubsection{OpenCV FAST impementācijas OpenCL versija}
+\subsubsection{OpenCV FAST impementācijas OpenCL versija (GPU)} \label{sec:fast-ocv-cl}
 OpenCV piedāvā arī OpenCL FAST implementāciju izpildei GPU~\cite{OpenCV-src}.
 Atšķirībā no CPU versijas, OpenCL implementē pilnu segmenta testu bez
 priekšpārbaudes. Tas ir, galvenokārt, tādēļ, ka priekšpārbaudes loma ir

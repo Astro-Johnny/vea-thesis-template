@@ -26,14 +26,43 @@ kuru aprēķina ar:
 	V_H = |\vb{H}| - k \cdot {(H_{11}+H_{22})}^2
 \end{equation}
 kur\\
-$\vb{H}$ ir Harisa definēts struktūras tenzors\cite{Harris}\cite{FAST} un\\
-$k$ ir konstante kas kontrolē stūra vai malas jutību.
+$\vb{H}$ ir Harisa matrica\cite{Harris}\cite{FAST}, un\\
+%$H_{11}$ un $H_{22}$ ir $\vb{H}$ matricas elementi, un\\
+$k$ ir konstante, kas kontrolē stūra vai malas jutību.
 
-Tenzors $\vb{H}$ iekļauj viduvējošanu (summēšanu) noteiktā
-logā~\cite{FAST}. Lai gan avots \cite{ORB} nenorāda konkrētos parametrus,
-autors analizējot ORB OpenCV implementācijas pirmkodu\cite{OpenCV-src}
-secina, ka viduvējošanai izmantots $7 \times 7$ kvadrāta formas logs un
-izmantotais $k=0.04$.
+Harisa matrica $\vb{H}$, saīsinātā formā un izvērstā formā,
+tiek pierakstīta kā~\cite{Harris}\cite{FAST}:
+\begin{equation}\label{eq:harris}
+	\vb{H} =
+		\begin{pmatrix}
+			\langle I_x^2 \rangle & \langle I_xI_y \rangle \\
+			\langle I_xI_y \rangle & \langle I_y^2 \rangle
+		\end{pmatrix}
+		=
+		\sum_{\vec{r}} W(\vec{r})
+			\begin{pmatrix}
+				I_x(\vec{p}+\vec{r})^2 & I_x(\vec{p}+\vec{r}) I_y(\vec{p}+\vec{r}) \\
+				I_x(\vec{p}+\vec{r}) I_y(\vec{p}+\vec{r}) & I_y(\vec{p}+\vec{r})^2
+			\end{pmatrix}
+\end{equation}
+kur\\
+$I_x$ un $I_y$ ir parciālie atvasinājumi attēlam $\vb{I}$,\\
+stūra iekavas $\langle {\,} \rangle$ apzīmē summēšanu noteiktā logā
+(saīsinātā forma),\\
+$W$ ir izvēlētais logs (kā funkcija), un\\
+$\vec{r}$ ir loga pārvietojums no centra punkta $\vec{p}$, kurā tiek noteikta
+intensitāšu starpība (atvasinājums).
+
+%~ Harisa stūra detektors balstās uz noteikta attēla loga un tā pārvietojumu
+%~ pašlīdzības noteikšanu ar starpību kvadrātu summu, ko
+%~ aproksimē \eqref{eq:harris} definīcija~\cite{Harris}.
+
+Hariss~un~Stefens\cite{Harris} (\termEn{Harris~and~Stephen})
+rekomendē izmantot Gausa matricu par logu
+$W$, bet avots~\cite{ORB}, definējot ORB, izmantotos parametrus nenorāda.
+Autors analizējot ORB OpenCV implementācijas pirmkodu\cite{OpenCV-src}
+secina, ka ORB implementācijā tiek izmantots $7 \times 7$ kvadrāta formas
+logs (ar vienmērīgu sadalījumu) un izmantotais $k=0.04$.
 
 Ņemot vērā, ka Harisa stūru mērs $V_H$ tiek noteikts punktiem
 $\vec{p} \in \hat{F_9}(\vb{I}, \vec{p}, t)$, kas ir apakškopa no attēla

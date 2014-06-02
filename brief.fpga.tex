@@ -3,7 +3,7 @@ Principā,
 BRIEF deskriptora noteikšana ir īpaši piemērota implementēšanai FPGA, jo
 tiek izmantota vienkārša salīdzināšana un 
 FPGA atsevišķu, konkrētu, iepriekš definētu elementu izgūšana
-no masīva ļoti efektīva, jo tiek realizēts kā vienkāršs loģisko elementu 
+no masīva ir ļoti efektīva, jo tiek realizēts kā vienkāršs loģisko elementu 
 savienojums (vads).
 \begin{figure}[tbh]
 	\centering
@@ -25,6 +25,7 @@ saskaitīšanas operācijas. Pie tam Gausa matricas $G$ elementi ir skaitļi
 ar decimāldaļu, nevis veseli (\termEn{integer}) skaitļi, kam nepieciešams
 izmantot peldošā vai fiksētā komata skaitļu formātu.
 
+\phantomsection\label{C:selective-gauss}
 Zināma resursu ekonomiju dod tas, ka ne visi attēla gabala $\hat{\vb{p}}$
 punkti tiek izmantoti BRIEF noteikšanai, tādēļ var implementēt daļēju Gausa
 filtru, aprēķinot tikai nepieciešamo $2n_d$ skaita punktu vērtības.
@@ -32,3 +33,19 @@ Bet, neskatoties uz to,
 pieņemot, ka $n_d = 256$ un izmantotā matrica $G$ ir $5 \times 5$ pikseļu
 liela, nepieciešamo reizināšanas un saskaitīšanas operāciju skaits ir
 $2\cdot 256 \cdot 5^2 = 12800$.
+
+Autors secina, ka iepriekšminētā modeļa nodrošināšana ar datiem
+($\hat{\vb{p}}$) pietiekamā ātrumā (vienā takts ciklā) ir tuvu neiespējama,
+vai vismaz ļoti nepraktiska. Tādēļ, tiek piedāvāts alternatīvs modelis,
+izdalot atsevišķas apstrādes vienības pikseļu pāra salīdzināšanai, iekļaujot
+tajā arī Gausa filtrēšanu, kā ilustrēts \ref{fig:gauss+brief}~attēlā, kur
+ar $w_G$ apzīmē Gausa matricas platumu un garumu.
+\begin{figure}[tbh]
+	\centering
+	%\def\svgwidth{\linewidth}
+	\def\svgscale{1.3}
+	{\small\input{img/gauss+brief.pdf_tex}}
+	\caption{Uzbūves shēma pikseļu pāra salīdzināšanas vienībai ar Gausa filtru.}
+	\label{fig:gauss+brief}
+\end{figure}
+

@@ -1,0 +1,12 @@
+\subsubsection{Attēlu mērogu piramīda} \label{sec:pyramid}
+ORB algoritms mēroga invariances nodrošināšanai izmanto 
+dažādu mēroga attēlu kopas jeb ,,mēroga piramīdas'' izveidošanu~\cite{ORB}.
+Šī piramīda sastāv no $N_L$ skaita līmeņu, kur katra nākamā attēla platums
+un garums (pikseļos) ir mēroga $M_L$ reizes mazāks. Konkrētie $N_L$ un $M_L$
+parametri avotā \cite{ORB} netiek norādīti un
+ORB OpenCV implementācijā\cite{OpenCV-src} ir konfigurējami parametri.
+
+FAST9 raksturpunkti tiek noteikti katrai no piramīdas attēliem un deskriptori
+tiek aprēķināti no attiecīgā piramīdas attēla kurā raksturpunkts tika
+detektēts. Tādā veidā deskriptora aprēķina logs arī tiek mērogots,
+nodrošinot mēroga invarianci.

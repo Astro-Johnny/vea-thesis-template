@@ -68,12 +68,8 @@ savstarpējās atšķirības ir neparedzēti nekonsistentas.
 
 Pirmkārt, CVD bibliotēkas implementācijas ātrdarbība ir augstāka uz vecas
 paaudzes Pentium, bet jaunāko paaudžu procesoriem to pārspēj OpenCV
-implementācija. Autors spekulē, ka OpenCV implementācijai ar tās LUT 
-(\termEn{look-up table}) ir priekšroka
-jauno paaudžu procesoros, to lielākas \termTech{kešatmiņas} dēļ, kas var saglabāt
-visu LUT un attēla gabalu zemākā \termTech{kešatmiņas} līmenī, un, iespējams,
-arī ātrākas atmiņas instrukciju izpildes dēļ. Šīs atšķirības iemesliem
-nepieciešama papildus izpēte.
+implementācija. Tas skaidrojams ar jaunāko paaudžu procesoru
+SSE2 instrukciju kopas izpildes ātruma uzlabojumiem.
 
 Otrkārt, OpenCV SSE2 versija sniedz tikai minimālus uzlabojumus ierīcēm
 I, III un IV. Pēc papildus analīzes konstatēts, ka GCC kompilators,

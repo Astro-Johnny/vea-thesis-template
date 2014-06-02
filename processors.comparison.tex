@@ -8,9 +8,15 @@ Autors secina, ka nozīmīgs šo platformu tipu salīdzinājums ir to
 raksturojošo īpašību kvalitatīva analīze nosakot to priekšrocības vai
 trūkumus un to iespaidu uz algoritmu realizāciju. Savukārt to
 kvantitatīvie rādītāji, kā piemēram, takts frekvence vai operācijas sekundē
-(IPS vai FLOPS), ir tikai nozīmīgas salīdzināšanai viena tipa platformas,
+%(IPS vai FLOPS)
+, ir tikai nozīmīgas salīdzināšanai viena tipa platformas,
 bet ir nederīgi salīdzinot dažādus platformas tipus, vai pat salīdzinot viena tipa
 platformas, ja netiek ņemta vērā veicamā uzdevuma specifika.
+
+%~ {\bfseries
+	%~ Katram algoritmam eksistē sava optimālā izpildes struktūra kura nodrošina
+	%~ tā augstāko ātrdarbību. 
+%~ }
 
 Nodaļas izklāsta turpinājumā tiks izvirzītas konkrētas platformu īpašības un
 platformu tipi salīdzināti šīs īpašības kontekstā.
@@ -66,7 +72,7 @@ kā arī straumes procesori ir apvienoti grupās kuri koplieto instrukciju
 (programmas) atmiņu. Tas uzliek ierobežojumu uz nosacījuma zarošanos ---
 tai jābūt koherentai visai datu kopai procesoru grupas ietvaros. Pretējā
 gadījumā GPU ir spiests izpildīt abus (vai visus) secības variantus~\cite{Owens-GPU}.
-Tādējādi GPU platformai ir piemēroti algoritmi kuru operācijas nav atkarīgas no datiem,
+Tādējādi GPU platformai ir piemēroti algoritmi, kuru operācijas nav atkarīgas no datiem,
 kā arī datiem nav savstarpējās sakarības, t.i.,~tos var apstrādāt atsevišķi
 un paralēli.
 

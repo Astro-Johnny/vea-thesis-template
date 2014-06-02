@@ -65,6 +65,7 @@
 	keywordstyle=[4]{\color{TealBlue}},%
 	keywordstyle=[5]{\color{Sepia}},%
 	emphstyle={\color{Bittersweet}},%
+	emphstyle={[2]\color{PineGreen}},%
 	emph={[3]{U8,image8_chunk,image8_line,image1_chunk,image1_line,S9,image_t}},% My global emphs
 	emphstyle={[3]\color{Green}},%
 	commentstyle=\slshape\color{gray},
@@ -108,15 +109,19 @@
 	%% Ievads
 	\clearpage
 	\pagestyle{plain} % Start the proper page numbering
-	\input{ievads.tex}
+	\input{apziimeejumi.tex}
+	\clearpage\input{ievads.tex}
 	
 	
 	%% Teorija un praktiskā daļa
 	\clearpage\input{processors.tex} % CPU/GPU/FPGA
+	% TODO: Iekļautās sistēmas?
 	\clearpage\input{algorithms.tex}
 	\clearpage\input{fast.tex}
 	\clearpage\input{brief.tex}
 	\clearpage\input{orb.tex}
+	%~ \clearpage\input{orb-model.tex}
+	
 	
 	%% Secinājumi
 	\clearpage\input{conclusions.tex}
@@ -128,5 +133,8 @@
 	\clearpage\input{galvojums.tex}
 	
 	%% Pielikumi
+	%% TODO: Izstrādātie palīglīdzekļi
+	%%       - Saturation arithmetic library
+	%%       - Image loading library for testbenches
 	\clearpage\input{appendices.tex}
 \end{document}

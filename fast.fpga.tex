@@ -2,17 +2,9 @@
 FAST potenciālās ātrdarbības salīdzināšanai FPGA platformai, autors
 izstrādājis savu implementācijas modeli. Pēc vairākiem uzbūves variantiem,
 %TODO?: Atmestie modeļi?
-autors par piemērotāko atzinis modeli, kas balstās atsevišķu apstrādes
+autors par piemērotāko atzinis modeli, kas balstās uz atsevišķu apstrādes
 vienību izmantoto resursu samazināšanu, un caurlaidspējas palielināšanu
 instancējot lielu skaitu šo vienību.
-
-\begin{figure}[tbh]
-	\centering
-	\def\svgwidth{\linewidth}
-	{\small\input{img/fpga-model.pdf_tex}}
-	\caption{Vienkāršota uzbūves shēma viena punkta apstrādes vienībai.}
-	\label{fig:fast-fpga}
-\end{figure}
 
 Tā kā viena elementa --- punkta $\vec{p}$ piederības $F_9(\vb{I},t)$ ---
 noteikšanas latentums nav prioritāte, apstrādes vienība, kā ilustrēts
@@ -23,6 +15,14 @@ gaišo un tumšo loka punktu skaitu. Šāda FAST-9 apstrādes vienība vienu pun
 var klasificēt $16+(n-1)=24$ takts ciklos, bet papildus takts cikli
 var būt nepieciešami datu sagatavošanai.
 
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{\linewidth}
+	{\small\input{img/fpga-model.pdf_tex}}
+	\caption{Vienkāršota uzbūves shēma viena punkta apstrādes vienībai.}
+	\label{fig:fast-fpga}
+\end{figure}
+
 Katra FAST punkta apstrādes vienība tad var tikt instancēta un vairāki
 punkti klasificēti paralēli. Testiem tika izveidots
 ,,attēlu apgabalu procesors'', kas vienlaikus apstrādā $w \times w$ attēla
@@ -31,12 +31,6 @@ apakškopas punktus. Sintēzes rezultāti uzrādīja CPU līdzvērtīgu ātrdarb
 izmantojot tikai 18\% Virtex-6 resursu
 (sk.~pielikumu~\ref{appx:test3}).
 
-\begin{figure}[tbh]
-	\centering
-	\includegraphics[scale=0.77]{chart-overhead}
-	\caption{Caurlaidspējas virstēriņš pret FAST instanču skaitu.}
-	\label{fig:overhead}
-\end{figure}
 Lai arī ,,attēla apgabalu procesors'' ir adekvāta konstrukcija
 ātrdarbības pārbaudei, tika konstatēts, ka lielāku attēlu dalīšana
 apstrādei gabalos, ļoti neefektīvi izmanto pieejamo caurlaidspēju, ja
@@ -46,7 +40,18 @@ izvēlētā $w$ --- virstēriņš strauji samazinās pie lielāka $w$,
 kā redzams \ref{fig:overhead}~attēlā, kur ar melnu, pārtrauktu līniju
 atzīmēta nepieciešamā caurlaidspēja konstantai (patvaļīgi uzdotai)
 mērķa veiktspējai.
+\begin{figure}[tbh]
+	\centering
+	\includegraphics[scale=0.77]{chart-overhead}
+	\caption{Caurlaidspējas virstēriņš pret FAST instanču skaitu.}
+	\label{fig:overhead}
+\end{figure}
 
+Virstēriņš rodas, jo daļa no apstrādājamā attēla gabala, t.i.~tā malas,
+satur nepilnīgu informāciju par punkta apkārtni. Tādēļ, lai apstrādātu
+visu attēlu, apstrādes gabaliem ir jāpārklājas, kā ilustrēts
+\ref{fig:chunks}~attēlā. Pie lielāka gabala malas garuma $w$,
+virstēriņš mazinās.
 \begin{figure}[tbh]
 	\centering
 	\def\svgwidth{0.9\linewidth}
@@ -54,11 +59,6 @@ mērķa veiktspējai.
 	\caption{Apstrādājamais gabals un blakusesošo gabalu pārklāšanās.}
 	\label{fig:chunks}
 \end{figure}
-Virstēriņš rodas, jo daļa no apstrādājamā attēla gabala, t.i.~tā malas,
-satur nepilnīgu informāciju par punkta apkārtni. Tādēļ, lai apstrādātu
-visu attēlu, apstrādes gabaliem ir jāpārklājas, kā ilustrēts
-\ref{fig:chunks}~attēlā. Pie lielāka gabala malas garuma $w$,
-virstēriņš mazinās.
 
 Vienkāršākais risinājums būtu pārraidīt visu attēlu FPGA lokālā atmiņā,
 un tad apstrādāt attēlu pa gabaliem, līdzīgi kā iepriekš. Šim

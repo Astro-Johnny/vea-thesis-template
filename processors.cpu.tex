@@ -1,23 +1,22 @@
 \subsection{Centrālais procesors} \label{sec:cpu}
-Centrālais procesors jeb CPU (no angļu \termEn{central processing unit}), ir
+Centrālais procesors jeb CPU (\termEn{central processing unit}), ir
 praktiski visās datorsistēmās --- gan personālajos datoros (PC), gan serveros,
-gan iekļautajās sistēmās. CPU kalpo par galveno vadības komponenti un, vairumā
+gan iegultajās sistēmās. CPU kalpo par galveno vadības komponenti un, vairumā
 gadījumu, arī kā galvenais skaitļošanas resurss.
 
 CPU arhitektūra ir vēsturiski attīstīta kopš 20.~gadsimta vidus~%
 \cite{Flynn-arch}\cite{von-Neumann}.
-Klasiskas arhitektūras CPU raksturo ātra secīgu instrukciju izpilde, 
-bet kam nepiemīt ne datu, ne uzdevumu paralelitāte~\cite{Owens-GPU}.
-Šādi CPU aritmētiskās instrukcijas izpilda ar vienu datu vienību --- 
+Klasiskas arhitektūras CPU raksturo ātra secīgu instrukciju izpilde
+un aritmētisko instrukciju izpilda ar vienu datu vienību --- 
 operandu vai operandu pāri (piem.,~divu skaitļu saskaitīšanu)~\cite{Flynn-arch},
 kā tas vienkāršoti parādīts \ref{fig:cpu-arch}~attēlā.
 Līdz 21.~gadsimtam veiktspējas palielināšanai pamatā bija 
 instrukcijas izpildes laika saīsināšana vienkārši 
 palielinot takts signāla frekvenci
 un ieviešot izpildes signāltraktu ar ,,konveijera principu''(\termEn{pipelining})~\cite{Flynn-arch}.
-20.~gadsimta 90-o~gadu beigās plaši pieejamo CPU arhitektūrā tika ieviestas
+20.~gadsimta deviņdesmito gadu beigās plaši pieejamo CPU arhitektūrā tika ieviestas
 vektoru jeb SIMD (\termEn{single instruction, multiple data}) 
-instrukcijas, kas ieviesa zināmu datu paralelitāti jo ar šo instrukciju
+instrukcijas, kas ieviesa zināmu datu paralelitāti, jo ar šo instrukciju
 palīdzību, varēja izdarīt darbības ar vairāk datu vienībām (skaitļu vektoru)
 vienlaikus~\cite{SIMD}.
 Savukārt, sākoties 21.~gadsimtam, \newTerm{vairāku kodolu} procesori
@@ -32,34 +31,28 @@ sāka kļūt komerciāli pieejami, kas nodrošināja arī uzdevumu paralelitāti
 \end{figure}
 
 \phantomsection\label{sec:cache}
-Palielinot CPU instrukciju izpildes ātrumu par
+Palielinot CPU instrukciju izpildes ātrumu, par
 ,,vājāko ķēdes posmu'' kļuva datu atgūšana no operatīvās atmiņas (RAM) jeb
 tās latentums.
-Šo problēmu jau 60-ajos gados risināja radot
-\newTerm{kešatmiņu} (angļu \termEn{cache})~\cite[473.~lpp.]{Patterson},
-kuras pamatprincips ir mazākas ietilpības, bet zemāka latentuma (ātrākas)
+Šo problēmu jau sešdesmitajos gados risināja radot
+\newTerm{kešatmiņu} (\termEn{cache})~\cite{Patterson},
+kuras pamatprincips ir mazākas ietilpības, bet ātrākas (zemāka latentuma)
 atmiņas izmantošana, lai uzglabātu datu apakškopas kopiju no
-RAM ar kuru, potenciāli, tūlītēji tiks veiktas darbības.
-\cite{Flynn-arch}\cite{Patterson2}\cite{Patterson}\cite{Cache}
+RAM, ar kuru, potenciāli, tūlītēji tiks veiktas darbības~%
+\cite{Flynn-arch}\cite{Patterson2}\cite{Patterson}\cite{Cache}.
 
 Kešatmiņa būtiski uzlabo CPU aprīkotas sistēmas vispārējo
 ātrdarbību, bet tās trūkumi sistēmas paralelitātē kļuva acīmredzami
 izstrādājot vairāku kodolu CPU~\cite{Fatahalian}\cite{Owens-GPU}\cite{Cache}.
+
 Vairāku procesoru vai vairāku procesora kodolu%
 \footnote{Turpmāk nodaļas tekstā minēti kā atsevišķi procesori.}
 sistēmas nodrošina
 kešatmiņas \newTerm{koherenci}
-(angļu \termEn{cache coherence}), t.i.,~visām vienas datu vienības
+(\termEn{cache coherence}), t.i.,~visām vienas datu vienības
 kopijām kešatmiņā(s) pēc izmaiņas vienādi jāatspoguļo tās
 jaunākā vērtība, kā arī jānodrošina, ka šo vērtību vienlaicīgi 
-izmainīt drīkst tikai viens no procesoriem.
-\begin{figure}[tbh]
-	\centering
-	\def\svgscale{1.2}
-	{\input{img/snoop-cache-bottleneck.pdf_tex}}
-	\caption{Kešatmiņas koherence vairāku procesoru sistēmā.}
-	\label{fig:snoop-bottleneck}
-\end{figure}
+izmainīt drīkst tikai viens no procesoriem~\cite{Cache}.
 Šādā sistēmā, koherences nodrošināšanai, nepieciešama papildus loģika.
 Pie tam, tipiskā implementācijā, šī komunikācija
 jānodrošina procesoram ,,katram ar katru''.
@@ -69,16 +62,22 @@ procesoru nepieciešama komunikācija $\frac{N^2-N}{2}$ skaitam procesoru pāru
 kavējošais faktors liela skaita procesoru sistēmās.
 Šādu koherences nodrošināšanas protokola modeli dēvē ,,okšķērējošo''
 (\termEn{snooping}) modeli, kur izmaiņas par datu vienības vērtības izmaiņu
-tiek apraidītas visu procesoru kešatmiņas.
-\cite{Cache}
+tiek apraidītas visu procesoru kešatmiņas~\cite{Cache}.
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/snoop-cache-bottleneck.pdf_tex}}
+	\caption{Kešatmiņas koherence vairāku procesoru sistēmā.}
+	\label{fig:snoop-bottleneck}
+\end{figure}
 
 Eksistē arī alternatīvs modelis --- direktorija (\termEn{directory}) modelis,
 kur centrāli tiek kešatmiņas datu vienībām piedēvēts ,,īpašnieks''
 un komunikācija notiek tikai starp šo ,,īpašnieku'' un procesoru, kurš
-pieprasa pieeju datu vienībai. Šādi tiek samazināts komunikācijas apjoms pie
+pieprasa pieeju datu vienībai~\cite{Cache}.
+Šādi tiek samazināts komunikācijas apjoms pie
 liela procesoru skaita, bet modelis ir komplicētāks, kas prasa papildus
 atmiņu direktorijam un atmiņas transakcijas izpildes laiks ir garāks.
-\cite{Cache}
 
 Savukārt, būtiski citādāka pieeja ir izmantota grafiskā procesora (GPU)
 uzbūvē. GPU definē citādu atmiņas izmantošanas
@@ -86,6 +85,7 @@ modeli, kas padara kešatmiņas koherenci mazsvarīgu,
 atbrīvojot arhitektūras uzbūvi no koherences nodrošināšanas loģikas un
 sekmējot paralelitāti. GPU arhitektūra plašāk apskatīta \ref{sec:gpu}~nodaļā.
 
+%TODO: Apskatīt SIMD paplašinājumus
 
 
 

@@ -1,8 +1,9 @@
 \subsection{Grafiskais procesors} \label{sec:gpu}
-Grafiskais procesors jeb GPU (no angļu \termEn{graphics processing unit})
-ir specializēta skaitļošanas iekārta, kura izstrādāta
-un attīstīta divdimensiju un trīsdimensiju attēlu atveidošanai un apstrādei
-to izvadei uz displeja.
+Grafiskais procesors jeb GPU (\termEn{graphics processing unit})
+ir specializēta skaitļošanas iekārta, kura izstrādāta un attīstīta
+attēlu atveidošanai to izvadei uz displeja. Tās galvenais uzdevums ir
+,,rasterizēšana'' --- divdimensiju un trīsdimensiju objektu attēlošana
+ar pikseļu palīdzību.
 Grafiskos procesorus izvieto:
 \begin{itemize}
 	\item uz \newTerm{video kartēm} --- kopā ar tam speciāli paredzētu
@@ -10,42 +11,53 @@ Grafiskos procesorus izvieto:
 	\item tieši uz mātes plates, kur GPU var izmantot speciāli paredzētu
 		atmiņu un/vai koplietot (ar CPU) datora operatīvo atmiņu (RAM);
 	\item iestrādājot vienā mikroshēmā ar CPU (tipiski jaunos klēpjdatoros);
-	\item arvien biežāk, iekļautajās sistēmās iestrādājot SoC
-		(angļu \termEn{system-on-chip}) mikroshēmās.
+	\item iegultajās sistēmās iestrādājot SoC
+		(\termEn{system-on-chip}) mikroshēmās.
 \end{itemize}
 
 Lai gan GPU idejiski nav izstrādāts, lai veiktu vispārējus skaitļošanas
 uzdevumus, GPU arhitektūras attīstības tendences pavēra šādu iespēju un GPU
 kļuva nozīmīga skaitļošanas platforma augstās veiktspējas dēļ, ko,
-galvenokārt, nodrošina GPU arhitektūras izteiktā paralelitāte.
+galvenokārt, nodrošina GPU arhitektūras izteiktā paralelitāte. Vispārēju
+skaitļošanas uzdevumu veikšanu saīsina ar GPGPU
+(\termEn{general purpose computing on graphics processor units})~\cite{Owens-GPU}.
 
 Sākotnēji GPU arhitektūras pamatā bija vairāku pakāpju signāltrakts, kur
 katra pakāpe veica fiksētu funkciju ar lielu apjomu datu. Katra pakāpe
 signāltraktā varēja darboties vienlaicīgi, tādējādi GPU arhitektūrai
 piemita gan uzdevumu, gan datu paralelitāte no tās pirmsākumiem.
-Programmējamība GPU arhitektūrā parādījās programmējamas \newTerm{ēnotāju}
-(\termEn{pixel shader} un \termEn{vertex shader}) pakāpes,
+Programmējamība GPU arhitektūrā parādījās ar programmējamām \newTerm{ēnotāju}
+(\termEn{pixel shader} un \termEn{vertex shader}) pakāpēm,
 kuras iepriekš arī bija fiksētas funkcijas. Šādam signāltraktam bija būtiska
-problēma ar slodzes sadalīšanu, jo slodze dažādās pakāpēs bija atkarīga
+problēma ar slodzes sadalīšanu, jo slodze dažādās pakāpēs varēja ievērojami
+atšķirties dēļ atkarības
 no datiem un ēnotāju programmējuma. Šo problēmu risināja izstrādājot
 ,,vienotu ēnotāju arhitektūru'' (\termEn{unified shader architecture}),
 kuras pamatā ir liels skaits programmējami, paralēli
 \newTerm{straumes procesori} (\termEn{stream processors}), kuru lomu
-signāltraktā, kurš tagad vairs nav fiksēts aparatūras līmeni, var mainīt.
+signāltraktā var mainīt. Signāltrakts tādējādi vairs nav fiksēts aparatūras līmenī.
+
 GPU straumes procesori izmanto SIMD instrukcijas darbībām ar skaitļu
 vektoriem, kā ilustrēts \ref{fig:gpu-arch}~attēlā. Ņemot vērā lielo skaitu%
 \footnote{AMD Radeon HD7990 ir 4096 straumes procesori.
 	\url{http://www.amd.com/en-us/products/graphics/desktop/7000/7990}}
 šādu SIMD straumes procesoru, GPU var attīstīt ļoti lielu datu caurlaidspēju
-(\termEn{throughput}).
-\cite{Fatahalian}\cite{Owens-GPU}
+(\termEn{throughput})~\cite{Fatahalian}\cite{Owens-GPU}.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgscale{1.2}
+	{\input{img/GPU-arch.pdf_tex}}
+	\caption{Skaitļošanas resursi GPU arhitektūrā.}
+	\label{fig:gpu-arch}
+\end{figure}
 
 Būtiska nianse, kas uzliek ierobežojumus algoritmu implementācijām, ir tas,
 ka straumes procesori nav pilnībā neatkarīgi. Tie ir apvienoti grupās, kuras
 sauc par ,,straumes multiprocesoriem'', ,,pavedienu procesoriem'' vai
 vienkāršāk (bet ne visai korekti) par GPU ,,kodoliem''. Katra šāda grupa
-koplieto vienu instrukciju atmiņu, kas nozīmē, visi grupas straumes
-procesori izpilda to pašu instrukciju, bet ar dažādiem datiem.
+koplieto instrukciju atmiņu, kas nozīmē, visi grupas straumes
+procesori vienlaikus izpilda to pašu instrukciju, bet ar dažādiem datiem.
 Šo izpildes modeli sauc par SPMD (\termEn{single program, multiple data})
 modeli.
 
@@ -61,18 +73,12 @@ atjaunots ar datu maskas palīdzību, kas atspoguļo kuru secību
 konkrētajam straumes procesoram būtu jāizpilda pēc algoritma.
 \cite{Owens-GPU}
 
-\begin{figure}[tbh]
-	\centering
-	\def\svgscale{1.2}
-	{\input{img/GPU-arch.pdf_tex}}
-	\caption{Skaitļošanas resursi GPU arhitektūrā.}
-	\label{fig:gpu-arch}
-\end{figure}
 
-GPU atmiņas izmantošanas modeli arī definē tā pamatuzdevums --- atveidot jeb
-\termTech{rasterizēt} attēlus vadoties pēc trīsdimensiju objektu datiem.
+
+GPU atmiņas izmantošanas modeli definē tā pamatuzdevums --- 
+attēlu rasterizēšana vadoties pēc trīsdimensiju objektu datiem.
 Šie dati signāltraktā tiek transformēti un apstrādāti attēla iegūšanai,
-bet ieejas dati \termTech{rasterizējot} netiek modificēti
+bet ieejas dati rasterizējot netiek modificēti
 un iegūtais attēls (vairumā gadījumu) pēc tā izvades uz displeja neietekmē
 nākamo attēlu, respektīvi, esošie, koplietojamie dati netiek pārrakstīti,
 bet tiek radīti jauni dati no tiem. Tas atbrīvo GPU no atmiņas koherences
@@ -87,12 +93,12 @@ pamatatmiņas, un pie tam šī kešatmiņa, galvenokārt, ir tikai lasāmā
 	rakstāmu (\termEn{read/write}) kešatmiņu~\cite{Owens-GPU}.}
 (no izpildes procesoru puses)~\cite{Fatahalian}.
 Augsto atmiņas latentumu GPU kompensē
-ar \newTerm{vairākpavedienošanu} aparatūras līmenī.
+ar \newTerm{vairākpavedienošanu} (\termEn{multithreading}) aparatūras līmenī.
 Katra straumes procesoru grupa uzglabā informāciju
-par vairākiem%
+par vairākiem izpildes pavedieniem%
 \footnote{NVIDIA GeForce GTX 280 atbalsta līdz 128 pavedieniem uz katru
 	straumes procesoru grupu~\cite{Fatahalian}.}
-izpildes pavedieniem (\termEn{threads}), kur aktīvais pavediens, kas izdara
+(\termEn{threads}), kur aktīvais pavediens, kas izdara
 pieprasījumu no atmiņas un ir spiests gaidīt, tiek aizvietots ar
 citu pavedienu, kurš ir tūlītēji izpildāms~\cite{Fatahalian}.
 Tādējādi tiek samazināts gaidīšanas laiks un tiek efektīvāk

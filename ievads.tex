@@ -1,15 +1,59 @@
 \section*{Ievads} \addcontentsline{toc}{section}{Ievads}
 Vai roboti varēs redzēt? Vai automašīnas varēs autonomi braukt?
-Šie ir tikai divi piemēri attēlu apstrādes iespējamiem pielietojumiem un
-izpētes virzieniem. Objektu atpazīšana un izsekošana,
-telpas rekonstrukcija no attēliem --- tas viss balstās uz dažādiem 
-attēlu apstrādes algoritmiem.
+Šie ir tikai divi piemēri datorredzes attēlu apstrādes iespējamiem pielietojumiem un
+izpētes virzieniem. 
+%~ Objektu atpazīšana un izsekošana,
+%~ telpas rekonstrukcija no attēliem --- tas viss balstās uz 
+%~ attēlu apstrādes algoritmiem.
 
-Attēlu apstrādes pielietojumiem saistībā ar mašīnredzi, gandrīz vienmēr, ir
+Attēlu apstrādes pielietojumiem saistībā ar datorredzi, kur nepieciešams
+reaģēt uz vizuāliem stimuliem (piem.,~robotu redzei), praktiski vienmēr, ir
 nepieciešamība apstrādi veikt reālā laikā, 
 kas, pie ierobežotiem skaitļošanas resursiem, ļoti būtiski ietekmē 
 izmantojamo algoritmu nosacījumus veiktspējai. Lai to nodrošinātu,
 bieži vien ir jādefinē jauni algoritmi vai jāoptimizē esošie algoritmi,
 pēc iespējas lietderīgākai pieejamo skaitļošanas resursu izmantošanai.
 
-\TODO
+Skaitļošanai ir pieejamas dažādas aparatūras platformas (sk.~\ref{sec:proc}~nod.),
+ne tikai plaši izplatītie, klasiskās arhitektūras procesori (CPU).
+Papildus CPU, eksistē FPGA --- pārprogrammējamas loģikas mikroshēmas --- un
+GPU --- video adapteru augstas paralelitātes grafiskie procesori, kurus 
+arvien biežāk izmanto vispārēja pielietojuma skaitļošanai.
+
+Viens no pirmajiem soļiem, vairumam datorredzes pielietojumu, ir 
+atrast viegli atpazīstamus un lokalizējamus attēla punktus ---
+raksturpunktus. Zināt raksturpunktu koordinātas vienā attēlā vēl
+nesniedz daudz informācijas, tādēļ nākamais solis ir detektēt raksturpunktus
+citā attēlā, piemēram,
+nākamajā kameras uzņemtajā attēlā, un atrast atbilstošos punktus ---
+raksturpunktu pārus. No raksturpunktu pāriem jau var iegūt daudz vairāk
+informācijas par attēla objektiem, piem.,~triangulēt punkta koodrinātes telpā
+vai izsekot objekta pārvietojuman. Raksturpunktu
+pārus izmanto objektu atpazīšanai un sekošanai,
+telpas rekonstrukcijas no attēliem, robotu
+pašlokācijai pēc vizuālās informācijas, u.c..
+
+Šis darbs pēta attēlu raksturpunktu detektēšanas un pāru noteikšanas
+algoritmus, aparatūras platformas un to arhitektūru, un iepriekšminēto
+algoritmu izpildes ātrdarbību šajās platformās. Paplašinātai analīzei tika
+izvēlēts ORB raksturpunktu pāru noteikšanas algoritms\cite{ORB}, un FAST
+raksturpunktu detektēšanas algoritms\cite{FAST}, kas ir ORB komponente.
+Darba galvenais mērķis ir analizēt algoritmus un aparatūras platformas,
+potenciāli lokalizējot iespējas ātrdarbības uzlabošanai. Mērķa sasniegšanai
+izvirzītie uzdevumi ir:
+\begin{enumerate}
+	\item aparatūras platformu arhitektūru izpēte un salīdzināšana;
+	\item ORB un FAST algoritmu analīze un implementāciju ātrdarbības
+		salīdzināšana;
+	\item potenciālo ātrdarbības uzlabojumu apzināšana.
+\end{enumerate}
+
+Darba sākumā, \ref{sec:proc}~nodaļā tiek apskatītas aparatūras platformas
+un veikts to salīdzinājums. Sekojošās nodaļās tiek pētīts ORB algoritms un
+tā komponentes pa daļām: \ref{sec:fast}~un \ref{sec:brief} nodaļas apskata
+attiecīgi FAST un BRIEF, neatkarīgi no ORB, un \ref{sec:orb}~nodaļā apskatīts
+ORB algoritms kopumā.
+%~ Lai varētu veikt izklāstu par
+%~ algoritma daļām saglabājot secīgumu, teorijas daļa no praktiskās netiek
+%~ pilnībā atdalīta un izstrādās algoritma daļu implementācijas vai to modeļi
+%~ seko nodaļā tieši aiz teorētiskā izklāsta.

@@ -11,12 +11,44 @@
 		        ātrdarbības izpēte dažādām aparatūras platformām}\\[1ex]
 	\textbf{Darba autors:} & Jānis Šmēdiņš\\[1ex]
 	\textbf{Darba vadītājs:} & Dr.~sc.~comp.~Kaspars Sudars\\[1ex]
-	\textbf{Darba apjoms:} & \TODO \\[1ex]
-	\textbf{Atslēgas vārdi:} & \TODO
+	\textbf{Darba apjoms:} & 43~lpp., 1~tabula, 21~attēls, 1~pirmkoda izdruka,
+	                         28~biblogrāfiskie avoti, 6~pielikumi\\[1ex]
+	\textbf{Atslēgas vārdi:} & 
+		skaitļošanas aparatūras platformas,
+		raksturpunktu pāru noteikšanas ātrdarbība,
+		ORB algoritms,
+		FAST algoritms
+		%algoritmu ātrdarbības testēšana,
 \end{tabularx}
 
 \vspace{1em}
-\TODO
+Šī maģistra darba mērķis ir analizēt attēlu raksturpunktu pāru algoritmu
+ātrdarbību CPU, GPU un FPGA platformās, novērtējot iespējamos
+ātrdarbības uzlabojums. No vairākiem pieejamiem algoritmiem, analīzei
+izvēlēts ORB algoritms.
+
+ORB algoritms ir nozīmīgs algoritms, tā salīdzinoši zemās skaitļošanas
+kompleksitātes dēļ, kas ļauj to potenciāli izmantot sistēmās ar ierobežotu
+veiktspēju, galvenokārt iegultajās sistēmās (\termEn{embedded systems})
+attēlu reāllaika apstrādei.
+
+Darbā veikts CPU, GPU un FPGA aparatūras platformu salīdzinājums, kā arī
+veikta ORB algoritma ātrdarbības salīdzinājums šīm platformām.
+Padziļināta analīze tiek veikta FAST algoritmam,
+kas ir izmantots ORB algoritmā kā komponente raksturpunktu detektēšanai.
+Darbā izstrādāta FPGA implementācija FAST algoritmam, izveidots
+ORB algoritma implementācijas modelis un 
+pētījuma laikā tika konstatēts potenciālais
+ātrdarbības uzlabojums tieši FPGA platformai.
+
+
+
+%~ ORB tiek izdalīts pa daļām, kur katra komponente tiek
+%~ apskatīta atsevišķi un empīriski vai teorētiski salīdzināta to ār
+
+%~ Darba galvenais mērķis ir analizēt algoritmus un aparatūras platformas,
+%~ potenciāli lokalizējot iespējas ātrdarbības uzlabošanai. Mērķa sasniegšanai
+%~ izvirzītie uzdevumi ir:
 
 \clearpage
 \begin{english} % The English abstract
@@ -30,12 +62,37 @@
 			        different hardware platforms}\\[1ex]
 		\textbf{Author:} & Jānis Šmēdiņš\\[1ex]
 		\textbf{Supervisor:} & Dr.~sc.~comp.~Kaspars Sudars\\[1ex]
-		\textbf{Extent:} & \TODO \\[1ex]
-		\textbf{Keywords:} & \TODO
+		\textbf{Extent:} & 43~pages, 1~table, 21~figures, 1~listing,
+	                       28~bibliographical references, 6~appendices\\[1ex]
+		\textbf{Keywords:} &
+			computing hardware,
+			keypoint matching performance,
+			ORB algorithm,
+			FAST algorithm
 	\end{tabularx}
 	
 	\vspace{1em}
-	\TODO
+	
+	The purpose of this master's thesis is performance analysis of
+	keypoint matching algorithms on CPU, GPU and FPGA
+	hardware platforms to determine
+	the potential performance improvements. Out of many available algorithms
+	the ORB was chosen for tests and analysis.
+	
+	ORB's main advantage is its computational efficiency compared to other
+	algorithms of same class. This is especially important for 
+	real-time image data processing on reduced
+	performance systems such as embedded systems.
+	
+	An analysis and comparison of CPU, GPU and FPGA hardware platforms was
+	carried out, with emphasis on performance effects on algorithm
+	implementations. The ORB algorithm performance on these
+	platforms is compared. A separate analysis was performed for FAST algorithm,
+	which is used in ORB as keypoint detection component.
+	An FPGA implementation was developed for FAST algorithm and
+	an FPGA implementation
+	model defined for ORB. The analysis revealed significant performance
+	improvements by using FPGA technology for algorithm implementation.
 \end{english}
 
 \clearpage
@@ -46,16 +103,39 @@
 	\noindent%
 	\begin{tabularx}{\textwidth}{lX}
 		\textbf{Название работы:} & 
-			\textit{\TODO}\\[1ex]
+			\textit{Исследование быстродействия алгоритмов определения пар
+			характерных точек изображений для различных аппаратных платформ.}\\[1ex]
 		\textbf{Автор работы:} & Jānis Šmēdiņš (транслит.~Янис Шмэдиньш)\\[1ex]
 		%\textbf{Руководитель работы:}
 		\textbf{Руководитель:} & Dr.~sc.~comp.~Kaspars Sudars 
 			(транслит.~Каспарс Сударс)\\[1ex]
-		\textbf{Размер:} & \TODO \\[1ex]
-		\textbf{Ключевые слова:} & \TODO
+		\textbf{Размер:} & 43~стр., 1~таблица, 21~изображений, 1~листинг,
+	                       28~библиографических источников, 6~приложений\\[1ex]
+		\textbf{Ключевые слова:} & 
+			вычислительные платформы,
+			быстродействие определения пар характерных точек,
+			алгоритм ORB,
+			алгоритм FAST
 	\end{tabularx}
 	
 	\vspace{1em}
-	\TODO
+	Целью настоящей работы является анализ быстродействия отобранного ORB
+	алгоритма, применяемого для определения пар характерных точек изображений
+	в среде платформ CPU, GPU и FPGA, и сравнительная оценка возможного
+	улучшения его быстродействия.
 	
+	Алгоритм ORB --- это важный алгоритм ввиду его сравнительно невысокой
+	вычислительной сложности, что позволяет его  потенциально использовать
+	в системах с ограниченной производительностью, главным образом в
+	встроенных системах (\termEn{embedded systems})
+	обработки изображений реального времени.
+	
+	В работе проведено сравнение как самих аппаратных платформ
+	CPU, GPU и FPGA, так и быстродействия ORB алгоритма на этих платформах.
+	Проводится углубленный анализ алгоритма FAST, используемого в ORB
+	алгоритме в качестве компоненты определения характерных точек.
+	В работе реализовано FPGA исполнение алгоритма FAST, разработана
+	модель исполнения ORB алгоритма и в результате исследования
+	констатировано потенциальное увеличение его быстродействия именно в
+	случае использования платформы FPGA.
 \end{russian}

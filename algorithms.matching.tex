@@ -1,4 +1,10 @@
 \subsection{Attēlu raksturpunktu pāru atrašanas algoritmi} \label{sec:matching}
+Raksturpunktu pāru atrašanas ir atbilstošo punktu atrašana divos
+(vai vairākos) attēlos, kuri atbilst vienam un tam pašam attēlā redzamam
+objektam. Piemērs redzams \ref{fig:orb}~attēlā, kur ar zaļām līnijām
+savienoti atrastie raksturpunktu pāri un ar sarkanu apzīmēti raksturpunkti,
+kuriem pāris nav atrasts.
+
 \begin{figure}[tbh]
 	\centering
 	\includegraphics[width=0.8\textwidth]{orb-match}
@@ -6,17 +12,12 @@
 	\label{fig:orb}
 \end{figure}
 
-Raksturpunktu pāru atrašanas ir atbilstošo punktu atrašana divos
-(vai vairākos) attēlos, kuri atbilst vienam un tam pašam attēlā redzamam
-objektam. Piemērs redzams \ref{fig:orb}~attēlā, kur ar zaļām līnijām
-savienoti atrastie raksturpunktu pāri un ar sarkanu apzīmēti raksturpunkti,
-kuriem pāris nav atrasts.
-
 Raksturpunktu pāru noteikšana tiek izmantota tādos mašīnredzes pielietojumos, kā
 % TODO: citēt pielietojumus
 objektu atpazīšanā un sekošanā, attēlu ,,sašūšanā'', 
 telpiskās informācijas rekonstrukcijā (kartēšanā) no attēliem,
-vienlaicīgā pašlokalizācijā un kartēšanā (SLAM), u.c..
+vienlaicīgā pašlokalizācijā un kartēšanā
+(SLAM --- \termEn{simultaneous localisation and mapping}), u.c..
 
 Raksturpunktu pāru noteikšanas pamatā ir šo punktu ,,aprakstīšana'' izveidojot
 raksturpunkta \newTerm{deskriptoru}, kas satur informāciju,

@@ -22,7 +22,8 @@ Harisa (\termEn{Harris}) stūra mēru, lai no FAST raksturpunktiem atlasītu
 $N$ skaitu labākos elementus~\cite{ORB}.
 Rublē~u.c.\cite{ORB} to pamato ar relatīvi lielo FAST jutību attēla
 objektu malām (pretstatā stūriem). Vienkāršota algoritma blokshēma attēlota
-\ref{fig:orb-sheem}~attēlā.
+\ref{fig:orb-sheem}~attēlā. Mēroga invariances nodrošināšanai raksturpunkti
+un deskriptori tiek noteikti dažādos attēla mērogos (nav uzrādīts blokshēmā).
 
 FAST definīcija apskatīta \ref{sec:fast}~nodaļā
 (\pageref{sec:fast}~lapā) un BRIEF definīcija --- \ref{sec:brief}~nodaļā
@@ -30,12 +31,15 @@ FAST definīcija apskatīta \ref{sec:fast}~nodaļā
 tiks apskatītas turpmākajās apakšnodaļās.
 
 \subsection{Komponentes}
+\input{orb.pyramid.tex}
 \input{orb.harris.tex}
 \input{orb.ofast.tex}
 \input{orb.rbrief.tex}
 
 
-%~ \input{orb.opencv.tex}
+
+%~ \subsection{Implementāciju modeļi}
+\input{orb.opencv.tex}
 
 %~ \subsection{Potenciālās ātrdarbības uzlabojumu analīze}
 %~ \TODO

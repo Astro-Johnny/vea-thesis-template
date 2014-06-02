@@ -1,5 +1,5 @@
 \subsection{Attēlu raksturpunktu detektēšanas algoritmi} \label{sec:corners}
-Attēlu raksturpunktu detektēšana ir raksturpunktu kopas atlase ,
+Attēlu raksturpunktu detektēšana ir raksturpunktu kopas atlase,
 no visiem attēla punktiem, pēc noteiktiem
 kritērijiem. Kā jau minēts nodaļas ievadā (\pageref{sec:algo}~lpp.),
 raksturpunktu atlasei bieži tiek izmantoti ,,stūru'' meklēšanas algoritmi,
@@ -9,11 +9,7 @@ Raksturpunktu kopas atlasei no attēla ir vairāki pamatojumi,
 bet šī darba kontekstā
 --- raksturpunktu pāru noteikšanai --- būtiski ir atlasīt atbilstošos punktus
 dažādos attēlos, kuru lokālajai apkārtnei konkrētajā attēlā piemīt
-augsta variance. Sekundārs pamatojums punktu atlasei ir
-skaitļošanas apjoma samazināšanai, jo turpmākā salāgošana (pāru meklēšana)
-tiek veikta
-tikai atlasītajiem punktiem. Raksturpunktu detektēšana gan ir nepieciešama
-datu priekšapstrāde, jo veicot salāgošanu visiem attēlu punktiem tiek
+augsta variance. Tas nepieciešams, jo veicot salāgošanu visiem attēlu punktiem tiek
 degradēta arī salāgošanas kvalitāte, ne tikai ātrdarbība, jo tiek
 iekļauti daudz zemas variances punkti, kuri sastādīs
 ,,nepatiesi~pozitīvi'' salāgotu punktu pāru kopu, kas būs ievērojami
@@ -21,12 +17,17 @@ lielāka par derīgo rezultātu kopu, kā arī radīs neviennozīmīgus
 konfliktējošus pārus,
 t.i.~viena attēla vairāku punktu ,,atbilstība'' vienam (vai vairākiem)
 punktiem otrā attēlā.
+Sekundārs pamatojums punktu atlasei ir
+skaitļošanas apjoma samazināšanai, jo turpmākā salāgošana (pāru meklēšana)
+tiek veikta
+tikai atlasītajiem punktiem. Raksturpunktu detektēšana gan ir nepieciešama
+datu priekšapstrāde, 
 % TODO?: "Konfliktējošo" pāru attēls?
 
 Eksistē vairāki stūru atrašanas algoritmi: \termEn{Harris} stūru detektors,
 SUSAN, DoG~(SIFT), KLT, FAST, u.c.. 
 Lai gan stūru atrašanas algoritmu skaits un to aprakstošā literatūra ir
-visai liela, ļoti maz ir informācijas ir pieejama to salīdzināšanai. Pie
+visai liela, ļoti maz informācija ir pieejama to salīdzināšanai. Pie
 tam, aprakstītās metodes ne vienmēr ir adevkāti raksturojošas vai pat
 objektīvas~\cite{Mokhtarian}\cite{FAST}. Autors par nozīmīgu un 
 pietiekami kvantitatīvu īpašību atzīst 
@@ -35,10 +36,10 @@ Rostena~un~Dramonda\cite{FAST}~(\termEn{Rosten~and~Drummond}) piedāvāto
 vairākos attēlos no datu kopas. Ja raksturpunktam atbilstošais punkts
 citā attēlā netiek detektēts (kā raksturpunkts),
 to salāgošana nav iespējama.
-Bet bet abu atbilstošo punktu uzdošana par raksturpunktiem ,,automātiski''
+Bet abu atbilstošo punktu uzdošana par raksturpunktiem ,,automātiski''
 nenozīmē arī to salāgošanu.
 %~ tādējādi izvērtējot algoritmus pēc to mērķa pielietojuma.
-Tātad izvirzītās īpašības ir:
+Tātad izvirzītās īpašības raksturpunktu detektēšanas algoritmiem ir:
 \begin{itemize}
 	\item \emph{pozīcijas} un \emph{rotācijas invariance} --- spēja atlasīt
 		raksturpunktus neatkarīgi no to koordinātēm un rotācijas attēlā;
