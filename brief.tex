@@ -1,0 +1,89 @@
+\section{BRIEF deskriptors} \label{sec:brief}
+BRIEF ir $S \times S$ attēla apgabala deskriptors, kas satur informāciju par
+apgabalu, un ir salīdzināma ar citu deskriptoru, lai noteiktu to līdzību.
+Neapstrādāta pikseļu informācija nav tieši izmantojama, jo to salīdzinot
+netiek nodrošināta dažādu attēla transformāciju invariance
+(sk.~\ref{sec:matching}~nod.), tādēļ nepieciešams pikseļu informāciju
+pārveidot.
+
+Būtisks BRIEF uzlabojums pār SIFT deskriptoru ir tā informācijas blīvums.
+BRIEF deskriptors, ar līdzvērtīgiem salāgojamības rādītājiem, uzglabājams
+256~bitos atmiņas, turpretī SIFT deskriptoram nepieciešami 4096~biti
+(128 peldošo komata skaitļu vektors)~\cite{BRIEF}. Papildus ieguvums ir,
+ka BRIEF deskriptori ir salīdzināmi izmantojot Hemminga attālumu
+(\termEn{Hamming distance}), pretstatā $L^2$ normai SIFT deskriptoriem.
+Hemminga attālums ir algoritmiski vienkārši realizējams, sekmējot ātrdarbību,
+it sevišķi CPU platformām, kuras aparatūras līmenī realizē
+bitu skaitīšanas (\termEn{``popcount''}) instrukciju.
+%TODO: Forward ref
+
+\subsection{Definīcija} \label{sec:brief-def}
+BRIEF deskriptors balstās attēla apgabala pikseļu pāru salīdzināšanu.
+Veicot $n_d$ skaitu dažādu pikseļu pāru salīdzināšanu, iegūstam
+bināro vektoru ar $n_d$ bitu garumu, kas arī ir deskriptors.
+\cite{BRIEF}\cite{ORB}
+
+Formāli, uzdodam apskatāmo $S \times S$ izmēra attēla gabalu par
+$\vb{p}$, kas ir attēla $\vb{I}$ apakškopa:
+$\vb{p} \subseteq \vb{I}$. Lai nodrošinātu lielāku salāgojamību nepieciešams
+veikt attēla filtrēšanu, kam BRIEF izmanto Gausa (\textit{Gauß}) filtrēšanu
+\cite{BRIEF}, definējot rezultējošo attēla gabalu kā:
+\[
+	\hat{\vb{p}} := \vb{p} \ast G(\sigma)
+\]
+kur $G(\sigma)$ ir diskretizēta Gausa matrica
+(pie noteiktas $\sigma$ standartnovirzes).\\
+Kalanders~u.c.\cite{BRIEF}~(\termEn{Calonder~et~al.})
+rekomendē filtrēšanu veikt ar $\sigma \in [0; 3]$ un šajā darbā izmantots
+$\sigma = 2$ Gausa filtrs.
+
+Pikseļu intensitātes salīdzināšanu attēla gabalā $\hat{\vb{p}}$ definējam kā funkciju:
+\begin{equation}
+	\tau (\hat{\vb{p}}, \vb{a}, \vb{b}) := 
+		\begin{cases}
+			1\text{,} & \text{ja } \hat{\vb{p}}(\vb{a}) > \hat{\vb{p}}(\vb{b}) \\
+			0\text{,} & \text{citos gadījumos}
+		\end{cases}
+\end{equation}
+kur $\vb{a}$ un $\vb{b}$ ir punktu koordinātes
+$\left(\begin{smallmatrix}x\\y\end{smallmatrix}\right)$
+attēla gabalā $\hat{\vb{p}}$, starp kuriem tiek
+veikta salīdzināšana~\cite{BRIEF}. 
+
+Lai definētu deskriptoru ir nepieciešams uzdot $n_d$ skaitu punktu pārus,
+starp kuriem tiks veikta salīdzināšana un
+kurus apzīmēsim ar atsevišķiem vektoriem
+$\vb{a}_1 \dots \vb{a}_{n_d}$ un $\vb{b}_1 \dots \vb{b}_{n_d}$.
+Pašu deskriptoru, ko apzīmēsim ar $B_{n_d}$, definē kā~\cite{BRIEF}:
+\begin{equation}
+	B_{n_d}(\hat{\vb{p}}) := 
+		\sum_{i=1}^{n_d} 2^{i-1} \tau\left(\hat{\vb{p}}, \vb{a}_i, \vb{b}_i\right)
+\end{equation}
+
+Konkrēto punktu izvēle būtiski ietekmē
+deskriptoru diskriminitāti un salāgojamību. Kalanders~u.c.\cite{BRIEF}
+ekperimentāli iegūst, ka koordinātu izvēle izmantojot gadījumskaitļus ar
+isotropisku Gausa sadalījumu (par koordinātu sākumpunktu pieņemot
+$\vb{p}$ centru) ar varianci $\sigma^2 = \frac{1}{25} S^2$, kā ilustrēts
+\ref{fig:pattern1}~attēlā,
+\begin{figure}[tbh]
+	\centering
+	\includegraphics[width=0.25\linewidth]{brief-pattern}
+	\caption{Salīdzināšanas pāri (parādīti 128 pāri)~\cite{BRIEF}.}
+	\label{fig:pattern1}
+\end{figure}
+dod labus rezultātus.
+
+BRIEF deskriptora aprēķināšanai, salīdzināmu deskriptoru kopas ietvaros
+izmanto tos pašus salīdzināšanas pārus (matricas $\vb{a}$ un $\vb{b}$).
+Tā kā šo pāru koordinātu punkti ir piesaistīti $\vb{p}$, un līdz ar to arī
+attēla orientācijai, var viegli secināt, ka BRIEF nav rotācijas invariants.
+%~ Šo problēmu risina rBRIEF, kas apskatīts sekojošā apakšnodaļā.
+Šo probēmu risina Rublē~u.c.\cite{ORB} izstrādātā modifikācija rBRIEF.
+Pie tam, lai kompensētu variances samazinājumu rBRIEF
+deskriptoram, Rublē~u.c.\cite{ORB} izmanto mašīnmācīšanās metodes, atlasot
+salīdzināšanas pārus ar lielāko vērtības varianci un zemāko savstarpējo
+korelāciju. rBRIEF plašāk apskatīts \ref{sec:rbrief-def}~nodaļā.
+
+\input{brief.fpga.tex}
+

@@ -1,0 +1,140 @@
+%% Mans Maģistrs
+\documentclass[magjistrs]{vea-diplomdarbs}
+\usepackage{setspace}	% Line spacing package
+\usepackage{calc}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\usepackage[title,toc]{appendix}
+\renewcommand{\setthesubsection}{\Alph{subsection}}
+
+% Number equations within context of sections
+\numberwithin{equation}{section}
+
+%% Use proper Aurora Bold Condensed BT
+\definecolor{SeaBlue}{cmyk}{1,0,0.37,0.52}
+\newfontfamily\TitleFont[%
+	Path = /home/johnlm/Development/resources/tex_graphics_lib/fonts/ ,%
+	FakeStretch = 1.5 ,
+	Color = SeaBlue
+	]{aurora-BT-condensed-bold}
+
+\setotherlanguages{english,russian}
+
+% Russian Font
+\newfontfamily\cyrillicfont{CMU Serif}	% Unicode Computer modern font
+
+\newcommand{\TODO}{\textcolor{red}{TODO}}
+
+%% Inline Word inclusion formatting
+\newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
+\newcommand{\termLatin}[1]{\textit{#1}} % inline Latin
+\newcommand{\termTech}[1]{\textit{#1}} % technical term (LV?)
+\newcommand{\newTerm}[1]{,,{#1}''} %newly mentioned term
+
+%% Pāris matemātikas komandu definīcijas
+\newcommand{\vb}[1]{\mathbf{#1}}
+\newcommand{\units}[1]{\;\mathrm{#1}}
+
+%% English determined number suffixes
+\newcommand{\st}{\textsuperscript{st} }
+\newcommand{\nd}{\textsuperscript{nd} }
+\newcommand{\rd}{\textsuperscript{rd} }
+\newcommand{\nth}{\textsuperscript{th} }
+
+%% Abstract title style
+\newcommand{\abstitlestyle}[1]{%
+	\noindent \begin{center}
+		\textbf{\Large #1}
+	\end{center}}
+
+%% listings formateeshanas uzstaadiijumi
+%% Stili
+\lstset{%
+	numbers=left, numberstyle=\tiny, numbersep=5pt,
+	tabsize=4,%
+	frame=lines,framerule=0.5pt,%
+	belowcaptionskip=2ex,%
+	basicstyle=\footnotesize\ttfamily,%
+	lineskip=-0.5ex,
+	keywordstyle={\bfseries\color{blue}},%
+	keywordstyle=[2]{\color{Brown}},%
+	keywordstyle=[3]{\color{OliveGreen}},%
+	keywordstyle=[4]{\color{TealBlue}},%
+	keywordstyle=[5]{\color{Sepia}},%
+	emphstyle={\color{Bittersweet}},%
+	emphstyle={[2]\color{PineGreen}},%
+	emph={[3]{U8,image8_chunk,image8_line,image1_chunk,image1_line,S9,image_t}},% My global emphs
+	emphstyle={[3]\color{Green}},%
+	commentstyle=\slshape\color{gray},
+	stringstyle=\color{orange}} % "listings" koda stils
+%% listings definiicijas
+\input{vhdl_listing_def.tex}
+
+
+\hyphenpenalty=7500
+\clubpenalty=9000
+\widowpenalty=9000
+
+\title{Attēlu raksturpunktu pāru noteikšanas algoritmu ātrdarbības izpēte dažādām aparatūras platformām}
+\author{Jānis Šmēdiņš}
+
+% Hyperref package for links in PDF (should be last package)
+\usepackage[hyperfootnotes=false,linkbordercolor={blue},hyperindex]{hyperref}
+\hypersetup{pdftitle={Attēlu raksturpunktu pāru noteikšanas algoritmu ātrdarbības izpēte dažādām aparatūras platformām}}
+\hypersetup{pdfauthor={Jānis Šmēdiņš}}
+\usepackage{fixlatvian}
+
+\begin{document}
+	% Titullapa
+	\pagestyle{empty}
+	\input{titullapa.tex} % Ielikt titullapu
+	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
+	
+	\onehalfspacing % 1.5 spacing
+	\tableofcontents\clearpage
+	\sloppy % Don't be too fussy about line formatting
+	
+	%% Listings within section
+	\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
+	
+	% Anotācijas
+	\input{abstracts.tex}
+	
+	%% Termini
+		%% kešatmiņa
+	
+	%% Ievads
+	\clearpage
+	\pagestyle{plain} % Start the proper page numbering
+	\input{apziimeejumi.tex}
+	\clearpage\input{ievads.tex}
+	
+	
+	%% Teorija un praktiskā daļa
+	\clearpage\input{processors.tex} % CPU/GPU/FPGA
+	% TODO: Iekļautās sistēmas?
+	\clearpage\input{algorithms.tex}
+	\clearpage\input{fast.tex}
+	\clearpage\input{brief.tex}
+	\clearpage\input{orb.tex}
+	%~ \clearpage\input{orb-model.tex}
+	
+	
+	%% Secinājumi
+	\clearpage\input{conclusions.tex}
+	
+	%% Literatūras saraksts
+	\clearpage\input{references.tex}
+	
+	%% Galvojums
+	\clearpage\input{galvojums.tex}
+	
+	%% Pielikumi
+	%% TODO: Izstrādātie palīglīdzekļi
+	%%       - Saturation arithmetic library
+	%%       - Image loading library for testbenches
+	\clearpage\input{appendices.tex}
+\end{document}

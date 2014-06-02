@@ -1,0 +1,97 @@
+\subsection{Izstrādātie palīglīdzekļi}\label{appx:tools}
+\setcounter{lstlisting}{0} %Reset listings counter for the (sub)appendix
+
+Autors darba gaitā ir izstrādājis palīglīdzekļus, kuri
+tiešā veidā neattiecas uz darba tēmu, bet sekmējuši darba izstrādi.
+Šie palīglīdzekļi ir potenciāli noderīgi izmantošanai citos projektos
+neatkarīgi no šī maģistra darba.
+
+\subsubsection*{Piesātinājuma aritmētikas VHDL bibliotēka}
+Veselo skaitļu (\termEn{integer}) aritmētikai datorsistēmās
+(un citur elektronikā), praktiski vienmēr, ir ierobežots
+reprezentējamo skaitļu apgabals. Šādā gadījumā var izdalīt divu veidu
+aritmētikas tipus, ko nosaka matemātisko darbību definētie rezultāti, ja
+tie nonāk ārpus reprezentējamā apgabala.
+Tipiski datorsistēmās tiek izmantota ,,modulo aritmētika'', kad rezultāts
+tiek atgriezts reprezentējamā apgabalā ,,apejot riņķi'' nonākot atpakaļ
+šajā apgabalā.
+Savukārt, ,,Piesātinājuma aritmētika'' ir otrs variants, kad rezultāts, operācijas
+rezultātā ieņem galējo vērtību, kāds reprezentējams definētajā apgabalā.
+
+Uzskatāmības pēc, ņemsim piemēru $240+20$ darbībai ar reprezentācijas
+apgabalu $[0 ; 256)$. Modulo aritmētikā šīs darbības rezultāts ir:
+\[
+	(240 + 20) \mod 256 = 260 \mod 256 = 4
+\]
+savukārt piesātinājuma aritmētikā:
+\[
+	\max\left( {\min (240+20, 255)}, 0 \right) =
+		\max\left({\min(260, 255)}, 0\right) = 255
+\]
+
+\begin{singlespace}
+\lstinputlisting[language={[qucs]VHDL},%float=hb,%
+	                 caption={Piesātinājuma aritmētikas VHDL pakotne.},%
+	                 breaklines,breakatwhitespace,%
+	                 mathescape=true,%
+	                 tabsize=2,%
+	                 label=kb:satarith]
+		{code/saturation/saturation_arith.vhdl}
+\end{singlespace}
+
+Autora izstrādātā pakotne realizē piesātinājuma aritmētikas saskaitīšanas un
+atņemšanas operācijas VHDL vidē ar dažāda garuma \texttt{unsigned} tipa
+mainīgajiem, pēc līdzības ar IEEE~1076.3 standarta \texttt{numeric\_std}
+aritmētiskajiem operatoriem.
+
+Autors šo pakotni darbā izmanto veicot operācijas ar pikseļu intensitātes
+vērtībām, kur, piemēram, divu intensitāšu summai pārsniedzot
+reprezentējamo apgabalu ir vēlams, lai summas vērtība ieņem lielāko
+reprezentējamo, nevis kādu nekorekti zemāku vērtību no apgabala.
+
+
+\begin{singlespace}
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={Piesātinājuma aritmētikas VHDL pakotnes implementācija.},%
+	                 breaklines,breakatwhitespace,%
+	                 mathescape=true,%
+	                 tabsize=2,%
+	                 label=kb:satarith-body]
+		{code/saturation/saturation_arith-body.vhdl}
+\end{singlespace}
+
+
+\subsubsection*{VHDL attēlu ielādes bibliotēka simulācijām}
+Autors, veicot ar VHDL aprakstītās aparatūras darbības simulāciju šajā darbā
+saskārās ar problēmu attēlu datu nodošanu simulatoram. Problēmas risinājumam
+tika izveidota bibliotēka, kas definē \texttt{image\_t} tipu attēlam un
+funkcijas attēlu ielādei un pikseļu datu izgūšanai.
+
+Attēlu ielādes funkcijas implementētas C++ valodā piesaistoties CVD 
+bibliotēkai. C++ koda piesaistei VHDL izmantota GHDL simulatora specifiska
+saskarne.
+
+\pagebreak
+\begin{singlespace}
+	\lstinputlisting[language={[qucs]VHDL},%float=thb,%
+	                 caption={VHDL attēla tipa un funkciju pakotne.},%
+	                 breaklines,breakatwhitespace,%
+	                 mathescape=true,%
+	                 tabsize=2,%
+	                 label=kb:imageio]
+		{code/imagelib/imageio.vhdl}
+	
+	\lstinputlisting[language={C++},%float=thb,%
+	                 caption={Funkciju implementācija C++ valodā.},%
+	                 breaklines,breakatwhitespace,%
+	                 firstline=8,firstnumber=8,%
+	                 showlines=false,%
+	                 inputencoding=iso-8859-13,%
+	                 keywords={[2]size,push_back},
+	                 keywords={[3]std,vector,string,exception},
+	                 %tabsize=2,%
+	                 label=kb:imageio-cpp]
+		{code/imageio_impl.cpp}
+\end{singlespace}
+
+%iso-8859-13

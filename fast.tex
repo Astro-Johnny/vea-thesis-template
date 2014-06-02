@@ -1,0 +1,174 @@
+\section{FAST raksturpunktu detektēšanas algoritms} \label{sec:fast}
+\setcounter{lstlisting}{0} %Reset listings counter (for the section)
+
+\newcommand{\Ip}{I_{\vec{p}}}
+\newcommand{\Ipc}{ {I_{\vec{p} \to c}} }
+\newcommand{\Spc}{ {S_{\vec{p} \to c}} }
+
+% TODO?: Nodaļas ievads?
+\subsection{Definīcija} \label{sec:fast-def}
+\subsubsection{Punktu klasifikācija}
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fast-corner}
+	\caption{FAST 16 pikseļu riņķa pārbaudes logs~\cite{FAST}.}
+	\label{fig:fast}
+\end{figure}
+
+FAST ir Rostena~un~Dramonda\cite{FAST}~(\termEn{Rosten and Drummond})
+izstrādāts stūru detektors, kurš tiek izmantots attēla potenciālo 
+raksturpunktu noteikšanai~(sk.~\ref{sec:corners}~nod.).
+
+FAST detektors klasificē punktu $\vec{p}$ no attēla $\vb{I}$, izmantojot
+intensitāšu
+salīdzināšanu starp punktu $\vec{p}$ un 16~pikseļu riņķi (\termEn{Bresenham} riņķis
+ar rādiusu 3) ap punktu $\vec{p}$. 
+FAST definīcija nosaka, ka apskatāmais punkts $\vec{p}$ ir uzskatāms par
+,,stūri'' tad, ja $n$ skaita secīgi pikseļi ir, vai nu gaišāki
+(ar augstāku intensitāte) par kandidāta pikseļa intensitāti $\Ip$, kuram
+pieskaitīta sliekšņa vērtība $t$, vai tumšāki (ar zemāku intensitāte) par
+$\Ip - t$. \cite{Rosten-tracking}\cite{FAST}
+
+Rostens~un~Dramonds definē formulu, kas izsaka, ka katrs no 16 riņķa
+punktiem, kurus apzīmē ar $\vec{p}\to c$, kur $c \in [1; 16]$,
+var ieņemt vienu no trīs stāvokļiem~\cite{FASTER}\cite{FAST}:
+\begin{equation}\label{eq:fast-old}
+	\Spc := \left\{
+		\begin{array}{c}
+			d\text{,}\quad\text{ja}\\
+			s\text{,}\quad\text{ja}\\
+			b\text{,}\quad\text{ja}
+		\end{array}
+		\begin{aligned}
+			           & \Ipc \leq \Ip-t \\
+			   \Ip-t < & \Ipc < \Ip+t \\
+			\Ip+t \leq & \Ipc
+		\end{aligned}
+		\right.
+\end{equation}
+kur $d$, $b$ un $s$ ir stāvokļi, kuri attiecīgi apzīmē ,,tumšāks'',
+,,gaišāks'' vai ,,līdzīgs''.
+
+Autors, darba izstrādē novēro pretrunu \eqref{eq:fast-old} definīcijai pret
+visu apskatīto
+FAST implementāciju (t.sk.~Rostena un Dramonda\cite{FAST} pašu implementācijas)
+funkcionalitāti. Avotā \cite{FAST} stāvokļi $d$ un $b$ ir definēti ar
+nestingrām nevienādībām, kaut gan visās implementācijās izmantota stingrā
+salīdzināšana. Autors devis priekšroku implementāciju funkcionalitātei un
+pārdefinē $\Spc$ kā:
+\begin{equation}\label{eq:fast}
+	\Spc := \left\{
+		\begin{array}{c}
+			d\text{,}\quad\text{ja}\\
+			s\text{,}\quad\text{ja}\\
+			b\text{,}\quad\text{ja}
+		\end{array}
+		\begin{aligned}
+			           & \Ipc < \Ip-t \\
+			\Ip-t \leq & \Ipc \leq \Ip+t \\
+			   \Ip+t < & \Ipc
+		\end{aligned}
+		\right.
+\end{equation}
+
+Tātad $n$ skaitam $\Spc$ vērtību ar secīgiem $c$ jābūt visiem
+$b$ stāvoklī, vai visiem $d$ stāvoklī, lai $\vec{p}$ tiktu klasificēts kā
+,,stūra'' punkts. Šajā pielietojumā visi atrastie ,,stūri'' tiek pieņemti
+par attēla raksturpunktiem.
+
+Vienkāršākā šīs definīcijas algoritmiska implementācija ir, katram
+punktam $\vec{p}$ secīgi pārbaudīt visus $c$ (nosakot $\Spc$)
+līdz tiek konstatēti $n$ skaita punkti, kas atbilst iepriekšminētajam
+kritērijam. Rostens~un~Dramonds\cite{FAST} šādu implementāciju sauc par
+,,pilnu \emph{segmenta testu}'', bet uzskata to par neefektīvu.
+Autors \ref{sec:fast-impl} nodaļā apskata alternatīvus implementāciju
+variantus, kur viens no izdarītajiem secinājumiem ir, ka pilnais
+segmenta tests nav ātrdarbīga implementācija CPU platformai, bet ir
+adekvāts GPU un FPGA platformām.
+
+\subsubsection{Lokālo maksimumu atlase}
+FAST klasifikācijas rezultātā var rasties situācija, ka vairāki 
+blakus esoši pikseļi tiek klasificēti kā raksturpunkti.
+Raksturpunktu salāgošanai šī ir nevēlama situācija, jo šo punktu apkārtnes
+ir līdzīgas un var radīt salāgošanas konfliktus.
+
+Lai šo situāciju novērstu, izmanto lokālo maksimumu atlasi, kas lokalizētā
+apkārtnē atstāj tikai punktu, kas ieņem lielāko vērtību noteiktam
+kvantitatīvam ,,stūrainības'' mēram (sk.~\ref{fig:nonmax}~att.).
+Jāņem vērā, ka FAST
+klasifikācija atgriež tikai bināru vērtību vai punkts ir ,,stūris'',
+tādēļ nepieciešams piešķirt punktiem kvantitatīvu stūra mēru.
+
+\begin{figure}[tbh]
+	\centering
+	\def\svgwidth{0.8\linewidth}
+	{\input{img/nonmax-suppression.pdf_tex}}
+	\caption{Raksturpunktu klasifikācija un lokālo maksimumu atlase.}
+	\label{fig:nonmax}
+\end{figure}
+
+Lai gan \cite{FAST}~avotā ir definīcija, punktu vērtēšanai izmantojot
+absolūto starpību summu, autors konstatē, ka publicētais programmas pirmkods%
+\footnote{\url{http://www.edwardrosten.com/work/fast.html}}
+neatbilst definīcijai.
+
+%\begin{singlespace}
+% NOTE: No Need for singlespace when floated!
+	\lstinputlisting[language={C++},float=thb,%
+	                 caption={,,Stūra'' punkta vērtēšanas funkcija~\cite{FASTER-src}.},%
+	                 linerange={2915-2933},firstnumber=2915,%
+	                 breaklines,breakatwhitespace,%
+	                 label=kb:fast-score-cvd]
+		{code/fast9.cc}
+%\end{singlespace}
+
+Pēc koda analīzes (sk.~\ref{kb:fast-score-cvd}~pirmkodu)
+autors secina, ka punkti tiek vērtēti pēc sliekšņa $t$ vērtības
+(pirmkodā mainīgais \texttt{b}), pie kuras
+punkts joprojām atbilst ,,stūra'' kritērijam.
+
+Formāli, ja FAST klasifikāciju uzdodam kā funkciju $F_n(\vb{I}, \vec{p}, t)$,
+kura ir patiesa, ja punkts $\vec{p}$ attēlā $\vb{I}$
+pie sliekšņa $t$ ir klasificējams
+kā ,,stūris'', tad FAST stūra mēru varam definēt kā:
+\begin{equation}\label{eq:fast-response}
+	V(\vb{I}, \vec{p}) := \left\{ \max{t} : F_n(\vb{I}, \vec{p}, t) \right\}
+\end{equation}
+Funkcionāli ekvivalenta realizācija izmantota visās apskatītajās FAST
+implementācijās.
+
+%~ Tika noskaidrots, ka FAST pirmkodā vērtēšanas funkcija izmainīta versijā~2.0,
+%~ kas izlaista pēc \cite{FAST} avota publikācijas. Toties Rostena jaunākā
+%~ publikācijā, jau aprakstīta izmainītā FAST punktu vērtēšana,
+%~ bet nav minēts izmaiņas pamatojums~\cite{FASTER}.
+
+Kad punkti ir klasificēti un rezultējošiem raksturpunktiem piekārtota
+vērtība, tiek salīdzinātas vērtības blakusesošiem raksturpunktiem
+jeb noteikts lokālais maksimums $3 \times 3$ pikseļu logā katram
+$\vec{p}$ no raksturpunktu kopas, kuru apzīmēsim ar $F_n(\vb{I}, t)$
+(noklusējot argumentu $\vec{p}$).
+Visi punkti $\vec{p} \in F_n(\vb{I}, t)$, kas vienlaikus nav lokālie
+maksimumi tiek atmesti un rezultējošo kopu apzīmēsim ar
+$\hat{F_n}(\vb{I}, t)$.
+
+FAST lokālo maksimumu atlasei tiek izmantoti divi varianti:
+\begin{itemize}
+	\item ,,\emph{relaksētais}'', kurš pieļauj blakusesošus, ja to
+		vērtības ir vienādas (maksimuma vērtība ir nestingri lielāka), un
+	\item ,,\emph{striktais}'', kur maksimuma vērtībai jābūt stingri
+		lielākai par apkārtnes punktu vērtībām, pretējā gadījumā abi (vai
+		visi) šie raksturpunkti tiek atmesti.
+\end{itemize}
+No abiem variantiem, autors izvēlējās un darbā izmanto ,,strikto'' definīciju,
+jo varbūtība blakusesošiem raksturpunktiem, ka tiem sakritīs to
+deskriptori salāgošanai, radot konfliktu, ir ļoti augsta.
+Pie tam, pat ja tā nav, tad pozīcijas nenoteiktības dēļ, raksturpunkti tik
+un tā ir uzskatāmi par nekvalitatīviem un ir nevēlami iekļaušanai
+raksturpunktu kopā.
+
+\subsection{Implementāciju modeļi} \label{sec:fast-impl}
+\input{fast.original.tex}
+\input{fast.opencv.tex}
+\input{fast.fpga.tex}
+\input{fast.comparison.tex}
