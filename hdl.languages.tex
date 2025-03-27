@@ -77,149 +77,15 @@
 	Reālu ciparu shēmu ieejas signāls vienmēr tiks interpretēts kā |0| (zems līmenis) 
 	vai |1| (augsts līmenis), un izejas var pieņemt |0|, |1| vai augstas
 	impedances (|Z|) stāvokli. Izvadīt nezināmu (|X|) loģisko vērtību
-	fiziskai komponentei nav iespējams.	%\todo{}?
-	% TODO: Uztais normālu nobeigumu
+	fiziskai komponentei nav iespējams.
 
-\pagebreak[3]
 \subsection{Verilog} \label{sec:verilog}
-	Verilog ir aparatūras apraksta valoda, kuru 1980-ajos gados izstrādāja
-	\termEn{P.~Moorby} un \termEn{P.~Goel}. Verilog sintakse ir daļēji modelēta
-	pēc C programmēšanas valodas sintakses, kas papildus faktam, ka Verilog
-	jau sākotnēji izstrādāta shēmu simulācijai, nevis
-	kā formāla shēmu apraksta valoda, padara Verilog pierakstu visai kompaktu.
-
-	\begin{lstlisting}[language={Verilog},label=kb:verilog-example,gobble=4,%
-			caption={Verilog apraksts loģiskajam \texttt{UN} elementam.}]
-		module andgate(A, B, Q);
-			input A;
-			input B;
-			output Q;
-			// inputs and outputs are of 'wire' type
-			// unless redeclared otherwise
-			
-			assign Q = A & B; // Simply 'AND' the inputs and output result
-		endmodule
-	\end{lstlisting}
-
-	Vienkāršs loģiskā elementa \texttt{UN} Verilog apraksta paraugs redzams
-	\ref{kb:verilog-example}~pirmkoda izdrukā.
-	Verilog modulis ir konstrukcija kas satur komponentes aprakstu
-	--- gan ārējo saskarni, gan implementāciju.
-	
-	Verilog moduļus var izmantot citu moduļu definēšanā, tādējādi veicot
-	hierarhiālu shēmas projektēšanu, bet Verilog neatbalsta pakotnes vai
-	bibliotēkas konceptu, tādēļ moduļu otrreizēja izmantošana citos projektos
-	ir apgrūtināta.
-	
-	Verilog datu tipi, atšķirībā no VHDL, ne tikai izsaka
-	to pieņemamās vērtības, bet arī to semantisko nozīmi shēmā
-	\cite[21.~lpp.]{Vivek-Verilog}. Piemēram,
-	gan \texttt{wire} (apakštips no \texttt{net}), gan \texttt{reg} tips
-	satur četru stāvokļu loģikas datus, bet \texttt{wire} apzīmē
-	apzīmē savienojumu mezglu (\termEn{net}), savukārt, \texttt{reg}
-	vairumā gadījumu (bet ne obligāti) apzīmē atmiņas elementu (trigeri).
-	Verilog četri loģiskie stāvokļi ir:
-	\begin{itemize}
-		\item |0| --- loģiskā 0, zems līmenis;
-		\item |1| --- loģiskais 1, augsts līmenis;
-		\item |z| --- augstas impedances stāvoklis;
-		\item |x| --- nezināma loģiskā vērtība.
-	\end{itemize}
-	
-	Verilog četru stāvokļu loģikas iespējamās vērtības neiekļauj
-	,,vājos'' loģiskos stāvokļus, bet tos iespējams izteikt izmantojot
-	\texttt{wire} tipa devēja stipruma uzstādījumu. \ref{kb:nand-oc}~kods
-	parāda vienu no iespējamiem veidiem, kā aprakstīt \texttt{UN-NĒ}
-	elementu ar atvērtā kolektora izeju, kuram pievienots atsaites rezistors
-	pret barošanas avotu.
-	\begin{lstlisting}[language={Verilog},label=kb:nand-oc,gobble=4,%
-			caption={Verilog pieraksta paraugs devēja stipruma uzstādījumam.}]
-		module nand_resistive_high(A, B, Q);
-			input A;
-			input B;
-			output Q;
-			// This emulates an open-collector output
-			// with a pull-up resistor to Vcc
-			wire (pull1, strong0) tmp;
-			
-			assign tmp = ~(A & B);
-			assign Q = tmp;
-		endmodule
-	\end{lstlisting}
-	
-	Fakts, ka Verilog sākotnēji izstrādāts shēmu sintēzei, atstājis iespaidu
-	uz valodas pieraksta sintezējamību. Verilog var aprakstīt sarežģītas
-	sintezējamas shēmas ne sliktāk par citām HDL, bet eksistē virkne
-	nosacījumu apraksta sintezējamības nodrošināšanai \cite{ieee-1364.1},
-	kuri ir vairāk nekā citām HDL.
-	
-
-%\subsection[SystemC]{SystemC \textcolor{red}{???}}
-	%\todo ?
+\lipsum[5-6]
 
 \clearpage
 \subsection{Valodu salīdzinājums} \label{sec:hdl-comparison}
-	Ciparu elektronikas industrijā VHDL un Verilog ir visplašāk izmantotās
-	HDL. Tā kā vairums FPGA un ASIC ražotāju (sk.~\ref{sec:synth}~nod.)
-	piedāvātie izstrādes rīki atbalsta abas valodas, izvēles kritērijs
-	valodas atbalstam ir kļuvis mazsvarīgs.
-	
-	Viena no būtiskākajām atšķirībām starp VHDL un Verilog ir datu tipu
-	konversija. VHDL objektiem (pieslēgvietām, signāliem un mainīgajiem)
-	piešķirama tikai vērtība, kas atbilst konkrētā objekta tipam
-	(jāsakrīt gan tipam, gan vektoru garumiem)~\cite{vhdl-vs-verilog}.
-	Ja nav tiešas atbilstības
-	nepieciešams izmantot konversijas funkcijas vai citus pārvei\-do\-jumus,
-	pat ja šo tipu sintēzes fiziskā realizācija ir identiska.
-	Savukārt, Verilog
-	dažāda garuma bitu vektori un \texttt{integer} tipa vērtības tiek
-	savā starpā pārveidotas bez speciāla pieraksta pēc noklusējuma~\cite{vhdl-vs-verilog}.
-	Abām pieejām ir 
-	ieguvumu un trūkumi. ,,Nestingrajā'' tipu sistēmā iespējams īsāks un,
-	iespējams, pārskatāmāks pieraksts, savukārt, ,,striktā'' tipu sistēma
-	var novērst kļūdas, kas varētu rasties tipu pārveidošanas rezultātā,
-	piem.,~bitu atmešana dažāda garuma bitu vektoru piešķirēs vai nekorekta
-	zīmes bita interpretācija.
-	
-	\begin{figure}[thb]
-		\centering
-		\def\svgwidth{\textwidth}
-		\input{img/hdl-abstractions.pdf_tex}
-		\caption[VHDL un Verilog modelēšanas abstrakciju līmeņu salīdzinājums.]%
-		        {VHDL un Verilog modelēšanas abstrakciju līmeņu salīdzinājums \cite{vhdl-vs-verilog}.}
-		\label{fig:abstractions}
-	\end{figure}
-	
-	Otra, ne mazāk būtiska, bet ne uzreiz redzama atšķirība ir abstrakcijas
-	līmeņi, kādos ar šim valodām var strādāt. VHDL un Verilog piedāvātais
-	modelēšanas abstrakcijas līmeņu ,,spektrs'' ir nedaudz atšķirīgs
-	(sk.~\ref{fig:abstractions}~att.) \cite{vhdl-vs-verilog}, kuru nosaka
-	valodas sintaktiskās konstrukcijas. VHDL piedāvā dažādas konstrukcijas
-	augstai abstrakcijai, t.sk.,~neatkarīgas, globālas apakšprogrammas;
-	parametriski ģenerētas struktūras; lietotāja definētu abstraktu uzskaitāmo
-	(\texttt{enumerate}) tipus \cite{Mealy-VHDL}\cite{Perry-VHDL}. Verilog nav konstrukciju šādiem valodas
-	konceptiem. No otras puses, Verilog piedāvā konstrukcijas detalizētiem, zemas
-	līmeņa abstrakcijas aprakstiem, piem.,~tranzistoru modeļi un
-	pamata loģisko elementu modeļi ar detalizētiem signālaizturu un izejas
-	līmeņu ,,spēcīguma'' parametriem \cite{vhdl-vs-verilog}\cite{Kumar-Verilog}.
-	
-	Lai korektāk būtu iespējams modelēt elementu signālaiztures ar VHDL,
-	tika izveidots VITAL (\termEn{VHDL Initiative Toward ASIC Libraries})
-	papildinājums \cite{VITAL}. VITAL definē pakotnes un apakšprogrammas,
-	kuras ASIC un FPGA ražotāji izmanto lai konstruētu modeļus
-	ASIC standartšūnām (sk.~\ref{sec:asic}~nod.) un FPGA loģiskajiem blokiem
-	(sk.~\ref{sec:fpga}~nod.), sastādot VITAL modeļu bibliotēkas.
-	Izmantojot šīs bibliotēkas ir iespējams simulēt loģisko elementu līmeņa
-	(\termEn{gate level}) shēmas modeli, kurai pēc izvietošanas un trasēšanas
-	soļa ir zināmas reālās elementu signālaiztures, pretstatā shēmas 
-	funkcionālai RTL simulācijai \cite{Perry-VHDL}.
-	VITAL loģisko elementu līmeņa modeli praktiski vienmēr ģenerē izstrādes
-	rīks no shēmas RTL apraksta, jo	
-	lai gan VITAL ir
-	lietotāja izmantojams, tas nav VITAL mērķis, un VHDL pieraksts ar VITAL
-	ir ļoti izsmeļošs, un tādēļ arī nepārskatāms.
-	
-	
+\lipsum[7-9]
+
 	\begin{table}[thb]\small
 		\centering
 		\caption{VHDL un Verilog īpašību salīdzinājuma kopsavilkums.}

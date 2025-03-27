@@ -27,131 +27,11 @@ komponentēm (sk.~\ref{fig:perry-cpu}~att.), kas nodrošina bāzes prototipa
 spēju izpildīt instrukcijas no tā instrukciju kopas.
 
 \subsection{Iekšējā datu kopne} \label{sec:perry-bus}
-	Bāzes prototipa arhitektūra paredz kopēju, trīsstāvokļu iekšējo datu kopne
-	(sk.~\ref{fig:perry-cpu}~att.).
-	Šāda kopnes uzbūve ir elektriski vienkārša, un ir shematiski viegli uztverama
-	(sk.~\ref{fig:multidrop}~att.). Bet šāda uzbūve pieprasa kopnes
-	,,arbitrēšanu'', t.i.,~nepieciešams
-	nodrošināt, ka tikai viena no kopnei pievienotajām ierīcēm ir aktīvs devējs,
-	kamēr pārējo ierīču izvadiem jābūt augstas impedances režīmā, kā arī
-	jānodrošina, lai pareizā ierīce (vai ierīces) šos datus nolasītu no kopnes.
+\lipsum[18-18]
 
-	\begin{figure}[thb]
-		\centering
-		\includegraphics[scale=1.25]{multidrop}
-		\caption{Kopējas trīsstāvokļu datu kopnes shēma.}
-		\label{fig:multidrop}
-	\end{figure}
-
-	Galvenā problēma šādas kopnes izmantošanai sintezējama kodola izstrādei ir
-	fakts, ka vairums (vai pat visas) FPGA neatbalsta iekšēju trīsstāvokļu
-	loģiku, ko var secināt no fakta, ka neviena no apskatītajām FPGA neatbalsta
-	loģisko bloku konfigurāciju ar trīsstāvokļu izejām
-	\cite[18.~lpp.]{FusionFAQ}\cite{SmartFusionFabric}\cite{Xilinx7}.
-	Tas nozīmē, ka pat, ja sintēzes rīks atbalsta šādas kopnes HDL aprakstu, tas
-	ģenerēs ievērojami sarežģītāku struktūru, kas emulētu trīsstāvokļu datu kopni.
-
-	Alternatīvas kopnes uzbūvē ir ķēdes savienojumi vai maršrutējams tīkls.
-	Maršrutējami tīkli ir sarežģītas uzbūves un pieprasa tikpat sarežģītu
-	kontroles loģiku. Savukārt, ķēdes savienojumi ir pietiekami vienkārši,
-	tādēļ tiek izvēlēti par risinājumu.
-
-	\begin{figure}[thb]
-		\centering
-		\includegraphics[scale=1.25]{chain}
-		\caption{Vienvirziena cirkulāra ķēde ar atzarojumiem.}
-		\label{fig:chain}
-	\end{figure}
-
-	Visai komplicēta ķēdes savienojumu struktūra ir redzama \ref{fig:chain}~attēlā,
-	bet kas idejiski atbilst risinājuma rezultātam. 
-	Ar ķēdes savienojumiem datu pārraide notiek vienā virzienā,
-	tādējādi nav nepieciešamas divvirzienu pieslēgvietas, bet ir nepieciešamas
-	atsevišķas pieslēgvietas datu ievadei un izvadei. Noslēdzot sazarojumus ar
-	multipleksoriem zūd nepieciešamība pēc trīsstāvokļu loģikas.
-
-	Ķēdes savienojumu priekšrocība ir arbitrēšanas vienkāršums. Ierīces uz kopnes
-	jau ir savienotas ar datu saņēmejierīcēm, tādējādi vienīgā arbitrēšana ir
-	datu plūsmas nodrošināšana (signalizēt datu nolasi) un sazarojumu noslēdzošo
-	multipleksoru komutēšana.
-	
-	Ķēdes savienojumu kopnes ieguvums ir arī tā potenciālais datu caurlaides
-	apjoms (\termEn{troughput}), kas ir ievērojami lielāks, jo ierīces nav
-	savienotas pie viena mezgla, kas kopējā datu kopnē ir sastrēguma punkts
-	(\termEn{bottleneck}). Datus dažādos ķēdes posmos var pārraidīt
-	paralēli un kopnes atzaru datu pārraides ātrumi drīkst savā starpā 
-	atšķirties.
-
-	Tā kā procesora komponentēm nav nepieciešams komunicēt katrai ar katru, ir
-	iespējams izveidot optimizētu kēžveida datu kopni, kur tieši savienotas ir tikai
-	komponentes, starp kurām notiek tieša komunikācija. Kodolā iestrādāto
-	risināju skatīt \ref{sec:databus}~nodaļā.
-
-\pagebreak[3]
 \subsection{Instrukciju kopa} \label{sec:perry-instr}
-	Bāzes prototips paredz vienkāršu instrukciju kopu, ar konstanta garuma
-	5 bitu operāciju kodiem. Instrukciju kopa ir tipiska \termEn{Load/Store}
-	principa procesoru arhitektūrām. \termEn{Load/Store} princips nosaka, ka
-	visas aritmētiskās, loģiskās, bīdes un salīdzināšanas darbības notiek
-	ar vispārējā pielietojuma reģistru masīva reģistriem un datu apmaiņa ar
-	operatīvo atmiņu notiek ar atmiņas nolases un ierakstes instrukcijām
-	\cite[11.~lpp.]{Flynn-arch}	(sk.~\ref{sec:regArray}~nod.).
-	Instrukcijas sadalāmas šādās grupās \cite[291.~lpp.]{Perry-VHDL}:
-	\begin{itemize}
-		\item \textbf{atmiņas nolases} (\termEn{load}) un \textbf{ierakstes}
-			(\termEn{store}) instrukcijas, kuras
-			veic datu apmaiņu starp reģistriem un operatīvo atmiņu;
-		\item \textbf{zarošanās} instrukcijas, kas izmaina
-			izpildāmā mašīnkoda (programmas) aktīvo pozīciju, un iekļauj
-			nosacījuma un beznosacījuma zarošanās instrukcijas;
-		\item instrukcijas, kuras veic \textbf{aritmētiskās} un 
-			\textbf{bitu loģiskās} darbības ar reģistriem (operandiem);
-		\item instrukcijas, kuras veic \textbf{bitu bīdes} reģistra
-			(operanda) datiem.
-	\end{itemize}
-	
-	Pēc autora domām, izmantotā instrukciju kopas izvēle ir racionāla, bet
-	implementācija ir neoptimizēta. Pirmkārt, 5 bitu operācijas kods
-	neefektīvi izmanto pieejamo 16 bitu mašīnvārdu
-	(sk.~\ref{fig:5bit-opcode}~att.), efektīvāk būtu izmantot mainīga
-	garuma operācijas kodu.
-	\begin{figure}[thb]
-		\centering
-		\includegraphics[scale=1.25]{perry-instr}
-		\caption[5 bitu operācijas koda instrukcijas vārds.]
-		        {5 bitu operācijas koda instrukcijas vārds \cite[292.~lpp.]{Perry-VHDL}.}
-		\label{fig:5bit-opcode}
-	\end{figure}
-	
-	Otrkārt, bāzes prototipa instrukciju operāciju kodi nes tikai kontroles
-	iekārtai nozīmīgu informāciju un tiek pilnībā dekodēti dekodēšanas solī.
-	Tas nozīmē, ka katrai instrukcijai nepieciešami savi, unikāli stāvokļi
-	kontroles iekārtā (kas realizēta kā stāvokļu mašīna). Tā kā piem., 
-	aritmētiskās instrukcijas (\texttt{ADD}, \texttt{SUB}, utt.)
-	tiek izpildītas praktiski vienādi, iespējams veikt daļēju operācijas
-	koda dekodēšanu un deleģējot atlikušā operācijas koda ,,dekodēšanu''
-	ALU (sk.~\ref{sec:alu}~nod.), nododot tai nozīmīgu informāciju no
-	operācijas koda. Tādējādi tiek panākta vienkāršāka dekodēšanas loģika un 
-	mazāk stāvokļu kontroles iekārtā, jo pietiek ar vienu šablonveida
-	izpildes stāvokļu ķēdi.
-	
-	Kodola realizācijai, autors ir pilnībā no jauna izveidojis instrukciju
-	kopu, kas iekļauj visas iepriekš minētās instrukciju grupas, bet
-	konkrētās instrukcijas un to izpildes implementācija, kas izmanto minētās optimizācijas,
-	ievērojami atšķiras (sk.~\ref{sec:instrSet}~nod.).
-	
-	Izstrādājot kodolu arī veikta papildus arhitektūras specifiska
-	optimizācija. Gan bāzes prototipa (sk.~\ref{fig:perry-cpu}~att.),
-	gan izstrādātā kodola (sk.~\ref{fig:cpu-rev3}~att.) uzbūvē ALU un
-	,,bitu bīdes iekārta'' atrodas uz viena signālceļa, kas nozīmē, ka
-	izpildot gan bīdes, gan aritmētiskās instrukcijas dati tiek pārvadīti
-	caur abām ierīcēm. Šo arhitektūras īpašību var izmantot izveidojot
-	instrukciju, kas var veikt abas operācijas vienlaicīgi.
-	Šādi kodolā implementēta \mnem{AR} instrukcija (sk.~\ref{sec:AR}~nod.).
-	Tas arī nozīmē, ka visas aritmētiskās un bīdes instrukcijas ir izsakāmas
-	ar šo ,,šabloninstrukciju'' vēl vairāk vienkāršojot kontroles iekārtas
-	dekodēšanas loģiku un instrukciju izpildes stāvokļus.
-	
+\lipsum[19-19]
+
 \subsection{Komparators} \label{sec:perry-comp}
 	Bāzes prototipā izmantotais komparators (sk.~\ref{fig:perry-comp}~att.),
 	kura uzdevums ir salīdzināt	divus operandus (|a| un |b|), izvada
@@ -198,6 +78,3 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 	Protams šāda implementācija nozīmē papildus loģiku kontroles iekārtā,
 	bet tās implementācija ir visai vienkārša kā parādīts
 	\ref{sec:branching}~nodaļā.
-
-%\subsection{Kontroles iekārta}
-%	\todo
