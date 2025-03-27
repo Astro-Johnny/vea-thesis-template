@@ -62,8 +62,8 @@
 
 %% Footnote symbols redefined
 % I want it to have * ** *** sequence
-\DefineFNsymbols{LMSet}{*{**}{***}\ddagger{\ddagger\ddagger}\S{\S\S}}
-\setfnsymbol{LMSet}
+%~ \DefineFNsymbols{LMSet}{*{**}{***}\ddagger{\ddagger\ddagger}\S{\S\S}}
+%~ \setfnsymbol{LMSet}
 
 
 % Other stuff
@@ -72,11 +72,6 @@
 
 %% Inline Word inclusion formatting
 \newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
-
-% Superscript cite
-\makeatletter
-	\renewcommand\@citess[1]{\textsuperscript{[#1]}}
-\makeatother
 
 % Numurētie saraksti ar iekavu
 %\renewcommand{\theenumi}{\arabic{enumi})}
