@@ -26,8 +26,7 @@
 %NOTE: footmisc must load AFTER setspace
 \usepackage{fancyhdr}	% Fancy header/footer package
 \usepackage{placeins}
-\usepackage[figurewithin=section,tablewithin=section]%
-	{caption}	% Package for configuring captions format
+\usepackage{caption}	% Package for configuring captions format
 \usepackage[a4paper,xetex,top=20mm, bottom=22mm, left=35mm, right=20mm]%
 %\usepackage[a4paper,top=22mm, bottom=25mm, left=35mm, right=20mm]% DEBUG
 	{geometry}
@@ -54,14 +53,6 @@
 	\pagestyle{empty}
 	\input{titullapa.tex} % Ielikt titullapu
 	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
-	
-	%% Number listings within section
-	% Add section number to caption
-	\renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
-	% Redefine \section to reset the lstlisting counter
-	\let\oldSection\section
-	\renewcommand\section{\setcounter{lstlisting}{0}\oldSection}
-	
 	
 	\sloppy %Don't care too much about rigid formatting
 	\onehalfspacing % 1.5 spacing
