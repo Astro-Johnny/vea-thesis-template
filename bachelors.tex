@@ -62,15 +62,17 @@
 	\let\oldSection\section
 	\renewcommand\section{\setcounter{lstlisting}{0}\oldSection}
 	
-	%\renewcommand{\contentsname}%
-	%	{\vspace*{-12mm}\section*{Saturs}\vspace*{-6mm}}
-	\tableofcontents
-	%\addcontentsline{toc}{section}{Saturs}	% Saturs ir saturaa?
 	
-	\clearpage
 	\sloppy %Don't care too much about rigid formatting
 	\onehalfspacing % 1.5 spacing
-	
+
+	% Anotācijas
+	\input{abstract.tex}
+
+	% Satura rādītājs
+	\clearpage
+	\tableofcontents
+
 	% Termini
 		% Seriālā, paralēlā datu pāraide
 		% Mikrokontrolieris, uC
@@ -78,8 +80,6 @@
 		% SPI
 		% ALU
 		% boot
-	
-	\input{abstract.tex}
 	
 	% Ievads
 	\clearpage
