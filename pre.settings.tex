@@ -1,34 +1,36 @@
-% Polyglossia settings
-\setmainlanguage{latvian}
-\setotherlanguages{english}
-
-% FONTS (Empty \setmainfont gives you new Computer Modern)
-% Deja Vu Family (rather good but wide chars)
-%\setmainfont{DejaVu Serif}
-%\setsansfont{DejaVu Sans}
-
-% Liberation Family (my current favourite)
-%\setmainfont{Liberation Serif}
-%\setsansfont{Liberation Sans}
-
-% Monos
+%% Šriftu izvēle
+%% Computer Modern pēc noklusējuma.
+%% Bet, ja obligāti vajag Times New Roman, var atkomentēt nākamo rindu.
+%\setmainfont{Times New Roman}
+%%
+%% Monospace (kodam)
 %\setmonofont{DejaVu Sans Mono}
 
-% External common image library
+% Attēlu meklēšanas folderi
 \graphicspath{{/home/johnlm/Development/resources/tex_graphics_lib/}{img/}}
 
+
+% Uzstāda cik (ne-)labprāt LaTeX dala vārdus pārnešanai jaunā rindā (hypen-
+% tation) un cik ļoti izvairās no rindkopas 1 "bāreņu" rindiņas atstāšanu
+% lapas sākumā/beigās (widow, orphan). Var variēt -- 10000 ir maksimums, kas
+% nozīmē absolūtu nepieļaušanu.
 \hyphenpenalty=7500
 \clubpenalty=9000
 \widowpenalty=9000
 
-% Set rubberband values
+% Maza papildus atstarpe starp rindkopām, ar plus/mīnus pielaidi.
+% Palīdz LaTeX nolīdzināt lapu vertikāli un ievērot augstāk uzdotos
+% nosacījumus.
 \setlength{\parskip}{1ex plus 3ex minus 1ex}	% Space between paragraphs
 
 
-% Reformatting captions
+% Attēlu, tabulu, u.c., nosaukumu konfigurācija.
+% Nosaukumi \small izmērā un kreisais pielīdzinājums ar pārkari, ja nosaukums
+% nesatilpst 1 rindiņā.
 \captionsetup{format=hang,font={small}}	% GLOBAL
 
-% Footer adjustements (by redefining plain pagestyle)
+
+% Kājenes konfigurācija: lapas numurs apakšējā labajā malā
 \setlength{\headheight}{15.2pt}
 \fancypagestyle{plain}{%
 	\fancyhf{}	% Clear current (default) header/footer

@@ -1,44 +1,68 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage{polyglossia}	% XeTeX multi-lingual support
-\usepackage{fontspec}		% The XeTeX font spec package
+%% Diplomdarbs!
+%%
+%% <nosaukums>
+%%
+%% Autors: <tavs vārds>
+%%
+%% izmantojot J.Šmēdiņa LaTeX sagatavi
+%% https://github.com/Astro-Johnny/vea-thesis-template
+%%
 
-\usepackage[intlimits]{amsmath}	% Math stuff
-\usepackage{listings}	% Package for code formatting
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tabularx}
+\documentclass[12pt,a4paper]{article}
+
+%% Pakotnes
+%% --------
+\usepackage{fontspec}            % Šriftu (fontu) pielāgošana
+\usepackage{polyglossia}         % Valodu atbalsts XeLaTeX
+%
+\setmainlanguage{latvian}        % Dokumenta pamatvaloda: latviešu
+\setotherlanguages{english}      % Papildvaloda: angļu (anotācijā)
+
+\usepackage[intlimits]{amsmath}  % Matemātikas režīma uzlabojumi
+\usepackage{listings}            % Pirmkoda ievietošana tekstā
+\usepackage[dvipsnames]{xcolor}  % Krāsu komandas un definīcijas
+\usepackage{tabularx}            % Papildus konfigurējama tabula
 \usepackage{booktabs}	% Package for nicer tables
+\usepackage{rotating}            % Pagriezti attēli (\begin{sidewaysfigure})
+\usepackage{indentfirst}         % Atkāpe arī pirmajai rindkopai
+\usepackage{setspace}            % Līniju atstarpes, dod \onehalfspacing
+\usepackage{fancyhdr}            % Galvenes/kājenes pielāgošana
+\usepackage{caption}             % Att./tab. nosaukumu pielāgošana
+
+% Pielikumu konfigurācija
+% Dod \begin{appendices} un pieliek vārdu "Pielikums" pirms numura
 \usepackage[title,titletoc]{appendix}
-\usepackage{rotating}	% Package for landscape figures
-\usepackage{indentfirst}	%Indent first paragraph too
-\usepackage{setspace}	% Line spacing package
-\usepackage{fancyhdr}	% Fancy header/footer package
-\usepackage{caption}	% Package for configuring captions format
+
+% Lapas konfigurācija
 \usepackage[a4paper,xetex,top=20mm, bottom=22mm, left=35mm, right=20mm]%
 	{geometry}
 
-\usepackage{lipsum}
-
-% Preamble formatting settings defined included from external file
-\input{pre.settings.tex}
-\input{pre.special.tex}
-
-% Hyperref package for links in PDF (should be last package)
+% PDF uzlabojumi: Klikšķināmas atsauces, PDF saturs un metadati
 \usepackage[hyperfootnotes=false,linkbordercolor={blue},hyperindex]{hyperref}
 \hypersetup{pdftitle={Iekļautās sistēmas mikrokontroliera kodola izstrāde}}
 \hypersetup{pdfauthor={Jānis Šmēdiņš}}
 
-\usepackage{fixlatvian}	% Fixes for Latvian typography rules
+% Latviešu tipogrāfijas labojumi (piem., punkti aiz virsrakstu nr.)
+\usepackage{fixlatvian}
+
+\usepackage{lipsum}  % Lorem ipsum (NOŅEM ŠO)
+
+% Papildus konfigurāciju ielādēt no atsevišķiem failiem
+\input{pre.settings.tex}
+\input{pre.special.tex}
 
 
 
 \begin{document}
 	% Titullapa
-	\pagestyle{empty}
+	\pagestyle{empty}  % Lapas bez numerācijas
 	\input{titullapa.tex} % Ielikt titullapu
 	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
 	
-	\sloppy %Don't care too much about rigid formatting
-	\onehalfspacing % 1.5 spacing
+	\sloppy   % Neļaut tekstam pāriet malai, pat ja tas nozīmē lielas
+	          % atstarpes starp vārdiem.
+
+	\onehalfspacing  % 1.5 līniju atstarpe
 
 	% Anotācijas
 	\input{abstract.tex}

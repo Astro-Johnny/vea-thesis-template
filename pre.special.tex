@@ -1,14 +1,20 @@
-%% This file contains special, document-specific preamble settings
+%% Īpašie uzstādījumi
+%% (kas ir "īpašs" gan ir izvēlēts patvaļīgi) :)
 
-%% listings formateeshanas uzstaadiijumi
-%% Stili
+%% Pakotnes 'listings' koda fragmentu konfigurācija
 \lstset{%
+	% Ar rindiņu numuriem
 	numbers=left, numberstyle=\tiny, numbersep=5pt,
+	% <tab> = 2 simboli
 	tabsize=2,%
+	% "Ierāmēt" ar horizontālām līnijām
 	frame=lines,framerule=0.5pt,%
-	belowcaptionskip=2ex,%
+	%belowcaptionskip=2ex,%
+	% Šrifts: 10pt Monospace
 	basicstyle=\footnotesize\ttfamily,%
+	% Rindiņas ciešāk (jo \onehalfspacing ir aktīvs)
 	lineskip=-0.5ex,
+	% Sintakses krāsu un stila izvēles
 	keywordstyle={\bfseries\color{blue}},%
 	keywordstyle=[2]{\color{Brown}},%
 	keywordstyle=[3]{\color{OliveGreen}},%
@@ -16,14 +22,20 @@
 	keywordstyle=[5]{\color{Sepia}},%
 	emphstyle={\color{Bittersweet}},%
 	emphstyle={[2]\color{PineGreen}},%
-	emph={[3]{cpu_lib,bus_t,t_alu,t_reg,t_shift}},% My global emphs
 	emphstyle={[3]\color{Green}},%
 	commentstyle=\slshape\color{gray},
-	stringstyle=\color{orange}} % "listings" koda stils
-%% listings definiicijas
+	stringstyle=\color{orange},
+	% Ar šo var izcelt globāli izmantotos identifikatorus
+	emph={[3]{cpu_lib,bus_t,t_alu,t_reg,t_shift}},% My global emphs
+}
+
+%% Pirmkoda valodu definīcijas
+%% Ja 'listings' neatbalsta tavējo, definē (vai papildini) jaunas!
 \input{vhdl_listing_def.tex}
 \input{jsi_assembler_listing_def.tex}
 
+%% Identifikatori tekstā? Jā, var!
+%% Lietot prātīgi! "With great power, comes great responsibility!"
 \lstMakeShortInline[language={[qucs]VHDL},basicstyle=\normalsize\ttfamily]|
 
 %% English determined number suffixes
@@ -33,7 +45,7 @@
 \newcommand{\rd}{\textsuperscript{rd} }
 \newcommand{\nth}{\textsuperscript{th} }
 
-%% Abstract title style
+%% Anotācijas virsraksta stils
 \newcommand{\abstitlestyle}[1]{%
 	\noindent \begin{center}
 		\textbf{\Large #1}
