@@ -86,37 +86,52 @@
 \subsection{Valodu salīdzinājums} \label{sec:hdl-comparison}
 \lipsum[7-9]
 
+% PIEZĪME: Rekomendēju tabulām izmantot \usepackage{booktabs} bet tā kā
+%          tā maina \begin{tabular} darbību un nāk ar savām stila izvēlēm,
+%          šablonā paliek kā autora izvēle.
+% sk: https://en.wikibooks.org/wiki/LaTeX/Tables#Professional_tables
+% sk: http://mirrors.ctan.org/macros/latex/contrib/booktabs/booktabs.pdf
 	\begin{table}[thb]\small
 		\centering
 		\caption{VHDL un Verilog īpašību salīdzinājuma kopsavilkums.}
 		\label{tbl:hdl-comparison}
 		\begin{tabular}{p{0.2\textwidth}p{0.36\textwidth}p{0.36\textwidth}}
-			\toprule
+			% Ar \usepackage{booktabs} \hline -> \toprule, \midrule, \bottomrule
+			\hline
+			%\toprule
 			~ & \textbf{VHDL} & \textbf{Verilog}\\ 
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Sākotnējais\newline pielietojums} &
 				Formāla komponenšu\newline dokumentēšana & Shēmu simulācija\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Datu tipu\newline konversija} &
 				Tikai ar speciālām konversijas funkcijām & 
 				Vairumam tipu iespējama pēc\newline noklusējuma\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Vairāku\newline stāvokļu loģika} &
 				Ir, ar IEEE 1164 bibliotēku & Ir, iebūvēta\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Pakotņu atbalsts} &
 				Ir & Nav\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Lietotāja definēti tipi} &
 				Iespējami & Nav iespējami\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Tranzistoru\newline modeļi} &
 				Nav & Ir\\
-			\midrule
+			\hline
+			%\midrule
 			\textbf{Advancēti signālaizturu modeļi} &
 				Ir (ar VITAL), bet nav domāti lietotāja izmantošanai &
 				Ir, iebūvēti\\
-			\bottomrule
+			\hline
+			%\bottomrule
 		\end{tabular}
 	\end{table}
 	
