@@ -25,18 +25,8 @@
 \setlength{\parskip}{1ex plus 3ex minus 1ex}	% Space between paragraphs
 
 
-%\renewcommand{\thefootnote}{\alph{footnote}} % Piezīmes ar burtiem
-\newcommand{\citeet}[1]{\textsuperscript{\cite{#1}}}
-
-%% Numbering format fix for sections and subsections (trailing full-stop)
-%\def\thesection{\arabic{section}.}
-%\def\thesubsection{\thesection\arabic{subsection}.}
-% Add deeper levels if required
-%% FIXED: fixlatvian.sty provides these (REMOVE THIS)
-
 % Reformatting captions
 \captionsetup{format=hang,font={small}}	% GLOBAL
-%\captionsetup[table]{position=top,
 
 % Footer adjustements (by redefining plain pagestyle)
 \setlength{\headheight}{15.2pt}
@@ -46,10 +36,6 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\headrulewidth}{0pt}}
 
-%% Footnote symbols redefined
-% I want it to have * ** *** sequence
-%~ \DefineFNsymbols{LMSet}{*{**}{***}\ddagger{\ddagger\ddagger}\S{\S\S}}
-%~ \setfnsymbol{LMSet}
 
 % Attēlu, tabulu, formulu un koda fragmentu numerācija nodaļas ietvaros
 \counterwithin{figure}{section}
@@ -62,11 +48,6 @@
 
 % Other stuff
 \newcommand{\todo}{\textcolor{red}{TODO}}
-%\newcommand{\todo}{} % DUMMY TODO COMMAND
 
 %% Inline Word inclusion formatting
 \newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
-
-% Numurētie saraksti ar iekavu
-%\renewcommand{\theenumi}{\arabic{enumi})}
-
