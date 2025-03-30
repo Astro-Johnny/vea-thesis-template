@@ -10,7 +10,6 @@ IMAGES = \
 	rtl-unit.pdf_tex \
 	rtl-alu.pdf_tex \
 	perry-cpu.pdf \
-	perry-comp.pdf \
 
 
 # First target (here - 'default') gets invoked if make is run with no target

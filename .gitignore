@@ -12,7 +12,6 @@
 # Image temp files
 img/*.tmp.pdf
 img/*.pdf_tex
-img/perry-comp.pdf
 img/perry-cpu.pdf
 img/rtl-alu.pdf
 img/rtl-unit.pdf

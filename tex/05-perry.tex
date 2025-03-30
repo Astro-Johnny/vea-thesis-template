@@ -33,47 +33,4 @@ spēju izpildīt instrukcijas no tā instrukciju kopas.
 \lipsum[19-19]
 
 \subsection{Komparators} \label{sec:perry-comp}
-	Bāzes prototipā izmantotais komparators (sk.~\ref{fig:perry-comp}~att.),
-	kura uzdevums ir salīdzināt	divus operandus (|a| un |b|), izvada
-	rezultātu (|compout|) atkarībā pēc salīdzināšanas režīma signāla uz |sel|
-	\cite[309.~lpp.]{Perry-VHDL}.
-	\begin{figure}[thb]
-		\centering
-		\includegraphics[scale=0.9]{perry-comp}
-		\caption[Bāzes prototipa komparators.]
-		        {Bāzes prototipa komparators \cite[309.~lpp.]{Perry-VHDL}.}
-		\label{fig:perry-comp}
-	\end{figure}
-	
-	Tiek definēti seši salīdzināšanas režīmi:
-	\begin{itemize}
-		\item operandu vienādība (|EQ|), kur |compout| ir |1|, ja |a|$=$|b|;
-		\item operandu nevienādība (|NEQ|), kur |compout| ir |1|, ja |a|$\neq$|b|;
-		\item operands |a| stingri lielāks (|GT|), kur |compout| ir |1|, ja |a|$>$|b|;
-		\item operands |a| nestingri lielāks (|GTE|), kur |compout| ir |1|, ja |a|$\geq$|b|;
-		\item operands |a| stingri mazāks (|LT|), kur |compout| ir |1|, ja |a|$<$|b|;
-		\item operands |a| nestingri mazāks (|LTE|), kur |compout| ir |1|, ja |a|$\leq$|b|.
-	\end{itemize}
-	
-	Šiem režīmiem eksistē ,,pretsakarības'', piem.~|EQ| ir pretējs |NEQ| un
-	|GT| pretējs |LTE|, kas nozīmē ka šie režīmi ir redundanti. Izslēdzot
-	redundantos režīmus iegūstam trīs: |LT|; |EQ|; |GT|, kas arī apzīmē
-	trīs iespējamos operandu savstarpējos stāvokļus.
-	Sekojot no matemātiskās aksiomas var pierādīt, ka
-	\[
-		\neg (a>b) \land (a \neq b) \iff (a<b)
-	\]
-	skaidri parādot, ka pārbaudot jebkurus divus stāvokļus, trešais
-	nosakāms pēc izslēgšanas principa.
-	
-	Tā vietā, lai nodotu vienu no sešiem pārbaudes režīmiem, komparatoru
-	varam optimizēt, likvidējot režīmu pārslēgšanu vispār, un vienmēr izvadīt
-	rezultātu no divu operandu savstarpējo stāvokļu pārbaudes.
-	
-	Kodola realizācijā izmantots ,,bezrežīmu'' komparators, kas 
-	izvada divus signāla bitus, kas attiecīgi norāda 
-	vai operands |a| ir vienāds ar |b| 
-	un vai operands |a| ir lielāks par |b| (sk.~\ref{sec:comp}~nod.).
-	Protams šāda implementācija nozīmē papildus loģiku kontroles iekārtā,
-	bet tās implementācija ir visai vienkārša kā parādīts
-	\ref{sec:branching}~nodaļā.
+\lipsum[18-18]
