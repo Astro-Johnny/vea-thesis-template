@@ -1,12 +1,11 @@
-# This is a Makefile for my thesis
-# author: Jānis "JohnLM" Šmēdiņš
+# Diplomdarba Makefile
+# no J.Šmēdiņa sagataves https://github.com/Astro-Johnny/vea-thesis-template
 
 # General flags
 PDFTEX = xelatex
 PDFTK = $(shell which pdftk)
 
 # OUTPUT
-NAME = masters
 SUBPARTS = abstracts.tex ievads.tex conclusions.tex references.tex \
 titullapa.tex \
 processors.tex processors.cpu.tex processors.gpu.tex processors.fpga.tex \
@@ -22,8 +21,11 @@ rBRIEF.pdf_tex orb.pdf_tex chunk-overhead.pdf_tex brief-fpga.pdf_tex \
 gauss+brief.pdf_tex
 
 # First target (here - 'default') gets invoked if make is run with no target
-default: $(addprefix img/,$(IMAGES)) $(SUBPARTS)
-	$(PDFTEX) $(NAME).tex
+default: diplomdarbs.pdf ;
+
+
+diplomdarbs.pdf: diplomdarbs.tex $(addprefix img/,$(IMAGES)) $(SUBPARTS)
+	$(PDFTEX) $<
 
 %.pdf_tex:: %.svg
 	inkscape -z --export-pdf=$*.pdf --export-latex $<
@@ -43,4 +45,4 @@ endif
 %.png:: %.BMP
 	convert $< png:$@
 
-.PHONY: default
+.PHONY: default diplomdarbs.pdf
