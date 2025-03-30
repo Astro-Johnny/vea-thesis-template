@@ -6,14 +6,6 @@ PDFTEX = xelatex
 PDFTK = $(shell which pdftk)
 
 # OUTPUT
-SUBPARTS = abstracts.tex ievads.tex conclusions.tex references.tex \
-titullapa.tex \
-processors.tex processors.cpu.tex processors.gpu.tex processors.fpga.tex \
-processors.hetero.tex processors.comparison.tex \
-algorithms.tex algorithms.matching.tex \
-fast.tex fast.original.tex fast.opencv.tex fast.fpga.tex fast.comparison.tex \
-brief.tex \
-appendices.tex appx.test1.tex appx.test2.tex appx.test3.tex appx.tools.tex
 IMAGES = CPU-arch.pdf_tex GPU-arch.pdf_tex snoop-cache-bottleneck.pdf_tex \
 orb-match.jpg FPGA-arch.pdf_tex FPGA-arch2.pdf_tex full-hetero-system.pdf_tex \
 chart-fpga.pdf chart-cpu.pdf nonmax-suppression.pdf_tex fpga-model.pdf_tex \
@@ -24,7 +16,7 @@ gauss+brief.pdf_tex
 default: diplomdarbs.pdf ;
 
 
-diplomdarbs.pdf: diplomdarbs.tex $(addprefix img/,$(IMAGES)) $(SUBPARTS)
+diplomdarbs.pdf: diplomdarbs.tex tex/*.tex $(addprefix img/,$(IMAGES))
 	$(PDFTEX) $<
 
 %.pdf_tex:: %.svg
