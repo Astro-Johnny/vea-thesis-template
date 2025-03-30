@@ -20,10 +20,9 @@ orb-match.jpg FPGA-arch.pdf_tex FPGA-arch2.pdf_tex full-hetero-system.pdf_tex \
 chart-fpga.pdf chart-cpu.pdf nonmax-suppression.pdf_tex fpga-model.pdf_tex \
 rBRIEF.pdf_tex orb.pdf_tex chunk-overhead.pdf_tex brief-fpga.pdf_tex \
 gauss+brief.pdf_tex
-TABLES = results1-t1.tbl_tex fpga_test-t1.tbl_tex results2-t1.tbl_tex
 
 # First target (here - 'default') gets invoked if make is run with no target
-default: $(addprefix img/,$(IMAGES)) $(addprefix img/,$(filter %.pdf,$(TABLES))) $(filter %.tbl_tex,$(TABLES)) $(SUBPARTS)
+default: $(addprefix img/,$(IMAGES)) $(SUBPARTS)
 	$(PDFTEX) $(NAME).tex
 
 %.pdf_tex:: %.svg
@@ -45,15 +44,3 @@ endif
 	convert $< png:$@
 
 .PHONY: default
-
-.SECONDEXPANSION:
-$(addprefix img/,$(filter %.pdf,$(TABLES))):%.pdf: $$(subst img/,tables/,$$(basename $$(subst -,.,$$*))).gnumeric
-	ssconvert -O 'sheet=$(subst .,,$(suffix $(subst -,.,$*))) paper=A3' $< $*.noncropped.pdf
-	pdfcrop --margins 2 $*.noncropped.pdf $@
-ifneq ($(PDFTK),)
-	mv $*.pdf $*.tmp.pdf
-	$(PDFTK) $*.tmp.pdf output $*.pdf
-endif
-
-$(filter %.tbl_tex,$(TABLES)):%.tbl_tex: tables/$$(basename $$(subst -,.,$$*)).gnumeric
-	ssconvert -T Gnumeric_stf:stf_assistant -O 'sheet=$(subst .,,$(suffix $(subst -,.,$*))) quoting-mode=never separator=& format=preserve' $< fd://1 | sed -r -e '/^\&*$$/!s/\&*$$/\\\\/' -e 's/^\&*$$/\\midrule/' -e 's/\&/ \& /g' > $@
