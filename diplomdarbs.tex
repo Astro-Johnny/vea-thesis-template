@@ -48,8 +48,8 @@
 \usepackage{lipsum}  % Lorem ipsum (NOŅEM ŠO)
 
 % Papildus konfigurāciju ielādēt no atsevišķiem failiem
-\input{pre.settings.tex}
-\input{pre.special.tex}
+\input{tex/pre.settings.tex}
+\input{tex/pre.special.tex}
 
 %% Dokumentam specifiskas komandas
 %% (Definē jaunas šeit!)
@@ -73,7 +73,7 @@
 \begin{document}
 	% Titullapa
 	\pagestyle{empty}  % Lapas bez numerācijas
-	\input{titullapa.tex} % Ielikt titullapu
+	\input{tex/titullapa.tex} % Ielikt titullapu
 	\stepcounter{page} %Palielināt lapu skaitītāju (jeb ieskaitīt titullapu)
 	
 	\sloppy   % Neļaut tekstam pāriet malai, pat ja tas nozīmē lielas
@@ -82,7 +82,7 @@
 	\onehalfspacing  % 1.5 līniju atstarpe
 
 	% Anotācijas
-	\input{abstract.tex}
+	\input{tex/abstract.tex}
 
 	% Satura rādītājs
 	\clearpage
@@ -91,32 +91,33 @@
 	% Ievads
 	\clearpage
 	\pagestyle{plain} % Start the proper page numbering
-	\input{ievads.tex} % TODO: Rewrite this bugger
+	\input{tex/00-ievads.tex}
 	
 	% Teorija
 	\clearpage
-	\input{hdl.tex}
+	\input{tex/01-hdl.tex}
 	
 	\clearpage
-	\input{platform.tex}
+	\input{tex/02-platform.tex}
 	
 	\clearpage
-	\input{tools.tex}
-	
-	\clearpage\input{orb.tex}
+	\input{tex/03-tools.tex}
 	
 	\clearpage
-	\input{perry.tex}
+	\input{tex/04-orb.tex}
+	
+	\clearpage
+	\input{tex/05-perry.tex}
 	
 	% Praktiskā daļa
 	\clearpage
-	\input{core.tex} % Kodola uzbūve perifērija
+	\input{tex/06-core.tex} % Kodola uzbūve perifērija
 	
 	\clearpage
-	\input{periph.tex} % Sistēmas perifērija
+	\input{tex/07-periph.tex} % Sistēmas perifērija
 	
 	\clearpage
-	\input{conclusions.tex}
+	\input{tex/99-conclusions.tex}
 	
 	% Literatūras saraksts
 	\bibliographystyle{ieeetr}
@@ -255,10 +256,10 @@
 	} % "End of \raggedright"
 	
 	\clearpage
-	\input{galvojums.tex}
+	\input{tex/galvojums.tex}
 	
 	\clearpage
 	\begin{appendices} % Pielikumi sākas šeit
-	\input{appendices.tex}
+	\input{tex/appendices.tex}
 	\end{appendices}
 \end{document}
