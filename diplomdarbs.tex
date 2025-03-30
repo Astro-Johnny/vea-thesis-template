@@ -21,6 +21,7 @@
 \usepackage[intlimits]{amsmath}  % Matemātikas režīma uzlabojumi
 \usepackage{listings}            % Pirmkoda ievietošana tekstā
 \usepackage[dvipsnames]{xcolor}  % Krāsu komandas un definīcijas
+\usepackage{calc}
 \usepackage{tabularx}            % Papildus konfigurējama tabula
 \usepackage{rotating}            % Pagriezti attēli (\begin{sidewaysfigure})
 \usepackage{indentfirst}         % Atkāpe arī pirmajai rindkopai
@@ -52,6 +53,10 @@
 
 %% Dokumentam specifiskas komandas
 %% (Definē jaunas šeit!)
+%% Pāris matemātikas komandu definīcijas
+\newcommand{\vb}[1]{\mathbf{#1}}
+\newcommand{\units}[1]{\;\mathrm{#1}}
+
 % Angļu valodas termins (slīprakstā)
 \newcommand{\termEn}[1]{\textenglish{\itshape {#1}}} % inline English
 % Angļu valodas kārtas skaiļu piedēkļi (1st, ...)
@@ -59,6 +64,7 @@
 \newcommand{\nd}{\textsuperscript{nd} }
 \newcommand{\rd}{\textsuperscript{rd} }
 \newcommand{\nth}{\textsuperscript{th} }
+
 % Sarkans, redzams "TODO" simbols
 \newcommand{\todo}{\textcolor{red}{TODO}}
 
@@ -96,6 +102,8 @@
 	
 	\clearpage
 	\input{tools.tex}
+	
+	\clearpage\input{orb.tex}
 	
 	\clearpage
 	\input{perry.tex}
@@ -199,6 +207,18 @@
 			\textit{Fusion Embedded Development Kit User's Guide}.
 			%USA: Actel,
 			2009.
+
+		\bibitem{ORB}
+			E.~Rublee, V.~Rabaud, K.~Konolige, et~al.,\\
+			``ORB: an efficient alternative to SIFT or SURF.''\\
+			\textit{IEEE International Conference on Computer Vision},
+			pp.~2564--2571, 2011.
+
+		\bibitem{Rosin}
+			P.L.~Rosin,
+			``Measuring corner properties.''\\
+			\textit{Computer Vision and Image Understanding} 73.2,
+			pp.~291--307, 1999.
 
 		\bibitem{Flynn-arch}
 			%Michael J.~Flynn,
