@@ -7,7 +7,7 @@
 /*.nav
 
 # Output files
-./*.pdf
+/diplomdarbs.pdf
 
 # Image temp files
 img/*.tmp.pdf
