@@ -12,14 +12,10 @@
 # Image temp files
 img/*.tmp.pdf
 img/*.pdf_tex
-img/CPU-arch.pdf
-img/FPGA-arch.pdf
-img/FPGA-arch2.pdf
-img/GPU-arch.pdf
-img/fpga-model.pdf
-img/full-hetero-system.pdf
-img/nonmax-suppression.pdf
-img/snoop-cache-bottleneck.pdf
+img/perry-comp.pdf
+img/perry-cpu.pdf
+img/rtl-alu.pdf
+img/rtl-unit.pdf
 
 # Table temp files
 /*.tbl_tex
